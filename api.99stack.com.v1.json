@@ -236,15 +236,11 @@
             "description": "Created"
           },
           "404": {
+            "description": "Not Found",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/_s-response-message"
-                },
-                "example": {
-                  "message": "Invalid resource requested",
-                  "response_type": "warning",
-                  "response_code": 404
                 }
               }
             }
@@ -293,25 +289,6 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SnapshotListResponse200"
-                },
-                "example": {
-                  "3192": {
-                    "ID": 3192,
-                    "type": "snapshot",
-                    "label": "snapshot-2019-01-13",
-                    "created": "2019-01-13T20:31:37z"
-                  }
-                }
-              }
-            }
-          }
-        },
         "x-operation-settings": {
           "CollectParameters": false,
           "AllowDynamicQueryParameters": false,
@@ -319,7 +296,21 @@
           "IsMultiContentStreaming": false
         },
         "security": [],
-        "requestBody": null
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
       }
     },
     "/server/remove": {
@@ -371,14 +362,7 @@
         },
         "responses": {
           "204": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ServerRemoveResponse204"
-                },
-                "example": null
-              }
-            }
+            "description": "No Content"
           },
           "404": {
             "content": {
@@ -392,7 +376,8 @@
                   "response_code": 404
                 }
               }
-            }
+            },
+            "description": "Not Found"
           },
           "429": {
             "content": {
@@ -406,7 +391,8 @@
                   "response_code": 429
                 }
               }
-            }
+            },
+            "description": "Too Many Requests"
           }
         },
         "x-operation-settings": {
@@ -453,66 +439,19 @@
           }
         ],
         "requestBody": {
+          "required": true,
+          "description": "Create server",
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/ServerCreateCustomRequest"
-              },
-              "example": {
-                "hostname": "web-server-2",
-                "label": "Second Web server",
-                "region": 301,
-                "image": 3101,
-                "plan": {
-                  "cpu_count": 16,
-                  "mem_mb": 8192,
-                  "disk_gb": 20
-                },
-                "auto_backups": false,
-                "ipv6_networking": false,
-                "ddos_protection": false,
-                "private_networking": true,
-                "ssh_key": "5cb46fd8-1b2d-11e9-ab14-d663bd873d93",
-                "script_url": "https://raw.github.com...",
-                "user_data": "I2Nsb3VkLWluaXQ="
+                "type": "object"
               }
             }
-          },
-          "required": true
+          }
         },
         "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ServerCreateCustomResponse200"
-                },
-                "example": {
-                  "uuid": "64313238-3337-4331-b837-313534373339",
-                  "name": "web-server-2",
-                  "power": "installing",
-                  "created": "2019-01-13T14:47:26z",
-                  "iface": null,
-                  "bandwidth": {
-                    "usage": 0,
-                    "limit": 0
-                  },
-                  "info": {
-                    "region": "301",
-                    "image": "3101",
-                    "plan": {
-                      "cpu_count": 16,
-                      "mem_mb": 8192,
-                      "disk_gb": 20
-                    },
-                    "price": 234.65
-                  },
-                  "password": "v1d36f5739d586yd",
-                  "ddos_protection": false,
-                  "script_url": "https://raw.github.com..."
-                }
-              }
-            }
+          "201": {
+            "description": "Created"
           },
           "400": {
             "content": {
@@ -526,7 +465,8 @@
                   "response_code": 400
                 }
               }
-            }
+            },
+            "description": "Bad Request"
           },
           "401": {
             "content": {
@@ -538,7 +478,8 @@
                   "message": "Authorization token does not exist"
                 }
               }
-            }
+            },
+            "description": "Unauthorized"
           },
           "502": {
             "content": {
@@ -552,7 +493,8 @@
                   "response_code": 502
                 }
               }
-            }
+            },
+            "description": "Bad Gateway"
           }
         },
         "x-operation-settings": {
@@ -602,7 +544,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/ServerCreateReadyRequest"
+                "type": "object"
               },
               "example": {
                 "hostname": "web-server-2",
@@ -623,34 +565,8 @@
           "required": true
         },
         "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ServerCreateReadyResponse200"
-                },
-                "example": {
-                  "uuid": "64313238-3337-4331-b837-313534373339",
-                  "name": "web-server-2",
-                  "power": "installing",
-                  "created": "2019-01-13T14:47:26z",
-                  "iface": null,
-                  "bandwidth": {
-                    "usage": 0,
-                    "limit": 0
-                  },
-                  "info": {
-                    "region": "201",
-                    "image": "2102",
-                    "plan": "2101",
-                    "price": 10
-                  },
-                  "password": "v1d36f5739d586yd",
-                  "ddos_protection": false,
-                  "script_url": "https://raw.github.com..."
-                }
-              }
-            }
+          "201": {
+            "description": "Created"
           },
           "400": {
             "content": {
@@ -664,7 +580,8 @@
                   "response_code": 400
                 }
               }
-            }
+            },
+            "description": "Bad Request"
           },
           "401": {
             "content": {
@@ -676,7 +593,8 @@
                   "message": "Authorization token does not exist"
                 }
               }
-            }
+            },
+            "description": "Unauthorized"
           },
           "502": {
             "content": {
@@ -690,7 +608,8 @@
                   "response_code": 502
                 }
               }
-            }
+            },
+            "description": "Bad Gateway"
           }
         },
         "x-operation-settings": {
@@ -749,29 +668,18 @@
           },
           "required": true
         },
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ServerStopResponse200"
-                },
-                "example": {
-                  "message": "Database server successfully stopped",
-                  "response_type": "success",
-                  "response_code": 200
-                }
-              }
-            }
-          }
-        },
         "x-operation-settings": {
           "CollectParameters": false,
           "AllowDynamicQueryParameters": false,
           "AllowDynamicFormParameters": false,
           "IsMultiContentStreaming": false
         },
-        "security": []
+        "security": [],
+        "responses": {
+          "202": {
+            "description": "Accepted"
+          }
+        }
       }
     },
     "/server/start": {
@@ -821,29 +729,18 @@
           },
           "required": true
         },
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ServerStartResponse200"
-                },
-                "example": {
-                  "message": "Database server successfully started",
-                  "response_type": "success",
-                  "response_code": 200
-                }
-              }
-            }
-          }
-        },
         "x-operation-settings": {
           "CollectParameters": false,
           "AllowDynamicQueryParameters": false,
           "AllowDynamicFormParameters": false,
           "IsMultiContentStreaming": false
         },
-        "security": []
+        "security": [],
+        "responses": {
+          "202": {
+            "description": "Accepted"
+          }
+        }
       }
     },
     "/server/reboot": {
@@ -893,29 +790,18 @@
           },
           "required": true
         },
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ServerRebootResponse200"
-                },
-                "example": {
-                  "message": "Database server successfully rebooted",
-                  "response_type": "success",
-                  "response_code": 200
-                }
-              }
-            }
-          }
-        },
         "x-operation-settings": {
           "CollectParameters": false,
           "AllowDynamicQueryParameters": false,
           "AllowDynamicFormParameters": false,
           "IsMultiContentStreaming": false
         },
-        "security": []
+        "security": [],
+        "responses": {
+          "202": {
+            "description": "Accepted"
+          }
+        }
       }
     },
     "/server/is_online": {
@@ -965,27 +851,18 @@
           },
           "required": true
         },
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ServerOnlineResponse200"
-                },
-                "example": {
-                  "power": "running"
-                }
-              }
-            }
-          }
-        },
         "x-operation-settings": {
           "CollectParameters": false,
           "AllowDynamicQueryParameters": false,
           "AllowDynamicFormParameters": false,
           "IsMultiContentStreaming": false
         },
-        "security": []
+        "security": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
       }
     },
     "/server/info": {
@@ -1035,59 +912,18 @@
           },
           "required": true
         },
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ServerInfoResponse200"
-                },
-                "example": {
-                  "uuid": "64313238-3337-4330-b936-313534373339",
-                  "name": "Database server",
-                  "power": "running",
-                  "created": "2019-01-13T14:46:36z",
-                  "iface": {
-                    "v4": [
-                      {
-                        "ip_address": "167.99.231.25",
-                        "netmask": "255.255.240.0",
-                        "gateway": "167.99.224.1",
-                        "type": "public"
-                      },
-                      {
-                        "ip_address": "10.136.81.34",
-                        "netmask": "255.255.0.0",
-                        "gateway": "10.136.0.1",
-                        "type": "private"
-                      }
-                    ],
-                    "v6": []
-                  },
-                  "bandwidth": {
-                    "usage": 7,
-                    "limit": 4000
-                  },
-                  "info": {
-                    "region": "201",
-                    "image": "2102",
-                    "plan": "2104",
-                    "price": 80
-                  },
-                  "password": "d69dada581e954fb",
-                  "ddos_protection": false
-                }
-              }
-            }
-          }
-        },
         "x-operation-settings": {
           "CollectParameters": false,
           "AllowDynamicQueryParameters": false,
           "AllowDynamicFormParameters": false,
           "IsMultiContentStreaming": false
         },
-        "security": []
+        "security": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
       }
     },
     "/server/list": {
@@ -1124,101 +960,6 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ServerListResponse200"
-                },
-                "example": {
-                  "16861": {
-                    "uuid": "64313238-3337-4330-b936-313534373339",
-                    "name": "Database server",
-                    "power": "running",
-                    "created": "2019-01-13T14:46:36z",
-                    "iface": {
-                      "v4": [
-                        {
-                          "ip_address": "167.99.231.25",
-                          "netmask": "255.255.240.0",
-                          "gateway": "167.99.224.1",
-                          "type": "public"
-                        },
-                        {
-                          "ip_address": "10.136.81.34",
-                          "netmask": "255.255.0.0",
-                          "gateway": "10.136.0.1",
-                          "type": "private"
-                        }
-                      ],
-                      "v6": []
-                    },
-                    "bandwidth": {
-                      "usage": 7,
-                      "limit": 4000
-                    },
-                    "info": {
-                      "region": "201",
-                      "image": "2102",
-                      "plan": "2104",
-                      "price": 80
-                    },
-                    "password": "d69dada581e954fb",
-                    "ddos_protection": false
-                  },
-                  "16862": {
-                    "uuid": "0f3b75cc-1744-11e9-ab14-d663bd873d93",
-                    "name": "Web server",
-                    "power": "running",
-                    "created": "2019-01-13T14:46:36z",
-                    "iface": {
-                      "v4": [
-                        {
-                          "ip_address": "167.99.228.236",
-                          "netmask": "255.255.240.0",
-                          "gateway": "167.99.224.1",
-                          "type": "public"
-                        },
-                        {
-                          "ip_address": "10.136.93.178",
-                          "netmask": "255.255.0.0",
-                          "gateway": "10.136.0.1",
-                          "type": "private"
-                        }
-                      ],
-                      "v6": []
-                    },
-                    "bandwidth": {
-                      "usage": 387,
-                      "limit": 4000
-                    },
-                    "info": {
-                      "region": "201",
-                      "image": "2105",
-                      "plan": "2104",
-                      "price": 80
-                    },
-                    "password": "a581e95d69dad4fb",
-                    "ddos_protection": false
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/_s-response-message"
-                },
-                "example": {
-                  "message": "Authorization token does not exist"
-                }
-              }
-            }
-          }
-        },
         "x-operation-settings": {
           "CollectParameters": false,
           "AllowDynamicQueryParameters": false,
@@ -1226,7 +967,21 @@
           "IsMultiContentStreaming": false
         },
         "security": [],
-        "requestBody": null
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
       }
     },
     "/floating_ip/detach": {
@@ -1276,41 +1031,18 @@
           },
           "required": true
         },
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/FloatingIPDetachResponse200"
-                },
-                "example": {
-                  "message": "Floating IP successfully detached"
-                }
-              }
-            }
-          },
-          "400": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/_s-response-message"
-                },
-                "example": {
-                  "message": "Failed to detach floating IP",
-                  "response_type": "warning",
-                  "response_code": 400
-                }
-              }
-            }
-          }
-        },
         "x-operation-settings": {
           "CollectParameters": false,
           "AllowDynamicQueryParameters": false,
           "AllowDynamicFormParameters": false,
           "IsMultiContentStreaming": false
         },
-        "security": []
+        "security": [],
+        "responses": {
+          "202": {
+            "description": "Accepted"
+          }
+        }
       }
     },
     "/floating_ip/attach": {
@@ -1348,43 +1080,12 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/FloatingIPAttachRequest"
-              },
-              "example": {
-                "ip_id": "e2f2c380-18fb-11e9-ab14-d663bd873d93",
-                "server_id": "ec8ecff6-18fb-11e9-ab14-d663bd873d93"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/FloatingIPAttachResponse200"
-                },
-                "example": {
-                  "message": "Floating IP successfully detached"
-                }
-              }
-            }
-          },
-          "400": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/_s-response-message"
-                },
-                "example": {
-                  "message": "Failed to attach floating IP",
-                  "response_type": "warning",
-                  "response_code": 400
-                }
+                "type": "object",
+                "properties": {}
               }
             }
           }
@@ -1395,7 +1096,12 @@
           "AllowDynamicFormParameters": false,
           "IsMultiContentStreaming": false
         },
-        "security": []
+        "security": [],
+        "responses": {
+          "202": {
+            "description": "Accepted"
+          }
+        }
       }
     },
     "/floating_ip/remove": {
@@ -1445,39 +1151,18 @@
           },
           "required": true
         },
-        "responses": {
-          "204": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/FloatingIPRemoveResponse204"
-                },
-                "example": null
-              }
-            }
-          },
-          "404": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/_s-response-message"
-                },
-                "example": {
-                  "message": "Invalid IP, nothing deleted",
-                  "response_type": "warning",
-                  "response_code": 404
-                }
-              }
-            }
-          }
-        },
         "x-operation-settings": {
           "CollectParameters": false,
           "AllowDynamicQueryParameters": false,
           "AllowDynamicFormParameters": false,
           "IsMultiContentStreaming": false
         },
-        "security": []
+        "security": [],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        }
       }
     },
     "/floating_ip/create": {
@@ -1515,32 +1200,23 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/FloatingIPCreateRequest"
-              },
-              "example": {
-                "region": 101,
-                "name": "Web server proxy"
+                "type": "object",
+                "properties": {}
               }
             }
-          },
-          "required": true
+          }
         },
         "responses": {
           "201": {
+            "description": "Created",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/FloatingIPCreateResponse200"
-                },
-                "example": {
-                  "name": "New floating IP",
-                  "uuid": "7adffd36-18fa-11e9-ab14-d663bd873d93",
-                  "type": "IPv4",
-                  "ip_address": "102.196.42.219",
-                  "created": "2019-01-13T13:26:23Z"
+                  "type": "object"
                 }
               }
             }
@@ -1557,7 +1233,11 @@
                   "response_code": 400
                 }
               }
-            }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
           }
         },
         "x-operation-settings": {
@@ -1605,39 +1285,7 @@
         ],
         "responses": {
           "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/FloatingIPListResponse200"
-                },
-                "example": [
-                  {
-                    "ip_id": 725,
-                    "name": "CDN server alias",
-                    "uuid": "7adffd36-18fa-11e9-ab14-d663bd873d93",
-                    "type": "IPv4",
-                    "ip_address": "102.196.42.219",
-                    "created": "2019-01-13T13:26:23Z"
-                  },
-                  {
-                    "ip_id": 732,
-                    "name": "Web server alias",
-                    "uuid": "904aac5c-18fa-11e9-ab14-d663bd873d93",
-                    "type": "IPv4",
-                    "ip_address": "107.22.89.172",
-                    "created": "2019-01-13T13:26:56Z"
-                  },
-                  {
-                    "ip_id": 739,
-                    "name": "IPv6 Proxy",
-                    "uuid": "85518082-18fa-11e9-ab14-d663bd873d93",
-                    "type": "IPv6",
-                    "ip_address": "28c3:41f7:1330:9931:a703:d3a1:c25:efef",
-                    "created": "2019-01-13T13:27:11Z"
-                  }
-                ]
-              }
-            }
+            "description": "OK"
           },
           "401": {
             "content": {
@@ -1649,7 +1297,8 @@
                   "message": "Something went wrong..."
                 }
               }
-            }
+            },
+            "description": "Unauthorized"
           }
         },
         "x-operation-settings": {
@@ -1659,7 +1308,16 @@
           "IsMultiContentStreaming": false
         },
         "security": [],
-        "requestBody": null
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              }
+            }
+          }
+        }
       }
     },
     "/ssh_key/remove": {
@@ -1758,54 +1416,12 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/ssh_key-add-request"
-              },
-              "example": {
-                "name": "New SSH Key",
-                "public_key": "ssh-rsa AA..."
-              },
-              "examples": {
-                "Default": {
-                  "value": {
-                    "name": "default-key",
-                    "public_key": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCzu/35UAK6YJ5iG..."
-                  }
-                }
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "201": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SSHKeyAddResponse200"
-                },
-                "example": {
-                  "name": "New SSH key",
-                  "uuid": "6c7f36ce-1735-11e9-ab14-d663bd873d93",
-                  "fingerprint": "ff:9e:fa:ae:9d:33:5c:fb:c1:6f:63:e9:a2:c0:cd:24",
-                  "created": "2019-01-13T13:26:23Z"
-                }
-              }
-            }
-          },
-          "400": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/_s-response-message"
-                },
-                "example": {
-                  "message": "Failed to add SSH key",
-                  "response_type": "warning",
-                  "response_code": 400
-                }
+                "type": "object",
+                "properties": {}
               }
             }
           }
@@ -1816,7 +1432,20 @@
           "AllowDynamicFormParameters": false,
           "IsMultiContentStreaming": false
         },
-        "security": []
+        "security": [],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/ssh_key/list": {
@@ -1853,38 +1482,6 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SSHKeyListResponse200"
-                },
-                "example": [
-                  {
-                    "name": "Admin user",
-                    "uuid": "6c7f36ce-1735-11e9-ab14-d663bd873d93",
-                    "data": "ssh-rsa AA...",
-                    "created": "2019-01-13T14:55:01Z",
-                    "fingerprint": "ff:9e:fa:ae:9d:33:5c:fb:c1:6f:63:e9:a2:c0:cd:24"
-                  }
-                ]
-              }
-            }
-          },
-          "401": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/_s-response-message"
-                },
-                "example": {
-                  "message": "Something went wrong..."
-                }
-              }
-            }
-          }
-        },
         "x-operation-settings": {
           "CollectParameters": false,
           "AllowDynamicQueryParameters": false,
@@ -1892,7 +1489,21 @@
           "IsMultiContentStreaming": false
         },
         "security": [],
-        "requestBody": null
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
       }
     },
     "/backup/restore": {
@@ -1944,17 +1555,8 @@
           "required": true
         },
         "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/RestoreBackupResponse200"
-                },
-                "example": {
-                  "message": "Backup was successfully restored"
-                }
-              }
-            }
+          "202": {
+            "description": "Accepted"
           },
           "404": {
             "content": {
@@ -1968,7 +1570,8 @@
                   "response_code": 404
                 }
               }
-            }
+            },
+            "description": "Not Found"
           }
         },
         "x-operation-settings": {
@@ -2086,24 +1689,22 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/account-token_create-request"
-              },
-              "example": {
-                "name": "New token"
+                "type": "object",
+                "properties": {}
               }
             }
-          },
-          "required": true
+          }
         },
         "responses": {
           "201": {
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/account-token_create-response-200"
+                  "$ref": "#/components/schemas/_s-create-account_token"
                 },
                 "example": {
                   "name": "New token",
@@ -2112,7 +1713,8 @@
                   "created": "2018-11-23T22:55:34Z"
                 }
               }
-            }
+            },
+            "description": "Created"
           },
           "401": {
             "content": {
@@ -2124,7 +1726,8 @@
                   "message": "Authorization token does not exist"
                 }
               }
-            }
+            },
+            "description": "Unauthorized"
           }
         },
         "x-operation-settings": {
@@ -2172,36 +1775,7 @@
         ],
         "responses": {
           "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/account-token_list-response-200"
-                },
-                "example": [
-                  {
-                    "name": "Read token",
-                    "uuid": "69472922-1725-11e9-ab14-d663bd873d93",
-                    "auth_token": "36491ac8ca4fa099367351f2d4bfd0be6a2cb6d2efb78d91",
-                    "created": "2018-11-23T22:55:34Z",
-                    "last_used": "2019-01-13T11:43:50Z"
-                  },
-                  {
-                    "name": "Write token",
-                    "uuid": "8f36ae4e-172c-11e9-ab14-d663bd873d93",
-                    "auth_token": "da0dcb46862e800af5464356b958b3ad5063e9dbea48a5c9",
-                    "created": "2019-01-10T11:33:59Z",
-                    "last_used": "1970-01-01T00:00:00Z"
-                  },
-                  {
-                    "name": "Append token",
-                    "uuid": "b4b0aac6-172c-11e9-ab14-d663bd873d93",
-                    "auth_token": "41251fac397e5c647278a6415a2e27d19eb37f68aa7717d0",
-                    "created": "2019-01-12T13:38:23Z",
-                    "last_used": "1970-01-01T00:00:00Z"
-                  }
-                ]
-              }
-            }
+            "description": "OK"
           },
           "401": {
             "content": {
@@ -2213,7 +1787,8 @@
                   "message": "Authorization token does not exist"
                 }
               }
-            }
+            },
+            "description": "Unauthorized"
           }
         },
         "x-operation-settings": {
@@ -2223,7 +1798,16 @@
           "IsMultiContentStreaming": false
         },
         "security": [],
-        "requestBody": null
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              }
+            }
+          }
+        }
       }
     },
     "/account/info": {
@@ -2265,7 +1849,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/InfoResponse200"
+                  "type": "object"
                 },
                 "example": {
                   "ID": "123456",
@@ -2306,7 +1890,8 @@
                   "permissions": null
                 }
               }
-            }
+            },
+            "description": "OK"
           },
           "401": {
             "content": {
@@ -2318,7 +1903,8 @@
                   "message": "Authorization token does not exist"
                 }
               }
-            }
+            },
+            "description": "Unauthorized"
           }
         },
         "x-operation-settings": {
@@ -2328,7 +1914,16 @@
           "IsMultiContentStreaming": false
         },
         "security": [],
-        "requestBody": null
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              }
+            }
+          }
+        }
       }
     },
     "/account/reset": {
@@ -2354,55 +1949,30 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/ResetRequest"
-              },
-              "example": {
-                "email": "john.doe@example.com"
+                "type": "object",
+                "properties": {}
               }
             }
-          },
-          "required": true
+          }
         },
         "responses": {
           "200": {
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ResetResponse200"
+                  "type": "object"
                 },
                 "example": {
                   "message": "Account reset request received, check your email inbox",
                   "timestamp": "2019-01-13T11:19:21z"
                 }
               }
-            }
-          },
-          "422": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/_s-response-message"
-                },
-                "example": {
-                  "message": "Reset failed, invalid email address provided"
-                }
-              }
-            }
-          },
-          "429": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/_s-response-message"
-                },
-                "example": {
-                  "message": "Reset failed, please wait X seconds then try again"
-                }
-              }
-            }
+            },
+            "description": "OK"
           }
         },
         "x-operation-settings": {
@@ -2437,47 +2007,12 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/RegisterRequest"
-              },
-              "example": {
-                "email": "john.doe@example.com",
-                "password": "secret",
-                "firstname": "John",
-                "lastname": "Doe",
-                "accept_tos": true,
-                "referral": "69472922-1725-11e9-ab14-d663bd873d93",
-                "country": "SE"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/RegisterResponse200"
-                },
-                "example": {
-                  "token": "36491ac8ca4fa099367351f2d4bfd0be6a2cb6d2efb78d91",
-                  "timestamp": "2019-01-13T11:11:05z"
-                }
-              }
-            }
-          },
-          "400": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/_s-response-message"
-                },
-                "example": {
-                  "message": "Error message"
-                }
+                "type": "object",
+                "properties": {}
               }
             }
           }
@@ -2488,7 +2023,12 @@
           "AllowDynamicFormParameters": false,
           "IsMultiContentStreaming": false
         },
-        "security": []
+        "security": [],
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        }
       }
     },
     "/account/login": {
@@ -2527,64 +2067,27 @@
           },
           "required": true
         },
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/LoginResponse200"
-                },
-                "example": {
-                  "token": "36491ac8ca4fa099367351f2d4bfd0be6a2cb6d2efb78d91",
-                  "timestamp": "2019-01-13T11:11:35z"
-                }
-              }
-            }
-          },
-          "400": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/_s-response-message"
-                },
-                "example": {
-                  "message": "Login failed, check credentials and try again"
-                }
-              }
-            }
-          },
-          "403": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/LoginResponse400"
-                },
-                "example": {
-                  "message": "Login failed, account is blacklisted"
-                }
-              }
-            }
-          },
-          "429": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/_s-response-message"
-                },
-                "example": {
-                  "message": "Login failed, please wait X seconds then try again"
-                }
-              }
-            }
-          }
-        },
         "x-operation-settings": {
           "CollectParameters": false,
           "AllowDynamicQueryParameters": false,
           "AllowDynamicFormParameters": false,
           "IsMultiContentStreaming": false
         },
-        "security": []
+        "security": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Too Many Requests"
+          }
+        }
       }
     },
     "/region/list_features/101": {
@@ -2637,7 +2140,16 @@
           "IsMultiContentStreaming": false
         },
         "security": [],
-        "requestBody": null
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              }
+            }
+          }
+        }
       }
     },
     "/plan/list/201": {
@@ -2826,7 +2338,16 @@
           "IsMultiContentStreaming": false
         },
         "security": [],
-        "requestBody": null
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              }
+            }
+          }
+        }
       }
     },
     "/image/list/201": {
@@ -3349,7 +2870,16 @@
           "IsMultiContentStreaming": false
         },
         "security": [],
-        "requestBody": null
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              }
+            }
+          }
+        }
       }
     },
     "/region/list": {
@@ -3361,691 +2891,6 @@
         "description": "Returns a list over all available regions including available features. Availibility of plans and images can be obtained by calling one of the following functions:\n\n```\n/v1/plan/list/REGIONID\n```\n\n```\n/v1/image/list/REGIONID\n```\n\nWhere *REGIONID* is the ID (int) that corresponds to a specific region. Region ID's has the following format: 1xx, 2xx, 3xx etc.. where the first number represents server generation. First generation servers are available in regions with an ID between 101 and 199. To view available features in a specific region, use:\n\n```\n/v1/region/list_features/REGIONID\n```",
         "operationId": "RegionsList",
         "parameters": [],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ShowRegionsResponse200"
-                },
-                "example": {
-                  "regions": {
-                    "101": {
-                      "slug": "6",
-                      "uuid": "30663334-3664-4238-a635-653566643536",
-                      "city": "Atlanta",
-                      "state": "Georgia",
-                      "country": "United States",
-                      "continent": "North america",
-                      "features": {
-                        "ddos_protection": false,
-                        "block_storage": false,
-                        "private_networking": true,
-                        "ipv6": true,
-                        "backups": true
-                      },
-                      "latitude": 33.7489954,
-                      "longitude": -84.3879824,
-                      "operator_id": "cbdfdc8f"
-                    },
-                    "102": {
-                      "slug": "2",
-                      "uuid": "61643561-6637-4763-b763-333131366561",
-                      "city": "Chicago",
-                      "state": "Illinois",
-                      "country": "United States",
-                      "continent": "North america",
-                      "features": {
-                        "ddos_protection": true,
-                        "block_storage": false,
-                        "private_networking": true,
-                        "ipv6": true,
-                        "backups": true
-                      },
-                      "latitude": 41.8781136,
-                      "longitude": -87.6297982,
-                      "operator_id": "cbdfdc8f"
-                    },
-                    "103": {
-                      "slug": "3",
-                      "uuid": "64323662-3135-4332-a165-633633386465",
-                      "city": "Dallas",
-                      "state": "Texas",
-                      "country": "United States",
-                      "continent": "North america",
-                      "features": {
-                        "ddos_protection": true,
-                        "block_storage": false,
-                        "private_networking": true,
-                        "ipv6": true,
-                        "backups": true
-                      },
-                      "latitude": 32.7766642,
-                      "longitude": -96.79698789999999,
-                      "operator_id": "cbdfdc8f"
-                    },
-                    "104": {
-                      "slug": "5",
-                      "uuid": "34656465-6530-4364-a633-613264663832",
-                      "city": "Los Angeles",
-                      "state": "California",
-                      "country": "United States",
-                      "continent": "North america",
-                      "features": {
-                        "ddos_protection": true,
-                        "block_storage": false,
-                        "private_networking": true,
-                        "ipv6": true,
-                        "backups": true
-                      },
-                      "latitude": 34.0522342,
-                      "longitude": -118.2436849,
-                      "operator_id": "cbdfdc8f"
-                    },
-                    "105": {
-                      "slug": "39",
-                      "uuid": "32336365-3535-4765-b666-666564653335",
-                      "city": "Miami",
-                      "state": "Florida",
-                      "country": "United States",
-                      "continent": "North america",
-                      "features": {
-                        "ddos_protection": true,
-                        "block_storage": false,
-                        "private_networking": true,
-                        "ipv6": true,
-                        "backups": true
-                      },
-                      "latitude": 25.7616798,
-                      "longitude": -80.1917902,
-                      "operator_id": "cbdfdc8f"
-                    },
-                    "106": {
-                      "slug": "1",
-                      "uuid": "31383264-6162-4831-b339-663239363738",
-                      "city": "New Jersey",
-                      "state": "New Jersey",
-                      "country": "United States",
-                      "continent": "North america",
-                      "features": {
-                        "ddos_protection": true,
-                        "block_storage": true,
-                        "private_networking": true,
-                        "ipv6": true,
-                        "backups": true
-                      },
-                      "latitude": 40.0583238,
-                      "longitude": -74.4056612,
-                      "operator_id": "cbdfdc8f"
-                    },
-                    "107": {
-                      "slug": "4",
-                      "uuid": "35353765-3630-4832-b236-646666316363",
-                      "city": "Seattle",
-                      "state": "Washington",
-                      "country": "United States",
-                      "continent": "North america",
-                      "features": {
-                        "ddos_protection": true,
-                        "block_storage": false,
-                        "private_networking": true,
-                        "ipv6": true,
-                        "backups": true
-                      },
-                      "latitude": 47.6062095,
-                      "longitude": -122.3320708,
-                      "operator_id": "cbdfdc8f"
-                    },
-                    "108": {
-                      "slug": "12",
-                      "uuid": "36346362-6561-4764-a137-316135656234",
-                      "city": "Silicon Valley",
-                      "state": "California",
-                      "country": "United States",
-                      "continent": "North america",
-                      "features": {
-                        "ddos_protection": true,
-                        "block_storage": false,
-                        "private_networking": true,
-                        "ipv6": true,
-                        "backups": true
-                      },
-                      "latitude": 37.387474,
-                      "longitude": -122.0575434,
-                      "operator_id": "cbdfdc8f"
-                    },
-                    "109": {
-                      "slug": "40",
-                      "uuid": "64383835-6130-4564-b365-376131363165",
-                      "city": "Singapore",
-                      "state": "Singapore",
-                      "country": "Singapore",
-                      "continent": "Asia",
-                      "features": {
-                        "ddos_protection": false,
-                        "block_storage": false,
-                        "private_networking": true,
-                        "ipv6": true,
-                        "backups": true
-                      },
-                      "latitude": 1.352083,
-                      "longitude": 103.819836,
-                      "operator_id": "cbdfdc8f"
-                    },
-                    "110": {
-                      "slug": "7",
-                      "uuid": "30373538-3131-4366-b065-336436653631",
-                      "city": "Amsterdam",
-                      "state": "North Holland",
-                      "country": "Netherlands",
-                      "continent": "Europe",
-                      "features": {
-                        "ddos_protection": true,
-                        "block_storage": false,
-                        "private_networking": true,
-                        "ipv6": true,
-                        "backups": true
-                      },
-                      "latitude": 52.3679843,
-                      "longitude": 4.9035614,
-                      "operator_id": "cbdfdc8f"
-                    },
-                    "111": {
-                      "slug": "25",
-                      "uuid": "64643538-6265-4639-b661-383939396431",
-                      "city": "Tokyo",
-                      "state": "Tokyo",
-                      "country": "Japan",
-                      "continent": "Asia",
-                      "features": {
-                        "ddos_protection": false,
-                        "block_storage": false,
-                        "private_networking": true,
-                        "ipv6": true,
-                        "backups": true
-                      },
-                      "latitude": 35.6894875,
-                      "longitude": 139.6917064,
-                      "operator_id": "cbdfdc8f"
-                    },
-                    "112": {
-                      "slug": "8",
-                      "uuid": "31666236-6130-4136-b535-343265396264",
-                      "city": "London",
-                      "state": "United Kingdom",
-                      "country": "United Kingdom",
-                      "continent": "Europe",
-                      "features": {
-                        "ddos_protection": true,
-                        "block_storage": false,
-                        "private_networking": true,
-                        "ipv6": true,
-                        "backups": true
-                      },
-                      "latitude": 51.5073509,
-                      "longitude": -0.1277583,
-                      "operator_id": "cbdfdc8f"
-                    },
-                    "113": {
-                      "slug": "24",
-                      "uuid": "64376137-6631-4562-b538-636564356439",
-                      "city": "Paris",
-                      "state": "Île-de-France",
-                      "country": "France",
-                      "continent": "Europe",
-                      "features": {
-                        "ddos_protection": true,
-                        "block_storage": false,
-                        "private_networking": true,
-                        "ipv6": true,
-                        "backups": true
-                      },
-                      "latitude": 48.856614,
-                      "longitude": 2.3522219,
-                      "operator_id": "cbdfdc8f"
-                    },
-                    "114": {
-                      "slug": "9",
-                      "uuid": "62333538-3064-4966-a535-383762613734",
-                      "city": "Frankfurt",
-                      "state": "Hesse",
-                      "country": "Germany",
-                      "continent": "Europe",
-                      "features": {
-                        "ddos_protection": true,
-                        "block_storage": false,
-                        "private_networking": true,
-                        "ipv6": true,
-                        "backups": true
-                      },
-                      "latitude": 50.1109221,
-                      "longitude": 8.6821267,
-                      "operator_id": "cbdfdc8f"
-                    },
-                    "115": {
-                      "slug": "22",
-                      "uuid": "63633336-6563-4431-b330-303234353639",
-                      "city": "Toronto",
-                      "state": "Ontario",
-                      "country": "Canada",
-                      "continent": "North america",
-                      "features": {
-                        "ddos_protection": false,
-                        "block_storage": false,
-                        "private_networking": true,
-                        "ipv6": true,
-                        "backups": true
-                      },
-                      "latitude": 43.653226,
-                      "longitude": -79.3831843,
-                      "operator_id": "cbdfdc8f"
-                    },
-                    "116": {
-                      "slug": "19",
-                      "uuid": "32633936-6337-4438-b134-643839643632",
-                      "city": "Sydney",
-                      "state": "New South Wales",
-                      "country": "Australia",
-                      "continent": "Oceania",
-                      "features": {
-                        "ddos_protection": false,
-                        "block_storage": false,
-                        "private_networking": true,
-                        "ipv6": true,
-                        "backups": true
-                      },
-                      "latitude": -33.8688197,
-                      "longitude": 151.2092955,
-                      "operator_id": "cbdfdc8f"
-                    },
-                    "201": {
-                      "slug": "nyc1",
-                      "uuid": "30346537-6463-4165-b965-396130303931",
-                      "city": "New York",
-                      "state": "New York",
-                      "country": "United States",
-                      "continent": "North america",
-                      "features": {
-                        "ddos_protection": false,
-                        "block_storage": true,
-                        "private_networking": true,
-                        "ipv6": true,
-                        "backups": true
-                      },
-                      "latitude": 40.7127753,
-                      "longitude": -74.0059728,
-                      "operator_id": "8db02fc9"
-                    },
-                    "202": {
-                      "slug": "ams2",
-                      "uuid": "35643036-3232-4239-a166-633736383662",
-                      "city": "Amsterdam",
-                      "state": "North Holland",
-                      "country": "Netherlands",
-                      "continent": "Europe",
-                      "features": {
-                        "ddos_protection": false,
-                        "block_storage": true,
-                        "private_networking": true,
-                        "ipv6": true,
-                        "backups": true
-                      },
-                      "latitude": 52.3679843,
-                      "longitude": 4.9035614,
-                      "operator_id": "8db02fc9"
-                    },
-                    "203": {
-                      "slug": "sgp1",
-                      "uuid": "32353137-6630-4739-b466-336138353762",
-                      "city": "Singapore",
-                      "state": "Singapore",
-                      "country": "Singapore",
-                      "continent": "Asia",
-                      "features": {
-                        "ddos_protection": false,
-                        "block_storage": true,
-                        "private_networking": true,
-                        "ipv6": true,
-                        "backups": true
-                      },
-                      "latitude": 1.352083,
-                      "longitude": 103.819836,
-                      "operator_id": "8db02fc9"
-                    },
-                    "204": {
-                      "slug": "lon1",
-                      "uuid": "39393662-3936-4632-b336-356239616131",
-                      "city": "London",
-                      "state": "United Kingdom",
-                      "country": "United Kingdom",
-                      "continent": "Europe",
-                      "features": {
-                        "ddos_protection": false,
-                        "block_storage": true,
-                        "private_networking": true,
-                        "ipv6": true,
-                        "backups": true
-                      },
-                      "latitude": 51.5073509,
-                      "longitude": -0.1277583,
-                      "operator_id": "8db02fc9"
-                    },
-                    "205": {
-                      "slug": "nyc3",
-                      "uuid": "36373636-3463-4761-a231-343930653834",
-                      "city": "New York",
-                      "state": "New York",
-                      "country": "United States",
-                      "continent": "North america",
-                      "features": {
-                        "ddos_protection": false,
-                        "block_storage": true,
-                        "private_networking": true,
-                        "ipv6": true,
-                        "backups": true
-                      },
-                      "latitude": 40.7127753,
-                      "longitude": -74.0059728,
-                      "operator_id": "8db02fc9"
-                    },
-                    "206": {
-                      "slug": "ams3",
-                      "uuid": "34333130-6335-4332-b932-643239306131",
-                      "city": "Amsterdam",
-                      "state": "North Holland",
-                      "country": "Netherlands",
-                      "continent": "Europe",
-                      "features": {
-                        "ddos_protection": false,
-                        "block_storage": true,
-                        "private_networking": true,
-                        "ipv6": true,
-                        "backups": true
-                      },
-                      "latitude": 52.3679843,
-                      "longitude": 4.9035614,
-                      "operator_id": "8db02fc9"
-                    },
-                    "207": {
-                      "slug": "fra1",
-                      "uuid": "37333636-6335-4538-b839-666365356131",
-                      "city": "Frankfurt",
-                      "state": "Hesse",
-                      "country": "Germany",
-                      "continent": "Europe",
-                      "features": {
-                        "ddos_protection": false,
-                        "block_storage": true,
-                        "private_networking": true,
-                        "ipv6": true,
-                        "backups": true
-                      },
-                      "latitude": 50.1109221,
-                      "longitude": 8.6821267,
-                      "operator_id": "8db02fc9"
-                    },
-                    "208": {
-                      "slug": "tor1",
-                      "uuid": "32306437-3735-4662-a335-353365336131",
-                      "city": "Toronto",
-                      "state": "Ontario",
-                      "country": "Canada",
-                      "continent": "North america",
-                      "features": {
-                        "ddos_protection": false,
-                        "block_storage": true,
-                        "private_networking": true,
-                        "ipv6": true,
-                        "backups": true
-                      },
-                      "latitude": 43.653226,
-                      "longitude": -79.3831843,
-                      "operator_id": "8db02fc9"
-                    },
-                    "209": {
-                      "slug": "sfo2",
-                      "uuid": "39333836-3537-4465-b238-393030663037",
-                      "city": "San Francisco",
-                      "state": "California",
-                      "country": "United States",
-                      "continent": "North america",
-                      "features": {
-                        "ddos_protection": false,
-                        "block_storage": true,
-                        "private_networking": true,
-                        "ipv6": true,
-                        "backups": true
-                      },
-                      "latitude": 37.7749295,
-                      "longitude": -122.4194155,
-                      "operator_id": "8db02fc9"
-                    },
-                    "210": {
-                      "slug": "blr1",
-                      "uuid": "37363465-3934-4563-a535-306135356230",
-                      "city": "Bangalore",
-                      "state": "Karnataka",
-                      "country": "India",
-                      "continent": "Asia",
-                      "features": {
-                        "ddos_protection": false,
-                        "block_storage": true,
-                        "private_networking": true,
-                        "ipv6": true,
-                        "backups": true
-                      },
-                      "latitude": 12.9715987,
-                      "longitude": 77.5945627,
-                      "operator_id": "8db02fc9"
-                    },
-                    "301": {
-                      "slug": "ZRH",
-                      "uuid": "34346561-3963-4132-a632-333331353932",
-                      "city": "Zurich",
-                      "state": "Zurich",
-                      "country": "Switzerland",
-                      "continent": "Europe",
-                      "features": {
-                        "ddos_protection": false,
-                        "block_storage": true,
-                        "private_networking": true,
-                        "ipv6": true,
-                        "backups": true
-                      },
-                      "latitude": 47.3768866,
-                      "longitude": 8.541694,
-                      "operator_id": "0928a080"
-                    },
-                    "302": {
-                      "slug": "DUB",
-                      "uuid": "30623130-3330-4161-a531-656664636264",
-                      "city": "Dublin",
-                      "state": "County Dublin",
-                      "country": "Ireland",
-                      "continent": "Europe",
-                      "features": {
-                        "ddos_protection": false,
-                        "block_storage": true,
-                        "private_networking": true,
-                        "ipv6": true,
-                        "backups": true
-                      },
-                      "latitude": 53.3498053,
-                      "longitude": -6.2603097,
-                      "operator_id": "0928a080"
-                    },
-                    "303": {
-                      "slug": "FRA",
-                      "uuid": "32663131-3662-4133-a363-383863653536",
-                      "city": "Frankfurt",
-                      "state": "Hesse",
-                      "country": "Germany",
-                      "continent": "Europe",
-                      "features": {
-                        "ddos_protection": false,
-                        "block_storage": true,
-                        "private_networking": true,
-                        "ipv6": true,
-                        "backups": true
-                      },
-                      "latitude": 50.1109221,
-                      "longitude": 8.6821267,
-                      "operator_id": "0928a080"
-                    },
-                    "304": {
-                      "slug": "HNL",
-                      "uuid": "35653937-3837-4332-a333-613966663861",
-                      "city": "Honolulu",
-                      "state": "Hawaii",
-                      "country": "United States",
-                      "continent": "North america",
-                      "features": {
-                        "ddos_protection": false,
-                        "block_storage": true,
-                        "private_networking": true,
-                        "ipv6": true,
-                        "backups": true
-                      },
-                      "latitude": 21.3069444,
-                      "longitude": -157.8583333,
-                      "operator_id": "0928a080"
-                    },
-                    "305": {
-                      "slug": "MEL",
-                      "uuid": "35303937-6435-4666-b463-303361366238",
-                      "city": "Melbourne",
-                      "state": "Victoria",
-                      "country": "Australia",
-                      "continent": "Oceania",
-                      "features": {
-                        "ddos_protection": false,
-                        "block_storage": true,
-                        "private_networking": true,
-                        "ipv6": true,
-                        "backups": true
-                      },
-                      "latitude": -37.8136276,
-                      "longitude": 144.9630576,
-                      "operator_id": "0928a080"
-                    },
-                    "306": {
-                      "slug": "MIA",
-                      "uuid": "64353634-6638-4935-b364-653061343733",
-                      "city": "Miami",
-                      "state": "Florida",
-                      "country": "United States",
-                      "continent": "North america",
-                      "features": {
-                        "ddos_protection": false,
-                        "block_storage": true,
-                        "private_networking": true,
-                        "ipv6": true,
-                        "backups": true
-                      },
-                      "latitude": 25.7616798,
-                      "longitude": -80.1917902,
-                      "operator_id": "0928a080"
-                    },
-                    "307": {
-                      "slug": "MNL",
-                      "uuid": "66396538-6136-4439-b831-373461663462",
-                      "city": "Manila",
-                      "state": "Metro Manila",
-                      "country": "Philippines",
-                      "continent": "Asia",
-                      "features": {
-                        "ddos_protection": false,
-                        "block_storage": true,
-                        "private_networking": true,
-                        "ipv6": true,
-                        "backups": true
-                      },
-                      "latitude": 14.5995124,
-                      "longitude": 120.9842195,
-                      "operator_id": "0928a080"
-                    },
-                    "308": {
-                      "slug": "PER",
-                      "uuid": "34646439-3738-4336-b434-336538323033",
-                      "city": "Perth",
-                      "state": "Western Australia",
-                      "country": "Australia",
-                      "continent": "Oceania",
-                      "features": {
-                        "ddos_protection": false,
-                        "block_storage": true,
-                        "private_networking": true,
-                        "ipv6": true,
-                        "backups": true
-                      },
-                      "latitude": -31.9505269,
-                      "longitude": 115.8604572,
-                      "operator_id": "0928a080"
-                    },
-                    "309": {
-                      "slug": "SJC",
-                      "uuid": "38366662-3765-4133-b061-386266356266",
-                      "city": "San Jose",
-                      "state": "California",
-                      "country": "United States",
-                      "continent": "North america",
-                      "features": {
-                        "ddos_protection": false,
-                        "block_storage": true,
-                        "private_networking": true,
-                        "ipv6": true,
-                        "backups": true
-                      },
-                      "latitude": 37.3382082,
-                      "longitude": -121.8863286,
-                      "operator_id": "0928a080"
-                    },
-                    "310": {
-                      "slug": "WAW",
-                      "uuid": "61633965-6339-4039-b737-633835636534",
-                      "city": "Warsaw",
-                      "state": "Masovian Voivodeship",
-                      "country": "Poland",
-                      "continent": "Europe",
-                      "features": {
-                        "ddos_protection": false,
-                        "block_storage": true,
-                        "private_networking": true,
-                        "ipv6": true,
-                        "backups": true
-                      },
-                      "latitude": 52.2296756,
-                      "longitude": 21.0122287,
-                      "operator_id": "0928a080"
-                    },
-                    "311": {
-                      "slug": "WDC",
-                      "uuid": "32656562-3661-4437-b464-313862396532",
-                      "city": "Washington DC",
-                      "state": "District of Columbia",
-                      "country": "United States",
-                      "continent": "North america",
-                      "features": {
-                        "ddos_protection": false,
-                        "block_storage": true,
-                        "private_networking": true,
-                        "ipv6": true,
-                        "backups": true
-                      },
-                      "latitude": 38.9071923,
-                      "longitude": -77.0368707,
-                      "operator_id": "0928a080"
-                    }
-                  },
-                  "meta": {
-                    "total": 37
-                  }
-                }
-              }
-            }
-          }
-        },
         "x-operation-settings": {
           "CollectParameters": false,
           "AllowDynamicQueryParameters": false,
@@ -4053,7 +2898,21 @@
           "IsMultiContentStreaming": false
         },
         "security": [],
-        "requestBody": null
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
       }
     }
   },
@@ -4113,44 +2972,6 @@
           "password": {
             "type": "string",
             "description": "Your password"
-          }
-        }
-      },
-      "RegisterRequest": {
-        "title": "RegisterRequest",
-        "required": [
-          "email",
-          "password",
-          "firstname",
-          "lastname",
-          "accept_tos",
-          "country"
-        ],
-        "type": "object",
-        "properties": {
-          "email": {
-            "type": "string",
-            "description": "Email address"
-          },
-          "password": {
-            "type": "string",
-            "description": "Preferred password"
-          },
-          "firstname": {
-            "type": "string",
-            "description": "First name (used for display purpose only)"
-          },
-          "lastname": {
-            "type": "string",
-            "description": "Last name (used for display purpose only)"
-          },
-          "accept_tos": {
-            "type": "bool",
-            "description": "Sign all agreements by setting this to true"
-          },
-          "country": {
-            "type": "string",
-            "description": "ISO 3166-1 alpha-2 code for your current country"
           }
         }
       },
@@ -4732,98 +3553,18 @@
           }
         }
       },
-      "LoginResponse200": {
-        "title": "LoginResponse200",
-        "type": "object",
-        "properties": {
-          "token": {
-            "type": "string",
-            "description": "Your API token"
-          },
-          "timestamp": {
-            "type": "timestamp",
-            "description": "Represents the timestamp for last login attempt"
-          }
-        }
+      "InfoRequest": {
+        "type": "object"
       },
-      "LoginResponse400": {
-        "title": "LoginResponse400",
-        "type": "object",
-        "properties": {
-          "message": {
-            "type": "string",
-            "description": "Error message with more information"
-          }
-        }
-      },
-      "RegisterResponse200": {
-        "title": "RegisterResponse200",
-        "type": "object",
-        "properties": {
-          "token": {
-            "type": "string",
-            "description": "Your new API token"
-          },
-          "timestamp": {
-            "type": "timestamp",
-            "description": "Represents the timestamp for account creation"
-          }
-        }
-      },
-      "RegisterResponse400": {
-        "title": "RegisterResponse400",
-        "type": "object",
-        "properties": {
-          "message": {
-            "type": "string",
-            "description": "Error message with more information"
-          }
-        }
-      },
-      "ResetRequest": {
-        "title": "ResetRequest",
-        "required": [
-          "email"
-        ],
-        "type": "object",
-        "properties": {
-          "email": {
-            "type": "string",
-            "description": "Email address"
-          }
-        }
-      },
-      "ResetResponse200": {
-        "title": "ResetResponse200",
-        "type": "object",
-        "properties": {
-          "message": {
-            "type": "string",
-            "description": "Success message with more information"
-          },
-          "timestamp": {
-            "type": "timestamp",
-            "description": "Represents the timestamp for last reset attempt"
-          }
-        }
-      },
-      "ResetResponse400": {
-        "title": "ResetResponse400",
-        "type": "object",
-        "properties": {
-          "message": {
-            "type": "string",
-            "description": "Error message with more information"
-          }
-        }
-      },
-      "InfoRequest": null,
-      "InfoResponse200": {
+      "_s-resp-account-info": {
         "title": "InfoResponse200",
         "type": "object",
+        "description": "",
         "properties": {
           "ID": {
-            "type": "int",
+            "type": [
+              "integer"
+            ],
             "description": "Account ID"
           },
           "uuid": {
@@ -4843,23 +3584,39 @@
             "description": "Email address"
           },
           "balance": {
-            "type": "float",
+            "type": [
+              "number"
+            ],
             "description": "Current account balance"
           },
           "activated": {
-            "type": "bool",
+            "type": [
+              "boolean"
+            ],
             "description": "True if account is activated"
           },
           "blocked_ports": {
             "type": "object",
-            "description": "List of blocked ports, TCP/UDP"
+            "description": "List of blocked ports, TCP/UDP",
+            "properties": {
+              "TCP": {
+                "type": "object"
+              },
+              "UDP": {
+                "type": "object"
+              }
+            }
           },
           "servers.limit": {
-            "type": "int",
+            "type": [
+              "integer"
+            ],
             "description": "Maximum amount of servers the account can deploy"
           },
           "servers.running": {
-            "type": "int",
+            "type": [
+              "integer"
+            ],
             "description": "Number of servers owned by the account"
           },
           "registerdate": {
@@ -4871,7 +3628,9 @@
             "description": "ISO-8601 timestamp indicating last successful login"
           },
           "billing.secondsdue": {
-            "type": "int",
+            "type": [
+              "integer"
+            ],
             "description": "Seconds until a top up of account balance is needed"
           },
           "billing.duedate": {
@@ -4879,7 +3638,9 @@
             "description": "ISO-8601 timestamp indicating when account balance will be $0 estimated on current usage"
           },
           "billing.usage": {
-            "type": "float",
+            "type": [
+              "number"
+            ],
             "description": "How much money in USD the account spend every hour"
           },
           "permissions": {
@@ -5383,8 +4144,9 @@
         }
       },
       "_s-create-server": {
-        "title": "ServerCreateReadyResponse200",
+        "title": "_s-create-server",
         "type": "object",
+        "description": "Server object",
         "properties": {
           "uuid": {
             "type": "string",
