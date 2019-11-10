@@ -2054,7 +2054,7 @@
         }
       }
     },
-    "/region/list_features/101": {
+    "/region/list_features": {
       "get": {
         "tags": [
           "Public"
@@ -2062,7 +2062,15 @@
         "summary": "Feature list",
         "description": "Returns a list over available features. Feature lists are uniqe for each region, a region ID is therefore required as last part of the call. See:\n\n```\n/v1/region/list\n```\n\nFor a list of all available regions. ",
         "operationId": "FeatureList",
-        "parameters": [],
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "region_id"
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -2108,9 +2116,10 @@
             }
           }
         }
-      }
+      },
+      "parameters": []
     },
-    "/plan/list/201": {
+    "/plan/list": {
       "get": {
         "tags": [
           "Public"
@@ -2118,7 +2127,15 @@
         "summary": "Plans list",
         "description": "Returns a list over available plans. Plan lists are uniqe for each region, a region ID is therefore required as last part of the call. See:\n\n```\n/v1/region/list\n```\n\nFor a list of all available regions. Plan ID's is a 4 number code where the first number indicates which server generation a specific plan has, i.e ID's between 1101 and 1999 are first generation server plans. The second number (x1xx, x2xx, ...) indicates the plan type.\n\n| Number  | Description  |\n|---|---|\n| 1  | Virtual Private Server, powered by KVM with 2/3 physical resources and 1/3 burst  |\n| 2  | Dedicated servers, powered by KVM with 1:1 mapping to physical resources. No burst  |\n| 3  | Bare metal servers, powered by KVM with 1:1 mapping to physical resources. \\*unlimited burst |\n\n*Unlimited burst is what the physical hardware can handle, i.e a 3.4Ghz CPU that can burst to 4.2GHz, these can be loaded to 100% all the time without additional fees.*\n\n**Plan types**\n\nPlans are listed in groups based on their properties\n\n* **Custom**: *Contains a fixed specification over custom plans, i.e max RAM, price per GB disk etc.*\n* **Ready**: *Contains a list over predefined plan sizes.*",
         "operationId": "PlansList",
-        "parameters": [],
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "region_id"
+          }
+        ],
         "responses": {
           "200": {
             "description": "",
@@ -2306,9 +2323,10 @@
             }
           }
         }
-      }
+      },
+      "parameters": []
     },
-    "/image/list/201": {
+    "/image/list": {
       "get": {
         "tags": [
           "Public"
@@ -2316,7 +2334,15 @@
         "summary": "Images list",
         "description": "Returns a list over available system images. Image lists are uniqe for each region, a region ID is therefore required as last part of the call. See:\n\n```\n/v1/region/list\n```\n\nFor a list of all available regions. Image ID's is a 4 number code where the first number indicates which server generation a specific image can be deployed too, i.e ID's between 1101 and 1999 can only be used on first generation servers. The second number (x1xx, x2xx, ...) indicates the image type.\n\n| Number  | Description  |\n|---|---|\n| 1  | Raw OS image, a blank operating system image without nonsense  |\n| 2  | Application image, a preinstalled application  |\n| 3  | Snapshot, available snapshots in your account  |\n| 4  | Backup, available backups in your account  |\n| 5  | Custom, a custom image  |",
         "operationId": "ImagesList",
-        "parameters": [],
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "region_id"
+          }
+        ],
         "responses": {
           "200": {
             "description": "",
@@ -2838,7 +2864,8 @@
             }
           }
         }
-      }
+      },
+      "parameters": []
     },
     "/region/list": {
       "get": {
