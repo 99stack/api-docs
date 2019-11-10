@@ -85,7 +85,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/RestoreSnapshotResponse400"
+                  "$ref": "#/components/schemas/_s-response-message"
                 },
                 "example": {
                   "message": "Invalid resource requested",
@@ -162,7 +162,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/RemoveSnapshotResponse400"
+                  "$ref": "#/components/schemas/_s-response-message"
                 },
                 "example": {
                   "message": "Invalid resource requested",
@@ -239,7 +239,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CreateSnapshotResponse400"
+                  "$ref": "#/components/schemas/_s-response-message"
                 },
                 "example": {
                   "message": "Invalid resource requested",
@@ -384,7 +384,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ServerRemoveResponse400"
+                  "$ref": "#/components/schemas/_s-response-message"
                 },
                 "example": {
                   "message": "Invalid resource requested",
@@ -398,7 +398,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ServerRemoveResponse400"
+                  "$ref": "#/components/schemas/_s-response-message"
                 },
                 "example": {
                   "message": "Permission denied, server is still initializing, please try again in about x minutes",
@@ -518,7 +518,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ServerCreateCustomResponse400"
+                  "$ref": "#/components/schemas/_s-response-message"
                 },
                 "example": {
                   "message": "Expected: '...', not found",
@@ -532,7 +532,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ServerCreateCustomResponse400"
+                  "$ref": "#/components/schemas/_s-response-message"
                 },
                 "example": {
                   "message": "Authorization token does not exist"
@@ -544,7 +544,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ServerCreateCustomResponse400"
+                  "$ref": "#/components/schemas/_s-response-message"
                 },
                 "example": {
                   "message": "Deployment failed...",
@@ -656,7 +656,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ServerCreateReadyResponse400"
+                  "$ref": "#/components/schemas/_s-response-message"
                 },
                 "example": {
                   "message": "Expected: '...', not found",
@@ -670,7 +670,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ServerCreateReadyResponse400"
+                  "$ref": "#/components/schemas/_s-response-message"
                 },
                 "example": {
                   "message": "Authorization token does not exist"
@@ -682,7 +682,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ServerCreateReadyResponse400"
+                  "$ref": "#/components/schemas/_s-response-message"
                 },
                 "example": {
                   "message": "Deployment failed...",
@@ -763,46 +763,6 @@
                 }
               }
             }
-          },
-          "400": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ServerStopResponse400"
-                },
-                "example": {
-                  "message": "Expected: 'server_id', not found",
-                  "response_type": "warning",
-                  "response_code": 400
-                }
-              }
-            }
-          },
-          "401": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ServerStopResponse400"
-                },
-                "example": {
-                  "message": "Authorization token does not exist"
-                }
-              }
-            }
-          },
-          "404": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ServerStopResponse400"
-                },
-                "example": {
-                  "message": "Server not found",
-                  "response_type": "warning",
-                  "response_code": 404
-                }
-              }
-            }
           }
         },
         "x-operation-settings": {
@@ -872,46 +832,6 @@
                   "message": "Database server successfully started",
                   "response_type": "success",
                   "response_code": 200
-                }
-              }
-            }
-          },
-          "400": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ServerStartResponse400"
-                },
-                "example": {
-                  "message": "Expected: 'server_id', not found",
-                  "response_type": "warning",
-                  "response_code": 400
-                }
-              }
-            }
-          },
-          "401": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ServerStartResponse400"
-                },
-                "example": {
-                  "message": "Authorization token does not exist"
-                }
-              }
-            }
-          },
-          "404": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ServerStartResponse400"
-                },
-                "example": {
-                  "message": "Server not found",
-                  "response_type": "warning",
-                  "response_code": 404
                 }
               }
             }
@@ -987,46 +907,6 @@
                 }
               }
             }
-          },
-          "400": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ServerRebootResponse400"
-                },
-                "example": {
-                  "message": "Expected: 'server_id', not found",
-                  "response_type": "warning",
-                  "response_code": 400
-                }
-              }
-            }
-          },
-          "401": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ServerRebootResponse400"
-                },
-                "example": {
-                  "message": "Authorization token does not exist"
-                }
-              }
-            }
-          },
-          "404": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ServerRebootResponse400"
-                },
-                "example": {
-                  "message": "Server not found",
-                  "response_type": "warning",
-                  "response_code": 404
-                }
-              }
-            }
           }
         },
         "x-operation-settings": {
@@ -1094,46 +974,6 @@
                 },
                 "example": {
                   "power": "running"
-                }
-              }
-            }
-          },
-          "400": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ServerOnlineResponse400"
-                },
-                "example": {
-                  "message": "Expected: 'server_id', not found",
-                  "response_type": "warning",
-                  "response_code": 400
-                }
-              }
-            }
-          },
-          "401": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ServerOnlineResponse400"
-                },
-                "example": {
-                  "message": "Authorization token does not exist"
-                }
-              }
-            }
-          },
-          "404": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ServerOnlineResponse400"
-                },
-                "example": {
-                  "message": "Server not found",
-                  "response_type": "warning",
-                  "response_code": 404
                 }
               }
             }
@@ -1236,46 +1076,6 @@
                   },
                   "password": "d69dada581e954fb",
                   "ddos_protection": false
-                }
-              }
-            }
-          },
-          "400": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ServerInfoResponse400"
-                },
-                "example": {
-                  "message": "Expected: 'server_id', not found",
-                  "response_type": "warning",
-                  "response_code": 400
-                }
-              }
-            }
-          },
-          "401": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ServerInfoResponse400"
-                },
-                "example": {
-                  "message": "Authorization token does not exist"
-                }
-              }
-            }
-          },
-          "404": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ServerInfoResponse400"
-                },
-                "example": {
-                  "message": "Server not found",
-                  "response_type": "warning",
-                  "response_code": 404
                 }
               }
             }
@@ -1410,7 +1210,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ServerListResponse400"
+                  "$ref": "#/components/schemas/_s-response-message"
                 },
                 "example": {
                   "message": "Authorization token does not exist"
@@ -1493,7 +1293,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/FloatingIPDetachResponse400"
+                  "$ref": "#/components/schemas/_s-response-message"
                 },
                 "example": {
                   "message": "Failed to detach floating IP",
@@ -1578,7 +1378,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/FloatingIPAttachResponse400"
+                  "$ref": "#/components/schemas/_s-response-message"
                 },
                 "example": {
                   "message": "Failed to attach floating IP",
@@ -1660,7 +1460,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/FloatingIPRemoveResponse400"
+                  "$ref": "#/components/schemas/_s-response-message"
                 },
                 "example": {
                   "message": "Invalid IP, nothing deleted",
@@ -1749,7 +1549,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/FloatingIPCreateResponse400"
+                  "$ref": "#/components/schemas/_s-response-message"
                 },
                 "example": {
                   "message": "Failed to create floating IP",
@@ -1843,7 +1643,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/FloatingIPListResponse400"
+                  "$ref": "#/components/schemas/_s-response-message"
                 },
                 "example": {
                   "message": "Something went wrong..."
@@ -1909,39 +1709,18 @@
           },
           "required": true
         },
-        "responses": {
-          "204": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SSHKeyRemoveResponse204"
-                },
-                "example": null
-              }
-            }
-          },
-          "404": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SSHKeyRemoveResponse400"
-                },
-                "example": {
-                  "message": "Invalid key, nothing deleted",
-                  "response_type": "warning",
-                  "response_code": 404
-                }
-              }
-            }
-          }
-        },
         "x-operation-settings": {
           "CollectParameters": false,
           "AllowDynamicQueryParameters": false,
           "AllowDynamicFormParameters": false,
           "IsMultiContentStreaming": false
         },
-        "security": []
+        "security": [],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        }
       }
     },
     "/ssh_key/add": {
@@ -2020,7 +1799,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/SSHKeyAddResponse400"
+                  "$ref": "#/components/schemas/_s-response-message"
                 },
                 "example": {
                   "message": "Failed to add SSH key",
@@ -2097,7 +1876,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/SSHKeyListResponse400"
+                  "$ref": "#/components/schemas/_s-response-message"
                 },
                 "example": {
                   "message": "Something went wrong..."
@@ -2181,7 +1960,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/RestoreBackupResponse400"
+                  "$ref": "#/components/schemas/_s-response-message"
                 },
                 "example": {
                   "message": "Invalid resource requested",
@@ -2257,7 +2036,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/error-schema"
+                  "$ref": "#/components/schemas/_s-response-message"
                 }
               }
             }
@@ -2339,7 +2118,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/account-token_create-response-200"
+                  "$ref": "#/components/schemas/_s-response-message"
                 },
                 "example": {
                   "message": "Authorization token does not exist"
@@ -2428,7 +2207,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/account-token_list-response-4*"
+                  "$ref": "#/components/schemas/_s-response-message"
                 },
                 "example": {
                   "message": "Authorization token does not exist"
@@ -2533,7 +2312,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/InfoResponse400"
+                  "$ref": "#/components/schemas/_s-response-message"
                 },
                 "example": {
                   "message": "Authorization token does not exist"
@@ -2605,7 +2384,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ResetResponse400"
+                  "$ref": "#/components/schemas/_s-response-message"
                 },
                 "example": {
                   "message": "Reset failed, invalid email address provided"
@@ -2617,7 +2396,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ResetResponse400"
+                  "$ref": "#/components/schemas/_s-response-message"
                 },
                 "example": {
                   "message": "Reset failed, please wait X seconds then try again"
@@ -2694,7 +2473,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/RegisterResponse400"
+                  "$ref": "#/components/schemas/_s-response-message"
                 },
                 "example": {
                   "message": "Error message"
@@ -2766,7 +2545,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/LoginResponse400"
+                  "$ref": "#/components/schemas/_s-response-message"
                 },
                 "example": {
                   "message": "Login failed, check credentials and try again"
@@ -2790,7 +2569,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/LoginResponse400"
+                  "$ref": "#/components/schemas/_s-response-message"
                 },
                 "example": {
                   "message": "Login failed, please wait X seconds then try again"
@@ -2840,7 +2619,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ShowFeaturesResponse400"
+                  "$ref": "#/components/schemas/_s-response-message"
                 },
                 "example": {
                   "message": "Please use: /v1/region/features/REGIONID",
@@ -3029,7 +2808,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ShowPlansResponse400"
+                  "$ref": "#/components/schemas/_s-response-message"
                 },
                 "example": {
                   "message": "Please use: /v1/plans/REGIONID",
@@ -3552,7 +3331,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ShowImagesResponse400"
+                  "$ref": "#/components/schemas/_s-response-message"
                 },
                 "example": {
                   "message": "Please use: /v1/images/REGIONID",
@@ -5232,7 +5011,7 @@
           }
         }
       },
-      "SSHKeyAddResponse200": {
+      "_s-create-ssh_key": {
         "title": "SSHKeyAddResponse200",
         "type": "object",
         "properties": {
@@ -5603,7 +5382,7 @@
           }
         }
       },
-      "ServerCreateReadyResponse200": {
+      "_s-create-server": {
         "title": "ServerCreateReadyResponse200",
         "type": "object",
         "properties": {
@@ -5990,7 +5769,7 @@
           }
         }
       },
-      "FloatingIPCreateResponse200": {
+      "_s-create-floating_ip": {
         "title": "FloatingIPCreateResponse200",
         "type": "object",
         "properties": {
@@ -6125,7 +5904,7 @@
           }
         }
       },
-      "error-schema": {
+      "_s-response-message": {
         "title": "error-schema",
         "type": "object",
         "properties": {
@@ -6140,6 +5919,15 @@
           "response_code": {
             "type": "integer",
             "description": "HTTP response code for quick reference"
+          }
+        }
+      },
+      "_s-create-account_token": {
+        "title": "_s-create-account_token",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
           }
         }
       }
