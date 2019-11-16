@@ -1,0 +1,2403 @@
+---
+openapi: 3.0.0
+info:
+  title: 99Stack API documentation
+  version: '1.0'
+  contact: {}
+  description: |-
+    **API endpoint**: https://api.99stack.com
+
+    **Bearer token**: https://dash.99stack.com
+
+    ## Using the API
+
+    ### Information
+
+    99Stack API is designed to be fast, secure and reliable. Requests and responses are in the JSON format (application/json) and requests follows the following format: *version/group/function*, alternatively *version/group/function/args* for functions that takes one single argument, usually a region ID. Standard HTTP error codes are used together with status messages to indicate status.
+
+    ### Response codes
+
+    A list over available response codes and their purpose.
+
+    | HTTP Response Code  | Description  |
+    |---|---|
+    | 200  | Function successfully executed.  |
+    | 201  | Resource created successfully  |
+    | 204  | Resource removed successfully (no response body)  |
+    | 301  | Function is deprecated, (see documentation)  |
+    | 400  | Invalid input data, (see documentation)  |
+    | 403  | Access denied, check authentication token  |
+    | 404  | Function not found  |
+    | 405  | Invalid HTTP method  |
+    | 429  | Too many requests, please wait  |
+    | 500  | Internal server error  |
+    | 501  | Function not implemented,   |
+    | 502  | Bad gateway, failed to contact external API  |
+    | 503  | Service unavailable, maintenance in progress  |
+
+    ### Rate limits
+
+    Rate limits are not in use. However, if possible try to not send more than one request per second. Too many requests in a short time for any reason can trigger the web servers standard protection, effectively blocking all requests from your IP for a few minutes.
+
+    ### Time and Date
+
+    All time and date fields returned by this API are displayed in UTC in the ISO-8601 format.
+
+    ### Examples
+
+    GET request with no arguments:
+
+    ```bash
+    curl -X GET "https://api.99stack.com/v1/region/list"
+    ```
+
+    GET request that requires your API token:
+
+    ```bash
+    curl -X GET -H 'Authorization: Bearer YOUR_TOKEN' "https://api.99stack.com/v1/server/list"
+    ```
+
+    POST request containing a JSON request body:
+
+    ```bash
+    curl -X POST -H 'Authorization: Bearer YOUR_TOKEN' -H 'Content-Type: application/json' -d '{"name": "New API token"}' "https://api.99stack.com/v1/account/token_create"
+    ```
+
+    DELETE request containing a JSON request body:
+
+    ```bash
+    curl -X DELETE -H 'Authorization: Bearer YOUR_TOKEN' -H 'Content-Type: application/json' -d '{"server_id": 16324}' "https://api.99stack.com/v1/server/remove"
+    ```
+
+    # Authentication
+
+    For any API request that requires authentication, the Authorization header needs to be set to a valid Bearer token, these tokens can be generated in the [control panel](https://dash.99stack.com/auth/manage-api-tokens), or by sending a valid request to `/v1/account/login`. Once you have the token, use the following format:
+
+    ```bash
+    Authorization: Bearer YOUR_TOKEN
+    ```
+
+    See examples above for usage with cURL.
+  termsOfService: https://www.99stack.com/legal/terms-of-service
+  license:
+    name: MIT
+    url: https://github.com/99stack/api-docs/blob/master/LICENSE
+servers:
+- url: https://api.99stack.com/v1
+  variables: {}
+  description: 99Stack API
+paths:
+  "/snapshot/restore":
+    post:
+      tags:
+      - Snapshot
+      summary: Restore snapshot
+      description: Restore a server from provided snapshot image
+      operationId: RestoreSnapshot
+      parameters:
+      - name: Authorization
+        in: header
+        description: ''
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: Bearer API_TOKEN
+      - name: Content-Type
+        in: header
+        description: ''
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: application/json
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+      responses:
+        '202':
+          description: Accepted
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+        '404':
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/_s-response-message"
+              example:
+                message: Invalid resource requested
+                response_type: warning
+                response_code: 404
+          description: Not found
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+      security: []
+  "/snapshot/remove":
+    delete:
+      tags:
+      - Snapshot
+      summary: Remove snapshot
+      description: Remove snapshot by id or uuid
+      operationId: RemoveSnapshot
+      parameters:
+      - name: Authorization
+        in: header
+        description: ''
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: Bearer API_TOKEN
+      - name: Content-Type
+        in: header
+        description: ''
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: application/json
+      requestBody:
+        required: true
+        description: Default
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+      responses:
+        '204':
+          description: No Content
+        '404':
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/_s-response-message"
+              example:
+                message: Invalid resource requested
+                response_type: warning
+                response_code: 404
+          description: Not found
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+      security: []
+  "/snapshot/create":
+    post:
+      tags:
+      - Snapshot
+      summary: Create snapshot
+      description: Create a snapshot of a server
+      operationId: CreateSnapshot
+      parameters:
+      - name: Authorization
+        in: header
+        description: ''
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: Bearer API_TOKEN
+      - name: Content-Type
+        in: header
+        description: ''
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: application/json
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+      responses:
+        '201':
+          description: Created
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/_s-response-message"
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+      security: []
+  "/snapshot/list":
+    get:
+      tags:
+      - Snapshot
+      summary: List snapshots
+      description: Returns a JSON formatted list over all snapshots on this account
+      operationId: ListSnapshots
+      parameters:
+      - name: Authorization
+        in: header
+        description: ''
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: Bearer API_TOKEN
+      - name: Content-Type
+        in: header
+        description: ''
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: application/json
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+      security: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+      responses:
+        '200':
+          description: OK
+  "/server/remove":
+    delete:
+      tags:
+      - Server
+      summary: Remove server
+      description: "Remove a server by uuid or ID. Billing will stop immediately for
+        the server and some of it's related resources. Please note that removal of
+        additional resources will be handled differently depending on region, see
+        below table for more details:\n\n**Additional resources on server removal**\n\n|
+        #  | Software license  | Automatic backups  | Snapshot  | IP addresses  |
+        Floating IP  |\n|---|---|---|---|---|---|    \n| 1xx  | Removed  | Removed
+        \ | Not affected  | Removed  | Detached  |\n| 2xx  | Removed  | Removed  |
+        Not affected  | Removed  | Detached  |\n| 3xx  | Detached  | Detached  | Not
+        affected  | Detached  | Detached  |\n\n**Information**\n\n- Removed: *The
+        resources is removed with the server*\n- Detached: *The resources is detached
+        from the server but not deleted, billing continues*\n- Not affected: *The
+        resources has no connection to the server (thus not affected by removal request),
+        billing continues*"
+      operationId: RemoveServer
+      parameters:
+      - name: Authorization
+        in: header
+        description: ''
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: Bearer API_TOKEN
+      - name: Content-Type
+        in: header
+        description: ''
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: application/json
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+      responses:
+        '204':
+          description: No Content
+        '404':
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/_s-response-message"
+              example:
+                message: Invalid resource requested
+                response_type: warning
+                response_code: 404
+          description: Not Found
+        '429':
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/_s-response-message"
+              example:
+                message: Permission denied, server is still initializing, please try
+                  again in about x minutes
+                response_type: warning
+                response_code: 429
+          description: Too Many Requests
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+      security: []
+  "/server/custom_create":
+    post:
+      tags:
+      - Server
+      summary: Create custom server
+      description: |-
+        Deploy a new custom server in any supported region, see "Create ready server" for default configuration. The principle is the same with custom servers. However, instead of using ID's corresponding to fixed plans, the "plan" property is a JSON object defining the server size.
+
+
+        This function is an alias for:
+
+        ```
+        /v1/server/create
+        ```
+      operationId: CreateCustomServer
+      parameters:
+      - name: Authorization
+        in: header
+        description: ''
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: Bearer API_TOKEN
+      - name: Content-Type
+        in: header
+        description: ''
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: application/json
+      requestBody:
+        required: true
+        description: Create server
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '201':
+          description: Created
+        '400':
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/_s-response-message"
+              example:
+                message: 'Expected: ''...'', not found'
+                response_type: warning
+                response_code: 400
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/_s-response-message"
+              example:
+                message: Authorization token does not exist
+          description: Unauthorized
+        '502':
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/_s-response-message"
+              example:
+                message: Deployment failed...
+                response_type: error
+                response_code: 502
+          description: Bad Gateway
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+      security: []
+  "/server/ready_create":
+    post:
+      tags:
+      - Server
+      summary: Create ready server
+      description: |-
+        Deploy a new server from a fixed "ready" plan anywhere in 99Stack cloud.
+
+        This function is an alias for:
+
+        ```
+        /v1/server/create
+        ```
+      operationId: CreateReadyServer
+      parameters:
+      - name: Authorization
+        in: header
+        description: ''
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: Bearer API_TOKEN
+      - name: Content-Type
+        in: header
+        description: ''
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: application/json
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+            example:
+              hostname: web-server-2
+              label: Second Web server
+              region: 201
+              image: 2102
+              plan: 2101
+              auto_backups: false
+              ipv6_networking: true
+              ddos_protection: false
+              private_networking: true
+              ssh_key: 5cb46fd8-1b2d-11e9-ab14-d663bd873d93
+              script_url: https://raw.github.com...
+              user_data: I2Nsb3VkLWluaXQ=
+        required: true
+      responses:
+        '201':
+          description: Created
+        '400':
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/_s-response-message"
+              example:
+                message: 'Expected: ''...'', not found'
+                response_type: warning
+                response_code: 400
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/_s-response-message"
+              example:
+                message: Authorization token does not exist
+          description: Unauthorized
+        '502':
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/_s-response-message"
+              example:
+                message: Deployment failed...
+                response_type: error
+                response_code: 502
+          description: Bad Gateway
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+      security: []
+  "/server/stop":
+    post:
+      tags:
+      - Server
+      summary: Stop server
+      description: Force a server to halt, this is the same as pressing the power
+        off button on a physical machine.
+      operationId: StopServer
+      parameters:
+      - name: Authorization
+        in: header
+        description: ''
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: Bearer API_TOKEN
+      - name: Content-Type
+        in: header
+        description: ''
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: application/json
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+      security: []
+      responses:
+        '202':
+          description: Accepted
+  "/server/start":
+    post:
+      tags:
+      - Server
+      summary: Start server
+      description: Send a startup signal to server, this is similar to pressing the
+        power on button.
+      operationId: StartServer
+      parameters:
+      - name: Authorization
+        in: header
+        description: ''
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: Bearer API_TOKEN
+      - name: Content-Type
+        in: header
+        description: ''
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: application/json
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+      security: []
+      responses:
+        '202':
+          description: Accepted
+  "/server/reboot":
+    post:
+      tags:
+      - Server
+      summary: Reboot server
+      description: Rend a reboot signal to the server, if the server is not running
+        this will only start the server.
+      operationId: RebootServer
+      parameters:
+      - name: Authorization
+        in: header
+        description: ''
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: Bearer API_TOKEN
+      - name: Content-Type
+        in: header
+        description: ''
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: application/json
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+      security: []
+      responses:
+        '202':
+          description: Accepted
+  "/server/is_online":
+    post:
+      tags:
+      - Server
+      summary: Check if online
+      description: Returns power status for the server.
+      operationId: CheckIfOnline
+      parameters:
+      - name: Authorization
+        in: header
+        description: ''
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: Bearer API_TOKEN
+      - name: Content-Type
+        in: header
+        description: ''
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: application/json
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+      security: []
+      responses:
+        '200':
+          description: OK
+  "/server/info":
+    post:
+      tags:
+      - Server
+      summary: View info
+      description: Returns a server object with information about requested server
+      operationId: ViewInfo
+      parameters:
+      - name: Authorization
+        in: header
+        description: ''
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: Bearer API_TOKEN
+      - name: Content-Type
+        in: header
+        description: ''
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: application/json
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+      security: []
+      responses:
+        '200':
+          description: OK
+  "/server/list":
+    get:
+      tags:
+      - Server
+      summary: List servers
+      description: Returns a list over all servers on requesting account, including
+        information about the servers.
+      operationId: ListServers
+      parameters:
+      - name: Authorization
+        in: header
+        description: ''
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: Bearer API_TOKEN
+      - name: Content-Type
+        in: header
+        description: ''
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: application/json
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+      security: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+      responses:
+        '200':
+          description: OK
+  "/floating_ip/detach":
+    post:
+      tags:
+      - Floating IP's
+      summary: Detach floating IP
+      description: Detach existing floating IP address from the server it's currently
+        attached to.
+      operationId: DetachFloatingIp
+      parameters:
+      - name: Authorization
+        in: header
+        description: ''
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: Bearer API_TOKEN
+      - name: Content-Type
+        in: header
+        description: ''
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: application/json
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+      security: []
+      responses:
+        '202':
+          description: Accepted
+  "/floating_ip/attach":
+    post:
+      tags:
+      - Floating IP's
+      summary: Attach floating IP
+      description: Attach existing floating IP address to a server
+      operationId: AttachFloatingIp
+      parameters:
+      - name: Authorization
+        in: header
+        description: ''
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: Bearer API_TOKEN
+      - name: Content-Type
+        in: header
+        description: ''
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: application/json
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+      security: []
+      responses:
+        '202':
+          description: Accepted
+  "/floating_ip/remove":
+    delete:
+      tags:
+      - Floating IP's
+      summary: Remove floating IP
+      description: Removes a floating IP address. The IP address must be detached
+        or this function will return an error. Please note that some regions won't
+        allow removal of floating IP's until a certain time has passed, usually 24
+        hour.
+      operationId: RemoveFloatingIp
+      parameters:
+      - name: Authorization
+        in: header
+        description: ''
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: Bearer API_TOKEN
+      - name: Content-Type
+        in: header
+        description: ''
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: application/json
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+      security: []
+      responses:
+        '204':
+          description: No Content
+  "/floating_ip/create":
+    post:
+      tags:
+      - Floating IP's
+      summary: Create floating IP
+      description: Create a new floating IP address that can be used in a specific
+        region.
+      operationId: CreateFloatingIp
+      parameters:
+      - name: Authorization
+        in: header
+        description: ''
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: Bearer API_TOKEN
+      - name: Content-Type
+        in: header
+        description: ''
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: application/json
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/_s-response-message"
+              example:
+                message: Failed to create floating IP
+                response_type: warning
+                response_code: 400
+          description: Bad Request
+        '401':
+          description: Unauthorized
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+      security: []
+  "/floating_ip/list":
+    get:
+      tags:
+      - Floating IP's
+      summary: List floating IPs
+      description: Returns a list over floating IP's associated with account and which
+        server it's attached to (if any).
+      operationId: ListFloatingIps
+      parameters:
+      - name: Authorization
+        in: header
+        description: ''
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: Bearer API_TOKEN
+      - name: Content-Type
+        in: header
+        description: ''
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+        '401':
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/_s-response-message"
+              example:
+                message: Something went wrong...
+          description: Unauthorized
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+      security: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+  "/ssh_key/remove":
+    delete:
+      tags:
+      - SSH Keys
+      summary: Remove SSH key
+      description: Delete a specific ssh key by ID or uuid.
+      operationId: RemoveSshKey
+      parameters:
+      - name: Authorization
+        in: header
+        description: ''
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: Bearer API_TOKEN
+      - name: Content-Type
+        in: header
+        description: ''
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: application/json
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+      security: []
+      responses:
+        '204':
+          description: No Content
+  "/ssh_key/add":
+    post:
+      tags:
+      - SSH Keys
+      summary: Add SSH key
+      description: Upload a public SSH key, on success the response body will contain
+        the new key object
+      operationId: AddSshKey
+      parameters:
+      - name: Authorization
+        in: header
+        description: ''
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: Bearer API_TOKEN
+      - name: Content-Type
+        in: header
+        description: ''
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: application/json
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+      security: []
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+  "/ssh_key/list":
+    get:
+      tags:
+      - SSH Keys
+      summary: List SSH keys
+      description: Lists all available ssh keys on your account.
+      operationId: ListSshKeys
+      parameters:
+      - name: Authorization
+        in: header
+        description: ''
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: Bearer API_TOKEN
+      - name: Content-Type
+        in: header
+        description: ''
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: application/json
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+      security: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+      responses:
+        '200':
+          description: OK
+  "/backup/restore":
+    post:
+      tags:
+      - Backup
+      summary: Restore backup
+      description: "Restore a source backup image (from ID or uuid) to a target server
+        (identified by ID or uuid). \n\n**Caution**\n\nThe content on target server
+        will be overwritten by the backup image and thus lost forever."
+      operationId: RestoreBackup
+      parameters:
+      - name: Authorization
+        in: header
+        description: ''
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: Bearer API_TOKEN
+      - name: Content-Type
+        in: header
+        description: ''
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: application/json
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+      responses:
+        '202':
+          description: Accepted
+        '404':
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/_s-response-message"
+              example:
+                message: Invalid resource requested
+                response_type: warning
+                response_code: 404
+          description: Not Found
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+      security: []
+  "/account/token_remove":
+    delete:
+      tags:
+      - Account
+      summary: Remove auth token
+      description: |-
+        Delete a specific authentication token. Please note that if you delete the token used to authenticate this request you need to call /v1/account/login again to obtain a new token.
+
+        **Caution**
+
+        We cannot see the difference between an arbitrary token on your account, and the token you're using to authenticate this request. Therefore, nothing will prevent you from locking yourself out if you're not being careful.
+      operationId: RemoveAuthToken
+      parameters:
+      - name: Authorization
+        in: header
+        description: ''
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: Bearer API_TOKEN
+      - name: Content-Type
+        in: header
+        description: ''
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: application/json
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+      responses:
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/_s-response-message"
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+  "/account/token_create":
+    post:
+      tags:
+      - Account
+      summary: Create auth token
+      description: Generates a new authentication token. On success, the response
+        will be the new token.
+      operationId: CreateAuthToken
+      parameters:
+      - name: Authorization
+        in: header
+        description: ''
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: Bearer API_TOKEN
+      - name: Content-Type
+        in: header
+        description: ''
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: application/json
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                name: New token
+                uuid: 69472922-1725-11e9-ab14-d663bd873d93
+                auth_token: 36491ac8ca4fa099367351f2d4bfd0be6a2cb6d2efb78d91
+                created: '2018-11-23T22:55:34Z'
+          description: Created
+        '401':
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/_s-response-message"
+              example:
+                message: Authorization token does not exist
+          description: Unauthorized
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+  "/account/token_list":
+    get:
+      tags:
+      - Account
+      summary: List auth tokens
+      description: Lists all available authentication tokens on your account.
+      operationId: ListAuthTokens
+      parameters:
+      - name: Authorization
+        in: header
+        description: ''
+        required: true
+        style: simple
+        explode: false
+        schema:
+          example: Bearer API_TOKEN
+      - name: Content-Type
+        in: header
+        description: ''
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+        '401':
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/_s-response-message"
+              example:
+                message: Authorization token does not exist
+          description: Unauthorized
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+  "/account/info":
+    get:
+      tags:
+      - Account
+      summary: Account info
+      description: Fetch and dispalys a limited selection of information about the
+        account associated with the provided authentication key.
+      operationId: AccountInfo
+      parameters:
+      - name: Authorization
+        in: header
+        description: ''
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: Bearer API_TOKEN
+      - name: Content-Type
+        in: header
+        description: ''
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: application/json
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                ID: '123456'
+                UUID: 69472922-1725-11e9-ab14-d663bd873d93
+                profile:
+                  firstname: John
+                  lastname: Doe
+                  email: john.doe@example.com
+                balance: '1500'
+                activated: true
+                blocked_ports:
+                  TCP:
+                  - 17
+                  - 19
+                  - 25
+                  - 1900
+                  UDP:
+                  - 17
+                  - 19
+                  - 25
+                  - 1900
+                  - 53413
+                servers:
+                  limit: 500
+                  running: 150
+                registerdate: 2016-09-19T07:41:30z
+                lastlogin: 2019-01-05T13:23:54z
+                billing:
+                  secondsdue: 2592000
+                  duedate: 2019-02-05T13:23:54z
+                  usage: 2.05
+                permissions: 
+          description: OK
+        '401':
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/_s-response-message"
+              example:
+                message: Authorization token does not exist
+          description: Unauthorized
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+  "/account/reset":
+    post:
+      tags:
+      - Account
+      summary: Reset password
+      description: |-
+        Generate and email a temporary one time password that can be used to login. (see /v1/account/login for more information).
+
+        **Will this disable my current password?**
+
+        No, it will only offer an alternative way to login. If you suspect that someone is trying to access your account, consider changing your password to a longer and more secure one.
+
+        **Security**
+
+        The one time password will only be active for a limited time, then revoked. Accounts can only be reset once per week. Response messages will not do any attempt to validate input email addresses. This to prevent account leaks.
+      operationId: ResetPassword
+      parameters:
+      - name: Content-Type
+        in: header
+        description: ''
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: application/json
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                message: Account reset request received, check your email inbox
+                timestamp: 2019-01-13T11:19:21z
+          description: OK
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+      security: []
+  "/account/register":
+    post:
+      tags:
+      - Account
+      summary: Register
+      description: |-
+        Register a new account using provided information. On success, a new generated API key will be returned. (see /v1/account/login for information on usage). Provided email adress should receive an activation email within the next 5 minutes. The new account will be useless untill activated. However, client applications may still allow you to login.
+
+        **Security**
+
+        To prevent data leaks, a generic error message will be used if registration fails for any reason, including the case where you cannot register because the account already exists. If you see this generic error message, please try to login or reset account before complaining to support.
+      operationId: Register
+      parameters:
+      - name: Content-Type
+        in: header
+        description: ''
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: application/json
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+      security: []
+      responses:
+        '201':
+          description: Created
+  "/account/login":
+    post:
+      tags:
+      - Account
+      summary: Login
+      description: "Checking credentials (email and password) and returns the first
+        API key found on the associated account. Client applications can store this
+        key locally in memory to be used for future API requests. \n\n**How do I log
+        out?**\n\nDelete the locally saved key\n\n**Is there a rate limit?**\n\nYes,
+        one login attempt each 30 second per account and IP address is allowed. Too
+        many requests, (i.e bruteforce attempts) will result in denied access for
+        up to 24 hours.\n\n**Security**\n\nTo prevent account information leaks the
+        response will be the same in all three cases, i.e invalid email, invalid password
+        or if both email and password is invalid.\n"
+      operationId: Login
+      parameters:
+      - name: Content-Type
+        in: header
+        description: ''
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: application/json
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+      security: []
+      responses:
+        '200':
+          description: OK
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '429':
+          description: Too Many Requests
+  "/region/list_features/{region_id}":
+    get:
+      tags:
+      - Public
+      - Features
+      summary: Feature list
+      description: "Returns a list over available features. Feature lists are uniqe
+        for each region, a region ID is therefore required as last part of the call.
+        See:\n\n```\n/v1/region/list\n```\n\nFor a list of all available regions. "
+      operationId: FeatureList
+      parameters: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/_s-response-message"
+              example:
+                message: 'Please use: /v1/region/features/REGIONID'
+                response_type: warning
+                response_code: 400
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+      security: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+    parameters:
+    - schema:
+        type: integer
+      name: region_id
+      in: path
+      required: true
+      description: Region ID
+  "/plan/list/{region_id}":
+    get:
+      tags:
+      - Public
+      summary: Plans list
+      description: |-
+        Returns a list over available plans. Plan lists are uniqe for each region, a region ID is therefore required as last part of the call. See:
+
+        ```
+        /v1/region/list
+        ```
+
+        For a list of all available regions. Plan ID's is a 4 number code where the first number indicates which server generation a specific plan has, i.e ID's between 1101 and 1999 are first generation server plans. The second number (x1xx, x2xx, ...) indicates the plan type.
+
+        | Number  | Description  |
+        |---|---|
+        | 1  | Virtual Private Server, powered by KVM with 2/3 physical resources and 1/3 burst  |
+        | 2  | Dedicated servers, powered by KVM with 1:1 mapping to physical resources. No burst  |
+        | 3  | Bare metal servers, powered by KVM with 1:1 mapping to physical resources. \*unlimited burst |
+
+        *Unlimited burst is what the physical hardware can handle, i.e a 3.4Ghz CPU that can burst to 4.2GHz, these can be loaded to 100% all the time without additional fees.*
+
+        **Plan types**
+
+        Plans are listed in groups based on their properties
+
+        * **Custom**: *Contains a fixed specification over custom plans, i.e max RAM, price per GB disk etc.*
+        * **Ready**: *Contains a list over predefined plan sizes.*
+      operationId: PlansList
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                ready:
+                  value:
+                    custom: []
+                    ready:
+                      '1101':
+                        id: '201'
+                        name: Squirrel
+                        uuid: 3230313a-3433-4937-b465-643734303636
+                        windows: false
+                        cpu: 1
+                        ram: 1024
+                        disk: 25
+                        bandwidth: 1
+                        price_per_hour: 0.0136986301369863
+                        price_per_month: 10
+                      '1102':
+                        id: '202'
+                        name: Hedgehog
+                        uuid: 3230323a-6331-4765-a461-616538366534
+                        windows: false
+                        cpu: 1
+                        ram: 2048
+                        disk: 40
+                        bandwidth: 2
+                        price_per_hour: 0.0273972602739726
+                        price_per_month: 20
+                      '1103':
+                        id: '203'
+                        name: Rabbit
+                        uuid: 3230333a-3436-4231-a331-643535666134
+                        windows: false
+                        cpu: 2
+                        ram: 4096
+                        disk: 60
+                        bandwidth: 3
+                        price_per_hour: 0.0547945205479452
+                        price_per_month: 40
+                      '1104':
+                        id: '204'
+                        name: Beaver
+                        uuid: 3230343a-6663-4536-a462-633664343635
+                        windows: false
+                        cpu: 4
+                        ram: 8192
+                        disk: 100
+                        bandwidth: 4
+                        price_per_hour: 0.1095890410958904
+                        price_per_month: 80
+                      '1105':
+                        id: '205'
+                        name: Boar
+                        uuid: 3230353a-6638-4830-b961-666634643639
+                        windows: false
+                        cpu: 6
+                        ram: 16384
+                        disk: 200
+                        bandwidth: 5
+                        price_per_hour: 0.2191780821917808
+                        price_per_month: 160
+                      '1106':
+                        id: '206'
+                        name: Wolf
+                        uuid: 3230363a-3563-4634-a532-366264336438
+                        windows: false
+                        cpu: 8
+                        ram: 32768
+                        disk: 300
+                        bandwidth: 6
+                        price_per_hour: 0.4383561643835616
+                        price_per_month: 320
+                      '1107':
+                        id: '207'
+                        name: Bear
+                        uuid: 3230373a-3936-4830-b736-626532653338
+                        windows: false
+                        cpu: 16
+                        ram: 65536
+                        disk: 400
+                        bandwidth: 10
+                        price_per_hour: 0.8767123287671232
+                        price_per_month: 640
+                      '1108':
+                        id: '208'
+                        name: Moose
+                        uuid: 3230383a-3864-4636-b666-363462353734
+                        windows: false
+                        cpu: 24
+                        ram: 98304
+                        disk: 800
+                        bandwidth: 15
+                        price_per_hour: 1.7534246575342465
+                        price_per_month: 1280
+                    meta:
+                      total: 8
+                custom:
+                  value:
+                    custom:
+                      windows: false
+                      cpu:
+                        min: 1
+                        max: 20
+                      ram:
+                        min: 1
+                        max: 64
+                      disk:
+                        min: 50
+                        max: 640
+                      bandwidth: 0
+                      price_per_hour:
+                        cpu: 0.02
+                        ram: 0.01
+                        disk: 0.0004
+                        bw: 0.0005
+                        ip: 0.01
+                      price_per_month:
+                        cpu: 14.6
+                        ram: 7.3
+                        disk: 0.29200000000000004
+                        bw: 0.365
+                        ip: 7.3
+                    ready: []
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/_s-response-message"
+              example:
+                message: 'Please use: /v1/plans/REGIONID'
+                response_type: warning
+                response_code: 400
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+      security: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+    parameters:
+    - schema:
+        type: integer
+      name: region_id
+      in: path
+      required: true
+      description: Region ID
+  "/image/list/{region_id}":
+    get:
+      tags:
+      - Public
+      summary: Images list
+      description: |-
+        Returns a list over available system images. Image lists are uniqe for each region, a region ID is therefore required as last part of the call. See:
+
+        ```
+        /v1/region/list
+        ```
+
+        For a list of all available regions. Image ID's is a 4 number code where the first number indicates which server generation a specific image can be deployed too, i.e ID's between 1101 and 1999 can only be used on first generation servers. The second number (x1xx, x2xx, ...) indicates the image type.
+
+        | Number  | Description  |
+        |---|---|
+        | 1  | Raw OS image, a blank operating system image without nonsense  |
+        | 2  | Application image, a preinstalled application  |
+        | 3  | Snapshot, available snapshots in your account  |
+        | 4  | Backup, available backups in your account  |
+        | 5  | Custom, a custom image  |
+      operationId: ImagesList
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                images:
+                  '1101':
+                    uuid: 30323430-3337-4239-b437-326431383833
+                    id: 127
+                    name: CentOS 6 x64
+                    type: os
+                    os_type: linux
+                    os_distro: centos
+                    min_disk_gb: 25
+                    hourly_cost: 0
+                  '1102':
+                    uuid: 36323062-6264-4131-a461-323037393435
+                    id: 147
+                    name: CentOS 6 i386
+                    type: os
+                    os_type: linux
+                    os_distro: centos
+                    min_disk_gb: 25
+                    hourly_cost: 0
+                  '1103':
+                    uuid: 65376639-3730-4639-b030-666432366264
+                    id: 167
+                    name: CentOS 7 x64
+                    type: os
+                    os_type: linux
+                    os_distro: centos
+                    min_disk_gb: 25
+                    hourly_cost: 0
+                  '1104':
+                    uuid: 33303937-3230-4664-b266-396662373564
+                    id: 160
+                    name: Ubuntu 14.04 x64
+                    type: os
+                    os_type: linux
+                    os_distro: ubuntu
+                    min_disk_gb: 25
+                    hourly_cost: 0
+                  '1105':
+                    uuid: 33363135-3438-4137-b061-643935643466
+                    id: 161
+                    name: Ubuntu 14.04 i386
+                    type: os
+                    os_type: linux
+                    os_distro: ubuntu
+                    min_disk_gb: 25
+                    hourly_cost: 0
+                  '1106':
+                    uuid: 34306231-3336-4964-a531-346461303137
+                    id: 215
+                    name: Ubuntu 16.04 x64
+                    type: os
+                    os_type: linux
+                    os_distro: ubuntu
+                    min_disk_gb: 25
+                    hourly_cost: 0
+                  '1107':
+                    uuid: 65386262-6264-4137-a636-383031313634
+                    id: 216
+                    name: Ubuntu 16.04 i386
+                    type: os
+                    os_type: linux
+                    os_distro: ubuntu
+                    min_disk_gb: 25
+                    hourly_cost: 0
+                  '1108':
+                    uuid: 38333265-3534-4564-b862-646337653166
+                    id: 270
+                    name: Ubuntu 18.04 x64
+                    type: os
+                    os_type: linux
+                    os_distro: ubuntu
+                    min_disk_gb: 25
+                    hourly_cost: 0
+                  '1109':
+                    uuid: 65376161-3430-4061-a132-383230623636
+                    id: 302
+                    name: Ubuntu 18.10 x64
+                    type: os
+                    os_type: linux
+                    os_distro: ubuntu
+                    min_disk_gb: 25
+                    hourly_cost: 0
+                  '1110':
+                    uuid: 38373035-6232-4031-a631-326135333165
+                    id: 193
+                    name: Debian 8 x64 (jessie)
+                    type: os
+                    os_type: linux
+                    os_distro: debian
+                    min_disk_gb: 25
+                    hourly_cost: 0
+                  '1111':
+                    uuid: 37323939-3131-4430-b864-663164353833
+                    id: 194
+                    name: Debian 8 i386 (jessie)
+                    type: os
+                    os_type: linux
+                    os_distro: debian
+                    min_disk_gb: 25
+                    hourly_cost: 0
+                  '1112':
+                    uuid: 61653961-3165-4363-b062-663532303036
+                    id: 244
+                    name: Debian 9 x64 (stretch)
+                    type: os
+                    os_type: linux
+                    os_distro: debian
+                    min_disk_gb: 25
+                    hourly_cost: 0
+                  '1113':
+                    uuid: 65313037-3234-4135-b061-633830373931
+                    id: 230
+                    name: FreeBSD 11 x64
+                    type: os
+                    os_type: linux
+                    os_distro: freebsd
+                    min_disk_gb: 25
+                    hourly_cost: 0
+                  '1114':
+                    uuid: 66373934-6264-4863-b361-616131353066
+                    id: 327
+                    name: FreeBSD 12 x64
+                    type: os
+                    os_type: linux
+                    os_distro: freebsd
+                    min_disk_gb: 25
+                    hourly_cost: 0
+                  '1115':
+                    uuid: 62303530-3662-4866-b533-623436373464
+                    id: 234
+                    name: OpenBSD 6.3 x64
+                    type: os
+                    os_type: linux
+                    os_distro: openbsd
+                    min_disk_gb: 25
+                    hourly_cost: 0
+                  '1116':
+                    uuid: 34313032-3964-4961-b963-323261353834
+                    id: 324
+                    name: OpenBSD 6.4 x64
+                    type: os
+                    os_type: linux
+                    os_distro: openbsd
+                    min_disk_gb: 25
+                    hourly_cost: 0
+                  '1117':
+                    uuid: 37663161-3065-4439-b334-373739396338
+                    id: 179
+                    name: CoreOS Stable
+                    type: os
+                    os_type: linux
+                    os_distro: coreos
+                    min_disk_gb: 25
+                    hourly_cost: 0
+                  '1118':
+                    uuid: 66626536-6637-4234-b731-313139396163
+                    id: 271
+                    name: Fedora 28 x64
+                    type: os
+                    os_type: linux
+                    os_distro: fedora
+                    min_disk_gb: 25
+                    hourly_cost: 0
+                  '1119':
+                    uuid: 66323338-6639-4362-a562-386434396639
+                    id: 322
+                    name: Fedora 29 x64
+                    type: os
+                    os_type: linux
+                    os_distro: fedora
+                    min_disk_gb: 25
+                    hourly_cost: 0
+                  '1120':
+                    uuid: 33373631-3866-4334-b164-303065613638
+                    id: 124
+                    name: Windows 2012 R2 x64
+                    type: os
+                    os_type: windows
+                    os_distro: windows
+                    min_disk_gb: 25
+                    hourly_cost: 0.02465753
+                  '1121':
+                    uuid: 65653765-3130-4233-b865-303030346134
+                    id: 240
+                    name: Windows 2016 x64
+                    type: os
+                    os_type: windows
+                    os_distro: windows
+                    min_disk_gb: 25
+                    hourly_cost: 0.02465753
+                  '1201':
+                    uuid: 37363337-3565-4736-a438-366436343164
+                    id: '1'
+                    name: LEMP on CentOS 6 x64
+                    type: app
+                    os_type: linux
+                    os_distro: centos
+                    min_disk: 25
+                    hourly_cost: 0
+                  '1202':
+                    uuid: 61376566-3036-4937-b036-373834326266
+                    id: '39'
+                    name: LEMP on CentOS 7 x64
+                    type: app
+                    os_type: linux
+                    os_distro: centos
+                    min_disk: 25
+                    hourly_cost: 0
+                  '1203':
+                    uuid: 39363865-6434-4232-a137-373332363333
+                    id: '40'
+                    name: LEMP on Ubuntu 16.04 x64
+                    type: app
+                    os_type: linux
+                    os_distro: centos
+                    min_disk: 25
+                    hourly_cost: 0
+                  '1204':
+                    uuid: 61666331-3764-4839-b161-393766373135
+                    id: '2'
+                    name: WordPress on Ubuntu 16.04 x64
+                    type: app
+                    os_type: linux
+                    os_distro: centos
+                    min_disk: 25
+                    hourly_cost: 0
+                  '1205':
+                    uuid: 34383735-3535-4366-a337-313764316537
+                    id: '3'
+                    name: Minecraft on Ubuntu 16.04 x64
+                    type: app
+                    os_type: linux
+                    os_distro: centos
+                    min_disk: 25
+                    hourly_cost: 0
+                  '1206':
+                    uuid: 64383666-3034-4237-b366-356366633131
+                    id: '4'
+                    name: Webmin on CentOS 6 x64
+                    type: app
+                    os_type: linux
+                    os_distro: centos
+                    min_disk: 25
+                    hourly_cost: 0
+                  '1207':
+                    uuid: 64393962-6136-4937-b365-613130393436
+                    id: '43'
+                    name: Webmin on CentOS 7 x64
+                    type: app
+                    os_type: linux
+                    os_distro: centos
+                    min_disk: 25
+                    hourly_cost: 0
+                  '1208':
+                    uuid: 35616335-6464-4130-a664-633134646561
+                    id: '44'
+                    name: Webmin on Ubuntu 16.04 x64
+                    type: app
+                    os_type: linux
+                    os_distro: centos
+                    min_disk: 25
+                    hourly_cost: 0
+                  '1209':
+                    uuid: 63636638-6331-4736-b432-613333353537
+                    id: '5'
+                    name: ownCloud on Ubuntu 16.04 x64
+                    type: app
+                    os_type: linux
+                    os_distro: centos
+                    min_disk: 25
+                    hourly_cost: 0
+                  '1210':
+                    uuid: 33363664-6632-4434-b536-303430666133
+                    id: '6'
+                    name: OpenVPN on Ubuntu 16.04 x64
+                    type: app
+                    os_type: linux
+                    os_distro: centos
+                    min_disk: 25
+                    hourly_cost: 0
+                  '1211':
+                    uuid: 37316634-3932-4030-b738-623037643734
+                    id: '38'
+                    name: cPanel on CentOS 7 x64
+                    type: app
+                    os_type: linux
+                    os_distro: centos
+                    min_disk: 25
+                    hourly_cost: 0
+                  '1212':
+                    uuid: 31313966-6264-4566-a638-353730333233
+                    id: '15'
+                    name: Drupal on Ubuntu 16.04 x64
+                    type: app
+                    os_type: linux
+                    os_distro: centos
+                    min_disk: 25
+                    hourly_cost: 0
+                  '1213':
+                    uuid: 30393636-3134-4934-b563-653335303162
+                    id: '17'
+                    name: Docker on CentOS 7 x64
+                    type: app
+                    os_type: linux
+                    os_distro: centos
+                    min_disk: 25
+                    hourly_cost: 0
+                  '1214':
+                    uuid: 32386632-6564-4538-a137-343161633332
+                    id: '37'
+                    name: Docker on Ubuntu 16.04 x64
+                    type: app
+                    os_type: linux
+                    os_distro: centos
+                    min_disk: 25
+                    hourly_cost: 0
+                  '1215':
+                    uuid: 38656434-6139-4663-b638-313934663732
+                    id: '19'
+                    name: LAMP on CentOS 6 x64
+                    type: app
+                    os_type: linux
+                    os_distro: centos
+                    min_disk: 25
+                    hourly_cost: 0
+                  '1216':
+                    uuid: 34633939-3662-4866-b635-373365656461
+                    id: '41'
+                    name: LAMP on CentOS 7 x64
+                    type: app
+                    os_type: linux
+                    os_distro: centos
+                    min_disk: 25
+                    hourly_cost: 0
+                  '1217':
+                    uuid: 32393733-3737-4430-b537-656236356364
+                    id: '42'
+                    name: LAMP on Ubuntu 16.04 x64
+                    type: app
+                    os_type: linux
+                    os_distro: centos
+                    min_disk: 25
+                    hourly_cost: 0
+                  '1218':
+                    uuid: 33316461-6231-4665-a236-373064643634
+                    id: '21'
+                    name: Joomla on Ubuntu 16.04 x64
+                    type: app
+                    os_type: linux
+                    os_distro: centos
+                    min_disk: 25
+                    hourly_cost: 0
+                  '1219':
+                    uuid: 66343363-3261-4966-b662-626165303532
+                    id: '23'
+                    name: Mediawiki on Ubuntu 16.04 x64
+                    type: app
+                    os_type: linux
+                    os_distro: centos
+                    min_disk: 25
+                    hourly_cost: 0
+                  '1220':
+                    uuid: 38666232-3766-4564-b535-393131626261
+                    id: '25'
+                    name: PrestaShop on Ubuntu 16.04 x64
+                    type: app
+                    os_type: linux
+                    os_distro: centos
+                    min_disk: 25
+                    hourly_cost: 0
+                  '1221':
+                    uuid: 32313863-6564-4566-b639-386562636531
+                    id: '27'
+                    name: Nextcloud on Ubuntu 16.04 x64
+                    type: app
+                    os_type: linux
+                    os_distro: centos
+                    min_disk: 25
+                    hourly_cost: 0
+                  '1222':
+                    uuid: 34393839-6532-4261-a661-363663643163
+                    id: '29'
+                    name: GitLab on Ubuntu 16.04 x64
+                    type: app
+                    os_type: linux
+                    os_distro: centos
+                    min_disk: 25
+                    hourly_cost: 0
+                  '1223':
+                    uuid: 35646230-3434-4334-b735-653833653939
+                    id: '31'
+                    name: Plesk Onyx (Web Admin SE) on Ubuntu 16.04 x64
+                    type: app
+                    os_type: linux
+                    os_distro: centos
+                    min_disk: 25
+                    hourly_cost: 0
+                  '1224':
+                    uuid: 34313934-6434-4539-a237-653336306562
+                    id: '35'
+                    name: Plesk Onyx (Web Pro) on Ubuntu 16.04 x64
+                    type: app
+                    os_type: linux
+                    os_distro: centos
+                    min_disk: 25
+                    hourly_cost: 0
+                  '1225':
+                    uuid: 61313136-3063-4362-b136-383439373137
+                    id: '36'
+                    name: Plesk Onyx (Web Host) on Ubuntu 16.04 x64
+                    type: app
+                    os_type: linux
+                    os_distro: centos
+                    min_disk: 25
+                    hourly_cost: 0
+                  '1226':
+                    uuid: 62633363-3636-4466-a266-393263383634
+                    id: '33'
+                    name: Magento on Ubuntu 16.04 x64
+                    type: app
+                    os_type: linux
+                    os_distro: centos
+                    min_disk: 25
+                    hourly_cost: 0
+                meta:
+                  total: 47
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/_s-response-message"
+              example:
+                message: 'Please use: /v1/images/REGIONID'
+                response_type: warning
+                response_code: 400
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+      security: []
+      requestBody: {}
+    parameters:
+    - schema:
+        type: integer
+      name: region_id
+      in: path
+      required: true
+      description: Region ID
+  "/region/list":
+    get:
+      tags:
+      - Public
+      summary: Regions list
+      description: |-
+        Returns a list over all available regions including available features. Availibility of plans and images can be obtained by calling one of the following functions:
+
+        ```
+        /v1/plan/list/REGIONID
+        ```
+
+        ```
+        /v1/image/list/REGIONID
+        ```
+
+        Where *REGIONID* is the ID (int) that corresponds to a specific region. Region ID's has the following format: 1xx, 2xx, 3xx etc.. where the first number represents server generation. First generation servers are available in regions with an ID between 101 and 199. To view available features in a specific region, use:
+
+        ```
+        /v1/region/list_features/REGIONID
+        ```
+      operationId: RegionsList
+      parameters: []
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+      security: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+      responses:
+        '200':
+          description: OK
+tags:
+- name: Public
+  description: This section contains all information about regions, images, plans
+    and features. The Authorization header is not required for any function in this
+    section.
+- name: Account
+  description: Manage account and sub-accounts. View status and enabled features.
+    Create and remove API tokens and more.
+- name: Billing
+  description: View account payment transactions, taxes, fees and detailed billing
+    information sorted by resource
+- name: Backup
+  description: Manage automatic backups, define schedules or restore servers to earlier
+    states.
+- name: DNS
+  description: Manage domains and DNS records
+- name: SSH Keys
+  description: Upload and manage your public SSH keys, these keys will be deployed
+    to new servers upon creation, and used instead of password authentication.
+- name: Floating IP's
+  description: 'Floating point IP''s allow you to create and assign additional IP
+    addresses to your servers. Note that the IPv4 range is limited, first come first
+    serve applies. '
+- name: Server
+  description: Create and manage servers with functions in this section. Note that
+    some functions will act as an alias for it's similar alternative, if unsupported
+    in the specific region. Otherwise similar functions may differ. See function descriptions
+    for more details.
+- name: Snapshot
+  description: 'Create and manage snapshots. Deployment limitations may apply in some
+    regions, if you intend to use snapshots for backup see: [/docs/#tag/Backup](/docs/#tag/Backup)'
+security: []
+components:
+  securitySchemes: {}
+  schemas:
+    _s-response-message:
+      title: response-message
+      type: object
+      properties:
+        message:
+          type: string
+          description: Response text with a simple description of the result
+        response_type:
+          type: string
+          description: 'Type of message: success|info|warning|error'
+        response_code:
+          type: integer
+          description: HTTP status code for quick reference
+      description: A response message and a status code, indicating if the function
+        was executed successfully or not.
+      x-examples:
+        Response:
+          message: Something went wrong, try this to solve the problem...
+          response_type: error
+          response_code: 400
+  headers:
+    Content-Type:
+      type: string
+      description: Should be set to application/json
+    Authorization:
+      type: string
+      description: 'Must contain the following: ''Bearer auth_token'' where auth_token
+        is one of your accounts authentication tokens'
