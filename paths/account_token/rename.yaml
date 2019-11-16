@@ -6,14 +6,7 @@ post:
       content:
         application/json:
           schema:
-            type: object
-            properties:
-              uuid:
-                type: string
-                description: UUID for the token object you want to rename
-              name:
-                type: string
-                description: New name for the token
+            $ref: ../../models/response-message.v1.yaml
           examples:
             example-1:
               value:
@@ -54,7 +47,13 @@ post:
       application/json:
         schema:
           type: object
-          properties: {}
+          properties:
+            uuid:
+              type: string
+              description: UUID for the token object you want to rename
+            name:
+              type: string
+              description: New name for the token
         examples:
           example-1:
             value:

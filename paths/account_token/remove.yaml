@@ -44,6 +44,7 @@ delete:
   responses:
     '204':
       description: No Content
+      content: {}
     '403':
       description: Forbidden
       content:
