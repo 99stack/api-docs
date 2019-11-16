@@ -1,4 +1,3 @@
----
 openapi: 3.0.0
 info:
   title: 99Stack API documentation
@@ -78,41 +77,41 @@ info:
     ```
 
     See examples above for usage with cURL.
-  termsOfService: https://www.99stack.com/legal/terms-of-service
+  termsOfService: 'https://www.99stack.com/legal/terms-of-service'
   license:
     name: MIT
-    url: https://github.com/99stack/api-docs/blob/master/LICENSE
+    url: 'https://github.com/99stack/api-docs/blob/master/LICENSE'
 servers:
-- url: https://api.99stack.com/v1
-  variables: {}
-  description: 99Stack API
+  - url: 'https://api.99stack.com/v1'
+    variables: {}
+    description: 99Stack API
 paths:
-  "/snapshot/restore":
+  /snapshot/restore:
     post:
       tags:
-      - Snapshot
+        - Snapshot
       summary: Restore snapshot
       description: Restore a server from provided snapshot image
       operationId: RestoreSnapshot
       parameters:
-      - name: Authorization
-        in: header
-        description: ''
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-          example: Bearer API_TOKEN
-      - name: Content-Type
-        in: header
-        description: ''
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-          example: application/json
+        - name: Authorization
+          in: header
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            example: Bearer API_TOKEN
+        - name: Content-Type
+          in: header
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            example: application/json
       requestBody:
         required: true
         content:
@@ -132,7 +131,7 @@ paths:
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/_s-response-message"
+                $ref: '#/components/schemas/_s-response-message'
               example:
                 message: Invalid resource requested
                 response_type: warning
@@ -144,32 +143,32 @@ paths:
         AllowDynamicFormParameters: false
         IsMultiContentStreaming: false
       security: []
-  "/snapshot/remove":
+  /snapshot/remove:
     delete:
       tags:
-      - Snapshot
+        - Snapshot
       summary: Remove snapshot
       description: Remove snapshot by id or uuid
       operationId: RemoveSnapshot
       parameters:
-      - name: Authorization
-        in: header
-        description: ''
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-          example: Bearer API_TOKEN
-      - name: Content-Type
-        in: header
-        description: ''
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-          example: application/json
+        - name: Authorization
+          in: header
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            example: Bearer API_TOKEN
+        - name: Content-Type
+          in: header
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            example: application/json
       requestBody:
         required: true
         description: Default
@@ -185,7 +184,7 @@ paths:
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/_s-response-message"
+                $ref: '#/components/schemas/_s-response-message'
               example:
                 message: Invalid resource requested
                 response_type: warning
@@ -197,32 +196,32 @@ paths:
         AllowDynamicFormParameters: false
         IsMultiContentStreaming: false
       security: []
-  "/snapshot/create":
+  /snapshot/create:
     post:
       tags:
-      - Snapshot
+        - Snapshot
       summary: Create snapshot
       description: Create a snapshot of a server
       operationId: CreateSnapshot
       parameters:
-      - name: Authorization
-        in: header
-        description: ''
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-          example: Bearer API_TOKEN
-      - name: Content-Type
-        in: header
-        description: ''
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-          example: application/json
+        - name: Authorization
+          in: header
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            example: Bearer API_TOKEN
+        - name: Content-Type
+          in: header
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            example: application/json
       requestBody:
         required: true
         content:
@@ -238,39 +237,39 @@ paths:
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/_s-response-message"
+                $ref: '#/components/schemas/_s-response-message'
       x-operation-settings:
         CollectParameters: false
         AllowDynamicQueryParameters: false
         AllowDynamicFormParameters: false
         IsMultiContentStreaming: false
       security: []
-  "/snapshot/list":
+  /snapshot/list:
     get:
       tags:
-      - Snapshot
+        - Snapshot
       summary: List snapshots
       description: Returns a JSON formatted list over all snapshots on this account
       operationId: ListSnapshots
       parameters:
-      - name: Authorization
-        in: header
-        description: ''
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-          example: Bearer API_TOKEN
-      - name: Content-Type
-        in: header
-        description: ''
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-          example: application/json
+        - name: Authorization
+          in: header
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            example: Bearer API_TOKEN
+        - name: Content-Type
+          in: header
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            example: application/json
       x-operation-settings:
         CollectParameters: false
         AllowDynamicQueryParameters: false
@@ -286,44 +285,32 @@ paths:
       responses:
         '200':
           description: OK
-  "/server/remove":
+  /server/remove:
     delete:
       tags:
-      - Server
+        - Server
       summary: Remove server
-      description: "Remove a server by uuid or ID. Billing will stop immediately for
-        the server and some of it's related resources. Please note that removal of
-        additional resources will be handled differently depending on region, see
-        below table for more details:\n\n**Additional resources on server removal**\n\n|
-        #  | Software license  | Automatic backups  | Snapshot  | IP addresses  |
-        Floating IP  |\n|---|---|---|---|---|---|    \n| 1xx  | Removed  | Removed
-        \ | Not affected  | Removed  | Detached  |\n| 2xx  | Removed  | Removed  |
-        Not affected  | Removed  | Detached  |\n| 3xx  | Detached  | Detached  | Not
-        affected  | Detached  | Detached  |\n\n**Information**\n\n- Removed: *The
-        resources is removed with the server*\n- Detached: *The resources is detached
-        from the server but not deleted, billing continues*\n- Not affected: *The
-        resources has no connection to the server (thus not affected by removal request),
-        billing continues*"
+      description: "Remove a server by uuid or ID. Billing will stop immediately for the server and some of it's related resources. Please note that removal of additional resources will be handled differently depending on region, see below table for more details:\n\n**Additional resources on server removal**\n\n| #  | Software license  | Automatic backups  | Snapshot  | IP addresses  | Floating IP  |\n|---|---|---|---|---|---|    \n| 1xx  | Removed  | Removed  | Not affected  | Removed  | Detached  |\n| 2xx  | Removed  | Removed  | Not affected  | Removed  | Detached  |\n| 3xx  | Detached  | Detached  | Not affected  | Detached  | Detached  |\n\n**Information**\n\n- Removed: *The resources is removed with the server*\n- Detached: *The resources is detached from the server but not deleted, billing continues*\n- Not affected: *The resources has no connection to the server (thus not affected by removal request), billing continues*"
       operationId: RemoveServer
       parameters:
-      - name: Authorization
-        in: header
-        description: ''
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-          example: Bearer API_TOKEN
-      - name: Content-Type
-        in: header
-        description: ''
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-          example: application/json
+        - name: Authorization
+          in: header
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            example: Bearer API_TOKEN
+        - name: Content-Type
+          in: header
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            example: application/json
       requestBody:
         required: true
         content:
@@ -338,7 +325,7 @@ paths:
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/_s-response-message"
+                $ref: '#/components/schemas/_s-response-message'
               example:
                 message: Invalid resource requested
                 response_type: warning
@@ -348,10 +335,9 @@ paths:
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/_s-response-message"
+                $ref: '#/components/schemas/_s-response-message'
               example:
-                message: Permission denied, server is still initializing, please try
-                  again in about x minutes
+                message: 'Permission denied, server is still initializing, please try again in about x minutes'
                 response_type: warning
                 response_code: 429
           description: Too Many Requests
@@ -361,10 +347,10 @@ paths:
         AllowDynamicFormParameters: false
         IsMultiContentStreaming: false
       security: []
-  "/server/custom_create":
+  /server/custom_create:
     post:
       tags:
-      - Server
+        - Server
       summary: Create custom server
       description: |-
         Deploy a new custom server in any supported region, see "Create ready server" for default configuration. The principle is the same with custom servers. However, instead of using ID's corresponding to fixed plans, the "plan" property is a JSON object defining the server size.
@@ -377,24 +363,24 @@ paths:
         ```
       operationId: CreateCustomServer
       parameters:
-      - name: Authorization
-        in: header
-        description: ''
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-          example: Bearer API_TOKEN
-      - name: Content-Type
-        in: header
-        description: ''
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-          example: application/json
+        - name: Authorization
+          in: header
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            example: Bearer API_TOKEN
+        - name: Content-Type
+          in: header
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            example: application/json
       requestBody:
         required: true
         description: Create server
@@ -409,9 +395,9 @@ paths:
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/_s-response-message"
+                $ref: '#/components/schemas/_s-response-message'
               example:
-                message: 'Expected: ''...'', not found'
+                message: "Expected: '...', not found"
                 response_type: warning
                 response_code: 400
           description: Bad Request
@@ -419,7 +405,7 @@ paths:
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/_s-response-message"
+                $ref: '#/components/schemas/_s-response-message'
               example:
                 message: Authorization token does not exist
           description: Unauthorized
@@ -427,7 +413,7 @@ paths:
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/_s-response-message"
+                $ref: '#/components/schemas/_s-response-message'
               example:
                 message: Deployment failed...
                 response_type: error
@@ -439,10 +425,10 @@ paths:
         AllowDynamicFormParameters: false
         IsMultiContentStreaming: false
       security: []
-  "/server/ready_create":
+  /server/ready_create:
     post:
       tags:
-      - Server
+        - Server
       summary: Create ready server
       description: |-
         Deploy a new server from a fixed "ready" plan anywhere in 99Stack cloud.
@@ -454,24 +440,24 @@ paths:
         ```
       operationId: CreateReadyServer
       parameters:
-      - name: Authorization
-        in: header
-        description: ''
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-          example: Bearer API_TOKEN
-      - name: Content-Type
-        in: header
-        description: ''
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-          example: application/json
+        - name: Authorization
+          in: header
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            example: Bearer API_TOKEN
+        - name: Content-Type
+          in: header
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            example: application/json
       requestBody:
         content:
           application/json:
@@ -488,7 +474,7 @@ paths:
               ddos_protection: false
               private_networking: true
               ssh_key: 5cb46fd8-1b2d-11e9-ab14-d663bd873d93
-              script_url: https://raw.github.com...
+              script_url: 'https://raw.github.com...'
               user_data: I2Nsb3VkLWluaXQ=
         required: true
       responses:
@@ -498,9 +484,9 @@ paths:
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/_s-response-message"
+                $ref: '#/components/schemas/_s-response-message'
               example:
-                message: 'Expected: ''...'', not found'
+                message: "Expected: '...', not found"
                 response_type: warning
                 response_code: 400
           description: Bad Request
@@ -508,7 +494,7 @@ paths:
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/_s-response-message"
+                $ref: '#/components/schemas/_s-response-message'
               example:
                 message: Authorization token does not exist
           description: Unauthorized
@@ -516,7 +502,7 @@ paths:
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/_s-response-message"
+                $ref: '#/components/schemas/_s-response-message'
               example:
                 message: Deployment failed...
                 response_type: error
@@ -528,33 +514,32 @@ paths:
         AllowDynamicFormParameters: false
         IsMultiContentStreaming: false
       security: []
-  "/server/stop":
+  /server/stop:
     post:
       tags:
-      - Server
+        - Server
       summary: Stop server
-      description: Force a server to halt, this is the same as pressing the power
-        off button on a physical machine.
+      description: 'Force a server to halt, this is the same as pressing the power off button on a physical machine.'
       operationId: StopServer
       parameters:
-      - name: Authorization
-        in: header
-        description: ''
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-          example: Bearer API_TOKEN
-      - name: Content-Type
-        in: header
-        description: ''
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-          example: application/json
+        - name: Authorization
+          in: header
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            example: Bearer API_TOKEN
+        - name: Content-Type
+          in: header
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            example: application/json
       requestBody:
         required: true
         content:
@@ -571,33 +556,32 @@ paths:
       responses:
         '202':
           description: Accepted
-  "/server/start":
+  /server/start:
     post:
       tags:
-      - Server
+        - Server
       summary: Start server
-      description: Send a startup signal to server, this is similar to pressing the
-        power on button.
+      description: 'Send a startup signal to server, this is similar to pressing the power on button.'
       operationId: StartServer
       parameters:
-      - name: Authorization
-        in: header
-        description: ''
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-          example: Bearer API_TOKEN
-      - name: Content-Type
-        in: header
-        description: ''
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-          example: application/json
+        - name: Authorization
+          in: header
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            example: Bearer API_TOKEN
+        - name: Content-Type
+          in: header
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            example: application/json
       requestBody:
         required: true
         content:
@@ -614,33 +598,32 @@ paths:
       responses:
         '202':
           description: Accepted
-  "/server/reboot":
+  /server/reboot:
     post:
       tags:
-      - Server
+        - Server
       summary: Reboot server
-      description: Rend a reboot signal to the server, if the server is not running
-        this will only start the server.
+      description: 'Rend a reboot signal to the server, if the server is not running this will only start the server.'
       operationId: RebootServer
       parameters:
-      - name: Authorization
-        in: header
-        description: ''
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-          example: Bearer API_TOKEN
-      - name: Content-Type
-        in: header
-        description: ''
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-          example: application/json
+        - name: Authorization
+          in: header
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            example: Bearer API_TOKEN
+        - name: Content-Type
+          in: header
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            example: application/json
       requestBody:
         required: true
         content:
@@ -657,32 +640,32 @@ paths:
       responses:
         '202':
           description: Accepted
-  "/server/is_online":
+  /server/is_online:
     post:
       tags:
-      - Server
+        - Server
       summary: Check if online
       description: Returns power status for the server.
       operationId: CheckIfOnline
       parameters:
-      - name: Authorization
-        in: header
-        description: ''
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-          example: Bearer API_TOKEN
-      - name: Content-Type
-        in: header
-        description: ''
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-          example: application/json
+        - name: Authorization
+          in: header
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            example: Bearer API_TOKEN
+        - name: Content-Type
+          in: header
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            example: application/json
       requestBody:
         required: true
         content:
@@ -699,32 +682,32 @@ paths:
       responses:
         '200':
           description: OK
-  "/server/info":
+  /server/info:
     post:
       tags:
-      - Server
+        - Server
       summary: View info
       description: Returns a server object with information about requested server
       operationId: ViewInfo
       parameters:
-      - name: Authorization
-        in: header
-        description: ''
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-          example: Bearer API_TOKEN
-      - name: Content-Type
-        in: header
-        description: ''
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-          example: application/json
+        - name: Authorization
+          in: header
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            example: Bearer API_TOKEN
+        - name: Content-Type
+          in: header
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            example: application/json
       requestBody:
         required: true
         content:
@@ -741,33 +724,32 @@ paths:
       responses:
         '200':
           description: OK
-  "/server/list":
+  /server/list:
     get:
       tags:
-      - Server
+        - Server
       summary: List servers
-      description: Returns a list over all servers on requesting account, including
-        information about the servers.
+      description: 'Returns a list over all servers on requesting account, including information about the servers.'
       operationId: ListServers
       parameters:
-      - name: Authorization
-        in: header
-        description: ''
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-          example: Bearer API_TOKEN
-      - name: Content-Type
-        in: header
-        description: ''
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-          example: application/json
+        - name: Authorization
+          in: header
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            example: Bearer API_TOKEN
+        - name: Content-Type
+          in: header
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            example: application/json
       x-operation-settings:
         CollectParameters: false
         AllowDynamicQueryParameters: false
@@ -783,33 +765,32 @@ paths:
       responses:
         '200':
           description: OK
-  "/floating_ip/detach":
+  /floating_ip/detach:
     post:
       tags:
-      - Floating IP's
+        - "Floating IP's"
       summary: Detach floating IP
-      description: Detach existing floating IP address from the server it's currently
-        attached to.
+      description: "Detach existing floating IP address from the server it's currently attached to."
       operationId: DetachFloatingIp
       parameters:
-      - name: Authorization
-        in: header
-        description: ''
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-          example: Bearer API_TOKEN
-      - name: Content-Type
-        in: header
-        description: ''
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-          example: application/json
+        - name: Authorization
+          in: header
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            example: Bearer API_TOKEN
+        - name: Content-Type
+          in: header
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            example: application/json
       requestBody:
         required: true
         content:
@@ -826,32 +807,32 @@ paths:
       responses:
         '202':
           description: Accepted
-  "/floating_ip/attach":
+  /floating_ip/attach:
     post:
       tags:
-      - Floating IP's
+        - "Floating IP's"
       summary: Attach floating IP
       description: Attach existing floating IP address to a server
       operationId: AttachFloatingIp
       parameters:
-      - name: Authorization
-        in: header
-        description: ''
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-          example: Bearer API_TOKEN
-      - name: Content-Type
-        in: header
-        description: ''
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-          example: application/json
+        - name: Authorization
+          in: header
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            example: Bearer API_TOKEN
+        - name: Content-Type
+          in: header
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            example: application/json
       requestBody:
         required: true
         content:
@@ -868,35 +849,32 @@ paths:
       responses:
         '202':
           description: Accepted
-  "/floating_ip/remove":
+  /floating_ip/remove:
     delete:
       tags:
-      - Floating IP's
+        - "Floating IP's"
       summary: Remove floating IP
-      description: Removes a floating IP address. The IP address must be detached
-        or this function will return an error. Please note that some regions won't
-        allow removal of floating IP's until a certain time has passed, usually 24
-        hour.
+      description: "Removes a floating IP address. The IP address must be detached or this function will return an error. Please note that some regions won't allow removal of floating IP's until a certain time has passed, usually 24 hour."
       operationId: RemoveFloatingIp
       parameters:
-      - name: Authorization
-        in: header
-        description: ''
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-          example: Bearer API_TOKEN
-      - name: Content-Type
-        in: header
-        description: ''
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-          example: application/json
+        - name: Authorization
+          in: header
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            example: Bearer API_TOKEN
+        - name: Content-Type
+          in: header
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            example: application/json
       requestBody:
         required: true
         content:
@@ -913,33 +891,32 @@ paths:
       responses:
         '204':
           description: No Content
-  "/floating_ip/create":
+  /floating_ip/create:
     post:
       tags:
-      - Floating IP's
+        - "Floating IP's"
       summary: Create floating IP
-      description: Create a new floating IP address that can be used in a specific
-        region.
+      description: Create a new floating IP address that can be used in a specific region.
       operationId: CreateFloatingIp
       parameters:
-      - name: Authorization
-        in: header
-        description: ''
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-          example: Bearer API_TOKEN
-      - name: Content-Type
-        in: header
-        description: ''
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-          example: application/json
+        - name: Authorization
+          in: header
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            example: Bearer API_TOKEN
+        - name: Content-Type
+          in: header
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            example: application/json
       requestBody:
         required: true
         content:
@@ -958,7 +935,7 @@ paths:
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/_s-response-message"
+                $ref: '#/components/schemas/_s-response-message'
               example:
                 message: Failed to create floating IP
                 response_type: warning
@@ -972,33 +949,32 @@ paths:
         AllowDynamicFormParameters: false
         IsMultiContentStreaming: false
       security: []
-  "/floating_ip/list":
+  /floating_ip/list:
     get:
       tags:
-      - Floating IP's
+        - "Floating IP's"
       summary: List floating IPs
-      description: Returns a list over floating IP's associated with account and which
-        server it's attached to (if any).
+      description: "Returns a list over floating IP's associated with account and which server it's attached to (if any)."
       operationId: ListFloatingIps
       parameters:
-      - name: Authorization
-        in: header
-        description: ''
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-          example: Bearer API_TOKEN
-      - name: Content-Type
-        in: header
-        description: ''
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-          example: application/json
+        - name: Authorization
+          in: header
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            example: Bearer API_TOKEN
+        - name: Content-Type
+          in: header
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            example: application/json
       responses:
         '200':
           description: OK
@@ -1006,7 +982,7 @@ paths:
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/_s-response-message"
+                $ref: '#/components/schemas/_s-response-message'
               example:
                 message: Something went wrong...
           description: Unauthorized
@@ -1022,32 +998,32 @@ paths:
             schema:
               type: object
               properties: {}
-  "/ssh_key/remove":
+  /ssh_key/remove:
     delete:
       tags:
-      - SSH Keys
+        - SSH Keys
       summary: Remove SSH key
       description: Delete a specific ssh key by ID or uuid.
       operationId: RemoveSshKey
       parameters:
-      - name: Authorization
-        in: header
-        description: ''
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-          example: Bearer API_TOKEN
-      - name: Content-Type
-        in: header
-        description: ''
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-          example: application/json
+        - name: Authorization
+          in: header
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            example: Bearer API_TOKEN
+        - name: Content-Type
+          in: header
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            example: application/json
       requestBody:
         required: true
         content:
@@ -1064,33 +1040,32 @@ paths:
       responses:
         '204':
           description: No Content
-  "/ssh_key/add":
+  /ssh_key/add:
     post:
       tags:
-      - SSH Keys
+        - SSH Keys
       summary: Add SSH key
-      description: Upload a public SSH key, on success the response body will contain
-        the new key object
+      description: 'Upload a public SSH key, on success the response body will contain the new key object'
       operationId: AddSshKey
       parameters:
-      - name: Authorization
-        in: header
-        description: ''
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-          example: Bearer API_TOKEN
-      - name: Content-Type
-        in: header
-        description: ''
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-          example: application/json
+        - name: Authorization
+          in: header
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            example: Bearer API_TOKEN
+        - name: Content-Type
+          in: header
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            example: application/json
       requestBody:
         required: true
         content:
@@ -1112,32 +1087,32 @@ paths:
               schema:
                 type: object
                 properties: {}
-  "/ssh_key/list":
+  /ssh_key/list:
     get:
       tags:
-      - SSH Keys
+        - SSH Keys
       summary: List SSH keys
       description: Lists all available ssh keys on your account.
       operationId: ListSshKeys
       parameters:
-      - name: Authorization
-        in: header
-        description: ''
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-          example: Bearer API_TOKEN
-      - name: Content-Type
-        in: header
-        description: ''
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-          example: application/json
+        - name: Authorization
+          in: header
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            example: Bearer API_TOKEN
+        - name: Content-Type
+          in: header
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            example: application/json
       x-operation-settings:
         CollectParameters: false
         AllowDynamicQueryParameters: false
@@ -1153,34 +1128,32 @@ paths:
       responses:
         '200':
           description: OK
-  "/backup/restore":
+  /backup/restore:
     post:
       tags:
-      - Backup
+        - Backup
       summary: Restore backup
-      description: "Restore a source backup image (from ID or uuid) to a target server
-        (identified by ID or uuid). \n\n**Caution**\n\nThe content on target server
-        will be overwritten by the backup image and thus lost forever."
+      description: "Restore a source backup image (from ID or uuid) to a target server (identified by ID or uuid). \n\n**Caution**\n\nThe content on target server will be overwritten by the backup image and thus lost forever."
       operationId: RestoreBackup
       parameters:
-      - name: Authorization
-        in: header
-        description: ''
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-          example: Bearer API_TOKEN
-      - name: Content-Type
-        in: header
-        description: ''
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-          example: application/json
+        - name: Authorization
+          in: header
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            example: Bearer API_TOKEN
+        - name: Content-Type
+          in: header
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            example: application/json
       requestBody:
         required: true
         content:
@@ -1195,7 +1168,7 @@ paths:
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/_s-response-message"
+                $ref: '#/components/schemas/_s-response-message'
               example:
                 message: Invalid resource requested
                 response_type: warning
@@ -1207,10 +1180,10 @@ paths:
         AllowDynamicFormParameters: false
         IsMultiContentStreaming: false
       security: []
-  "/account/token_remove":
+  /account/token_remove:
     delete:
       tags:
-      - Account
+        - Account
       summary: Remove auth token
       description: |-
         Delete a specific authentication token. Please note that if you delete the token used to authenticate this request you need to call /v1/account/login again to obtain a new token.
@@ -1220,31 +1193,31 @@ paths:
         We cannot see the difference between an arbitrary token on your account, and the token you're using to authenticate this request. Therefore, nothing will prevent you from locking yourself out if you're not being careful.
       operationId: RemoveAuthToken
       parameters:
-      - name: Authorization
-        in: header
-        description: ''
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-          example: Bearer API_TOKEN
-      - name: Content-Type
-        in: header
-        description: ''
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-          example: application/json
+        - name: Authorization
+          in: header
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            example: Bearer API_TOKEN
+        - name: Content-Type
+          in: header
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            example: application/json
       requestBody:
         required: true
         content:
           application/json:
             schema:
               type: object
-              properties: {}
+        description: ''
       responses:
         '204':
           description: No Content
@@ -1253,39 +1226,38 @@ paths:
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/_s-response-message"
+                $ref: '#/components/schemas/_s-response-message'
       x-operation-settings:
         CollectParameters: false
         AllowDynamicQueryParameters: false
         AllowDynamicFormParameters: false
         IsMultiContentStreaming: false
-  "/account/token_create":
+  /account/token_create:
     post:
       tags:
-      - Account
+        - Account
       summary: Create auth token
-      description: Generates a new authentication token. On success, the response
-        will be the new token.
+      description: 'Generates a new authentication token. On success, the response will be the new token.'
       operationId: CreateAuthToken
       parameters:
-      - name: Authorization
-        in: header
-        description: ''
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-          example: Bearer API_TOKEN
-      - name: Content-Type
-        in: header
-        description: ''
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-          example: application/json
+        - name: Authorization
+          in: header
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            example: Bearer API_TOKEN
+        - name: Content-Type
+          in: header
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            example: application/json
       requestBody:
         required: true
         content:
@@ -1309,7 +1281,7 @@ paths:
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/_s-response-message"
+                $ref: '#/components/schemas/_s-response-message'
               example:
                 message: Authorization token does not exist
           description: Unauthorized
@@ -1318,42 +1290,47 @@ paths:
         AllowDynamicQueryParameters: false
         AllowDynamicFormParameters: false
         IsMultiContentStreaming: false
-  "/account/token_list":
+  /account/token_list:
     get:
       tags:
-      - Account
+        - Account
       summary: List auth tokens
       description: Lists all available authentication tokens on your account.
       operationId: ListAuthTokens
       parameters:
-      - name: Authorization
-        in: header
-        description: ''
-        required: true
-        style: simple
-        explode: false
-        schema:
-          example: Bearer API_TOKEN
-      - name: Content-Type
-        in: header
-        description: ''
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-          example: application/json
+        - name: Authorization
+          in: header
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            example: Bearer API_TOKEN
+        - name: Content-Type
+          in: header
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            example: application/json
       responses:
         '200':
           description: OK
-        '401':
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/_s-response-message"
+                type: object
+                properties: {}
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: ./models/response-forbidden.v1.yaml
               example:
                 message: Authorization token does not exist
-          description: Unauthorized
+          description: Forbidden
       x-operation-settings:
         CollectParameters: false
         AllowDynamicQueryParameters: false
@@ -1363,35 +1340,33 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              properties: {}
-  "/account/info":
+              type: 'null'
+  /account/info:
     get:
       tags:
-      - Account
+        - Account
       summary: Account info
-      description: Fetch and dispalys a limited selection of information about the
-        account associated with the provided authentication key.
+      description: Fetch and dispalys a limited selection of information about the account associated with the provided authentication key.
       operationId: AccountInfo
       parameters:
-      - name: Authorization
-        in: header
-        description: ''
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-          example: Bearer API_TOKEN
-      - name: Content-Type
-        in: header
-        description: ''
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-          example: application/json
+        - name: Authorization
+          in: header
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            example: Bearer API_TOKEN
+        - name: Content-Type
+          in: header
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            example: application/json
       responses:
         '200':
           content:
@@ -1409,32 +1384,32 @@ paths:
                 activated: true
                 blocked_ports:
                   TCP:
-                  - 17
-                  - 19
-                  - 25
-                  - 1900
+                    - 17
+                    - 19
+                    - 25
+                    - 1900
                   UDP:
-                  - 17
-                  - 19
-                  - 25
-                  - 1900
-                  - 53413
+                    - 17
+                    - 19
+                    - 25
+                    - 1900
+                    - 53413
                 servers:
                   limit: 500
                   running: 150
-                registerdate: 2016-09-19T07:41:30z
-                lastlogin: 2019-01-05T13:23:54z
+                registerdate: '2016-09-19T07:41:30z'
+                lastlogin: '2019-01-05T13:23:54z'
                 billing:
                   secondsdue: 2592000
-                  duedate: 2019-02-05T13:23:54z
+                  duedate: '2019-02-05T13:23:54z'
                   usage: 2.05
-                permissions: 
+                permissions: null
           description: OK
         '401':
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/_s-response-message"
+                $ref: '#/components/schemas/_s-response-message'
               example:
                 message: Authorization token does not exist
           description: Unauthorized
@@ -1449,10 +1424,10 @@ paths:
             schema:
               type: object
               properties: {}
-  "/account/reset":
+  /account/reset:
     post:
       tags:
-      - Account
+        - Account
       summary: Reset password
       description: |-
         Generate and email a temporary one time password that can be used to login. (see /v1/account/login for more information).
@@ -1466,15 +1441,15 @@ paths:
         The one time password will only be active for a limited time, then revoked. Accounts can only be reset once per week. Response messages will not do any attempt to validate input email addresses. This to prevent account leaks.
       operationId: ResetPassword
       parameters:
-      - name: Content-Type
-        in: header
-        description: ''
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-          example: application/json
+        - name: Content-Type
+          in: header
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            example: application/json
       requestBody:
         required: true
         content:
@@ -1489,8 +1464,8 @@ paths:
               schema:
                 type: object
               example:
-                message: Account reset request received, check your email inbox
-                timestamp: 2019-01-13T11:19:21z
+                message: 'Account reset request received, check your email inbox'
+                timestamp: '2019-01-13T11:19:21z'
           description: OK
       x-operation-settings:
         CollectParameters: false
@@ -1498,10 +1473,10 @@ paths:
         AllowDynamicFormParameters: false
         IsMultiContentStreaming: false
       security: []
-  "/account/register":
+  /account/register:
     post:
       tags:
-      - Account
+        - Account
       summary: Register
       description: |-
         Register a new account using provided information. On success, a new generated API key will be returned. (see /v1/account/login for information on usage). Provided email adress should receive an activation email within the next 5 minutes. The new account will be useless untill activated. However, client applications may still allow you to login.
@@ -1511,15 +1486,15 @@ paths:
         To prevent data leaks, a generic error message will be used if registration fails for any reason, including the case where you cannot register because the account already exists. If you see this generic error message, please try to login or reset account before complaining to support.
       operationId: Register
       parameters:
-      - name: Content-Type
-        in: header
-        description: ''
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-          example: application/json
+        - name: Content-Type
+          in: header
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            example: application/json
       requestBody:
         required: true
         content:
@@ -1536,31 +1511,23 @@ paths:
       responses:
         '201':
           description: Created
-  "/account/login":
+  /account/login:
     post:
       tags:
-      - Account
+        - Account
       summary: Login
-      description: "Checking credentials (email and password) and returns the first
-        API key found on the associated account. Client applications can store this
-        key locally in memory to be used for future API requests. \n\n**How do I log
-        out?**\n\nDelete the locally saved key\n\n**Is there a rate limit?**\n\nYes,
-        one login attempt each 30 second per account and IP address is allowed. Too
-        many requests, (i.e bruteforce attempts) will result in denied access for
-        up to 24 hours.\n\n**Security**\n\nTo prevent account information leaks the
-        response will be the same in all three cases, i.e invalid email, invalid password
-        or if both email and password is invalid.\n"
+      description: "Checking credentials (email and password) and returns the first API key found on the associated account. Client applications can store this key locally in memory to be used for future API requests. \n\n**How do I log out?**\n\nDelete the locally saved key\n\n**Is there a rate limit?**\n\nYes, one login attempt each 30 second per account and IP address is allowed. Too many requests, (i.e bruteforce attempts) will result in denied access for up to 24 hours.\n\n**Security**\n\nTo prevent account information leaks the response will be the same in all three cases, i.e invalid email, invalid password or if both email and password is invalid.\n"
       operationId: Login
       parameters:
-      - name: Content-Type
-        in: header
-        description: ''
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-          example: application/json
+        - name: Content-Type
+          in: header
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            example: application/json
       requestBody:
         required: true
         content:
@@ -1583,15 +1550,13 @@ paths:
           description: Forbidden
         '429':
           description: Too Many Requests
-  "/region/list_features/{region_id}":
+  '/region/list_features/{region_id}':
     get:
       tags:
-      - Public
-      - Features
+        - Public
+        - Features
       summary: Feature list
-      description: "Returns a list over available features. Feature lists are uniqe
-        for each region, a region ID is therefore required as last part of the call.
-        See:\n\n```\n/v1/region/list\n```\n\nFor a list of all available regions. "
+      description: "Returns a list over available features. Feature lists are uniqe for each region, a region ID is therefore required as last part of the call. See:\n\n```\n/v1/region/list\n```\n\nFor a list of all available regions. "
       operationId: FeatureList
       parameters: []
       responses:
@@ -1607,7 +1572,7 @@ paths:
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/_s-response-message"
+                $ref: '#/components/schemas/_s-response-message'
               example:
                 message: 'Please use: /v1/region/features/REGIONID'
                 response_type: warning
@@ -1625,40 +1590,18 @@ paths:
               type: object
               properties: {}
     parameters:
-    - schema:
-        type: integer
-      name: region_id
-      in: path
-      required: true
-      description: Region ID
-  "/plan/list/{region_id}":
+      - schema:
+          type: integer
+        name: region_id
+        in: path
+        required: true
+        description: Region ID
+  '/plan/list/{region_id}':
     get:
       tags:
-      - Public
+        - Public
       summary: Plans list
-      description: |-
-        Returns a list over available plans. Plan lists are uniqe for each region, a region ID is therefore required as last part of the call. See:
-
-        ```
-        /v1/region/list
-        ```
-
-        For a list of all available regions. Plan ID's is a 4 number code where the first number indicates which server generation a specific plan has, i.e ID's between 1101 and 1999 are first generation server plans. The second number (x1xx, x2xx, ...) indicates the plan type.
-
-        | Number  | Description  |
-        |---|---|
-        | 1  | Virtual Private Server, powered by KVM with 2/3 physical resources and 1/3 burst  |
-        | 2  | Dedicated servers, powered by KVM with 1:1 mapping to physical resources. No burst  |
-        | 3  | Bare metal servers, powered by KVM with 1:1 mapping to physical resources. \*unlimited burst |
-
-        *Unlimited burst is what the physical hardware can handle, i.e a 3.4Ghz CPU that can burst to 4.2GHz, these can be loaded to 100% all the time without additional fees.*
-
-        **Plan types**
-
-        Plans are listed in groups based on their properties
-
-        * **Custom**: *Contains a fixed specification over custom plans, i.e max RAM, price per GB disk etc.*
-        * **Ready**: *Contains a list over predefined plan sizes.*
+      description: "Returns a list over available plans. Plan lists are uniqe for each region, a region ID is therefore required as last part of the call. See:\n\n```\n/v1/region/list\n```\n\nFor a list of all available regions. Plan ID's is a 4 number code where the first number indicates which server generation a specific plan has, i.e ID's between 1101 and 1999 are first generation server plans. The second number (x1xx, x2xx, ...) indicates the plan type.\n\n| Number  | Description  |\n|---|---|\n| 1  | Virtual Private Server, powered by KVM with 2/3 physical resources and 1/3 burst  |\n| 2  | Dedicated servers, powered by KVM with 1:1 mapping to physical resources. No burst  |\n| 3  | Bare metal servers, powered by KVM with 1:1 mapping to physical resources. \\*unlimited burst |\n\n*Unlimited burst is what the physical hardware can handle, i.e a 3.4Ghz CPU that can burst to 4.2GHz, these can be loaded to 100% all the time without additional fees.*\n\n**Plan types**\n\nPlans are listed in groups based on their properties\n\n* **Custom**: *Contains a fixed specification over custom plans, i.e max RAM, price per GB disk etc.*\n* **Ready**: *Contains a list over predefined plan sizes.*"
       operationId: PlansList
       parameters: []
       responses:
@@ -1795,7 +1738,7 @@ paths:
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/_s-response-message"
+                $ref: '#/components/schemas/_s-response-message'
               example:
                 message: 'Please use: /v1/plans/REGIONID'
                 response_type: warning
@@ -1813,16 +1756,16 @@ paths:
               type: object
               properties: {}
     parameters:
-    - schema:
-        type: integer
-      name: region_id
-      in: path
-      required: true
-      description: Region ID
-  "/image/list/{region_id}":
+      - schema:
+          type: integer
+        name: region_id
+        in: path
+        required: true
+        description: Region ID
+  '/image/list/{region_id}':
     get:
       tags:
-      - Public
+        - Public
       summary: Images list
       description: |-
         Returns a list over available system images. Image lists are uniqe for each region, a region ID is therefore required as last part of the call. See:
@@ -2281,7 +2224,7 @@ paths:
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/_s-response-message"
+                $ref: '#/components/schemas/_s-response-message'
               example:
                 message: 'Please use: /v1/images/REGIONID'
                 response_type: warning
@@ -2292,18 +2235,23 @@ paths:
         AllowDynamicFormParameters: false
         IsMultiContentStreaming: false
       security: []
-      requestBody: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
     parameters:
-    - schema:
-        type: integer
-      name: region_id
-      in: path
-      required: true
-      description: Region ID
-  "/region/list":
+      - schema:
+          type: integer
+        name: region_id
+        in: path
+        required: true
+        description: Region ID
+  /region/list:
     get:
       tags:
-      - Public
+        - Public
       summary: Regions list
       description: |-
         Returns a list over all available regions including available features. Availibility of plans and images can be obtained by calling one of the following functions:
@@ -2339,36 +2287,24 @@ paths:
         '200':
           description: OK
 tags:
-- name: Public
-  description: This section contains all information about regions, images, plans
-    and features. The Authorization header is not required for any function in this
-    section.
-- name: Account
-  description: Manage account and sub-accounts. View status and enabled features.
-    Create and remove API tokens and more.
-- name: Billing
-  description: View account payment transactions, taxes, fees and detailed billing
-    information sorted by resource
-- name: Backup
-  description: Manage automatic backups, define schedules or restore servers to earlier
-    states.
-- name: DNS
-  description: Manage domains and DNS records
-- name: SSH Keys
-  description: Upload and manage your public SSH keys, these keys will be deployed
-    to new servers upon creation, and used instead of password authentication.
-- name: Floating IP's
-  description: 'Floating point IP''s allow you to create and assign additional IP
-    addresses to your servers. Note that the IPv4 range is limited, first come first
-    serve applies. '
-- name: Server
-  description: Create and manage servers with functions in this section. Note that
-    some functions will act as an alias for it's similar alternative, if unsupported
-    in the specific region. Otherwise similar functions may differ. See function descriptions
-    for more details.
-- name: Snapshot
-  description: 'Create and manage snapshots. Deployment limitations may apply in some
-    regions, if you intend to use snapshots for backup see: [/docs/#tag/Backup](/docs/#tag/Backup)'
+  - name: Public
+    description: 'This section contains all information about regions, images, plans and features. The Authorization header is not required for any function in this section.'
+  - name: Account
+    description: Manage account and sub-accounts. View status and enabled features. Create and remove API tokens and more.
+  - name: Billing
+    description: 'View account payment transactions, taxes, fees and detailed billing information sorted by resource'
+  - name: Backup
+    description: 'Manage automatic backups, define schedules or restore servers to earlier states.'
+  - name: DNS
+    description: Manage domains and DNS records
+  - name: SSH Keys
+    description: 'Upload and manage your public SSH keys, these keys will be deployed to new servers upon creation, and used instead of password authentication.'
+  - name: "Floating IP's"
+    description: "Floating point IP's allow you to create and assign additional IP addresses to your servers. Note that the IPv4 range is limited, first come first serve applies. "
+  - name: Server
+    description: "Create and manage servers with functions in this section. Note that some functions will act as an alias for it's similar alternative, if unsupported in the specific region. Otherwise similar functions may differ. See function descriptions for more details."
+  - name: Snapshot
+    description: 'Create and manage snapshots. Deployment limitations may apply in some regions, if you intend to use snapshots for backup see: [/docs/#tag/Backup](/docs/#tag/Backup)'
 security: []
 components:
   securitySchemes: {}
@@ -2386,18 +2322,37 @@ components:
         response_code:
           type: integer
           description: HTTP status code for quick reference
-      description: A response message and a status code, indicating if the function
-        was executed successfully or not.
+      description: 'A response message and a status code, indicating if the function was executed successfully or not.'
       x-examples:
         Response:
-          message: Something went wrong, try this to solve the problem...
+          message: 'Something went wrong, try this to solve the problem...'
           response_type: error
           response_code: 400
+    response-forbidden:
+      title: response-forbidden
+      type: object
+      properties:
+        response_code:
+          type: integer
+          description: HTTP status code for quick reference
+        message:
+          type: string
+          description: Response text with a simple description of the result
+        response_type:
+          type: string
+          description: 'Type of message: success|info|warning|error'
+      x-examples:
+        Response:
+          message: Authorization token does not exist
+          response_type: error
+          response_code: 403
+      description: 'Access denied, check your auth token'
   headers:
     Content-Type:
-      type: string
       description: Should be set to application/json
+      schema:
+        type: string
     Authorization:
-      type: string
-      description: 'Must contain the following: ''Bearer auth_token'' where auth_token
-        is one of your accounts authentication tokens'
+      description: "Must contain the following: 'Bearer auth_token' where auth_token is one of your accounts authentication tokens"
+      schema:
+        type: string

@@ -1,0 +1,19 @@
+response-forbidden:
+  title: response-forbidden
+  type: object
+  properties:
+    response_code:
+      type: integer
+      description: HTTP status code for quick reference
+    message:
+      type: string
+      description: Response text with a simple description of the result
+    response_type:
+      type: string
+      description: 'Type of message: success|info|warning|error'
+  x-examples:
+    Response:
+      message: Authorization token does not exist
+      response_type: error
+      response_code: 403
+  description: 'Access denied, check your auth token'
