@@ -44,7 +44,10 @@ delete:
   responses:
     '204':
       description: No Content
-      content: {}
+      content: 
+        text/plain:
+          example:
+            No Content, see response code for execution status
     '403':
       description: Forbidden
       content:
