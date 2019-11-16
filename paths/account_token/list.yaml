@@ -1,0 +1,65 @@
+get:
+  summary: List auth token
+  description: Lists all available authentication tokens on your account.
+  operationId: list-auth-token
+  parameters:
+    - name: Authorization
+      in: header
+      description: ''
+      required: true
+      style: simple
+      explode: false
+      schema:
+        example: Bearer API_TOKEN
+    - name: Content-Type
+      in: header
+      description: ''
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+        example: application/json
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties: {}
+          examples:
+            example-1:
+              value:
+                - name: MyAuthToken
+                  uuid: 62666431-3936-4936-b561-626536613733
+                  auth_token: 502fff2b09c8e0877323de558a0a84633e295b1572a69526
+                  created: '2019-11-16T08:41:57Z'
+                  last_used: '1970-01-01T00:00:00Z'
+                - name: MySecondAuthToken
+                  uuid: 32356538-6564-4235-a239-383564386433
+                  auth_token: 122140a4727ff1442411979b65d65af0b57e945f99461ac7
+                  created: '2019-11-16T08:42:07Z'
+                  last_used: '1970-01-01T00:00:00Z'
+    '403':
+      content:
+        application/json:
+          schema:
+            $ref: ../../models/response-forbidden.v1.yaml
+          example:
+            message: Authorization token does not exist
+      description: Forbidden
+  x-operation-settings:
+    CollectParameters: false
+    AllowDynamicQueryParameters: false
+    AllowDynamicFormParameters: false
+    IsMultiContentStreaming: false
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties: {}
+    required: true
+  tags:
+  - Account Token  

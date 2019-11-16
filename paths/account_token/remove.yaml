@@ -1,0 +1,55 @@
+delete:
+  summary: Remove auth token
+  description: |-
+    Delete a specific authentication token. Please note that if you delete the token used to authenticate this request you need to call /v1/account/login again to obtain a new token.
+
+    **Caution**
+
+    We cannot see the difference between an arbitrary token on your account, and the token you're using to authenticate this request. Therefore, nothing will prevent you from locking yourself out if you're not being careful.
+  operationId: remove-auth-token
+  parameters:
+    - name: Authorization
+      in: header
+      description: ''
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+        example: Bearer API_TOKEN
+    - name: Content-Type
+      in: header
+      description: ''
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+        example: application/json
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+        examples:
+          example-1:
+            value:
+              uuid: 31393331-3562-4637-b062-633334396138
+    description: ''
+  responses:
+    '204':
+      description: No Content
+    '403':
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: ../../models/response-forbidden.v1.yaml
+  x-operation-settings:
+    CollectParameters: false
+    AllowDynamicQueryParameters: false
+    AllowDynamicFormParameters: false
+    IsMultiContentStreaming: false
+  tags:
+    - Account Token  

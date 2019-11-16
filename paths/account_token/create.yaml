@@ -1,0 +1,69 @@
+post:
+  summary: Create auth token
+  description: 'Generates a new authentication token. On success, the response will be the new token.'
+  operationId: create-auth-token
+  parameters:
+    - name: Authorization
+      in: header
+      description: ''
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+        example: Bearer API_TOKEN
+    - name: Content-Type
+      in: header
+      description: ''
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+        example: application/json
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties: {}
+        examples:
+          example-1:
+            value:
+              name: MyAuthToken
+    description: Provide a display name for the new token
+  responses:
+    '201':
+      content:
+        application/json:
+          schema:
+            $ref: ../../models/response-message.v1.yaml
+          example:
+            name: New token
+            uuid: 69472922-1725-11e9-ab14-d663bd873d93
+            auth_token: 36491ac8ca4fa099367351f2d4bfd0be6a2cb6d2efb78d91
+            created: '2018-11-23T22:55:34Z'
+          examples:
+            example-1:
+              value:
+                name: MyAuthToken
+                uuid: 31393331-3562-4637-b062-633334396138
+                token: 996afbf034a3f1bd2577c14edec857a7ca539bd174446fd3
+                created: '2019-11-16T08:37:46Z'
+      description: Created
+    '403':
+      content:
+        application/json:
+          schema:
+            $ref: ../../models/response-forbidden.v1.yaml
+          example:
+            message: Authorization token does not exist
+      description: Forbidden
+  x-operation-settings:
+    CollectParameters: false
+    AllowDynamicQueryParameters: false
+    AllowDynamicFormParameters: false
+    IsMultiContentStreaming: false
+  tags:
+    - Account Token  

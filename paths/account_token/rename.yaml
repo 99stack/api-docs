@@ -6,7 +6,7 @@ post:
       content:
         application/json:
           schema:
-            $ref: ../models/response-message.v1.yaml
+            $ref: ../../models/response-message.v1.yaml
           examples:
             example-1:
               value:
@@ -18,7 +18,7 @@ post:
       content:
         application/json:
           schema:
-            $ref: ../models/response-forbidden.v1.yaml
+            $ref: ../../models/response-forbidden.v1.yaml
   parameters:
     - name: Authorization
       in: header
