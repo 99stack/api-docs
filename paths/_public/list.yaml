@@ -1,0 +1,648 @@
+get:
+  tags:
+    - Public
+  summary: Regions list
+  description: |-
+    Returns a list over all available regions including available features. Availibility of plans and images can be obtained by calling one of the following functions:
+
+    ```
+    /v1/plan/list/REGIONID
+    ```
+
+    ```
+    /v1/image/list/REGIONID
+    ```
+
+    Where *REGIONID* is the ID (int) that corresponds to a specific region. Region ID's has the following format: 1xx, 2xx, 3xx etc.. where the first number represents server generation. First generation servers are available in regions with an ID between 101 and 199. To view available features in a specific region, use:
+
+    ```
+    /v1/region/list_features/REGIONID
+    ```
+  operationId: RegionsList
+  parameters: []
+  x-operation-settings:
+    CollectParameters: false
+    AllowDynamicQueryParameters: false
+    AllowDynamicFormParameters: false
+    IsMultiContentStreaming: false
+  security: []
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties: {}
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties: {}
+          examples:
+            example-1:
+              value:
+                regions:
+                  '101':
+                    uuid: 30663334-3664-4238-a635-653566643536
+                    city: Atlanta
+                    state: Georgia
+                    country: United States
+                    continent: North america
+                    features:
+                      ddos_protection: false
+                      block_storage: false
+                      private_networking: true
+                      ipv6: true
+                      backups: true
+                    latitude: 33.7489954
+                    longitude: -84.3879824
+                    operator_id: cbdfdc8f
+                  '102':
+                    uuid: 61643561-6637-4763-b763-333131366561
+                    city: Chicago
+                    state: Illinois
+                    country: United States
+                    continent: North america
+                    features:
+                      ddos_protection: true
+                      block_storage: false
+                      private_networking: true
+                      ipv6: true
+                      backups: true
+                    latitude: 41.8781136
+                    longitude: -87.6297982
+                    operator_id: cbdfdc8f
+                  '103':
+                    uuid: 64323662-3135-4332-a165-633633386465
+                    city: Dallas
+                    state: Texas
+                    country: United States
+                    continent: North america
+                    features:
+                      ddos_protection: true
+                      block_storage: false
+                      private_networking: true
+                      ipv6: true
+                      backups: true
+                    latitude: 32.7766642
+                    longitude: -96.79698789999999
+                    operator_id: cbdfdc8f
+                  '104':
+                    uuid: 34656465-6530-4364-a633-613264663832
+                    city: Los Angeles
+                    state: California
+                    country: United States
+                    continent: North america
+                    features:
+                      ddos_protection: true
+                      block_storage: false
+                      private_networking: true
+                      ipv6: true
+                      backups: true
+                    latitude: 34.0522342
+                    longitude: -118.2436849
+                    operator_id: cbdfdc8f
+                  '105':
+                    uuid: 32336365-3535-4765-b666-666564653335
+                    city: Miami
+                    state: Florida
+                    country: United States
+                    continent: North america
+                    features:
+                      ddos_protection: true
+                      block_storage: false
+                      private_networking: true
+                      ipv6: true
+                      backups: true
+                    latitude: 25.7616798
+                    longitude: -80.1917902
+                    operator_id: cbdfdc8f
+                  '106':
+                    uuid: 31383264-6162-4831-b339-663239363738
+                    city: New Jersey
+                    state: New Jersey
+                    country: United States
+                    continent: North america
+                    features:
+                      ddos_protection: true
+                      block_storage: true
+                      private_networking: true
+                      ipv6: true
+                      backups: true
+                    latitude: 40.0583238
+                    longitude: -74.4056612
+                    operator_id: cbdfdc8f
+                  '107':
+                    uuid: 35353765-3630-4832-b236-646666316363
+                    city: Seattle
+                    state: Washington
+                    country: United States
+                    continent: North america
+                    features:
+                      ddos_protection: true
+                      block_storage: false
+                      private_networking: true
+                      ipv6: true
+                      backups: true
+                    latitude: 47.6062095
+                    longitude: -122.3320708
+                    operator_id: cbdfdc8f
+                  '108':
+                    uuid: 36346362-6561-4764-a137-316135656234
+                    city: Silicon Valley
+                    state: California
+                    country: United States
+                    continent: North america
+                    features:
+                      ddos_protection: true
+                      block_storage: false
+                      private_networking: true
+                      ipv6: true
+                      backups: true
+                    latitude: 37.387474
+                    longitude: -122.0575434
+                    operator_id: cbdfdc8f
+                  '109':
+                    uuid: 64383835-6130-4564-b365-376131363165
+                    city: Singapore
+                    state: Singapore
+                    country: Singapore
+                    continent: Asia
+                    features:
+                      ddos_protection: false
+                      block_storage: false
+                      private_networking: true
+                      ipv6: true
+                      backups: true
+                    latitude: 1.352083
+                    longitude: 103.819836
+                    operator_id: cbdfdc8f
+                  '110':
+                    uuid: 30373538-3131-4366-b065-336436653631
+                    city: Amsterdam
+                    state: North Holland
+                    country: Netherlands
+                    continent: Europe
+                    features:
+                      ddos_protection: true
+                      block_storage: false
+                      private_networking: true
+                      ipv6: true
+                      backups: true
+                    latitude: 52.3679843
+                    longitude: 4.9035614
+                    operator_id: cbdfdc8f
+                  '111':
+                    uuid: 64643538-6265-4639-b661-383939396431
+                    city: Tokyo
+                    state: Tokyo
+                    country: Japan
+                    continent: Asia
+                    features:
+                      ddos_protection: false
+                      block_storage: false
+                      private_networking: true
+                      ipv6: true
+                      backups: true
+                    latitude: 35.6894875
+                    longitude: 139.6917064
+                    operator_id: cbdfdc8f
+                  '112':
+                    uuid: 31666236-6130-4136-b535-343265396264
+                    city: London
+                    state: United Kingdom
+                    country: United Kingdom
+                    continent: Europe
+                    features:
+                      ddos_protection: true
+                      block_storage: false
+                      private_networking: true
+                      ipv6: true
+                      backups: true
+                    latitude: 51.5073509
+                    longitude: -0.1277583
+                    operator_id: cbdfdc8f
+                  '113':
+                    uuid: 64376137-6631-4562-b538-636564356439
+                    city: Paris
+                    state: Île-de-France
+                    country: France
+                    continent: Europe
+                    features:
+                      ddos_protection: true
+                      block_storage: false
+                      private_networking: true
+                      ipv6: true
+                      backups: true
+                    latitude: 48.856614
+                    longitude: 2.3522219
+                    operator_id: cbdfdc8f
+                  '114':
+                    uuid: 62333538-3064-4966-a535-383762613734
+                    city: Frankfurt
+                    state: Hesse
+                    country: Germany
+                    continent: Europe
+                    features:
+                      ddos_protection: true
+                      block_storage: false
+                      private_networking: true
+                      ipv6: true
+                      backups: true
+                    latitude: 50.1109221
+                    longitude: 8.6821267
+                    operator_id: cbdfdc8f
+                  '115':
+                    uuid: 63633336-6563-4431-b330-303234353639
+                    city: Toronto
+                    state: Ontario
+                    country: Canada
+                    continent: North america
+                    features:
+                      ddos_protection: false
+                      block_storage: false
+                      private_networking: true
+                      ipv6: true
+                      backups: true
+                    latitude: 43.653226
+                    longitude: -79.3831843
+                    operator_id: cbdfdc8f
+                  '116':
+                    uuid: 32633936-6337-4438-b134-643839643632
+                    city: Sydney
+                    state: New South Wales
+                    country: Australia
+                    continent: Australia
+                    features:
+                      ddos_protection: false
+                      block_storage: false
+                      private_networking: true
+                      ipv6: true
+                      backups: true
+                    latitude: -33.8688197
+                    longitude: 151.2092955
+                    operator_id: cbdfdc8f
+                  '201':
+                    uuid: 30346537-6463-4165-b965-396130303931
+                    city: New York
+                    state: New York
+                    country: United States
+                    continent: North america
+                    features:
+                      ddos_protection: false
+                      block_storage: true
+                      private_networking: true
+                      ipv6: true
+                      backups: true
+                    latitude: 40.7127753
+                    longitude: -74.0059728
+                    operator_id: 8db02fc9
+                  '202':
+                    uuid: 35643036-3232-4239-a166-633736383662
+                    city: Amsterdam
+                    state: North Holland
+                    country: Netherlands
+                    continent: Europe
+                    features:
+                      ddos_protection: false
+                      block_storage: true
+                      private_networking: true
+                      ipv6: true
+                      backups: true
+                    latitude: 52.3679843
+                    longitude: 4.9035614
+                    operator_id: 8db02fc9
+                  '203':
+                    uuid: 32353137-6630-4739-b466-336138353762
+                    city: Singapore
+                    state: Singapore
+                    country: Singapore
+                    continent: Asia
+                    features:
+                      ddos_protection: false
+                      block_storage: true
+                      private_networking: true
+                      ipv6: true
+                      backups: true
+                    latitude: 1.352083
+                    longitude: 103.819836
+                    operator_id: 8db02fc9
+                  '204':
+                    uuid: 39393662-3936-4632-b336-356239616131
+                    city: London
+                    state: United Kingdom
+                    country: United Kingdom
+                    continent: Europe
+                    features:
+                      ddos_protection: false
+                      block_storage: true
+                      private_networking: true
+                      ipv6: true
+                      backups: true
+                    latitude: 51.5073509
+                    longitude: -0.1277583
+                    operator_id: 8db02fc9
+                  '205':
+                    uuid: 36373636-3463-4761-a231-343930653834
+                    city: New York
+                    state: New York
+                    country: United States
+                    continent: North america
+                    features:
+                      ddos_protection: false
+                      block_storage: true
+                      private_networking: true
+                      ipv6: true
+                      backups: true
+                    latitude: 40.7127753
+                    longitude: -74.0059728
+                    operator_id: 8db02fc9
+                  '206':
+                    uuid: 34333130-6335-4332-b932-643239306131
+                    city: Amsterdam
+                    state: North Holland
+                    country: Netherlands
+                    continent: Europe
+                    features:
+                      ddos_protection: false
+                      block_storage: true
+                      private_networking: true
+                      ipv6: true
+                      backups: true
+                    latitude: 52.3679843
+                    longitude: 4.9035614
+                    operator_id: 8db02fc9
+                  '207':
+                    uuid: 37333636-6335-4538-b839-666365356131
+                    city: Frankfurt
+                    state: Hesse
+                    country: Germany
+                    continent: Europe
+                    features:
+                      ddos_protection: false
+                      block_storage: true
+                      private_networking: true
+                      ipv6: true
+                      backups: true
+                    latitude: 50.1109221
+                    longitude: 8.6821267
+                    operator_id: 8db02fc9
+                  '208':
+                    uuid: 32306437-3735-4662-a335-353365336131
+                    city: Toronto
+                    state: Ontario
+                    country: Canada
+                    continent: North america
+                    features:
+                      ddos_protection: false
+                      block_storage: true
+                      private_networking: true
+                      ipv6: true
+                      backups: true
+                    latitude: 43.653226
+                    longitude: -79.3831843
+                    operator_id: 8db02fc9
+                  '209':
+                    uuid: 39333836-3537-4465-b238-393030663037
+                    city: San Francisco
+                    state: California
+                    country: United States
+                    continent: North america
+                    features:
+                      ddos_protection: false
+                      block_storage: true
+                      private_networking: true
+                      ipv6: true
+                      backups: true
+                    latitude: 37.7749295
+                    longitude: -122.4194155
+                    operator_id: 8db02fc9
+                  '210':
+                    uuid: 37363465-3934-4563-a535-306135356230
+                    city: Bangalore
+                    state: Karnataka
+                    country: India
+                    continent: Asia
+                    features:
+                      ddos_protection: false
+                      block_storage: true
+                      private_networking: true
+                      ipv6: true
+                      backups: true
+                    latitude: 12.9715987
+                    longitude: 77.5945627
+                    operator_id: 8db02fc9
+                  '301':
+                    uuid: 34346561-3963-4132-a632-333331353932
+                    city: Zurich
+                    state: Zurich
+                    country: Switzerland
+                    continent: Europe
+                    features:
+                      ddos_protection: false
+                      block_storage: true
+                      private_networking: true
+                      ipv6: true
+                      backups: true
+                    latitude: 47.3768866
+                    longitude: 8.541694
+                    operator_id: 0928a080
+                  '302':
+                    uuid: 35303937-6435-4666-b463-303361366238
+                    city: Melbourne
+                    state: Victoria
+                    country: Australia
+                    continent: Australia
+                    features:
+                      ddos_protection: false
+                      block_storage: true
+                      private_networking: true
+                      ipv6: true
+                      backups: true
+                    latitude: -37.8136276
+                    longitude: 144.9630576
+                    operator_id: 0928a080
+                  '303':
+                    uuid: 34646439-3738-4336-b434-336538323033
+                    city: Perth
+                    state: Western Australia
+                    country: Australia
+                    continent: Australia
+                    features:
+                      ddos_protection: false
+                      block_storage: true
+                      private_networking: true
+                      ipv6: true
+                      backups: true
+                    latitude: -31.9505269
+                    longitude: 115.8604572
+                    operator_id: 0928a080
+                  '304':
+                    uuid: 32663131-3662-4133-a363-383863653536
+                    city: Frankfurt
+                    state: Hesse
+                    country: Germany
+                    continent: Europe
+                    features:
+                      ddos_protection: false
+                      block_storage: true
+                      private_networking: true
+                      ipv6: true
+                      backups: true
+                    latitude: 50.1109221
+                    longitude: 8.6821267
+                    operator_id: 0928a080
+                  '305':
+                    uuid: 30623130-3330-4161-a531-656664636264
+                    city: Dublin
+                    state: County Dublin
+                    country: Ireland
+                    continent: Europe
+                    features:
+                      ddos_protection: false
+                      block_storage: true
+                      private_networking: true
+                      ipv6: true
+                      backups: true
+                    latitude: 53.3498053
+                    longitude: -6.2603097
+                    operator_id: 0928a080
+                  '306':
+                    uuid: 35646537-3836-4365-b439-303562363363
+                    city: Tokyo
+                    state: Tokyo
+                    country: Japan
+                    continent: ''
+                    features:
+                      ddos_protection: false
+                      block_storage: true
+                      private_networking: true
+                      ipv6: true
+                      backups: true
+                    latitude: 35.6894875
+                    longitude: 139.6917064
+                    operator_id: 0928a080
+                  '307':
+                    uuid: 66396538-6136-4439-b831-373461663462
+                    city: Manila
+                    state: Metro Manila
+                    country: Philippines
+                    continent: Asia
+                    features:
+                      ddos_protection: false
+                      block_storage: true
+                      private_networking: true
+                      ipv6: true
+                      backups: true
+                    latitude: 14.5995124
+                    longitude: 120.9842195
+                    operator_id: 0928a080
+                  '308':
+                    uuid: 39376537-3436-4638-a262-363435333733
+                    city: Manila-2
+                    state: Metro Manila
+                    country: Philippines
+                    continent: ''
+                    features:
+                      ddos_protection: false
+                      block_storage: true
+                      private_networking: true
+                      ipv6: true
+                      backups: true
+                    latitude: 14.5510219
+                    longitude: 120.9872126
+                    operator_id: 0928a080
+                  '309':
+                    uuid: 37623535-3039-4465-b834-303330356462
+                    city: Riyadh
+                    state: Riyadh Province
+                    country: Saudi Arabia
+                    continent: ''
+                    features:
+                      ddos_protection: false
+                      block_storage: true
+                      private_networking: true
+                      ipv6: true
+                      backups: true
+                    latitude: 24.7135517
+                    longitude: 46.6752957
+                    operator_id: 0928a080
+                  '310':
+                    uuid: 36313639-3936-4237-a232-353430363233
+                    city: Geneva
+                    state: Geneva
+                    country: Switzerland
+                    continent: ''
+                    features:
+                      ddos_protection: false
+                      block_storage: true
+                      private_networking: true
+                      ipv6: true
+                      backups: true
+                    latitude: 46.2043907
+                    longitude: 6.1431577
+                    operator_id: 0928a080
+                  '311':
+                    uuid: 35653937-3837-4332-a333-613966663861
+                    city: Honolulu
+                    state: Hawaii
+                    country: United States
+                    continent: North america
+                    features:
+                      ddos_protection: false
+                      block_storage: true
+                      private_networking: true
+                      ipv6: true
+                      backups: true
+                    latitude: 21.3069444
+                    longitude: -157.8583333
+                    operator_id: 0928a080
+                  '312':
+                    uuid: 64353634-6638-4935-b364-653061343733
+                    city: Miami
+                    state: Florida
+                    country: United States
+                    continent: North america
+                    features:
+                      ddos_protection: false
+                      block_storage: true
+                      private_networking: true
+                      ipv6: true
+                      backups: true
+                    latitude: 25.7616798
+                    longitude: -80.1917902
+                    operator_id: 0928a080
+                  '313':
+                    uuid: 38366662-3765-4133-b061-386266356266
+                    city: San Jose
+                    state: California
+                    country: United States
+                    continent: North america
+                    features:
+                      ddos_protection: false
+                      block_storage: true
+                      private_networking: true
+                      ipv6: true
+                      backups: true
+                    latitude: 37.3382082
+                    longitude: -121.8863286
+                    operator_id: 0928a080
+                  '314':
+                    uuid: 32656562-3661-4437-b464-313862396532
+                    city: Washington DC
+                    state: District of Columbia
+                    country: United States
+                    continent: North america
+                    features:
+                      ddos_protection: false
+                      block_storage: true
+                      private_networking: true
+                      ipv6: true
+                      backups: true
+                    latitude: 38.9071923
+                    longitude: -77.0368707
+                    operator_id: 0928a080
+                meta:
+                  total: 40

@@ -1,0 +1,73 @@
+get:
+  tags:
+    - Public
+    - Features
+  summary: Feature list
+  description: "Returns a list over available features. Feature lists are uniqe for each region, a region ID is therefore required as last part of the call. See:\n\n```\n/v1/region/list\n```\n\nFor a list of all available regions. "
+  operationId: FeatureList
+  parameters: []
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties: {}
+          examples:
+            region-101:
+              value:
+                ddos_protection: false
+                block_storage: false
+                private_networking: true
+                ipv6: true
+                backups: true
+            region-201:
+              value:
+                ddos_protection: false
+                block_storage: true
+                private_networking: true
+                ipv6: true
+                backups: true
+            region-301:
+              value:
+                ddos_protection: false
+                block_storage: true
+                private_networking: true
+                ipv6: true
+                backups: true
+    '400':
+      description: ''
+      content:
+        application/json:
+          schema:
+            $ref: ../../models/response-forbidden.v1.yaml
+          example:
+            message: 'Please use: /v1/region/features/REGIONID'
+            response_type: warning
+            response_code: 400
+          examples:
+            example-1:
+              value:
+                message: 'Please use: /v1/region/list_features/REGIONID'
+                response_type: warning
+                response_code: 400
+  x-operation-settings:
+    CollectParameters: false
+    AllowDynamicQueryParameters: false
+    AllowDynamicFormParameters: false
+    IsMultiContentStreaming: false
+  security: []
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties: {}
+parameters:
+  - schema:
+      type: integer
+    name: region_id
+    in: path
+    required: true
+    description: Region ID  
