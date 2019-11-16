@@ -27,6 +27,28 @@ get:
         application/json:
           schema:
             type: object
+            properties:
+              uuid:
+                type: string
+                description: Unique identifier for the image object
+              name:
+                type: string
+                description: Name of the disk image object
+              'type':
+                type: string
+                description: "Disk image object type: os|app"
+              os_type:
+                type: string
+                description: "Disk image object operating system: linux|freebsd|windows"
+              os_distro:
+                type: string
+                description: Disk image object operating system version or distro
+              min_disk_gb:
+               type: number
+               description: Minimal disk size requirements
+              hourly_cost:
+               type: number
+               description: Price per hour, this is the license fee (only applies to proprietary software such as Windows or cPanel)
           example:
             images:
               '1101':

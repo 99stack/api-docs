@@ -33,7 +33,35 @@ get:
         application/json:
           schema:
             type: object
-            properties: {}
+            properties:
+              uuid:
+                type: string
+                description: Unique identifier for the region object
+              city:
+                type: string
+                description: The city this datacenter is located in
+              state:
+                type: string
+                description: The state this datacenter is located in
+              country:
+                type: string
+                description: The country this datacenter is located in
+              continent:
+                type: string
+                description: The continent this datacenter is located in
+              features:
+                type: object
+                description: Features available in this region
+              latitude:
+                type: number
+                description: Latitude (exact location is not revealed)
+              longitude:
+                type: number
+                description: Longitude (exact location is not revealed)
+              operator_id:
+                type: string
+                description: Unique ID representing the company object responsible for this datacenter
+
           examples:
             example-1:
               value:

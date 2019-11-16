@@ -12,7 +12,16 @@ get:
         application/json:
           schema:
             type: object
-            properties: {}
+            properties:
+              GEN_1:
+                type: number
+                description: Availibility of first generation servers
+              GEN_2:
+                type: number
+                description: Availibility of second generation servers
+              GEN_3:
+                type: number
+                description: Availibility of third generation servers
           examples:
             example-1:
               value:

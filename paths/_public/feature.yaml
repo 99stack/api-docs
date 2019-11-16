@@ -13,7 +13,22 @@ get:
         application/json:
           schema:
             type: object
-            properties: {}
+            properties:
+              ddos_protection:
+                type: boolean
+                description: Extra DDoS protection in the same datacenter (only available in limited regions)
+              block_storage:
+                type: boolean
+                description: Block storage allows you to attach additional disk space in sizes from 10GB up to 10TB per disk
+              private_networking:
+                type: boolean
+                description: Can be used to send unlimited amounts of data between servers in the same datacenter without paying additional bandwidth fees
+              ipv6:
+                type: boolean
+                description: Ability to attach and use one or more IPv6 adresses on your server
+              backups:
+                type: boolean
+                description: Ability to enable the auto backup feature to have your server backed up automatically on a schedule
           examples:
             region-101:
               value:
