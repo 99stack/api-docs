@@ -1182,9 +1182,6 @@ paths:
       security: []
   /account/token_remove:
     delete:
-      tags:
-        - Account
-        - Token
       summary: Remove auth token
       description: |-
         Delete a specific authentication token. Please note that if you delete the token used to authenticate this request you need to call /v1/account/login again to obtain a new token.
@@ -1192,7 +1189,7 @@ paths:
         **Caution**
 
         We cannot see the difference between an arbitrary token on your account, and the token you're using to authenticate this request. Therefore, nothing will prevent you from locking yourself out if you're not being careful.
-      operationId: RemoveAuthToken
+      operationId: remove-auth-token
       parameters:
         - name: Authorization
           in: header
@@ -1237,14 +1234,13 @@ paths:
         AllowDynamicQueryParameters: false
         AllowDynamicFormParameters: false
         IsMultiContentStreaming: false
+      tags:
+        - Account Token
   /account/token_create:
     post:
-      tags:
-        - Account
-        - Token
       summary: Create auth token
       description: 'Generates a new authentication token. On success, the response will be the new token.'
-      operationId: CreateAuthToken
+      operationId: create-auth-token
       parameters:
         - name: Authorization
           in: header
@@ -1275,13 +1271,13 @@ paths:
               example-1:
                 value:
                   name: MyAuthToken
-        description: ''
+        description: Provide a display name for the new token
       responses:
         '201':
           content:
             application/json:
               schema:
-                type: object
+                $ref: '#/components/schemas/response-message'
               example:
                 name: New token
                 uuid: 69472922-1725-11e9-ab14-d663bd873d93
@@ -1308,14 +1304,13 @@ paths:
         AllowDynamicQueryParameters: false
         AllowDynamicFormParameters: false
         IsMultiContentStreaming: false
+      tags:
+        - Account Token
   /account/token_list:
     get:
-      tags:
-        - Account
-        - Token
-      summary: List auth tokens
+      summary: List auth token
       description: Lists all available authentication tokens on your account.
-      operationId: ListAuthTokens
+      operationId: list-auth-token
       parameters:
         - name: Authorization
           in: header
@@ -1375,6 +1370,8 @@ paths:
               type: object
               properties: {}
         required: true
+      tags:
+        - Account Token
   /account/info:
     get:
       tags:
@@ -2322,7 +2319,7 @@ paths:
           description: OK
   /account/token_rename:
     post:
-      summary: ''
+      summary: Rename auth token
       responses:
         '202':
           description: Accepted
@@ -2372,9 +2369,10 @@ paths:
                 value:
                   name: NewTokenName
                   uuid: 62666431-3936-4936-b561-626536613733
+      description: Change display name of a auth token
+      operationId: rename-auth-token
       tags:
-        - Account
-        - Token
+        - Account Token
 tags:
   - name: Public
     description: 'This section contains all information about regions, images, plans and features. The Authorization header is not required for any function in this section.'
@@ -2415,7 +2413,7 @@ components:
           description: HTTP status code for quick reference
       description: 'A response message and a status code, indicating if the function was executed successfully or not.'
       x-examples:
-        Response:
+        example-1:
           message: 'Something went wrong, try this to solve the problem...'
           response_type: error
           response_code: 400
@@ -2423,17 +2421,17 @@ components:
       title: response-forbidden
       type: object
       properties:
-        response_code:
-          type: integer
-          description: HTTP status code for quick reference
         message:
           type: string
           description: Response text with a simple description of the result
         response_type:
           type: string
           description: 'Type of message: success|info|warning|error'
+        response_code:
+          type: integer
+          description: HTTP status code for quick reference
       x-examples:
-        Response:
+        example-1:
           message: Authorization token does not exist
           response_type: error
           response_code: 403
