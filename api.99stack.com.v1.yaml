@@ -86,14 +86,14 @@ servers:
     variables: {}
     description: 99Stack API
 paths:
-  /account/token_remove:
-    $ref: ./paths/account_token/remove.yaml
-  /account/token_create:
-    $ref: ./paths/account_token/create.yaml
   /account/token_list:
     $ref: ./paths/account_token/list.yaml
+  /account/token_create:
+    $ref: ./paths/account_token/create.yaml
   /account/token_rename:
     $ref: ./paths/account_token/rename.yaml
+  /account/token_remove:
+    $ref: ./paths/account_token/remove.yaml
   /snapshot/restore:
     post:
       tags:
