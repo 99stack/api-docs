@@ -27,7 +27,22 @@ get:
         application/json:
           schema:
             type: object
-            properties: {}
+            properties:
+              uuid:
+                type: string
+                description: Unique UUID for the auth token
+              name:
+                type: string
+                description: Token display name
+              auth_token:
+                type: string
+                description: Token data
+              created:
+                type: string
+                description: Timestamp created in UTC
+              last_used:
+                type: string
+                description: Timestamp last used in UTC
           examples:
             example-1:
               value:
@@ -48,18 +63,13 @@ get:
             $ref: ../../models/response-forbidden.v1.yaml
           example:
             message: Authorization token does not exist
+            response_type: error
+            response_code: 403
       description: Forbidden
   x-operation-settings:
     CollectParameters: false
     AllowDynamicQueryParameters: false
     AllowDynamicFormParameters: false
     IsMultiContentStreaming: false
-  requestBody:
-    content:
-      application/json:
-        schema:
-          type: object
-          properties: {}
-    required: true
   tags:
   - Account Token  

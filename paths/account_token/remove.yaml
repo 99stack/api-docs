@@ -32,6 +32,10 @@ delete:
       application/json:
         schema:
           type: object
+          properties:
+            uuid:
+              type: string
+              description: UUID of the auth token you want to remove
         examples:
           example-1:
             value:
@@ -46,6 +50,10 @@ delete:
         application/json:
           schema:
             $ref: ../../models/response-forbidden.v1.yaml
+          example:
+            message: Authorization token does not exist
+            response_type: error
+            response_code: 403
   x-operation-settings:
     CollectParameters: false
     AllowDynamicQueryParameters: false

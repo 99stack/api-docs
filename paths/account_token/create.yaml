@@ -27,23 +27,33 @@ post:
       application/json:
         schema:
           type: object
-          properties: {}
+          properties:
+              name:
+                type: string
+                description: Display name for the new auth token
         examples:
           example-1:
             value:
               name: MyAuthToken
-    description: Provide a display name for the new token
   responses:
     '201':
       content:
         application/json:
           schema:
-            $ref: ../../models/response-message.v1.yaml
-          example:
-            name: New token
-            uuid: 69472922-1725-11e9-ab14-d663bd873d93
-            auth_token: 36491ac8ca4fa099367351f2d4bfd0be6a2cb6d2efb78d91
-            created: '2018-11-23T22:55:34Z'
+            type: object
+            properties:
+              uuid:
+                type: string
+                description: Unique UUID for the newly created auth token
+              name:
+                type: string
+                description: Name for the newly created auth token (same as in request)
+              token:
+                type: string
+                description: The new auth token
+              created:
+                type: string
+                description: Date created in UTC
           examples:
             example-1:
               value:
@@ -59,6 +69,8 @@ post:
             $ref: ../../models/response-forbidden.v1.yaml
           example:
             message: Authorization token does not exist
+            response_type: error
+            response_code: 403
       description: Forbidden
   x-operation-settings:
     CollectParameters: false
