@@ -1228,7 +1228,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/response-forbidden'
+                $ref: ./models/response-forbidden.v1.yaml
       x-operation-settings:
         CollectParameters: false
         AllowDynamicQueryParameters: false
@@ -1295,7 +1295,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/response-forbidden'
+                $ref: ./models/response-forbidden.v1.yaml
               example:
                 message: Authorization token does not exist
           description: Forbidden
@@ -1354,7 +1354,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/response-forbidden'
+                $ref: ./models/response-forbidden.v1.yaml
               example:
                 message: Authorization token does not exist
           description: Forbidden
@@ -2338,7 +2338,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/response-forbidden'
+                $ref: ./models/response-forbidden.v1.yaml
       parameters:
         - name: Authorization
           in: header
