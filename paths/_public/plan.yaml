@@ -12,6 +12,34 @@ get:
         application/json:
           schema:
             type: object
+            properties:
+              uuid:
+                type: string
+                description: Unique identifier for the plan object
+              name:
+                type: string
+                description: Display name for this plan
+              windows:
+                type: boolean
+                description: Indicates if this plan can run Windows server
+              cpu:
+                type: integer
+                description: Number of CPU cores on this plan
+              ram:
+                type: integer
+                description: Amount of RAM on this plan in megabytes
+              disk:
+                type: integer
+                description: Amount of disk space on this plan in gigabytes
+              bandwidth:
+                type: integer
+                description: Bandwidth limit in terabytes for this plan, bandwidth usage up to this limit is free of charge. Zero means that there is no bandwidth limit or additional fees 
+              price_per_hour:
+                type: number
+                description: The price of this plan per hour (reduced to 16 decimals)
+              price_per_month:
+                type: number
+                description: The estimated price of this plan per month (hourly price multiplied by 730 hours). 
           examples:
             region-101:
               value:
