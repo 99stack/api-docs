@@ -1,0 +1,55 @@
+post:
+  summary: Rename auth token
+  responses:
+    '202':
+      description: Accepted
+      content:
+        application/json:
+          schema:
+            $ref: ../models/response-message.v1.yaml
+          examples:
+            example-1:
+              value:
+                message: Token name successfully updated
+                response_type: success
+                response_code: 202
+    '403':
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: ../models/response-forbidden.v1.yaml
+  parameters:
+    - name: Authorization
+      in: header
+      description: ''
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+        example: Bearer API_TOKEN
+    - name: Content-Type
+      in: header
+      description: ''
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+        example: application/json
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties: {}
+        examples:
+          example-1:
+            value:
+              name: NewTokenName
+              uuid: 62666431-3936-4936-b561-626536613733
+  description: Change display name of a auth token
+  operationId: rename-auth-token
+  tags:
+    - Account Token  
