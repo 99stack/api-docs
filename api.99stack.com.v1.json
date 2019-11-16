@@ -1562,28 +1562,10 @@
         "operationId": "RemoveAuthToken",
         "parameters": [
           {
-            "name": "Authorization",
-            "in": "header",
-            "description": "",
-            "required": true,
-            "style": "simple",
-            "explode": false,
             "schema": {
-              "type": "string",
-              "example": "Bearer API_TOKEN"
-            }
-          },
-          {
-            "name": "Content-Type",
-            "in": "header",
-            "description": "",
-            "required": true,
-            "style": "simple",
-            "explode": false,
-            "schema": {
-              "type": "string",
-              "example": "application/json"
-            }
+              "type": "string"
+            },
+            "in": "header"
           }
         ],
         "requestBody": {
@@ -1618,7 +1600,11 @@
           "AllowDynamicFormParameters": false,
           "IsMultiContentStreaming": false
         },
-        "security": []
+        "security": [
+          {
+            "API Key - 1": []
+          }
+        ]
       }
     },
     "/account/token_create": {
@@ -1703,7 +1689,11 @@
           "AllowDynamicFormParameters": false,
           "IsMultiContentStreaming": false
         },
-        "security": []
+        "security": [
+          {
+            "API Key - 1": []
+          }
+        ]
       }
     },
     "/account/token_list": {
@@ -1764,7 +1754,11 @@
           "AllowDynamicFormParameters": false,
           "IsMultiContentStreaming": false
         },
-        "security": [],
+        "security": [
+          {
+            "API Key - 1": []
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -1880,7 +1874,11 @@
           "AllowDynamicFormParameters": false,
           "IsMultiContentStreaming": false
         },
-        "security": [],
+        "security": [
+          {
+            "API Key - 1": []
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -2943,24 +2941,56 @@
   "components": {
     "schemas": {
       "_s-response-message": {
-        "title": "error-schema",
+        "title": "response-message",
         "type": "object",
         "properties": {
           "message": {
             "type": "string",
-            "description": "Human readable description of what happened"
+            "description": "Response text with a simple description of the result"
           },
-          "message_type": {
+          "response_type": {
             "type": "string",
             "description": "Type of message: success|info|warning|error"
           },
           "response_code": {
             "type": "integer",
-            "description": "HTTP response code for quick reference"
+            "description": "HTTP status code for quick reference"
+          }
+        },
+        "description": "A response message and a status code, indicating if the function was executed successfully or not.",
+        "x-examples": {
+          "Response": {
+            "message": "Something went wrong, try this to solve the problem...",
+            "response_type": "error",
+            "response_code": 400
           }
         }
+      },
+      "_s-request-headers": {
+        "title": "request-headers",
+        "type": "object",
+        "properties": {
+          "Authorization": {
+            "type": "string",
+            "description": "Must contain the following: 'Bearer auth_token' where auth_token is one of your accounts authentication tokens"
+          },
+          "Content-Type": {
+            "type": "string",
+            "description": "Should be set to application/json"
+          }
+        },
+        "required": [
+          "Authorization",
+          "Content-Type"
+        ],
+        "description": "This function requires authentication, a valid auth_token is required for successfull execution. See `/v1/account/login` for more information. "
       }
     },
-    "securitySchemes": {}
+    "securitySchemes": {
+      "API Key - 1": {
+        "type": "http",
+        "scheme": "Bearer"
+      }
+    }
   }
 }
