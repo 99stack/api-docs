@@ -1,6 +1,10 @@
 openapi: 3.0.0
 info:
   title: 99Stack API documentation
+  x-logo:
+    url: "https://99stack.com/new/img/logo.webp"
+    backgroundColor: "#FFFFFF"
+    altText: "99Stack API"
   version: '1.0'
   contact: {}
   description: |-
