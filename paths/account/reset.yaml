@@ -1,0 +1,48 @@
+post:
+  tags:
+    - Account
+  summary: Reset password
+  description: |-
+    Generate and email a temporary one time password that can be used to login. (see /v1/account/login for more information).
+
+    **Will this disable my current password?**
+
+    No, it will only offer an alternative way to login. If you suspect that someone is trying to access your account, consider changing your password to a longer and more secure one.
+
+    **Security**
+
+    The one time password will only be active for a limited time, then revoked. Accounts can only be reset once per week. Response messages will not do any attempt to validate input email addresses. This to prevent account leaks.
+  operationId: ResetPassword
+  parameters:
+    - name: Content-Type
+      in: header
+      description: ''
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+        example: application/json
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties: {}
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            type: object
+          example:
+            message: 'Account reset request received, check your email inbox'
+            timestamp: '2019-01-13T11:19:21z'
+      description: OK
+  x-operation-settings:
+    CollectParameters: false
+    AllowDynamicQueryParameters: false
+    AllowDynamicFormParameters: false
+    IsMultiContentStreaming: false
+  security: []  

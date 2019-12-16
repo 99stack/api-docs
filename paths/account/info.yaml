@@ -1,0 +1,78 @@
+get:
+  tags:
+    - Account
+  summary: Account info
+  description: Fetch and dispalys a limited selection of information about the account associated with the provided authentication key.
+  operationId: AccountInfo
+  parameters:
+    - name: Authorization
+      in: header
+      description: ''
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+        example: Bearer API_TOKEN
+    - name: Content-Type
+      in: header
+      description: ''
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+        example: application/json
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            type: object
+          example:
+            ID: '123456'
+            UUID: 69472922-1725-11e9-ab14-d663bd873d93
+            profile:
+              firstname: John
+              lastname: Doe
+              email: john.doe@example.com
+            balance: '1500'
+            activated: true
+            blocked_ports:
+              TCP:
+                - 17
+                - 19
+                - 25
+                - 1900
+              UDP:
+                - 17
+                - 19
+                - 25
+                - 1900
+                - 53413
+            servers:
+              limit: 500
+              running: 150
+            registerdate: '2016-09-19T07:41:30z'
+            lastlogin: '2019-01-05T13:23:54z'
+            billing:
+              secondsdue: 2592000
+              duedate: '2019-02-05T13:23:54z'
+              usage: 2.05
+            permissions: null
+      description: OK
+    '403':
+      content:
+        application/json:
+          schema:
+            $ref: ../../models/response-forbidden.v1.yaml
+          example:
+            message: Authorization token does not exist
+            response_type: error
+            response_code: 403
+      description: Forbidden
+  x-operation-settings:
+    CollectParameters: false
+    AllowDynamicQueryParameters: false
+    AllowDynamicFormParameters: false
+    IsMultiContentStreaming: false

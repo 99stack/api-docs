@@ -1,0 +1,37 @@
+post:
+  tags:
+    - Account
+  summary: Register
+  description: |-
+    Register a new account using provided information. On success, a new generated API key will be returned. (see /v1/account/login for information on usage). Provided email adress should receive an activation email within the next 5 minutes. The new account will be useless untill activated. However, client applications may still allow you to login.
+
+    **Security**
+
+    To prevent data leaks, a generic error message will be used if registration fails for any reason, including the case where you cannot register because the account already exists. If you see this generic error message, please try to login or reset account before complaining to support.
+  operationId: Register
+  parameters:
+    - name: Content-Type
+      in: header
+      description: ''
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+        example: application/json
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties: {}
+  x-operation-settings:
+    CollectParameters: false
+    AllowDynamicQueryParameters: false
+    AllowDynamicFormParameters: false
+    IsMultiContentStreaming: false
+  security: []
+  responses:
+    '201':
+      description: Created  
