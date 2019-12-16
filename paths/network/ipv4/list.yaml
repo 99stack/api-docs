@@ -1,0 +1,41 @@
+get:
+  tags:
+    - "Floating IP's"
+  summary: List floating IPs
+  description: "Returns a list over floating IP's associated with account and which server it's attached to (if any)."
+  operationId: ListFloatingIps
+  parameters:
+    - name: Authorization
+      in: header
+      description: ''
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+        example: Bearer API_TOKEN
+    - name: Content-Type
+      in: header
+      description: ''
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+        example: application/json
+  responses:
+    '200':
+      description: OK
+
+  x-operation-settings:
+    CollectParameters: false
+    AllowDynamicQueryParameters: false
+    AllowDynamicFormParameters: false
+    IsMultiContentStreaming: false
+  security: []
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties: {}  

@@ -1,0 +1,57 @@
+post:
+  tags:
+    - "Floating IP's"
+  summary: Create floating IP
+  description: Create a new floating IP address that can be used in a specific region.
+  operationId: CreateFloatingIp
+  parameters:
+    - name: Authorization
+      in: header
+      description: ''
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+        example: Bearer API_TOKEN
+    - name: Content-Type
+      in: header
+      description: ''
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+        example: application/json
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties: {}
+  responses:
+    '201':
+      description: Created
+      content:
+        application/json:
+          schema:
+            type: object
+    '400':
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/response-message'
+          example:
+            message: Failed to create floating IP
+            response_type: warning
+            response_code: 400
+      description: Bad Request
+    '401':
+      description: Unauthorized
+  x-operation-settings:
+    CollectParameters: false
+    AllowDynamicQueryParameters: false
+    AllowDynamicFormParameters: false
+    IsMultiContentStreaming: false
+  security: []  

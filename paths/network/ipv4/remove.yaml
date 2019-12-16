@@ -1,0 +1,41 @@
+delete:
+  tags:
+    - "Floating IP's"
+  summary: Remove floating IP
+  description: "Removes a floating IP address. The IP address must be detached or this function will return an error. Please note that some regions won't allow removal of floating IP's until a certain time has passed, usually 24 hour."
+  operationId: RemoveFloatingIp
+  parameters:
+    - name: Authorization
+      in: header
+      description: ''
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+        example: Bearer API_TOKEN
+    - name: Content-Type
+      in: header
+      description: ''
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+        example: application/json
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties: {}
+  x-operation-settings:
+    CollectParameters: false
+    AllowDynamicQueryParameters: false
+    AllowDynamicFormParameters: false
+    IsMultiContentStreaming: false
+  security: []
+  responses:
+    '204':
+      description: No Content  
