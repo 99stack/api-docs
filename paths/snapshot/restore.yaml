@@ -42,7 +42,7 @@ post:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/response-message'
+            $ref: ../../models/response-message.v1.yaml
           example:
             message: Invalid resource requested
             response_type: warning
