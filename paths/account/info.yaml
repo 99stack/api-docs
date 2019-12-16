@@ -1,6 +1,4 @@
 get:
-  tags:
-    - Account
   summary: Account info
   description: Fetch and dispalys a limited selection of information about the account associated with the provided authentication key.
   operationId: AccountInfo
@@ -76,3 +74,5 @@ get:
     AllowDynamicQueryParameters: false
     AllowDynamicFormParameters: false
     IsMultiContentStreaming: false
+  tags:
+  - Account  

@@ -1,0 +1,88 @@
+post:
+  tags:
+    - Server
+  summary: Create ready server
+  description: |-
+    Deploy a new server from a fixed "ready" plan anywhere in 99Stack cloud.
+
+    This function is an alias for:
+
+    ```
+    /v1/server/create
+    ```
+  operationId: CreateReadyServer
+  parameters:
+    - name: Authorization
+      in: header
+      description: ''
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+        example: Bearer API_TOKEN
+    - name: Content-Type
+      in: header
+      description: ''
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+        example: application/json
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+        example:
+          hostname: web-server-2
+          label: Second Web server
+          region: 201
+          image: 2102
+          plan: 2101
+          auto_backups: false
+          ipv6_networking: true
+          ddos_protection: false
+          private_networking: true
+          ssh_key: 5cb46fd8-1b2d-11e9-ab14-d663bd873d93
+          script_url: 'https://raw.github.com...'
+          user_data: I2Nsb3VkLWluaXQ=
+    required: true
+  responses:
+    '201':
+      description: Created
+    '400':
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/response-message'
+          example:
+            message: "Expected: '...', not found"
+            response_type: warning
+            response_code: 400
+      description: Bad Request
+    '401':
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/response-message'
+          example:
+            message: Authorization token does not exist
+      description: Unauthorized
+    '502':
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/response-message'
+          example:
+            message: Deployment failed...
+            response_type: error
+            response_code: 502
+      description: Bad Gateway
+  x-operation-settings:
+    CollectParameters: false
+    AllowDynamicQueryParameters: false
+    AllowDynamicFormParameters: false
+    IsMultiContentStreaming: false
+  security: []  
