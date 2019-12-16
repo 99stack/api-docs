@@ -37,7 +37,7 @@ delete:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/response-message'
+            $ref: ../../models/response-message.v1.yaml
           example:
             message: Invalid resource requested
             response_type: warning
@@ -47,7 +47,7 @@ delete:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/response-message'
+            $ref: ../../models/response-message.v1.yaml
           example:
             message: 'Permission denied, server is still initializing, please try again in about x minutes'
             response_type: warning
