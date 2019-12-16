@@ -41,7 +41,7 @@ post:
       content:
         application/json:
           schema:
-            $ref: ../../models/response-forbidden.v1.yaml
+            $ref: ../../../models/response-forbidden.v1.yaml
           example:
             message: Failed to create floating IP
             response_type: warning
