@@ -1,0 +1,66 @@
+post:
+  tags:
+    - Snapshot
+  summary: Restore snapshot
+  description: Restore a server from provided snapshot image
+  operationId: RestoreSnapshot
+  parameters:
+    - name: Authorization
+      in: header
+      description: ''
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+        example: Bearer API_TOKEN
+    - name: Content-Type
+      in: header
+      description: ''
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+        example: application/json
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties: {}
+  responses:
+    '202':
+      description: Accepted
+      content:
+        application/json:
+          schema:
+            type: object
+            properties: {}
+    '404':
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/response-message'
+          example:
+            message: Invalid resource requested
+            response_type: warning
+            response_code: 404
+      description: Not found
+    '403':
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: ../../models/response-forbidden.v1.yaml
+          example:
+            message: Authorization token does not exist
+            response_type: error
+            response_code: 403
+  x-operation-settings:
+    CollectParameters: false
+    AllowDynamicQueryParameters: false
+    AllowDynamicFormParameters: false
+    IsMultiContentStreaming: false
+  security: []  

@@ -1,0 +1,51 @@
+post:
+  tags:
+    - Snapshot
+  summary: Create snapshot
+  description: Create a snapshot of a server
+  operationId: CreateSnapshot
+  parameters:
+    - name: Authorization
+      in: header
+      description: ''
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+        example: Bearer API_TOKEN
+    - name: Content-Type
+      in: header
+      description: ''
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+        example: application/json
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties: {}
+  responses:
+    '201':
+      description: Created
+    '403':
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: ../../models/response-forbidden.v1.yaml
+          example:
+            message: Authorization token does not exist
+            response_type: error
+            response_code: 403
+  x-operation-settings:
+    CollectParameters: false
+    AllowDynamicQueryParameters: false
+    AllowDynamicFormParameters: false
+    IsMultiContentStreaming: false
+  security: []  
