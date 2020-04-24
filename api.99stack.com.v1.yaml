@@ -4,9 +4,13 @@ info:
   version: '1.0'
   contact: {}
   description: |-
-    **Mirrors**: https://www.99stack.com/resources/api-docs, https://api.99stack.com/docs, https://cf-api.99stack.com/docs
+    **Mirrors**: 
+      * https://www.99stack.com/resources/api-docs
+      * https://api.99stack.com/docs
+      * https://cf-api.99stack.com/docs
 
-    **Bearer token**: https://dash.99stack.com
+    **Bearer token**: 
+      * https://dash.99stack.com
 
     ## Using the API
 
@@ -20,6 +24,7 @@ info:
 
     | HTTP Response Code  | Description  |
     |---|---|
+    | 200  | Response OK  |
     | 201  | Resource created successfully  |
     | 202  | Function successfully executed  |
     | 204  | Resource removed successfully (no response body)  |
