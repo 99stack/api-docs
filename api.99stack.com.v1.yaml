@@ -36,11 +36,11 @@ info:
 
     ### Rate limits
 
-    Rate limits are not in use. However, if possible try to not send more than one request per second. Too many requests in a short time for any reason can trigger the web servers standard protection, effectively blocking all requests from your IP for a few minutes.
+    The general rate limit is 2 requests per second with a burst of 10 requests. Some functions has additional limits, `/v1/account` allows 5 requests per minute with a burst of 5 for security. Create requests are generally limited to 1 request per second without burst.
 
     ### Time and Date
 
-    All time and date fields returned by this API are displayed in UTC in the ISO-8601 format.
+    All time and date fields returned by this API are displayed in UTC in the ISO-8601 format. `Y-m-d\TH:i:s\Z`
 
     ### Examples
 
@@ -83,6 +83,7 @@ info:
     url: 'https://github.com/99stack/api-docs/blob/master/LICENSE'
 servers:
   - url: 'https://api.99stack.com/v1'
+  - url: 'https://cf-api.99stack.com/v1'
     variables: {}
     description: 99Stack API
 paths:
