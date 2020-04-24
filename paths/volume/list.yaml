@@ -41,7 +41,7 @@ get:
                 description: Volume size in gigabytes
               server_id:
                 type: integer
-                description: ID of the server the volume is attached to (null after creation)
+                description: ID of the server the volume is attached to 
               region_id:
                 type: integer
                 description: ID of the datacenter the volume is located in
@@ -50,14 +50,28 @@ get:
                 description: Date created
           examples:
             example-1:
+              summary: List of volumes
               value:
-                volumes:
-                  uuid: 31393331-3562-4637-b062-633334396138
-                  name: 500GB_volume
-                  size_gb: 500
-                  server_id: null
-                  region_id: 000
-                  created: '2020-04-24T08:37:46Z'
+                {
+                  "volumes": [
+                    {
+                      "uuid": "fc564f78-85ea-4dc3-856d-21d27ce7977c",
+                      "name": "a-5tb-volume",
+                      "size_gb": 5000,
+                      "server_id": 123456,
+                      "region_id": 204,
+                      "created": "2020-04-21T09:19:15Z"
+                    },
+                    {
+                      "uuid": "8375ca48-9773-409f-a398-43eb98c2d052",
+                      "name": "a-100gb-volume",
+                      "size_gb": 100,
+                      "server_id": null,
+                      "region_id": 310,
+                      "created": "2020-04-21T09:19:15Z"
+                    }
+                  ]
+                }
       description: OK
   x-operation-settings:
     CollectParameters: false

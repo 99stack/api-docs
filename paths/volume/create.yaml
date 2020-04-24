@@ -29,7 +29,33 @@ post:
       application/json:
         schema:
           type: object
-          properties: {}
+          properties: 
+            name:
+              type: string
+              description: Name of the new volume
+            size_gb:
+              type: integer
+              description: Size in gigabytes
+            region_id:
+              type: integer
+              description: The `id` of the region the volume will be created in
+        examples:
+            100gb: 
+              summary: Create a 100GB volume in Frankfurt
+              value:
+                {
+                  "name":"a-100gb-volume",
+                  "region": 310,
+                  "size_gb": 100
+                }
+            5tb: 
+              summary: Create a 5TB volume in London
+              value:
+                {
+                  "name":"a-5tb-volume",
+                  "region": 204,
+                  "size_gb": 100
+                }
   responses:
     '201':
       description: Created
@@ -57,15 +83,17 @@ post:
                 type: string
                 description: Date created
           examples:
-            example-1:
+            object-1: 
+              summary: Example volume
               value:
-                volumes:
-                  uuid: 31393331-3562-4637-b062-633334396138
-                  name: 500GB_volume
-                  size_gb: 500
-                  server_id: null
-                  region_id: 000
-                  created: '2020-04-24T08:37:46Z'
+                {
+                  "uuid": "39343531-6231-4634-b733-393234323362",
+                  "name": "a-5tb-volume",
+                  "size_gb": 5000,
+                  "server_id": 123456,
+                  "region_id": 204,
+                  "created": "2020-04-21T09:19:15Z"
+                }
     '400':
       content:
         application/json:
