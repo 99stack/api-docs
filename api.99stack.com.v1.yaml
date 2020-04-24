@@ -98,6 +98,10 @@ paths:
     $ref: ./paths/account_token/create.yaml
   /account/token_rename:
     $ref: ./paths/account_token/rename.yaml
+  /account/activate:
+    $ref: ./paths/account/activate.yaml
+  /account/password:
+    $ref: ./paths/account/change_passwd.yaml
   /transaction/list:
     $ref: ./paths/billing/list_trans.yaml
   /invoice/list:
@@ -154,7 +158,7 @@ paths:
     $ref: ./paths/account/register.yaml
   /account/login:
     $ref: ./paths/account/login.yaml
-  '/region/list_features/{region_id}':
+  '/feature/list/{region_id}':
     $ref: ./paths/_public/feature.yaml
   '/plan/list/{region_id}':
     $ref: ./paths/_public/plan.yaml

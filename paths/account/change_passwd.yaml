@@ -1,0 +1,38 @@
+post:
+  tags:
+    - Account
+  summary: Change password
+  description: Change the account password, password repeat is only used for validation, if you do not wish to use this feature set it to the same as new password.
+  operationId: account-change_password
+  parameters:
+    - name: Content-Type
+      in: header
+      description: ''
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+        example: application/json
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties: {}
+  x-operation-settings:
+    CollectParameters: false
+    AllowDynamicQueryParameters: false
+    AllowDynamicFormParameters: false
+    IsMultiContentStreaming: false
+  security: []
+  responses:
+    '200':
+      description: OK
+    '401':
+      description: Unauthorized
+    '403':
+      description: Forbidden
+    '429':
+      description: Too Many Requests  
