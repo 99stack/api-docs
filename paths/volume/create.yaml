@@ -1,0 +1,86 @@
+post:
+  tags:
+    - "Volume"
+  summary: Create volume
+  description: Create a new volume with desired size in GB in desired region.
+  operationId: create-volume
+  parameters:
+    - name: Authorization
+      in: header
+      description: ''
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+        example: Bearer API_TOKEN
+    - name: Content-Type
+      in: header
+      description: ''
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+        example: application/json
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties: {}
+  responses:
+    '201':
+      description: Created
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              uuid:
+                type: string
+                description: Unique `UUID` for the new volume
+              name:
+                type: string
+                description: Name for the new volume
+              size_gb:
+                type: integer
+                description: Volume size in gigabytes
+              server_id:
+                type: integer
+                description: ID of the server the volume is attached to (null after creation)
+              region_id:
+                type: integer
+                description: ID of the datacenter the volume is located in
+              created:
+                type: string
+                description: Date created
+          examples:
+            example-1:
+              value:
+                volumes:
+                  uuid: 31393331-3562-4637-b062-633334396138
+                  name: 500GB_volume
+                  size_gb: 500
+                  server_id: null
+                  region_id: 000
+                  created: '2020-04-24T08:37:46Z'
+    '400':
+      content:
+        application/json:
+          schema:
+            $ref: ../../models/response-forbidden.v1.yaml
+          example:
+            message: Failed to create volume
+            response_type: warning
+            response_code: 400
+      description: Bad Request
+    '401':
+      description: Unauthorized
+  x-operation-settings:
+    CollectParameters: false
+    AllowDynamicQueryParameters: false
+    AllowDynamicFormParameters: false
+    IsMultiContentStreaming: false
+  security: []  

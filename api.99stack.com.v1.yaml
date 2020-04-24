@@ -155,6 +155,16 @@ paths:
     $ref: ./paths/account_token/remove.yaml
   /availability/list:
     $ref: ./paths/_public/availibility.yaml
+  /volume/list:
+    $ref: ./paths/volume/list.yaml
+  /volume/create:
+    $ref: ./paths/volume/create.yaml
+  /volume/attach:
+    $ref: ./paths/volume/attach.yaml
+  /volume/detach:
+    $ref: ./paths/volume/detach.yaml
+  /volume/remove:
+    $ref: ./paths/volume/remove.yaml
 tags:
   - name: Public
     description: 'This section contains all information about regions, images, plans and features. The Authorization header is not required for any function in this section.'
@@ -176,6 +186,8 @@ tags:
     description: "Create and manage servers with functions in this section. Note that some functions will act as an alias for it's similar alternative, if unsupported in the specific region. Otherwise similar functions may differ. See function descriptions for more details."
   - name: Snapshot
     description: 'Create and manage snapshots. Deployment limitations may apply in some regions, if you intend to use snapshots for backup see: [/docs/#tag/Backup](/docs/#tag/Backup)'
+  - name: Volume
+    description: 'Create and manage block storage volumes.'
 security: []
 components:
   securitySchemes: {}

@@ -1,0 +1,41 @@
+get:
+  tags:
+   - "Volume"
+  summary: List volumes
+  description: "Displays a list over all volumes owned by the account."
+  operationId: list-volume
+  parameters:
+    - name: Authorization
+      in: header
+      description: ''
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+        example: Bearer API_TOKEN
+    - name: Content-Type
+      in: header
+      description: ''
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+        example: application/json
+  responses:
+    '200':
+      description: OK
+
+  x-operation-settings:
+    CollectParameters: false
+    AllowDynamicQueryParameters: false
+    AllowDynamicFormParameters: false
+    IsMultiContentStreaming: false
+  security: []
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties: {}  
