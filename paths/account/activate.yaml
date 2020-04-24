@@ -15,12 +15,24 @@ post:
         type: string
         example: application/json
   requestBody:
-    required: true
     content:
       application/json:
         schema:
           type: object
-          properties: {}
+        example:
+          hostname: web-server-2
+          label: Second Web server
+          region: 201
+          image: 2102
+          plan: 2101
+          auto_backups: false
+          ipv6_networking: true
+          ddos_protection: false
+          private_networking: true
+          ssh_key: 5cb46fd8-1b2d-11e9-ab14-d663bd873d93
+          script_url: 'https://raw.github.com...'
+          user_data: I2Nsb3VkLWluaXQ=
+    required: true
   x-operation-settings:
     CollectParameters: false
     AllowDynamicQueryParameters: false

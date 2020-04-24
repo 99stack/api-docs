@@ -65,10 +65,4 @@ get:
     AllowDynamicQueryParameters: false
     AllowDynamicFormParameters: false
     IsMultiContentStreaming: false
-  security: []
-  requestBody:
-    content:
-      application/json:
-        schema:
-          type: object
-          properties: {}  
+  security: [] 

@@ -28,8 +28,7 @@ post:
     content:
       application/json:
         schema:
-          type: object
-          properties: {}
+          $ref: ../../models/request-id_or_uuid.yaml
   x-operation-settings:
     CollectParameters: false
     AllowDynamicQueryParameters: false
