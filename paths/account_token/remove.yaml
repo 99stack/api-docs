@@ -64,4 +64,4 @@ delete:
     AllowDynamicFormParameters: false
     IsMultiContentStreaming: false
   tags:
-    - Account Token  
+    - Token  

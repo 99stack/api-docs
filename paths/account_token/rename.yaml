@@ -62,4 +62,4 @@ post:
   description: Change display name of a auth token
   operationId: auth_token-rename
   tags:
-    - Account Token  
+    - Token  
