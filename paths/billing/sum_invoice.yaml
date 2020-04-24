@@ -1,9 +1,9 @@
-delete:
+get:
   tags:
-    - Floating IPs
-  summary: Remove floating IP
-  description: "Removes a floating IP address. The IP address must be detached or this function will return an error. Please note that some regions won't allow removal of floating IP's until a certain time has passed, usually 24 hour."
-  operationId: floating_ip-remove
+    - Billing
+  summary: Sum invioice
+  description: Sum how much you have paid over a specified time `default` is current month
+  operationId: invoice-sum
   parameters:
     - name: Authorization
       in: header
@@ -23,19 +23,19 @@ delete:
       schema:
         type: string
         example: application/json
-  requestBody:
-    required: true
-    content:
-      application/json:
-        schema:
-          type: object
-          properties: {}
+  responses:
+    '200':
+      description: OK
+
   x-operation-settings:
     CollectParameters: false
     AllowDynamicQueryParameters: false
     AllowDynamicFormParameters: false
     IsMultiContentStreaming: false
   security: []
-  responses:
-    '204':
-      description: No Content  
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties: {}  

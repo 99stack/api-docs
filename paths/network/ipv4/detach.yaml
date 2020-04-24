@@ -1,6 +1,6 @@
 post:
   tags:
-    - "Floating IP's"
+    - Floating IPs
   summary: Detach floating IP
   description: "Detach existing floating IP address from the server it's currently attached to."
   operationId: floating_ip-detach

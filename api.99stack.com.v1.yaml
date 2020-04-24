@@ -98,6 +98,12 @@ paths:
     $ref: ./paths/account_token/create.yaml
   /account/token_rename:
     $ref: ./paths/account_token/rename.yaml
+  /transaction/list:
+    $ref: ./paths/billing/list_trans.yaml
+  /invoice/list:
+    $ref: ./paths/billing/list_invoice.yaml
+  /invoice/sum:
+    $ref: ./paths/billing/sum_invoice.yaml
   /snapshot/restore:
     $ref: ./paths/snapshot/restore-snapshot.yaml
   /snapshot/remove:
@@ -200,7 +206,7 @@ tags:
     description: Manage account tokens. Create and remove API tokens and 
   - name: SSH Keys
     description: 'Upload and manage your public SSH keys, these keys will be deployed to new servers upon creation, and used instead of password authentication.'
-  - name: "Floating IP's"
+  - name: Floating IPs
     description: 'Create and manage network interfaces, IPv4 and IPv6 addresses'
   - name: Server
     description: 'Create and manage server instances of various types'

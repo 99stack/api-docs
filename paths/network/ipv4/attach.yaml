@@ -1,6 +1,6 @@
 post:
   tags:
-    - "Floating IP's"
+    - Floating IPs
   summary: Attach floating IP
   description: Attach existing floating IP address to a server
   operationId: floating_ip-attach

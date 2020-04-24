@@ -1,6 +1,6 @@
 post:
   tags:
-    - "Floating IP's"
+    - Floating IPs
   summary: Create floating IP
   description: Create a new floating IP address that can be used in a specific region.
   operationId: floating_ip-create
