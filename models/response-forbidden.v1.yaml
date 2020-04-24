@@ -1,7 +1,7 @@
 type: object
 description: 'Access denied, check your auth token'
 x-examples:
-  example-1:
+  Response:
     message: Authorization token does not exist
     response_type: error
     response_code: 403
