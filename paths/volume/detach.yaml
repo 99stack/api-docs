@@ -3,7 +3,7 @@ post:
     - "Volume"
   summary: Detach Volume
   description: "Detach existing volume from the server it's currently attached to."
-  operationId: detach-volume
+  operationId: volume-detach
   parameters:
     - name: Authorization
       in: header

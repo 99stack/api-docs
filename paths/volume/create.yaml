@@ -3,7 +3,7 @@ post:
     - "Volume"
   summary: Create volume
   description: Create a new volume with desired size in GB in desired region.
-  operationId: create-volume
+  operationId: volume-create
   parameters:
     - name: Authorization
       in: header

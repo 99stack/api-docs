@@ -3,7 +3,7 @@ get:
    - "Volume"
   summary: List volumes
   description: "Displays a list over all volumes owned by the account."
-  operationId: list-volume
+  operationId: volume-list
   parameters:
     - name: Authorization
       in: header
@@ -25,6 +25,39 @@ get:
         example: application/json
   responses:
     '200':
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              uuid:
+                type: string
+                description: Unique `UUID` for the new volume
+              name:
+                type: string
+                description: Name for the new volume
+              size_gb:
+                type: integer
+                description: Volume size in gigabytes
+              server_id:
+                type: integer
+                description: ID of the server the volume is attached to (null after creation)
+              region_id:
+                type: integer
+                description: ID of the datacenter the volume is located in
+              created:
+                type: string
+                description: Date created
+          examples:
+            example-1:
+              value:
+                volumes:
+                  uuid: 31393331-3562-4637-b062-633334396138
+                  name: 500GB_volume
+                  size_gb: 500
+                  server_id: null
+                  region_id: 000
+                  created: '2020-04-24T08:37:46Z'
       description: OK
 
   x-operation-settings:

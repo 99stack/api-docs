@@ -3,7 +3,7 @@ post:
     - "Volume"
   summary: Attach volume
   description: Attach existing volume to a server, the server and the volume must be located within the same datacenter.
-  operationId: attach-volume
+  operationId: volume-attach
   parameters:
     - name: Authorization
       in: header

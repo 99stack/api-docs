@@ -176,8 +176,6 @@ tags:
     description: 'View account payment transactions, taxes, fees and detailed billing information sorted by resource'
   - name: Backup
     description: 'Manage automatic backups, define schedules or restore servers to earlier states.'
-  - name: DNS
-    description: Manage domains and DNS records
   - name: SSH Keys
     description: 'Upload and manage your public SSH keys, these keys will be deployed to new servers upon creation, and used instead of password authentication.'
   - name: "Floating IP's"
@@ -185,8 +183,8 @@ tags:
   - name: Server
     description: "Create and manage servers with functions in this section. Note that some functions will act as an alias for it's similar alternative, if unsupported in the specific region. Otherwise similar functions may differ. See function descriptions for more details."
   - name: Snapshot
-    description: 'Create and manage snapshots. Deployment limitations may apply in some regions, if you intend to use snapshots for backup see: [/docs/#tag/Backup](/docs/#tag/Backup)'
-  - name: Volume
+    description: 'Create and manage snapshots.'
+  - name: volume
     description: 'Create and manage block storage volumes.'
 security: []
 components:
