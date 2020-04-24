@@ -30,12 +30,10 @@ delete:
         schema:
           $ref: ../../models/request-id_or_uuid.yaml
         examples:
-          uuid: 
-            {
+          uuid: {
               "volume_id":"34626233-3739-4637-b638-376532306637"
             }
-          id: 
-            { 
+          id: { 
               "volume_id": 123456
             }
   x-operation-settings:

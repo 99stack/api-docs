@@ -30,13 +30,11 @@ post:
         schema:
           $ref: ../../models/request-id_or_uuid.yaml
         examples:
-          uuid: 
-            {
+          uuid: {
               "volume_id":"34626233-3739-4637-b638-376532306637", 
               "server_id": "33333462-6165-4230-b363-356230383139" 
             }
-          id: 
-            { 
+          id: { 
               "volume_id": 123456, 
               "server_id": 654321
             }
