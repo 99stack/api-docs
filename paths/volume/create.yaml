@@ -77,6 +77,14 @@ post:
             response_code: 400
       description: Bad Request
     '401':
+      content:
+        application/json:
+          schema:
+            $ref: ../../models/response-forbidden.v1.yaml
+          example:
+            message: Failed to create volume
+            response_type: warning
+            response_code: 401
       description: Unauthorized
   x-operation-settings:
     CollectParameters: false
