@@ -4,7 +4,7 @@ info:
   version: '1.0'
   contact: {}
   description: |-
-    **API endpoint**: https://api.99stack.com
+    **API endpoints**: https://api.99stack.com, https://cf-api.99stack.com
 
     **Bearer token**: https://dash.99stack.com
 
@@ -178,8 +178,7 @@ tags:
 security: []
 components:
   securitySchemes: {}
-  schemas:
-
+  schemas: null
   headers:
     Content-Type:
       description: Should be set to application/json
