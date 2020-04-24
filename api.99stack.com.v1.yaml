@@ -175,30 +175,42 @@ paths:
 x-tagGroups:
   - name: Account
     tags:
-      - name: Account
-        description: Manage account and sub-accounts. View status and enabled features.
-      - name: Billing
-        description: 'View account payment transactions, taxes, fees and detailed billing information sorted by resource'
-      - name: Token
-        description: Manage account tokens. Create and remove API tokens and more.
+      - Account
+      - Billing
+      - Token
   - name: Server
     tags:
-      - name: SSH Keys
-        description: 'Upload and manage your public SSH keys, these keys will be deployed to new servers upon creation, and used instead of password authentication.'
-      - name: "Floating IP's"
-        description: 'Create and manage network interfaces, IPv4 and IPv6 addresses'
-      - name: Server
-        description: 'Create and manage server instances of various types'
+      - SSH Keys
+      - Floating IPs
+      - Server
   - name: Storage
     tags:
-      - name: Snapshot
-        description: 'Create, manage and restore snapshots and backups.'
-      - name: Block storage
-        description: 'Create and manage block storage devices that can be used and mounted similar to a local ssd drive.'
+      - Snapshot
+      - Block storage
   - name: Information
     tags:
-      - name: Public
-        description: 'This section contains all information about regions, images, plans and features. The Authorization header is not required for any function in this section.'
+      - Public
+
+tags:
+  - name: Account
+    description: Manage account and sub-accounts. View status and enabled features.
+  - name: Billing
+    description: 'View account payment transactions, taxes, fees and detailed billing information sorted by resource'
+  - name: Token
+    description: Manage account tokens. Create and remove API tokens and 
+  - name: SSH Keys
+    description: 'Upload and manage your public SSH keys, these keys will be deployed to new servers upon creation, and used instead of password authentication.'
+  - name: "Floating IP's"
+    description: 'Create and manage network interfaces, IPv4 and IPv6 addresses'
+  - name: Server
+    description: 'Create and manage server instances of various types'
+  - name: Snapshot
+    description: 'Create, manage and restore snapshots and backups.'
+  - name: Block storage
+    description: 'Create and manage block storage devices that can be used and mounted similar to a local ssd drive.'
+  - name: Public
+    description: 'This section contains all information about regions, images, plans and features. The Authorization header is not required for any function in this section.'
+
 security: []
 components:
   securitySchemes: {}
