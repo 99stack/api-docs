@@ -1,7 +1,7 @@
 get:
   summary: Account info
   description: Fetch and dispalys a limited selection of information about the account associated with the provided authentication key.
-  operationId: AccountInfo
+  operationId: account-info
   parameters:
     - name: Authorization
       in: header

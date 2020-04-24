@@ -3,7 +3,7 @@ delete:
     - Snapshot
   summary: Remove snapshot
   description: Remove snapshot by id or uuid
-  operationId: RemoveSnapshot
+  operationId: snapshot-remove
   parameters:
     - name: Authorization
       in: header

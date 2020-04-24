@@ -3,7 +3,7 @@ delete:
     - "Floating IP's"
   summary: Remove floating IP
   description: "Removes a floating IP address. The IP address must be detached or this function will return an error. Please note that some regions won't allow removal of floating IP's until a certain time has passed, usually 24 hour."
-  operationId: RemoveFloatingIp
+  operationId: floating_ip-remove
   parameters:
     - name: Authorization
       in: header

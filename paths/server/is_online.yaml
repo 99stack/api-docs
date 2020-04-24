@@ -2,8 +2,8 @@ post:
   tags:
     - Server
   summary: Check if online
-  description: Returns power status for the server.
-  operationId: CheckIfOnline
+  description: 'Returns power status for the server.'
+  operationId: server-is_online
   parameters:
     - name: Authorization
       in: header

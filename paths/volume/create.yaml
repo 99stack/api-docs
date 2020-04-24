@@ -1,6 +1,6 @@
 post:
   tags:
-    - "Volume"
+    - "Block storage"
   summary: Create volume
   description: Create a new volume with desired size in GB in desired region.
   operationId: volume-create

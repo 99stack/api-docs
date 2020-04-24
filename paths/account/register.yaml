@@ -8,7 +8,7 @@ post:
     **Security**
 
     To prevent data leaks, a generic error message will be used if registration fails for any reason, including the case where you cannot register because the account already exists. If you see this generic error message, please try to login or reset account before complaining to support.
-  operationId: Register
+  operationId: account-register
   parameters:
     - name: Content-Type
       in: header

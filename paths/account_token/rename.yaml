@@ -60,6 +60,6 @@ post:
               name: NewTokenName
               uuid: 62666431-3936-4936-b561-626536613733
   description: Change display name of a auth token
-  operationId: rename-auth-token
+  operationId: auth_token-rename
   tags:
     - Account Token  

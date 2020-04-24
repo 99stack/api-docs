@@ -1,16 +1,9 @@
 post:
   tags:
     - Server
-  summary: Create ready server
-  description: |-
-    Deploy a new server from a fixed "ready" plan anywhere in 99Stack cloud.
-
-    This function is an alias for:
-
-    ```
-    /v1/server/create
-    ```
-  operationId: CreateReadyServer
+  summary: Create server
+  description: 'Deploy a new server anywhere in 99Stack cloud.'
+  operationId: server-create
   parameters:
     - name: Authorization
       in: header

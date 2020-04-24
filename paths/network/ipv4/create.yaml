@@ -3,7 +3,7 @@ post:
     - "Floating IP's"
   summary: Create floating IP
   description: Create a new floating IP address that can be used in a specific region.
-  operationId: CreateFloatingIp
+  operationId: floating_ip-create
   parameters:
     - name: Authorization
       in: header

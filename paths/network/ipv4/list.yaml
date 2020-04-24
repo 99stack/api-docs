@@ -3,7 +3,7 @@ get:
     - "Floating IP's"
   summary: List floating IPs
   description: "Returns a list over floating IP's associated with account and which server it's attached to (if any)."
-  operationId: ListFloatingIps
+  operationId: floating_ip-list
   parameters:
     - name: Authorization
       in: header

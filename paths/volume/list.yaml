@@ -1,6 +1,6 @@
 get:
   tags:
-   - "Volume"
+   - "Block storage"
   summary: List volumes
   description: "Displays a list over all volumes owned by the account."
   operationId: volume-list

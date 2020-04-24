@@ -12,7 +12,7 @@ post:
     **Security**
 
     The one time password will only be active for a limited time, then revoked. Accounts can only be reset once per week. Response messages will not do any attempt to validate input email addresses. This to prevent account leaks.
-  operationId: ResetPassword
+  operationId: account-reset
   parameters:
     - name: Content-Type
       in: header

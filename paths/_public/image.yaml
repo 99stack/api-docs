@@ -18,7 +18,7 @@ get:
     | 3  | Snapshot, available snapshots in your account  |
     | 4  | Backup, available backups in your account  |
     | 5  | Custom, a custom image  |
-  operationId: ImagesList
+  operationId: image-list
   parameters: []
   responses:
     '200':

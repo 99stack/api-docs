@@ -3,7 +3,7 @@ post:
     - "Floating IP's"
   summary: Detach floating IP
   description: "Detach existing floating IP address from the server it's currently attached to."
-  operationId: DetachFloatingIp
+  operationId: floating_ip-detach
   parameters:
     - name: Authorization
       in: header

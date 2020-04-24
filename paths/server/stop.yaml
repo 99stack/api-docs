@@ -3,7 +3,7 @@ post:
     - Server
   summary: Stop server
   description: 'Force a server to halt, this is the same as pressing the power off button on a physical machine.'
-  operationId: StopServer
+  operationId: server-stop
   parameters:
     - name: Authorization
       in: header

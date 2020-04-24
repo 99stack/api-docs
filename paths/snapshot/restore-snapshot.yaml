@@ -3,7 +3,7 @@ post:
     - Snapshot
   summary: Restore snapshot
   description: Restore a server from provided snapshot image
-  operationId: RestoreSnapshot
+  operationId: snapshot-restore
   parameters:
     - name: Authorization
       in: header

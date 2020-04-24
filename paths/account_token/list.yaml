@@ -1,7 +1,7 @@
 get:
   summary: List auth token
   description: Lists all available authentication tokens on your account.
-  operationId: list-auth-token
+  operationId: auth_token-list
   parameters:
     - name: Authorization
       in: header

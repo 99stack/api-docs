@@ -3,7 +3,7 @@ post:
     - "Floating IP's"
   summary: Attach floating IP
   description: Attach existing floating IP address to a server
-  operationId: AttachFloatingIp
+  operationId: floating_ip-attach
   parameters:
     - name: Authorization
       in: header

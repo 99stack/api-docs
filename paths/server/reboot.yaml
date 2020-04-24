@@ -3,7 +3,7 @@ post:
     - Server
   summary: Reboot server
   description: 'Rend a reboot signal to the server, if the server is not running this will only start the server.'
-  operationId: RebootServer
+  operationId: server-reboot
   parameters:
     - name: Authorization
       in: header

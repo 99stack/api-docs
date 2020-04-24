@@ -3,7 +3,7 @@ post:
     - Server
   summary: Start server
   description: 'Send a startup signal to server, this is similar to pressing the power on button.'
-  operationId: StartServer
+  operationId: server-start
   parameters:
     - name: Authorization
       in: header

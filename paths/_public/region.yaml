@@ -18,7 +18,7 @@ get:
     ```
     /v1/region/list_features/REGIONID
     ```
-  operationId: RegionsList
+  operationId: region-list
   parameters: []
   x-operation-settings:
     CollectParameters: false

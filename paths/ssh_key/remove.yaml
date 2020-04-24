@@ -3,7 +3,7 @@ delete:
     - SSH Keys
   summary: Remove SSH key
   description: Delete a specific ssh key by ID or uuid.
-  operationId: RemoveSshKey
+  operationId: ssh_key-remove
   parameters:
     - name: Authorization
       in: header

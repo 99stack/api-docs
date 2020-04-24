@@ -3,7 +3,7 @@ post:
     - Account
   summary: Login
   description: "Checking credentials (email and password) and returns the first API key found on the associated account. Client applications can store this key locally in memory to be used for future API requests. \n\n**How do I log out?**\n\nDelete the locally saved key\n\n**Is there a rate limit?**\n\nYes, one login attempt each 30 second per account and IP address is allowed. Too many requests, (i.e bruteforce attempts) will result in denied access for up to 24 hours.\n\n**Security**\n\nTo prevent account information leaks the response will be the same in all three cases, i.e invalid email, invalid password or if both email and password is invalid.\n"
-  operationId: Login
+  operationId: account-login
   parameters:
     - name: Content-Type
       in: header

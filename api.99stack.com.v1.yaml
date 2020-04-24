@@ -4,7 +4,7 @@ info:
   version: '1.0'
   contact: {}
   description: |-
-    **API endpoints**: https://api.99stack.com, https://cf-api.99stack.com
+    **Mirrors**: https://www.99stack.com/resources/api-docs, https://api.99stack.com/docs, https://cf-api.99stack.com/docs
 
     **Bearer token**: https://dash.99stack.com
 
@@ -12,25 +12,25 @@ info:
 
     ### Information
 
-    99Stack API is designed to be fast, secure and reliable. Requests and responses are in the JSON format (application/json) and requests follows the following format: *version/group/function*, alternatively *version/group/function/args* for functions that takes one single argument, usually a region ID. Standard HTTP error codes are used together with status messages to indicate status.
+    99Stack API is designed to be fast, secure and reliable. Requests and responses are in JSON format (Content-Type: application/json) and requests follows the following format: *version/object/function*, alternatively *version/object/function/args* for `GET` functions that takes one single argument. Standard HTTP error codes are used together with status messages to indicate status.
 
     ### Response codes
 
-    A list over available response codes and their purpose.
+    Each response comes with a HTTP status code, this code indicates the status of your request. Any 2xx response indicates success. 4xx responses indicates an error in data input, access, rate-limits or software errors. 5xx indicates server errors or errors in external resources.
 
     | HTTP Response Code  | Description  |
     |---|---|
-    | 200  | Function successfully executed.  |
     | 201  | Resource created successfully  |
+    | 202  | Function successfully executed  |
     | 204  | Resource removed successfully (no response body)  |
     | 301  | Function is deprecated, (see documentation)  |
     | 400  | Invalid input data, (see documentation)  |
     | 403  | Access denied, check authentication token  |
     | 404  | Function not found  |
-    | 405  | Invalid HTTP method  |
+    | 405  | Invalid HTTP method (see response for correct method) |
     | 429  | Too many requests, please wait  |
     | 500  | Internal server error  |
-    | 501  | Function not implemented,   |
+    | 501  | Function not implemented   |
     | 502  | Bad gateway, failed to contact external API  |
     | 503  | Service unavailable, maintenance in progress  |
 
@@ -83,16 +83,18 @@ info:
     url: 'https://github.com/99stack/api-docs/blob/master/LICENSE'
 servers:
   - url: 'https://api.99stack.com/v1'
+    variables: {}
+    description: 99Stack API (eu-west)
   - url: 'https://cf-api.99stack.com/v1'
     variables: {}
-    description: 99Stack API
+    description: 99Stack API (us-central)
 paths:
   /account/token_create:
     $ref: ./paths/account_token/create.yaml
   /account/token_rename:
     $ref: ./paths/account_token/rename.yaml
   /snapshot/restore:
-    $ref: ./paths/snapshot/restore.yaml
+    $ref: ./paths/snapshot/restore-snapshot.yaml
   /snapshot/remove:
     $ref: ./paths/snapshot/remove.yaml
   /snapshot/create:
@@ -132,7 +134,7 @@ paths:
   /ssh_key/list:
     $ref: ./paths/ssh_key/list.yaml
   /backup/restore:
-    $ref: ./paths/backup/restore.yaml
+    $ref: ./paths/snapshot/restore-backup.yaml
   /account/info:
     $ref: ./paths/account/info.yaml
   /account/reset:
@@ -148,7 +150,7 @@ paths:
   '/image/list/{region_id}':
     $ref: ./paths/_public/image.yaml
   /region/list:
-    $ref: ./paths/_public/list.yaml
+    $ref: ./paths/_public/region.yaml
   /account/token_list:
     $ref: ./paths/account_token/list.yaml
   /account/token_remove:
@@ -174,8 +176,6 @@ tags:
     description: Manage account tokens. Create and remove API tokens and more.
   - name: Billing
     description: 'View account payment transactions, taxes, fees and detailed billing information sorted by resource'
-  - name: Backup
-    description: 'Manage automatic backups, define schedules or restore servers to earlier states.'
   - name: SSH Keys
     description: 'Upload and manage your public SSH keys, these keys will be deployed to new servers upon creation, and used instead of password authentication.'
   - name: "Floating IP's"
@@ -183,9 +183,9 @@ tags:
   - name: Server
     description: "Create and manage servers with functions in this section. Note that some functions will act as an alias for it's similar alternative, if unsupported in the specific region. Otherwise similar functions may differ. See function descriptions for more details."
   - name: Snapshot
-    description: 'Create and manage snapshots.'
-  - name: volume
-    description: 'Create and manage block storage volumes.'
+    description: 'Create, manage and restore snapshots and backups.'
+  - name: Block storage
+    description: 'Create and manage block storage devices that can be used and mounted similar to a local ssd drive.'
 security: []
 components:
   securitySchemes: {}

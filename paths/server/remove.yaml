@@ -2,8 +2,8 @@ delete:
   tags:
     - Server
   summary: Remove server
-  description: "Remove a server by uuid or ID. Billing will stop immediately for the server and some of it's related resources. Please note that removal of additional resources will be handled differently depending on region, see below table for more details:\n\n**Additional resources on server removal**\n\n| #  | Software license  | Automatic backups  | Snapshot  | IP addresses  | Floating IP  |\n|---|---|---|---|---|---|    \n| 1xx  | Removed  | Removed  | Not affected  | Removed  | Detached  |\n| 2xx  | Removed  | Removed  | Not affected  | Removed  | Detached  |\n| 3xx  | Detached  | Detached  | Not affected  | Detached  | Detached  |\n\n**Information**\n\n- Removed: *The resources is removed with the server*\n- Detached: *The resources is detached from the server but not deleted, billing continues*\n- Not affected: *The resources has no connection to the server (thus not affected by removal request), billing continues*"
-  operationId: RemoveServer
+  description: 'Remove a server by `uuid` or `id`.' 
+  operationId: server-remove
   parameters:
     - name: Authorization
       in: header

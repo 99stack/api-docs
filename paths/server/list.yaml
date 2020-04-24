@@ -3,7 +3,7 @@ get:
     - Server
   summary: List servers
   description: 'Returns a list over all servers on requesting account, including information about the servers.'
-  operationId: ListServers
+  operationId: server-list
   parameters:
     - name: Authorization
       in: header

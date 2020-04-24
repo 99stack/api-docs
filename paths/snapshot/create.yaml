@@ -3,7 +3,7 @@ post:
     - Snapshot
   summary: Create snapshot
   description: Create a snapshot of a server
-  operationId: CreateSnapshot
+  operationId: snapshot-create
   parameters:
     - name: Authorization
       in: header

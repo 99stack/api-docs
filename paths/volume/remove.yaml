@@ -1,6 +1,6 @@
 delete:
   tags:
-    - "Volume"
+    - "Block storage"
   summary: Remove volume
   description: "Removes a volume by `ID` or `UUID`, the volume must be detached before it can be removed."
   operationId: volume-remove

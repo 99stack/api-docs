@@ -3,7 +3,7 @@ post:
     - SSH Keys
   summary: Add SSH key
   description: 'Upload a public SSH key, on success the response body will contain the new key object'
-  operationId: AddSshKey
+  operationId: ssh_key-add
   parameters:
     - name: Authorization
       in: header

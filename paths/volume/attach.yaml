@@ -1,6 +1,6 @@
 post:
   tags:
-    - "Volume"
+    - "Block storage"
   summary: Attach volume
   description: Attach existing volume to a server, the server and the volume must be located within the same datacenter.
   operationId: volume-attach

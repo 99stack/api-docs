@@ -3,7 +3,7 @@ get:
     - Snapshot
   summary: List snapshots
   description: Returns a JSON formatted list over all snapshots on this account
-  operationId: ListSnapshots
+  operationId: snapshot-list
   parameters:
     - name: Authorization
       in: header

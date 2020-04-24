@@ -2,8 +2,8 @@ post:
   tags:
     - Server
   summary: View info
-  description: Returns a server object with information about requested server
-  operationId: ViewInfo
+  description: 'Returns a server object with information about requested server.'
+  operationId: server-info
   parameters:
     - name: Authorization
       in: header

@@ -6,7 +6,7 @@ delete:
     **Caution**
 
     We cannot see the difference between an arbitrary token on your account, and the token you're using to authenticate this request. Therefore, nothing will prevent you from locking yourself out if you're not being careful.
-  operationId: remove-auth-token
+  operationId: auth_token-remove
   parameters:
     - name: Authorization
       in: header

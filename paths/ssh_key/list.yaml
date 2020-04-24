@@ -3,7 +3,7 @@ get:
     - SSH Keys
   summary: List SSH keys
   description: Lists all available ssh keys on your account.
-  operationId: ListSshKeys
+  operationId: ssh_key-list
   parameters:
     - name: Authorization
       in: header
