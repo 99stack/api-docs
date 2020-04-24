@@ -7,10 +7,10 @@ properties:
     type: integer
     description: Unique resource `id`, a integer
 description: Either a resource `id` or `uuid` can be used in this request
-x-examples:
-  - name: id
+examples:
+  id:
     RequestBody:
       id: 123456
-  - name: uuid
+  uuid:
     RequestBody:
       uuid: 123e4567-e89b-12d3-a456-426655440000
