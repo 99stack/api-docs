@@ -28,6 +28,10 @@ get:
                 GEN_1: 0.03
                 GEN_2: 0.37
                 GEN_3: 0
+    '400':
+      $ref: ../../models/4xx-responses/400.yaml
+    '405':
+      $ref: ../../models/4xx-responses/405.yaml
   x-operation-settings:
     CollectParameters: false
     AllowDynamicQueryParameters: false

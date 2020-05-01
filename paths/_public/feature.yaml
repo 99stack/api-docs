@@ -51,21 +51,9 @@ get:
                 ipv6: true
                 backups: true
     '400':
-      description: ''
-      content:
-        application/json:
-          schema:
-            $ref: ../../models/response-forbidden.v1.yaml
-          example:
-            message: 'Please use: /v1/region/features/REGIONID'
-            response_type: warning
-            response_code: 400
-          examples:
-            example-1:
-              value:
-                message: 'Please use: /v1/region/list_features/REGIONID'
-                response_type: warning
-                response_code: 400
+      $ref: ../../models/4xx-responses/400.yaml
+    '405':
+      $ref: ../../models/4xx-responses/405.yaml
   x-operation-settings:
     CollectParameters: false
     AllowDynamicQueryParameters: false

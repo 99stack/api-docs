@@ -18,14 +18,6 @@ get:
     ```
     /v1/region/list_features/REGIONID
     ```
-  operationId: region-list
-  parameters: []
-  x-operation-settings:
-    CollectParameters: false
-    AllowDynamicQueryParameters: false
-    AllowDynamicFormParameters: false
-    IsMultiContentStreaming: false
-
   responses:
     '200':
       description: OK
@@ -668,3 +660,14 @@ get:
                     operator_id: 0928a080
                 meta:
                   total: 40
+    '400':
+      $ref: ../../models/4xx-responses/400.yaml
+    '405':
+      $ref: ../../models/4xx-responses/405.yaml
+  operationId: region-list
+  parameters: []
+  x-operation-settings:
+    CollectParameters: false
+    AllowDynamicQueryParameters: false
+    AllowDynamicFormParameters: false
+    IsMultiContentStreaming: false
