@@ -250,7 +250,6 @@ tags:
 security: []
 components:
   securitySchemes: {}
-  schemas: null
   headers:
     Content-Type:
       description: Should be set to application/json
