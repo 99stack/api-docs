@@ -5,7 +5,24 @@ post:
   description: Attach existing floating IP address to a server
   operationId: floating_ip-attach
   parameters:
-    $ref: ../../../models/headers.yaml
+    - name: Authorization
+      in: header
+      description: ''
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+        example: Bearer API_TOKEN
+    - name: Content-Type
+      in: header
+      description: ''
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+        example: application/json
   requestBody:
     required: true
     content:
