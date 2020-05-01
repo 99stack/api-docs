@@ -93,22 +93,37 @@ servers:
   - url: 'https://cf-api.99stack.com/v1'
     variables: {}
     description: 99Stack API (us-central)
-    
+
 paths:
   /account/token_create:
     $ref: ./paths/account_token/create.yaml
   /account/token_rename:
     $ref: ./paths/account_token/rename.yaml
+  /account/token_list:
+    $ref: ./paths/account_token/list.yaml
+  /account/token_remove:
+    $ref: ./paths/account_token/remove.yaml
+
+  /account/info:
+    $ref: ./paths/account/info.yaml
+  /account/reset:
+    $ref: ./paths/account/reset.yaml
+  /account/register:
+    $ref: ./paths/account/register.yaml
+  /account/login:
+    $ref: ./paths/account/login.yaml
   /account/activate:
     $ref: ./paths/account/activate.yaml
   /account/password:
     $ref: ./paths/account/change_passwd.yaml
+
   /transaction/list:
     $ref: ./paths/billing/list_trans.yaml
   /invoice/list:
     $ref: ./paths/billing/list_invoice.yaml
   /invoice/sum:
     $ref: ./paths/billing/sum_invoice.yaml
+
   /snapshot/restore:
     $ref: ./paths/snapshot/restore-snapshot.yaml
   /snapshot/remove:
@@ -117,6 +132,7 @@ paths:
     $ref: ./paths/snapshot/create.yaml
   /snapshot/list:
     $ref: ./paths/snapshot/list.yaml
+
   /server/remove:
     $ref: ./paths/server/remove.yaml
   /server/create:
@@ -133,6 +149,16 @@ paths:
     $ref: ./paths/server/info.yaml
   /server/list:
     $ref: ./paths/server/list.yaml
+
+  /server/auto_backups:
+    $ref: ./paths/server/features/backup.yaml
+  /server/ddos_protection:
+    $ref: ./paths/server/features/ddos.yaml
+  /server/ipv6:
+    $ref: ./paths/server/features/ipv6.yaml
+  /server/private_networking:
+    $ref: ./paths/server/features/private_network.yaml
+
   /floating_ip/detach:
     $ref: ./paths/network/ipv4/detach.yaml
   /floating_ip/attach:
@@ -143,22 +169,17 @@ paths:
     $ref: ./paths/network/ipv4/create.yaml
   /floating_ip/list:
     $ref: ./paths/network/ipv4/list.yaml
+
   /ssh_key/remove:
     $ref: ./paths/ssh_key/remove.yaml
   /ssh_key/add:
     $ref: ./paths/ssh_key/add.yaml
   /ssh_key/list:
     $ref: ./paths/ssh_key/list.yaml
+
   /backup/restore:
     $ref: ./paths/snapshot/restore-backup.yaml
-  /account/info:
-    $ref: ./paths/account/info.yaml
-  /account/reset:
-    $ref: ./paths/account/reset.yaml
-  /account/register:
-    $ref: ./paths/account/register.yaml
-  /account/login:
-    $ref: ./paths/account/login.yaml
+
   '/feature/list/{region_id}':
     $ref: ./paths/_public/feature.yaml
   '/plan/list/{region_id}':
@@ -167,12 +188,9 @@ paths:
     $ref: ./paths/_public/image.yaml
   /region/list:
     $ref: ./paths/_public/region.yaml
-  /account/token_list:
-    $ref: ./paths/account_token/list.yaml
-  /account/token_remove:
-    $ref: ./paths/account_token/remove.yaml
   /availability/list:
     $ref: ./paths/_public/availibility.yaml
+
   /volume/list:
     $ref: ./paths/volume/list.yaml
   /volume/create:
