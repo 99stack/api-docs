@@ -17,4 +17,4 @@ content:
       message: unauthorized, this function requires authentication
       response_type: error
       response_code: 401
-  description: Unauthorized
+description: Unauthorized

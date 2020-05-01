@@ -17,4 +17,4 @@ content:
       message: not enough funds available to create this resource
       response_type: error
       response_code: 402
-  description: Payment Required
+description: Payment Required

@@ -3,4 +3,5 @@ content:
     schema:
       type: object
     example:
-  description: No Content
+      No Content
+description: No Content

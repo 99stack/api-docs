@@ -17,4 +17,4 @@ content:
       message: access denied, your account does not have permissions to use this function
       response_type: error
       response_code: 403
-  description: Access Denied
+description: Access Denied

@@ -17,4 +17,4 @@ content:
       message: invalid input data, please try again with valid input
       response_type: error
       response_code: 400
-  description: Bad Request
+description: Bad Request
