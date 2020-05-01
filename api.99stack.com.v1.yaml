@@ -247,9 +247,7 @@ tags:
   - name: Public
     description: 'This section contains all information about regions, images, plans and features. The Authorization header is not required for any function in this section.'
 
-security: []
 components:
-  securitySchemes: {}
   headers:
     Content-Type:
       description: Should be set to application/json
