@@ -5,7 +5,24 @@ delete:
   description: "Removes a floating IP address. The IP address must be detached or this function will return an error. Please note that some regions won't allow removal of floating IP's until a certain time has passed, usually 24 hour."
   operationId: floating_ip-remove
   parameters:
-    $ref: ../../../models/headers.yaml
+    - name: Authorization
+      in: header
+      description: ''
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+        example: Bearer API_TOKEN
+    - name: Content-Type
+      in: header
+      description: ''
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+        example: application/json
   requestBody:
     required: true
     content:

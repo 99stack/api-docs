@@ -5,7 +5,24 @@ post:
   description: "Detach existing floating IP address from the server it's currently attached to."
   operationId: floating_ip-detach
   parameters:
-    $ref: ../../../models/headers.yaml
+    - name: Authorization
+      in: header
+      description: ''
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+        example: Bearer API_TOKEN
+    - name: Content-Type
+      in: header
+      description: ''
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+        example: application/json
   requestBody:
     required: true
     content:

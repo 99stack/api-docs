@@ -5,7 +5,24 @@ post:
   description: Create a new floating IP address that can be used in a specific region.
   operationId: floating_ip-create
   parameters:
-    $ref: ../../../models/headers.yaml
+    - name: Authorization
+      in: header
+      description: ''
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+        example: Bearer API_TOKEN
+    - name: Content-Type
+      in: header
+      description: ''
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+        example: application/json
   requestBody:
     required: true
     content:
