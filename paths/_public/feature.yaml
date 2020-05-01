@@ -1,7 +1,6 @@
 get:
   tags:
     - Public
-    - Features
   summary: Feature list
   description: "Returns a list over available features. Feature lists are uniqe for each region, a region ID is therefore required as last part of the call. See:\n\n```\n/v1/region/list\n```\n\nFor a list of all available regions. "
   operationId: feature-list

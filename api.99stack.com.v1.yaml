@@ -93,6 +93,7 @@ servers:
   - url: 'https://cf-api.99stack.com/v1'
     variables: {}
     description: 99Stack API (us-central)
+    
 paths:
   /account/token_create:
     $ref: ./paths/account_token/create.yaml
@@ -199,6 +200,7 @@ x-tagGroups:
     tags:
       - Snapshot
       - Block storage
+      - Object storage
   - name: Information
     tags:
       - Public
@@ -222,6 +224,8 @@ tags:
     description: 'Create, manage and restore snapshots and backups.'
   - name: Block storage
     description: 'Create and manage block storage devices that can be used and mounted similar to a local ssd drive.'
+  - name: Object storage
+    description: 'Create and manage S3 compatible object storage buckets.'
   - name: Public
     description: 'This section contains all information about regions, images, plans and features. The Authorization header is not required for any function in this section.'
 
