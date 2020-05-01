@@ -1,3 +1,4 @@
+description: Payment Required
 content:
   application/json:
     schema:
@@ -17,4 +18,3 @@ content:
       message: not enough funds available to create this resource
       response_type: error
       response_code: 402
-description: Payment Required

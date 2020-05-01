@@ -1,7 +1,7 @@
+description: No Content
 content:
   application/json:
     schema:
       type: object
     example:
       No Content
-description: No Content
