@@ -50,13 +50,11 @@ delete:
   security: []
   responses:
     '204':
-      description: No Content  
+      $ref: ../../models/2xx-responses/204.yaml
     '400':
       $ref: ../../models/4xx-responses/400.yaml
     '401':
       $ref: ../../models/4xx-responses/401.yaml
-    '402':
-      $ref: ../../models/4xx-responses/402.yaml
     '403':
       $ref: ../../models/4xx-responses/403.yaml
     '404':
