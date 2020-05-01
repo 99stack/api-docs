@@ -1,9 +1,9 @@
 post:
   tags:
-    - Actions
-  summary: Start server
-  description: 'Send a startup signal to server, this is similar to pressing the power on button.'
-  operationId: server-start
+    - Features
+  summary: DDoS protection
+  description: 'Toggle DDoS protection for additional protection up to 100GBit/s in supported regions.'
+  operationId: ddos-protection
   parameters:
     - name: Authorization
       in: header

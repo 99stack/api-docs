@@ -182,6 +182,7 @@ paths:
     $ref: ./paths/volume/detach.yaml
   /volume/remove:
     $ref: ./paths/volume/remove.yaml
+
 x-tagGroups:
   - name: Account
     tags:
@@ -192,7 +193,8 @@ x-tagGroups:
     tags:
       - SSH Keys
       - Floating IPs
-      - Server
+      - Actions
+      - Features
   - name: Storage
     tags:
       - Snapshot
@@ -212,8 +214,10 @@ tags:
     description: 'Upload and manage your public SSH keys, these keys will be deployed to new servers upon creation, and used instead of password authentication.'
   - name: Floating IPs
     description: 'Create and manage network interfaces, IPv4 and IPv6 addresses'
-  - name: Server
+  - name: Actions
     description: 'Create and manage server instances of various types'
+  - name: Features
+    description: 'Manage server features'
   - name: Snapshot
     description: 'Create, manage and restore snapshots and backups.'
   - name: Block storage

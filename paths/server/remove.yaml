@@ -1,6 +1,6 @@
 delete:
   tags:
-    - Server
+    - Actions
   summary: Remove server
   description: 'Remove a server by `uuid` or `id`.' 
   operationId: server-remove

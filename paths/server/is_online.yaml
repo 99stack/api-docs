@@ -1,6 +1,6 @@
 post:
   tags:
-    - Server
+    - Actions
   summary: Check if online
   description: 'Returns power status for the server.'
   operationId: server-is_online

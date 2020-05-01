@@ -1,9 +1,9 @@
 post:
   tags:
-    - Actions
-  summary: Start server
-  description: 'Send a startup signal to server, this is similar to pressing the power on button.'
-  operationId: server-start
+    - Features
+  summary: Auto backups
+  description: 'Toggle automatic backups and schedule creation of snapshots.'
+  operationId: auto-backup
   parameters:
     - name: Authorization
       in: header

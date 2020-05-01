@@ -1,6 +1,6 @@
 post:
   tags:
-    - Server
+    - Actions
   summary: View info
   description: 'Returns a server object with information about requested server.'
   operationId: server-info
