@@ -1,23 +1,11 @@
 get:
   tags:
     - Public
-  summary: Images list
+  summary: Image list
   description: |-
-    Returns a list over available system images. Image lists are uniqe for each region, a region ID is therefore required as last part of the call. See:
-
-    ```
-    /v1/region/list
-    ```
-
-    For a list of all available regions. Image ID's is a 4 number code where the first number indicates which server generation a specific image can be deployed too, i.e ID's between 1101 and 1999 can only be used on first generation servers. The second number (x1xx, x2xx, ...) indicates the image type.
-
-    | Number  | Description  |
-    |---|---|
-    | 1  | Raw OS image, a blank operating system image without nonsense  |
-    | 2  | Application image, a preinstalled application  |
-    | 3  | Snapshot, available snapshots in your account  |
-    | 4  | Backup, available backups in your account  |
-    | 5  | Custom, a custom image  |
+    Takes a `region_id` as url parameter and returns a list over all images available in that specific region. Sending this request without `region_id` returns a large list over all available images, on all generations in all datacenters (~110KB).
+    
+    Images are listed by order of it's four digit `id` where the first number indicates generation (G1, G2, G3 etc..). The second number indicates image type (raw os, application, snapshot or custom), and the last two digits is the image `id`.
   operationId: image-list
   parameters: []
   responses:
