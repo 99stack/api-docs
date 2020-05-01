@@ -31,14 +31,14 @@ post:
           $ref: ../../models/request-id_or_uuid.yaml
         examples:
           uuid: 
-            summary: using uuid
+            summary: Request with uuid
             value:
               {
-                "volume_id":"34626233-3739-4637-b638-376532306637", 
+                "volume_id": "34626233-3739-4637-b638-376532306637", 
                 "server_id": "33333462-6165-4230-b363-356230383139" 
               }
           id: 
-            summary: using id
+            summary: Request with id
             value: 
               { 
                 "volume_id": 123456, 
@@ -52,4 +52,16 @@ post:
   security: []
   responses:
     '202':
-      description: Accepted  
+      description: Accepted
+    '400':
+      $ref: ../../models/4xx-responses/400.yaml
+    '401':
+      $ref: ../../models/4xx-responses/401.yaml
+    '402':
+      $ref: ../../models/4xx-responses/402.yaml
+    '403':
+      $ref: ../../models/4xx-responses/403.yaml
+    '404':
+      $ref: ../../models/4xx-responses/404.yaml
+    '405':
+      $ref: ../../models/4xx-responses/405.yaml
