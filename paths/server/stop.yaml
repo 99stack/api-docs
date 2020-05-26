@@ -1,6 +1,6 @@
 post:
   tags:
-    - Server
+    - Actions
   summary: Stop server
   description: 'Force a server to halt, this is the same as pressing the power off button on a physical machine.'
   operationId: server-stop

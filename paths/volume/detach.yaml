@@ -44,6 +44,7 @@ post:
                 "volume_id": 123456, 
                 "server_id": 654321
               }
+  
   x-operation-settings:
     CollectParameters: false
     AllowDynamicQueryParameters: false
@@ -52,4 +53,14 @@ post:
   security: []
   responses:
     '202':
-      description: Accepted  
+      description: Accepted
+    '400':
+      $ref: ../../models/4xx-responses/400.yaml
+    '401':
+      $ref: ../../models/4xx-responses/401.yaml
+    '403':
+      $ref: ../../models/4xx-responses/403.yaml
+    '404':
+      $ref: ../../models/4xx-responses/404.yaml
+    '405':
+      $ref: ../../models/4xx-responses/405.yaml

@@ -1,6 +1,6 @@
 post:
   tags:
-    - Server
+    - Actions
   summary: Reboot server
   description: 'Rend a reboot signal to the server, if the server is not running this will only start the server.'
   operationId: server-reboot

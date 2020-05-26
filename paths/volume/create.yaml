@@ -95,25 +95,17 @@ post:
                   "created": "2020-04-21T09:19:15Z"
                 }
     '400':
-      content:
-        application/json:
-          schema:
-            $ref: ../../models/response-forbidden.v1.yaml
-          example:
-            message: Failed to create volume
-            response_type: warning
-            response_code: 400
-      description: Bad Request
+      $ref: ../../models/4xx-responses/400.yaml
     '401':
-      content:
-        application/json:
-          schema:
-            $ref: ../../models/response-forbidden.v1.yaml
-          example:
-            message: Failed to create volume
-            response_type: warning
-            response_code: 401
-      description: Unauthorized
+      $ref: ../../models/4xx-responses/401.yaml
+    '402':
+      $ref: ../../models/4xx-responses/402.yaml
+    '403':
+      $ref: ../../models/4xx-responses/403.yaml
+    '404':
+      $ref: ../../models/4xx-responses/404.yaml
+    '405':
+      $ref: ../../models/4xx-responses/405.yaml
   x-operation-settings:
     CollectParameters: false
     AllowDynamicQueryParameters: false

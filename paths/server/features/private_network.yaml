@@ -1,9 +1,9 @@
 post:
   tags:
-    - Actions
-  summary: Start server
-  description: 'Send a startup signal to server, this is similar to pressing the power on button.'
-  operationId: server-start
+    - Features
+  summary: Private networking
+  description: 'Toggle private networking to obtain and attach a private network to your server which allows communication to other servers in the same datacenter without bandwidth quotas.'
+  operationId: private-networking
   parameters:
     - name: Authorization
       in: header

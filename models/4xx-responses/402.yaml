@@ -1,0 +1,20 @@
+description: Payment Required
+content:
+  application/json:
+    schema:
+      type: object
+      description: 
+      properties:
+        message:
+          type: string
+          description: Response text with more information about the problem
+        response_type:
+          type: string
+          description: Type of response message `success|info|warning|error`
+        response_code:
+          type: integer
+          description: The `http` status code
+    example:
+      message: not enough funds available to create this resource
+      response_type: error
+      response_code: 402

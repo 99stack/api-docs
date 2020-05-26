@@ -73,6 +73,10 @@ get:
                   ]
                 }
       description: OK
+    '401':
+      $ref: ../../models/4xx-responses/401.yaml
+    '405':
+      $ref: ../../models/4xx-responses/405.yaml
   x-operation-settings:
     CollectParameters: false
     AllowDynamicQueryParameters: false

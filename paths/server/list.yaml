@@ -1,6 +1,6 @@
 get:
   tags:
-    - Server
+    - Actions
   summary: List servers
   description: 'Returns a list over all servers on requesting account, including information about the servers.'
   operationId: server-list

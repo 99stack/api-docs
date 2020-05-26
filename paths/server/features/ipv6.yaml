@@ -1,9 +1,9 @@
 post:
   tags:
-    - Actions
-  summary: Start server
-  description: 'Send a startup signal to server, this is similar to pressing the power on button.'
-  operationId: server-start
+    - Features
+  summary: IPv6
+  description: 'Toggle IPv6 to obtain and attach a free /64 IPv6 address block to your server.'
+  operationId: ipv6
   parameters:
     - name: Authorization
       in: header

@@ -1,6 +1,6 @@
 post:
   tags:
-    - Server
+    - Actions
   summary: Create server
   description: 'Deploy a new server anywhere in 99Stack cloud.'
   operationId: server-create

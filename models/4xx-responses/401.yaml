@@ -1,0 +1,20 @@
+description: Unauthorized
+content:
+  application/json:
+    schema:
+      type: object
+      description: 
+      properties:
+        message:
+          type: string
+          description: Response text with more information about the problem
+        response_type:
+          type: string
+          description: Type of response message `success|info|warning|error`
+        response_code:
+          type: integer
+          description: The `http` status code
+    example:
+      message: unauthorized, this function requires authentication
+      response_type: error
+      response_code: 401

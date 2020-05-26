@@ -1,31 +1,11 @@
 get:
   tags:
     - Public
-  summary: Regions list
+  summary: Region list
   description: |-
-    Returns a list over all available regions including available features. Availibility of plans and images can be obtained by calling one of the following functions:
+    Regions are listed by order of it's three digit `id` where the first number indicates generation (G1, G2, G3 etc..). The last two digits represent the region `id` in no specific order.
 
-    ```
-    /v1/plan/list/REGIONID
-    ```
-
-    ```
-    /v1/image/list/REGIONID
-    ```
-
-    Where *REGIONID* is the ID (int) that corresponds to a specific region. Region ID's has the following format: 1xx, 2xx, 3xx etc.. where the first number represents server generation. First generation servers are available in regions with an ID between 101 and 199. To view available features in a specific region, use:
-
-    ```
-    /v1/region/list_features/REGIONID
-    ```
-  operationId: region-list
-  parameters: []
-  x-operation-settings:
-    CollectParameters: false
-    AllowDynamicQueryParameters: false
-    AllowDynamicFormParameters: false
-    IsMultiContentStreaming: false
-
+    Generations determine the company in charge of the datacenters which indicates what laws and terms of service applies. Before uploading any controversial or potentially illgal content, please consult 99Stack support to discuss available regions.
   responses:
     '200':
       description: OK
@@ -668,3 +648,14 @@ get:
                     operator_id: 0928a080
                 meta:
                   total: 40
+    '400':
+      $ref: ../../models/4xx-responses/400.yaml
+    '405':
+      $ref: ../../models/4xx-responses/405.yaml
+  operationId: region-list
+  parameters: []
+  x-operation-settings:
+    CollectParameters: false
+    AllowDynamicQueryParameters: false
+    AllowDynamicFormParameters: false
+    IsMultiContentStreaming: false
