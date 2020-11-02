@@ -5,7 +5,12 @@ info:
   contact: {}
   description: |-
     **Mirrors**: 
-      * https://www.99stack.com/resources/api-docs
+      * https://www.99stack.com/resources/docs
+      * https://api.eu-west.aws.99stack.com/docs
+      * https://api.us-east.aws.99stack.com/docs
+      * https://api.us-west.aws.99stack.com/docs
+      * https://api.as-east.aws.99stack.com/docs
+      * https://api.as-south.aws.99stack.com/docs
       * https://cf-api.99stack.com/docs
       * https://api.99stack.com/docs
 
@@ -87,12 +92,27 @@ info:
     name: MIT
     url: 'https://github.com/99stack/api-docs/blob/master/LICENSE'
 servers:
+  - url: 'https://api.eu-west.aws.99stack.com/v1'
+    variables: {}
+    description: Local (as-south)
+  - url: 'https://api.us-east.aws.99stack.com/v1'
+    variables: {}
+    description: Local (as-south)
+  - url: 'https://api.us-west.aws.99stack.com/v1'
+    variables: {}
+    description: Local (as-south)
+  - url: 'https://api.as-east.aws.99stack.com/v1'
+    variables: {}
+    description: Local (as-south)
+  - url: 'https://api.as-south.aws.99stack.com/v1'
+    variables: {}
+    description: Local (as-south)
   - url: 'https://api.99stack.com/v1'
     variables: {}
-    description: 99Stack API (eu-west)
+    description: 99Stack API (Global)
   - url: 'https://cf-api.99stack.com/v1'
     variables: {}
-    description: 99Stack API (us-central)
+    description: 99Stack API (Cloudflare)
 
 paths:
   /account/token_create:
