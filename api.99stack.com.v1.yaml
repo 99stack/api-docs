@@ -92,6 +92,9 @@ info:
     name: MIT
     url: 'https://github.com/99stack/api-docs/blob/master/LICENSE'
 servers:
+  - url: 'https://api.99stack.com/v1'
+    variables: {}
+    description: Global
   - url: 'https://api.eu-west.aws.99stack.com/v1'
     variables: {}
     description: eu-west
@@ -107,9 +110,6 @@ servers:
   - url: 'https://api.as-south.aws.99stack.com/v1'
     variables: {}
     description: as-south
-  - url: 'https://api.99stack.com/v1'
-    variables: {}
-    description: Global
   - url: 'https://cf-api.99stack.com/v1'
     variables: {}
     description: Cloudflare
