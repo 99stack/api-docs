@@ -94,25 +94,25 @@ info:
 servers:
   - url: 'https://api.eu-west.aws.99stack.com/v1'
     variables: {}
-    description: Local (as-south)
+    description: eu-west
   - url: 'https://api.us-east.aws.99stack.com/v1'
     variables: {}
-    description: Local (as-south)
+    description: us-east
   - url: 'https://api.us-west.aws.99stack.com/v1'
     variables: {}
-    description: Local (as-south)
+    description: us-west
   - url: 'https://api.as-east.aws.99stack.com/v1'
     variables: {}
-    description: Local (as-south)
+    description: as-east
   - url: 'https://api.as-south.aws.99stack.com/v1'
     variables: {}
-    description: Local (as-south)
+    description: as-south
   - url: 'https://api.99stack.com/v1'
     variables: {}
-    description: 99Stack API (Global)
+    description: Global
   - url: 'https://cf-api.99stack.com/v1'
     variables: {}
-    description: 99Stack API (Cloudflare)
+    description: Cloudflare
 
 paths:
   /account/token_create:
