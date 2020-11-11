@@ -40,22 +40,22 @@ post:
               type: integer
               description: The `id` of the region the volume will be created in
         examples:
-            100gb: 
-              summary: Create a 100GB volume in Frankfurt
-              value:
-                {
-                  "name":"a-100gb-volume",
-                  "region": 310,
-                  "size_gb": 100
-                }
-            5tb: 
-              summary: Create a 5TB volume in London
-              value:
-                {
-                  "name":"a-5tb-volume",
-                  "region": 204,
-                  "size_gb": 100
-                }
+          100gb: 
+            summary: Create a 100GB volume in Frankfurt
+            value:
+              {
+                "name":"a-100gb-volume",
+                "region": 310,
+                "size_gb": 100
+              }
+          5tb: 
+            summary: Create a 5TB volume in London
+            value:
+              {
+                "name":"a-5tb-volume",
+                "region": 204,
+                "size_gb": 100
+              }
   responses:
     '201':
       description: Created
