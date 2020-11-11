@@ -53,8 +53,8 @@ post:
             value:
               {
                 "name":"a-5tb-volume",
-                "region": 204,
-                "size_gb": 100
+                "region": 206,
+                "size_gb": 5000
               }
   responses:
     '201':
