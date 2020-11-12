@@ -6,24 +6,7 @@ post:
   operationId: floating_ip-detach
   security: []
   parameters:
-    - name: Authorization
-      in: header
-      description: ''
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-        example: Bearer API_TOKEN
-    - name: Content-Type
-      in: header
-      description: ''
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-        example: application/json
+    $ref: ../../../models/headers.yaml
 
   requestBody:
     required: true
