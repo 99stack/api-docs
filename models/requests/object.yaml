@@ -8,15 +8,15 @@ application/json:
       id:
         type: integer
         description: Unique resource `id`, a integer used to identify a resource by it's unique id
-    description: A resource `id` or `uuid` can be used in this request
+
   examples:
-    uuid: 
+    example-1: 
       summary: Resource identified by uuid
       value:
         {
           "<resource>_id": "34626233-3739-4637-b638-376532306637"
         }
-    id: 
+    example-2: 
       summary: Resource identified by id
       value: 
         { 
