@@ -1,18 +1,18 @@
-- name: Authorization
-  in: header
-  description: ''
-  required: true
-  style: simple
-  explode: false
-  schema:
-    type: string
-    example: Bearer API_TOKEN
-- name: Content-Type
-  in: header
-  description: ''
-  required: true
-  style: simple
-  explode: false
-  schema:
-    type: string
-    example: application/json
+    - name: Authorization
+      in: header
+      description: ''
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+        example: Bearer API_TOKEN
+    - name: Content-Type
+      in: header
+      description: ''
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+        example: application/json
