@@ -11,7 +11,17 @@ post:
   requestBody:
     required: true
     content:
-      $ref: ../../../models/requests/object.yaml
+      application/json:
+        schema:
+          $ref: ../../../models/requests/res-schema.yaml
+        examples:
+          example-1: 
+            summary: Attach floating point ip to a server instance
+            value:
+              {
+                "server_id": "39343439-3938-4963-b035-343462393435",
+                "ip_id": "fae640c3-537e-4820-ab9f-ef251405bfec"
+              }
 
   responses:
     '202':
