@@ -27,6 +27,7 @@ post:
     required: true
     content:
       $ref: ../../../models/requests/object.yaml
+      
   x-operation-settings:
     CollectParameters: false
     AllowDynamicQueryParameters: false
