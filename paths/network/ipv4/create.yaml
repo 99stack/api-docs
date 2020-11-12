@@ -29,19 +29,36 @@ post:
       application/json:
         schema:
           type: object
-          properties: {}
-    '400':
-      content:
-        application/json:
-          schema:
-            $ref: ../../../models/response-forbidden.v1.yaml
-          example:
-            message: Failed to create floating IP
-            response_type: warning
-            response_code: 400
-      description: Bad Request
-    '401':
-      description: Unauthorized
+          properties:
+            region_id: 
+              type: integer
+              description: Data center id, this is where the new IP will be created
+            ip_version:
+              type: integer
+              description: IPv4 or IPv6, allowed values are `4` or `6`
+        examples:
+          v4-ams: 
+            summary: Create a IPv4 address in Amsterdam
+            value:
+              {
+                "region_id": 110,
+                "ip_version": 4
+              }
+          v4-lon: 
+            summary: Create a IPv4 address in Londo
+            value:
+              {
+                "region_id": 206,
+                "ip_version": 4
+              }
+          v4-fra: 
+            summary: Create a IPv6 address in Frankfurt
+            value:
+              {
+                "region_id": 310,
+                "ip_version": 6
+              }
+
   x-operation-settings:
     CollectParameters: false
     AllowDynamicQueryParameters: false
