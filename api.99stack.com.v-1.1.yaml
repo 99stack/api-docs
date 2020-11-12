@@ -5,14 +5,14 @@ info:
   contact: {}
   description: |-
     **Mirrors**: 
-      * https://www.99stack.com/resources/docs
-      * https://api.eu-west.aws.99stack.com/docs
-      * https://api.us-east.aws.99stack.com/docs
-      * https://api.us-west.aws.99stack.com/docs
-      * https://api.as-east.aws.99stack.com/docs
-      * https://api.as-south.aws.99stack.com/docs
-      * https://cf-api.99stack.com/docs
-      * https://api.99stack.com/docs
+      * https://www.99stack.com/resources/docs/
+      * https://api.eu-west.aws.99stack.com/docs/
+      * https://api.us-east.aws.99stack.com/docs/
+      * https://api.us-west.aws.99stack.com/docs/
+      * https://api.as-east.aws.99stack.com/docs/
+      * https://api.as-south.aws.99stack.com/docs/
+      * https://cf-api.99stack.com/docs/
+      * https://api.99stack.com/docs/
 
     **Control panel GUI**: 
       * https://dash.99stack.com
@@ -152,6 +152,7 @@ paths:
     $ref: ./paths/snapshot/restore.yaml
   /snapshot/remove:
     $ref: ./paths/snapshot/remove.yaml
+
 
   /server/remove:
     $ref: ./paths/server/remove.yaml
