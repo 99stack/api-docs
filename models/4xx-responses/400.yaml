@@ -30,8 +30,8 @@ content:
           {
             "errors": [
               {
-                "reason": "invalid data type on field '<field_name_1' (integer), expected 'string'",
-                "field": "field_name_1"
+                "reason": "invalid data type on field '<field_name_1>' (integer), expected 'string'",
+                "field": "<field_name_1>"
               },
               {
                 "reason": "required field '<field_name_2>' was not found",
