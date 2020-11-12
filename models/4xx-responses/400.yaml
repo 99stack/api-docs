@@ -5,16 +5,37 @@ content:
       type: object
       description: 
       properties:
-        message:
+        reason:
           type: string
-          description: Response text with more information about the problem
-        response_type:
+          description: Human readable explaination about why the request failed
+        field:
           type: string
-          description: Type of response message `success|info|warning|error`
-        response_code:
-          type: integer
-          description: The `http` status code
-    example:
-      message: invalid input data, please try again with valid input
-      response_type: error
-      response_code: 400
+          description: The malformed input field
+
+    examples:
+      response-1:
+        summary: Response message when bad input was received
+        value:
+          {
+            "errors": [
+              {
+                "reason": "required field '<field_name>' was not found",
+                "field": "<field_name>"
+              }
+            ]
+          }
+      response-2:
+        summary: Response message with multiple bad fields
+        value:
+          {
+            "errors": [
+              {
+                "reason": "invalid data type on field '<field_name_1' (integer), expected 'string'",
+                "field": "field_name_1"
+              },
+              {
+                "reason": "required field '<field_name_2>' was not found",
+                "field": "<field_name_2>"
+              }
+            ]
+          }
