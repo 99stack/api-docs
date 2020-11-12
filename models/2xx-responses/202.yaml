@@ -7,7 +7,7 @@ content:
       properties:
         message:
           type: string
-          description: Response text with more information about the problem
+          description: Response text with additional status information
         response_type:
           type: string
           description: Type of response message `success|info|warning|error`

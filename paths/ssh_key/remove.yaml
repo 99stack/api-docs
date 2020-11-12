@@ -28,8 +28,20 @@ delete:
     content:
       application/json:
         schema:
-          type: object
-          properties: {}
+          $ref: ../../models/request-id_or_uuid.yaml
+        examples:
+          uuid: 
+            summary: using uuid
+            value:
+              {
+                "ssh_key_id":"34626233-3739-4637-b638-376532306637"
+              }
+          id: 
+            summary: using id
+            value: 
+              { 
+                "ssh_key_id": 123456
+              }
   x-operation-settings:
     CollectParameters: false
     AllowDynamicQueryParameters: false
@@ -38,4 +50,14 @@ delete:
   security: []
   responses:
     '204':
-      description: No Content  
+      $ref: ../../models/2xx-responses/204.yaml
+    '400':
+      $ref: ../../models/4xx-responses/400.yaml
+    '401':
+      $ref: ../../models/4xx-responses/401.yaml
+    '403':
+      $ref: ../../models/4xx-responses/403.yaml
+    '404':
+      $ref: ../../models/4xx-responses/404.yaml
+    '405':
+      $ref: ../../models/4xx-responses/405.yaml

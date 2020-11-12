@@ -144,14 +144,14 @@ paths:
   /invoice/sum:
     $ref: ./paths/billing/sum_invoice.yaml
 
+  /snapshot/list:
+    $ref: ./paths/snapshot/list.yaml
+  /snapshot/create:
+    $ref: ./paths/snapshot/create.yaml
   /snapshot/restore:
     $ref: ./paths/snapshot/restore.yaml
   /snapshot/remove:
     $ref: ./paths/snapshot/remove.yaml
-  /snapshot/create:
-    $ref: ./paths/snapshot/create.yaml
-  /snapshot/list:
-    $ref: ./paths/snapshot/list.yaml
 
   /server/remove:
     $ref: ./paths/server/remove.yaml
@@ -227,6 +227,9 @@ paths:
     $ref: ./paths/volume/remove.yaml
 
 x-tagGroups:
+  - name: Information
+    tags:
+      - Public
   - name: Account
     tags:
       - Account
@@ -235,7 +238,6 @@ x-tagGroups:
   - name: Server
     tags:
       - SSH Keys
-      - Floating IPs
       - Actions
       - Features
   - name: Storage
@@ -244,10 +246,9 @@ x-tagGroups:
       - Snapshot
       - Block storage
       - Object storage
-  - name: Information
+  - name: Network
     tags:
-      - Public
-
+      - Floating IPs
 tags:
   - name: Account
     description: Manage account and sub-accounts. View status and enabled features.
