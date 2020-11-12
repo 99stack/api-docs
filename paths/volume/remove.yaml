@@ -34,7 +34,7 @@ delete:
             summary: using uuid
             value:
               {
-                "volume_id":"34626233-3739-4637-b638-376532306637"
+                "volume_id": "34626233-3739-4637-b638-376532306637"
               }
           id: 
             summary: using id
