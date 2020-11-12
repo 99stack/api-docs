@@ -25,7 +25,63 @@ get:
         example: application/json
   responses:
     '200':
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              active:
+                type: integer
+                description: Indicates if account is being billed for the linked resource, `1` means yes, `0` means no
+              amount_hr:
+                type: double
+                description: Price per hour
+              amount_mo:
+                type: double
+                description: Price per month
+              resource_type:
+                type: string
+                description: Resource type is what the account is being billed for, i.e a `server`, a `volume` or a `floating_ip`
+              usage:
+                type: integer
+                description: Amout of hours the account has been billed for the linked resource
+              created:
+                type: string
+                description: Date created in UTC format
+          examples:
+            example-1:
+              summary: List of 100 latest resources
+              value:
+                {
+                  "invoices": [
+                    {
+                        "active": 0,
+                        "amount_hr": 0.0055,
+                        "amount_mo": 4,
+                        "resource_type": "floating_ip",
+                        "ts_created": "2020-11-12T07:50:08Z",
+                        "ts_removed": "1970-01-01T00:00:00Z",
+                        "usage": 568
+                    },
+                    {
+                      "active": 1,
+                      "amount_hr": 0.088,
+                      "amount_mo": 64,
+                      "resource_type": "server",
+                      "ts_created": "2019-11-11T16:01:07Z",
+                      "ts_removed": "2020-11-11T17:05:13Z",
+                      "usage": 8760
+                    }
+                  ],
+                  "meta": {
+                      "total": 2
+                  }
+              }
       description: OK
+    '401':
+      $ref: ../../models/4xx-responses/401.yaml
+    '405':
+      $ref: ../../models/4xx-responses/405.yaml
 
   x-operation-settings:
     CollectParameters: false
@@ -33,9 +89,3 @@ get:
     AllowDynamicFormParameters: false
     IsMultiContentStreaming: false
   security: []
-  requestBody:
-    content:
-      application/json:
-        schema:
-          type: object
-          properties: {}  

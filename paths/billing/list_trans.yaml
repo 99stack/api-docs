@@ -25,7 +25,68 @@ get:
         example: application/json
   responses:
     '200':
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              id:
+                type: integer
+                description: Transaction id
+              ptype:
+                type: string
+                description: Payment processor
+              pstatus:
+                type: string
+                description: Payment status
+              amount:
+                type: double
+                description: Amount in USD
+              fee:
+                type: double
+                description: Fee in USD
+              taxrate:
+                type: double
+                description: Value added tax in percent
+              created:
+                type: string
+                description: Date created in UTC format
+          examples:
+            example-1:
+              summary: List of 100 latest transactions
+              value:
+                {
+                  "transactions": [
+                    {
+                        "id": "p-xxxx-8qb4fe",
+                        "ptype": "paypal",
+                        "pstatus": "completed",
+                        "amount": 100,
+                        "fee": 5.9,
+                        "taxrate": 0.25,
+                        "ts_last_changed": "2020-04-28T12:46:03Z",
+                        "ts_created": "2020-04-28T12:46:03Z"
+                    },
+                    {
+                        "id": "c-xxxx-3bc45k",
+                        "ptype": "cryptonator",
+                        "pstatus": "completed",
+                        "amount": 200,
+                        "fee": 1.8,
+                        "taxrate": 0.25,
+                        "ts_last_changed": "2020-04-27T18:40:22Z",
+                        "ts_created": "2020-04-27T18:40:21Z"
+                    }
+                  ],
+                  "meta": {
+                    "total": 2
+                  }
+              }
       description: OK
+    '401':
+      $ref: ../../models/4xx-responses/401.yaml
+    '405':
+      $ref: ../../models/4xx-responses/405.yaml
 
   x-operation-settings:
     CollectParameters: false
@@ -33,9 +94,3 @@ get:
     AllowDynamicFormParameters: false
     IsMultiContentStreaming: false
   security: []
-  requestBody:
-    content:
-      application/json:
-        schema:
-          type: object
-          properties: {}  
