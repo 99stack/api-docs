@@ -1,9 +1,9 @@
 post:
   tags:
-    - "Block storage"
-  summary: Attach volume
-  description: Attach existing volume to a server, the server and the volume must be located within the same datacenter.
-  operationId: volume-attach
+    - SSH Keys
+  summary: Rename SSH Key
+  description: Give your SSH Key a new display name
+  operationId: ssh_key-rename
   parameters:
     - name: Authorization
       in: header

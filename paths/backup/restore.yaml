@@ -1,6 +1,6 @@
 post:
       tags:
-        - Snapshot
+        - Backup
       summary: Restore backup
       description: "Restore a source backup image (from ID or uuid) to a target server (identified by ID or uuid). \n\n**Caution**\n\nThe content on target server will be overwritten by the backup image and thus lost forever."
       operationId: backup-restore

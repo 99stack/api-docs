@@ -145,7 +145,7 @@ paths:
     $ref: ./paths/billing/sum_invoice.yaml
 
   /snapshot/restore:
-    $ref: ./paths/snapshot/restore-snapshot.yaml
+    $ref: ./paths/snapshot/restore.yaml
   /snapshot/remove:
     $ref: ./paths/snapshot/remove.yaml
   /snapshot/create:
@@ -170,8 +170,6 @@ paths:
   /server/list:
     $ref: ./paths/server/list.yaml
 
-  /server/auto_backups:
-    $ref: ./paths/server/features/backup.yaml
   /server/ddos_protection:
     $ref: ./paths/server/features/ddos.yaml
   /server/ipv6:
@@ -200,7 +198,11 @@ paths:
     $ref: ./paths/ssh_key/remove.yaml
 
   /backup/restore:
-    $ref: ./paths/snapshot/restore-backup.yaml
+    $ref: ./paths/backup/restore.yaml
+  /backup/enable:
+    $ref: ./paths/backup/enable.yaml
+  /backup/disable:
+    $ref: ./paths/backup/disable.yaml
 
   '/feature/list/{region_id}':
     $ref: ./paths/_public/feature.yaml
@@ -238,6 +240,7 @@ x-tagGroups:
       - Features
   - name: Storage
     tags:
+      - Backup
       - Snapshot
       - Block storage
       - Object storage

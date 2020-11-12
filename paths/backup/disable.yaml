@@ -1,9 +1,9 @@
 post:
   tags:
-    - Features
-  summary: Auto backups
-  description: 'Toggle automatic backups and schedule creation of snapshots.'
-  operationId: auto-backup
+    - Backup
+  summary: Disable backup
+  description: 'Disable automatic backups'
+  operationId: disable-backup
   parameters:
     - name: Authorization
       in: header
