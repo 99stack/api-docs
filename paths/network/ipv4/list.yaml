@@ -30,12 +30,7 @@ get:
     AllowDynamicFormParameters: false
     IsMultiContentStreaming: false
   security: []
-  requestBody:
-    content:
-      application/json:
-        schema:
-          type: object
-          properties: {}  
+
   responses:
     '200':
       content:

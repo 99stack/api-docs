@@ -1,0 +1,24 @@
+application/json:
+  schema:
+    type: object
+    properties:
+      uuid:
+        type: string
+        description: Unique resource `uuid`, a 36 character string identifier. Example `123e4567-e89b-12d3-a456-426655440000`
+      id:
+        type: integer
+        description: Unique resource `id`, a integer used to identify a resource by it's unique id
+    description: A resource `id` or `uuid` can be used in this request
+  examples:
+    uuid: 
+      summary: Resource identified by uuid
+      value:
+        {
+          "<resource>_id": "34626233-3739-4637-b638-376532306637"
+        }
+    id: 
+      summary: Resource identified by id
+      value: 
+        { 
+          "<resource>_id": 123456
+        }

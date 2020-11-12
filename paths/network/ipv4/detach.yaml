@@ -26,10 +26,7 @@ post:
   requestBody:
     required: true
     content:
-      application/json:
-        schema:
-          type: object
-          properties: {}
+      $ref: ../../../models/requests/object.yaml
   x-operation-settings:
     CollectParameters: false
     AllowDynamicQueryParameters: false
