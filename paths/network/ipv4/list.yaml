@@ -4,15 +4,9 @@ get:
   summary: List floating IPs
   description: "Returns a list over floating IP's associated with account and which server it's attached to (if any)."
   operationId: floating_ip-list
+  security: []
   parameters:
     $ref: ../../../models/headers.yaml
-
-  x-operation-settings:
-    CollectParameters: false
-    AllowDynamicQueryParameters: false
-    AllowDynamicFormParameters: false
-    IsMultiContentStreaming: false
-  security: []
 
   responses:
     '200':
@@ -68,3 +62,9 @@ get:
       $ref: ../../../models/4xx-responses/401.yaml
     '405':
       $ref: ../../../models/4xx-responses/405.yaml
+
+  x-operation-settings:
+    CollectParameters: false
+    AllowDynamicQueryParameters: false
+    AllowDynamicFormParameters: false
+    IsMultiContentStreaming: false

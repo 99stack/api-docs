@@ -4,18 +4,15 @@ post:
   summary: Attach floating IP
   description: Attach existing floating IP address to a server
   operationId: floating_ip-attach
+  security: []
   parameters:
     $ref: ../../../models/headers.yaml
+
   requestBody:
     required: true
     content:
       $ref: ../../../models/requests/object.yaml
-  x-operation-settings:
-    CollectParameters: false
-    AllowDynamicQueryParameters: false
-    AllowDynamicFormParameters: false
-    IsMultiContentStreaming: false
-  security: []
+
   responses:
     '202':
       $ref: ../../../models/2xx-responses/202.yaml
@@ -29,3 +26,9 @@ post:
       $ref: ../../../models/4xx-responses/404.yaml
     '405':
       $ref: ../../../models/4xx-responses/405.yaml
+
+  x-operation-settings:
+    CollectParameters: false
+    AllowDynamicQueryParameters: false
+    AllowDynamicFormParameters: false
+    IsMultiContentStreaming: false

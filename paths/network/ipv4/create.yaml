@@ -4,8 +4,10 @@ post:
   summary: Create floating IP
   description: Create a new floating IP address that can be used in a specific region.
   operationId: floating_ip-create
+  security: []  
   parameters:
     $ref: ../../../models/headers.yaml
+
   requestBody:
     required: true
     content:
@@ -42,12 +44,6 @@ post:
                 "ip_version": 6
               }
 
-  x-operation-settings:
-    CollectParameters: false
-    AllowDynamicQueryParameters: false
-    AllowDynamicFormParameters: false
-    IsMultiContentStreaming: false
-  security: []  
   responses:
     '201':
       description: Created
@@ -85,3 +81,9 @@ post:
       $ref: ../../../models/4xx-responses/404.yaml
     '405':
       $ref: ../../../models/4xx-responses/405.yaml
+
+  x-operation-settings:
+    CollectParameters: false
+    AllowDynamicQueryParameters: false
+    AllowDynamicFormParameters: false
+    IsMultiContentStreaming: false
