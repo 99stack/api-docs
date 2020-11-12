@@ -23,9 +23,6 @@ get:
       schema:
         type: string
         example: application/json
-  responses:
-    '200':
-      description: OK
 
   x-operation-settings:
     CollectParameters: false
@@ -39,3 +36,57 @@ get:
         schema:
           type: object
           properties: {}  
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              uuid:
+                type: string
+                description: Unique `UUID` for the new floating ip
+              server_id:
+                type: integer
+                description: ID of the server the ip is attached to 
+              address:
+                type: string
+                description: Floating IP address
+              netmask:
+                type: string
+                description: Floating IP address netmask
+              gateway:
+                type: string
+                description: Floating IP address gateway
+              reverse:
+                type: string
+                description: Floating IP address reverse DNS reccord
+              prefix:
+                type: string
+                description: Floating IP address network prefix. `32` for ipv4 (1 address) and `64` for ipv6 (a full /64 block) 
+              created:
+                type: string
+                description: Date created in UTC format
+          examples:
+            example-1:
+              summary: List of network interfaces
+              value:
+                {
+                  "floating_ips": [
+                      {
+                          "uuid": "39343439-3938-4963-b035-343462393435",
+                          "server_id": null,
+                          "address": "12.34.56.78",
+                          "netmask": "255.255.255.0",
+                          "gateway": "12.34.56.1",
+                          "reverse": "12.34.56.78.rdns.99stack.com",
+                          "prefix": 32,
+                          "type": "floating"
+                      }
+                  ]
+              }
+      description: OK
+    '401':
+      $ref: ../../../models/4xx-responses/401.yaml
+    '405':
+      $ref: ../../../models/4xx-responses/405.yaml

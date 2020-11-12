@@ -30,13 +30,6 @@ post:
         schema:
           type: object
           properties: {}
-  responses:
-    '201':
-      description: Created
-      content:
-        application/json:
-          schema:
-            type: object
     '400':
       content:
         application/json:
@@ -55,3 +48,40 @@ post:
     AllowDynamicFormParameters: false
     IsMultiContentStreaming: false
   security: []  
+  responses:
+    '201':
+      description: Created
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              uuid:
+                type: string
+                description: Unique `UUID` for the new floating IP
+              ip_address:
+                type: string
+                description: The new IP address
+              created:
+                type: string
+                description: Date created in UTC format
+          examples:
+            object-1: 
+              summary: Floating IP object
+              value:
+                {
+                  "uuid": "39343439-3938-4963-b035-343462393435",
+                  "ip_address": "12.34.56.78"
+                }
+    '400':
+      $ref: ../../../models/4xx-responses/400.yaml
+    '401':
+      $ref: ../../../models/4xx-responses/401.yaml
+    '402':
+      $ref: ../../../models/4xx-responses/402.yaml
+    '403':
+      $ref: ../../../models/4xx-responses/403.yaml
+    '404':
+      $ref: ../../../models/4xx-responses/404.yaml
+    '405':
+      $ref: ../../../models/4xx-responses/405.yaml
