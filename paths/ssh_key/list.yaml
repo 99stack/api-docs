@@ -37,4 +37,47 @@ get:
           properties: {}
   responses:
     '200':
-      description: OK  
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              uuid:
+                type: string
+                description: Unique `UUID` for the new volume
+              name:
+                type: string
+                description: Display name for the SSH Key
+              fingerprint:
+                type: string
+                description: SSH Key fingerprint
+              created:
+                type: string
+                description: Date created in UTC
+          examples:
+            object-1: 
+              summary: RSA key successfully uploaded
+              value:
+                {
+                  "ssh_keys": [
+                    {
+                        "name": "root_rsa",
+                        "uuid": "52c5ac68-478b-461f-a585-e588256f9995",
+                        "data": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDGlXmWjH3Ly6ty9O3hYeg8p/ld7Isl65DaoxqTclbPrAdvDKrsB12MJlJS7oNur2TNUKfU24N+UKn7fqyUeEGWZrIh2DIaPC2Msq132x2P3IBeposynhfBmk6ZoJi58WjddIInQnaAJ/OJZB2waOp+RdtW53lP7zkPTny6yOUYUmFuC93mEMTAf6CpHEoBsNB/OH8km11kpjbbZ4QUx/1shXNnXo5El0/2Cqn7g/s0hi1EuDysDxAj2BkH8fsNyHitNhattf6NIL4akKagcZUhY/9Oj3TikM05MR5Jf72w8EQTtr9vNMTkxlaz/G66GeJR0TAd7CUCux+7KJ8KSH6r root",
+                        "created": "2019-10-12T15:57:07Z",
+                        "fingerprint": "8b:ad:f0:0d:8b:ad:f0:0d:8b:ad:f0:0d:8b:ad:f0:0d"
+                    },
+                    {
+                        "name": "root_ecdsa",
+                        "uuid": "7b016201-2c41-463d-ab3a-12cf8228366e",
+                        "data": "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBCGtytDuWTzCZJ4FGy5OBKTgYwllftrmgZ3Z+mSTTRmNVlTCEDygSzALLdtC7MEilv/ezTN2uA3HIC72jYegrMc= root",
+                        "created": "2020-06-25T10:09:22Z",
+                        "fingerprint": "de:ad:be:ef:de:ad:be:ef:de:ad:be:ef:de:ad:be:ef"
+                    }
+                ]
+                }
+    '401':
+      $ref: ../../models/4xx-responses/401.yaml
+    '405':
+      $ref: ../../models/4xx-responses/405.yaml

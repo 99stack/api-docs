@@ -179,23 +179,25 @@ paths:
   /server/private_networking:
     $ref: ./paths/server/features/private_network.yaml
 
-  /floating_ip/detach:
-    $ref: ./paths/network/ipv4/detach.yaml
-  /floating_ip/attach:
-    $ref: ./paths/network/ipv4/attach.yaml
-  /floating_ip/remove:
-    $ref: ./paths/network/ipv4/remove.yaml
-  /floating_ip/create:
-    $ref: ./paths/network/ipv4/create.yaml
   /floating_ip/list:
     $ref: ./paths/network/ipv4/list.yaml
+  /floating_ip/create:
+    $ref: ./paths/network/ipv4/create.yaml
+  /floating_ip/attach:
+    $ref: ./paths/network/ipv4/attach.yaml
+  /floating_ip/detach:
+    $ref: ./paths/network/ipv4/detach.yaml
+  /floating_ip/remove:
+    $ref: ./paths/network/ipv4/remove.yaml
 
-  /ssh_key/remove:
-    $ref: ./paths/ssh_key/remove.yaml
-  /ssh_key/add:
-    $ref: ./paths/ssh_key/add.yaml
   /ssh_key/list:
     $ref: ./paths/ssh_key/list.yaml
+  /ssh_key/create:
+    $ref: ./paths/ssh_key/create.yaml
+  /ssh_key/rename:
+    $ref: ./paths/ssh_key/rename.yaml
+  /ssh_key/remove:
+    $ref: ./paths/ssh_key/remove.yaml
 
   /backup/restore:
     $ref: ./paths/snapshot/restore-backup.yaml

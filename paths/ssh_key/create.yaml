@@ -1,0 +1,78 @@
+post:
+  tags:
+    - SSH Keys
+  summary: Create SSH key
+  description: 'Upload a public SSH key, on success the response body will contain the new key object'
+  operationId: ssh_key-create
+  parameters:
+    - name: Authorization
+      in: header
+      description: ''
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+        example: Bearer API_TOKEN
+    - name: Content-Type
+      in: header
+      description: ''
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+        example: application/json
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties: {}
+  x-operation-settings:
+    CollectParameters: false
+    AllowDynamicQueryParameters: false
+    AllowDynamicFormParameters: false
+    IsMultiContentStreaming: false
+  security: []
+  responses:
+    '201':
+      description: Created
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              uuid:
+                type: string
+                description: Unique `UUID` for the new volume
+              name:
+                type: string
+                description: Display name for the SSH Key
+              fingerprint:
+                type: string
+                description: SSH Key fingerprint
+              created:
+                type: string
+                description: Date created in UTC
+          examples:
+            object-1: 
+              summary: RSA key successfully uploaded
+              value:
+                {
+                  "name": "root_ecdsa",
+                  "uuid": "7b016201-2c41-463d-ab3a-12cf8228366e",
+                  "fingerprint": "de:ad:be:ef:de:ad:be:ef:de:ad:be:ef:de:ad:be:ef",
+                  "created": "2020-06-25T10:09:22Z"
+                }
+    '400':
+      $ref: ../../models/4xx-responses/400.yaml
+    '401':
+      $ref: ../../models/4xx-responses/401.yaml
+    '403':
+      $ref: ../../models/4xx-responses/403.yaml
+    '404':
+      $ref: ../../models/4xx-responses/404.yaml
+    '405':
+      $ref: ../../models/4xx-responses/405.yaml

@@ -1,0 +1,74 @@
+post:
+  tags:
+    - "Block storage"
+  summary: Attach volume
+  description: Attach existing volume to a server, the server and the volume must be located within the same datacenter.
+  operationId: volume-attach
+  parameters:
+    - name: Authorization
+      in: header
+      description: ''
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+        example: Bearer API_TOKEN
+    - name: Content-Type
+      in: header
+      description: ''
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+        example: application/json
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            name: 
+              type: string
+              description: New display name for the SSH Key
+            uuid:
+              type: string
+              description: Unique resource `uuid`, a 36 character string identifier. Example `123e4567-e89b-12d3-a456-426655440000`
+            id:
+              type: integer
+              description: Unique resource `id`, a integer used to identify a resource by it's unique id
+          description: Either a resource `id` or `uuid` can be used in this request
+        examples:
+          uuid: 
+            summary: Rename SSH Key identified by uuid
+            value:
+              {
+                "name": "root_ecdsa_521",
+                "uuid": "7b016201-2c41-463d-ab3a-12cf8228366e"
+              }
+          id: 
+            summary: Rename SSH Key identified by id
+            value:
+              {
+                "name": "root_ecdsa_521",
+                "id": 123456
+              }
+  x-operation-settings:
+    CollectParameters: false
+    AllowDynamicQueryParameters: false
+    AllowDynamicFormParameters: false
+    IsMultiContentStreaming: false
+  security: []
+  responses:
+    '202':
+      $ref: ../../models/2xx-responses/202.yaml
+    '400':
+      $ref: ../../models/4xx-responses/400.yaml
+    '401':
+      $ref: ../../models/4xx-responses/401.yaml
+    '404':
+      $ref: ../../models/4xx-responses/404.yaml
+    '405':
+      $ref: ../../models/4xx-responses/405.yaml
