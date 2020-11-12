@@ -1,0 +1,3 @@
+type: string
+example: Bearer API_TOKEN
+description: Authorization token are passed in header
