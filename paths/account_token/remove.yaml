@@ -3,9 +3,6 @@ delete:
   description: |-
     Delete a specific authentication token. Please note that if you delete the token used to authenticate this request you need to call /v1/account/login again to obtain a new token.
 
-    **Caution**
-
-    We cannot see the difference between an arbitrary token on your account, and the token you're using to authenticate this request. Therefore, nothing will prevent you from locking yourself out if you're not being careful.
   operationId: token-remove
   parameters:
     - name: Authorization
@@ -42,21 +39,18 @@ delete:
     description: ''
   responses:
     '204':
-      description: No Content
-      content: 
-        text/plain:
-          example:
-            No Content, see response code for execution status
+      $ref: ../../models/2xx-responses/204.yaml
+    '400':
+      $ref: ../../models/4xx-responses/400.yaml
+    '401':
+      $ref: ../../models/4xx-responses/401.yaml
     '403':
-      description: Forbidden
-      content:
-        application/json:
-          schema:
-            $ref: ../../models/response-forbidden.v1.yaml
-          example:
-            message: Authorization token does not exist
-            response_type: error
-            response_code: 403
+      $ref: ../../models/4xx-responses/403.yaml
+    '404':
+      $ref: ../../models/4xx-responses/404.yaml
+    '405':
+      $ref: ../../models/4xx-responses/405.yaml
+
   x-operation-settings:
     CollectParameters: false
     AllowDynamicQueryParameters: false

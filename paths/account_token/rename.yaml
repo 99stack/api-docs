@@ -1,5 +1,27 @@
 post:
   summary: Rename auth token
+  description: Change display name of a auth token
+  operationId: token-rename
+  tags:
+    - Token  
+  parameters:
+  - name: Authorization
+    in: header
+    description: ''
+    required: true
+    style: simple
+    explode: false
+    schema:
+      $ref: ../../models/headers/authorization.yaml
+  - name: Content-Type
+    in: header
+    description: ''
+    required: true
+    style: simple
+    explode: false
+    schema:
+      $ref: ../../models/headers/content-type.yaml
+
   responses:
     '202':
       description: Accepted
@@ -13,33 +35,16 @@ post:
                 message: Token name successfully updated
                 response_type: success
                 response_code: 202
+    '400':
+      $ref: ../../models/4xx-responses/400.yaml
+    '401':
+      $ref: ../../models/4xx-responses/401.yaml
     '403':
-      description: Forbidden
-      content:
-        application/json:
-          schema:
-            $ref: ../../models/response-forbidden.v1.yaml
-          example:
-            message: Authorization token does not exist
-            response_type: error
-            response_code: 403
-  parameters:
-    - name: Authorization
-      in: header
-      description: ''
-      required: true
-      style: simple
-      explode: false
-      schema:
-        $ref: ../../models/headers/authorization.yaml
-    - name: Content-Type
-      in: header
-      description: ''
-      required: true
-      style: simple
-      explode: false
-      schema:
-        $ref: ../../models/headers/content-type.yaml
+      $ref: ../../models/4xx-responses/403.yaml
+    '404':
+      $ref: ../../models/4xx-responses/404.yaml
+    '405':
+      $ref: ../../models/4xx-responses/405.yaml
 
   requestBody:
     content:
@@ -58,7 +63,3 @@ post:
             value:
               name: NewTokenName
               uuid: 62666431-3936-4936-b561-626536613733
-  description: Change display name of a auth token
-  operationId: token-rename
-  tags:
-    - Token  

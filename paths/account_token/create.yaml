@@ -61,16 +61,17 @@ post:
                 token: 996afbf034a3f1bd2577c14edec857a7ca539bd174446fd3
                 created: '2019-11-16T08:37:46Z'
       description: Created
+    '400':
+      $ref: ../../models/4xx-responses/400.yaml
+    '401':
+      $ref: ../../models/4xx-responses/401.yaml
     '403':
-      content:
-        application/json:
-          schema:
-            $ref: ../../models/response-forbidden.v1.yaml
-          example:
-            message: Authorization token does not exist
-            response_type: error
-            response_code: 403
-      description: Forbidden
+      $ref: ../../models/4xx-responses/403.yaml
+    '404':
+      $ref: ../../models/4xx-responses/404.yaml
+    '405':
+      $ref: ../../models/4xx-responses/405.yaml
+
   x-operation-settings:
     CollectParameters: false
     AllowDynamicQueryParameters: false
