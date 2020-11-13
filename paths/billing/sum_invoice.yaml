@@ -90,7 +90,7 @@ post:
                   "block_storage": 0.0247,
                   "object_storage": 0,
                   "ddos_protection": 0,
-                  "ts_start": "2016-09-01T00:00:00Z",
+                  "ts_start": "2020-09-01T00:00:00Z",
                   "ts_end": "2020-09-30T00:00:00Z"
                 }
       description: OK
