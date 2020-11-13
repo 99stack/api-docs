@@ -1,4 +1,4 @@
-get:
+post:
   tags:
     - Billing
   summary: Sum invioice
@@ -21,10 +21,89 @@ get:
       explode: false
       schema:
         $ref: ../../models/headers/content-type.yaml
-        
+
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            from:
+              type: timestamp
+              description: Start time, accepts any string that can be parsed into a timestamp
+            to:
+              type: timestamp
+              description: End time, accepts any string that can be parsed into a timestamp
+        examples:
+          example-1: 
+            summary: Optional time interval
+            value:
+              {
+                "from": "2020-09-1",
+                "to": "2020-09.30"
+              }
+
   responses:
     '200':
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              server:
+                type: double
+                description: Total cost of server instances in given interval
+              license:
+                type: double
+                description: Total cost of licenses in given interval
+              snapshot:
+                type: double
+                description: Total cost of snapshots in given interval
+              backup:
+                type: double
+                description: Total cost of backups in given interval
+              block_storage:
+                type: double
+                description: Total cost of block storage in given interval
+              object_storage:
+                type: double
+                description: Total cost of object storage in given interval
+              ddos_protection:
+                type: double
+                description: Total cost of ddos protection in given interval
+              ts_start:
+                type: string
+                description: Start of interval in UTC format
+              ts_end:
+                type: string
+                description: End of interval in UTC format
+          examples:
+            example-1:
+              summary: The full amount billed within given time interval, divided by resource type
+              value:
+                {
+                  "server": 10.2603,
+                  "license": 0,
+                  "snapshot": 0,
+                  "auto_backups": 0,
+                  "block_storage": 0.0247,
+                  "object_storage": 0,
+                  "ddos_protection": 0,
+                  "ts_start": "2016-09-01T00:00:00Z",
+                  "ts_end": "2020-09-30T00:00:00Z"
+                }
       description: OK
+    '400':
+      $ref: ../../models/4xx-responses/400.yaml
+    '401':
+      $ref: ../../models/4xx-responses/401.yaml
+    '403':
+      $ref: ../../models/4xx-responses/403.yaml
+    '404':
+      $ref: ../../models/4xx-responses/404.yaml
+    '405':
+      $ref: ../../models/4xx-responses/405.yaml
 
   x-operation-settings:
     CollectParameters: false
@@ -32,9 +111,3 @@ get:
     AllowDynamicFormParameters: false
     IsMultiContentStreaming: false
   security: []
-  requestBody:
-    content:
-      application/json:
-        schema:
-          type: object
-          properties: {}  
