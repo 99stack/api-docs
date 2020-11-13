@@ -10,7 +10,8 @@ content:
           description: Response text with more information about the problem
         response_type:
           type: string
-          description: Type of response message `success|info|warning|error`
+          description: Type of response message
+          example: success|info|warning|error
         response_code:
           type: integer
           description: The `http` status code
