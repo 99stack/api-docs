@@ -1,7 +1,7 @@
 get:
   summary: List auth token
   description: Lists all available authentication tokens on your account.
-  operationId: auth_token-list
+  operationId: token-list
   parameters:
     - name: Authorization
       in: header
@@ -10,7 +10,7 @@ get:
       style: simple
       explode: false
       schema:
-        example: Bearer API_TOKEN
+        $ref: ../../models/headers/authorization.yaml
     - name: Content-Type
       in: header
       description: ''
@@ -18,8 +18,8 @@ get:
       style: simple
       explode: false
       schema:
-        type: string
-        example: application/json
+        $ref: ../../models/headers/content-type.yaml
+
   responses:
     '200':
       description: OK

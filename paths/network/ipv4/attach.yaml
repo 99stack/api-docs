@@ -6,7 +6,22 @@ post:
   operationId: floating_ip-attach
   security: []
   parameters:
-    $ref: ../../../models/headers.yaml
+    - name: Authorization
+      in: header
+      description: ''
+      required: true
+      style: simple
+      explode: false
+      schema:
+        $ref: ../../../models/headers/authorization.yaml
+    - name: Content-Type
+      in: header
+      description: ''
+      required: true
+      style: simple
+      explode: false
+      schema:
+        $ref: ../../../models/headers/content-type.yaml
 
   requestBody:
     required: true

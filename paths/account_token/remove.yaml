@@ -6,7 +6,7 @@ delete:
     **Caution**
 
     We cannot see the difference between an arbitrary token on your account, and the token you're using to authenticate this request. Therefore, nothing will prevent you from locking yourself out if you're not being careful.
-  operationId: auth_token-remove
+  operationId: token-remove
   parameters:
     - name: Authorization
       in: header
@@ -15,8 +15,7 @@ delete:
       style: simple
       explode: false
       schema:
-        type: string
-        example: Bearer API_TOKEN
+        $ref: ../../models/headers/authorization.yaml
     - name: Content-Type
       in: header
       description: ''
@@ -24,8 +23,8 @@ delete:
       style: simple
       explode: false
       schema:
-        type: string
-        example: application/json
+        $ref: ../../models/headers/content-type.yaml
+
   requestBody:
     required: true
     content:

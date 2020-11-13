@@ -12,8 +12,7 @@ delete:
       style: simple
       explode: false
       schema:
-        type: string
-        example: Bearer API_TOKEN
+        $ref: ../../models/headers/authorization.yaml
     - name: Content-Type
       in: header
       description: ''
@@ -21,8 +20,8 @@ delete:
       style: simple
       explode: false
       schema:
-        type: string
-        example: application/json
+        $ref: ../../models/headers/content-type.yaml
+
   requestBody:
     required: true
     content:

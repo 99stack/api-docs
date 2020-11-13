@@ -3,7 +3,7 @@ post:
     - Backup
   summary: Enable backup
   description: 'Enable automatic backups and schedule creation of snapshots.'
-  operationId: enable-backup
+  operationId: backup-enable
   parameters:
     - name: Authorization
       in: header
@@ -12,8 +12,7 @@ post:
       style: simple
       explode: false
       schema:
-        type: string
-        example: Bearer API_TOKEN
+        $ref: ../../models/headers/authorization.yaml
     - name: Content-Type
       in: header
       description: ''
@@ -21,8 +20,8 @@ post:
       style: simple
       explode: false
       schema:
-        type: string
-        example: application/json
+        $ref: ../../models/headers/content-type.yaml
+
   requestBody:
     required: true
     content:
@@ -30,12 +29,14 @@ post:
         schema:
           type: object
           properties: {}
+
   x-operation-settings:
     CollectParameters: false
     AllowDynamicQueryParameters: false
     AllowDynamicFormParameters: false
     IsMultiContentStreaming: false
   security: []
+
   responses:
     '202':
       description: Accepted  

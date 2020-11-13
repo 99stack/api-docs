@@ -31,8 +31,7 @@ post:
       style: simple
       explode: false
       schema:
-        type: string
-        example: Bearer API_TOKEN
+        $ref: ../../models/headers/authorization.yaml
     - name: Content-Type
       in: header
       description: ''
@@ -40,8 +39,8 @@ post:
       style: simple
       explode: false
       schema:
-        type: string
-        example: application/json
+        $ref: ../../models/headers/content-type.yaml
+
   requestBody:
     content:
       application/json:
@@ -60,6 +59,6 @@ post:
               name: NewTokenName
               uuid: 62666431-3936-4936-b561-626536613733
   description: Change display name of a auth token
-  operationId: auth_token-rename
+  operationId: token-rename
   tags:
     - Token  
