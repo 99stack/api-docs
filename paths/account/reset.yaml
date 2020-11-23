@@ -32,37 +32,14 @@ post:
           properties: 
             email:
               type: string
-              description: Email address correstpong to the account you want to reset
+              description: Email address for the account you want to reset
         example:
           {
             "email": "john_doe@example.com"
           }
   responses:
     '202':
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-                description: Status text with more information
-              response_type:
-                type: string
-                description: Type of response message `success|info|warning|error`
-              response_code:
-                type: integer
-                description: The `http` status code
-          examples:
-            example-1:
-              summary: Response message is function was successfully executed
-              value:
-                {
-                  "message": "account reset request was received, if this email has an associated account a new one-time password will be emailed",
-                  "response_type": "success",
-                  "response_code": 202
-                }       
-      description: OK
+      $ref: ../../models/2xx-responses/202.yaml
     '400':
       $ref: ../../models/4xx-responses/400.yaml
     '401':
