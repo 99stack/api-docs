@@ -31,6 +31,7 @@ get:
                 description: Ability to enable the auto backup feature to have your server backed up automatically on a schedule
           examples:
             region-101:
+              summary: Features available in a G1 data center
               value:
                 ddos_protection: false
                 block_storage: false
@@ -38,6 +39,7 @@ get:
                 ipv6: true
                 backups: true
             region-201:
+              summary: Features available in a G2 data center
               value:
                 ddos_protection: false
                 block_storage: true
@@ -45,6 +47,7 @@ get:
                 ipv6: true
                 backups: true
             region-301:
+              summary: Features available in a G3 data center
               value:
                 ddos_protection: false
                 block_storage: true
