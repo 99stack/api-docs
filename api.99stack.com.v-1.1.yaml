@@ -57,25 +57,36 @@ info:
     GET request with no arguments:
 
     ```bash
-    curl -X GET "https://api.99stack.com/v1/region/list"
+    curl -X GET \
+      "https://api.99stack.com/v1/region/list"
     ```
 
     GET request that requires your API token:
 
     ```bash
-    curl -X GET -H 'Authorization: Bearer YOUR_TOKEN' "https://api.99stack.com/v1/server/list"
+    curl -X GET \
+      -H 'Authorization: Bearer YOUR_TOKEN' 
+      "https://api.99stack.com/v1/server/list"
     ```
 
     POST request containing a JSON request body:
 
     ```bash 
-    curl -X POST \\\n\t-H 'Authorization: Bearer YOUR_TOKEN' \\\n\t-H 'Content-Type: application/json' \\\n\t-d '{"name": "New API token"}' \\\n\t"https://api.99stack.com/v1/account/token_create"
+    curl -X POST \
+      -H 'Authorization: Bearer YOUR_TOKEN' \
+      -H 'Content-Type: application/json' \ 
+      -d '{"name": "New API token"}'  \
+      "https://api.99stack.com/v1/account/token_create"
     ```
 
     DELETE request containing a JSON request body:
 
     ```bash
-    curl -X DELETE -H 'Authorization: Bearer YOUR_TOKEN' -H 'Content-Type: application/json' -d '{"server_id": 16324}' "https://api.99stack.com/v1/server/remove"
+    curl -X DELETE \
+      -H 'Authorization: Bearer YOUR_TOKEN' \ 
+      -H 'Content-Type: application/json' \ 
+      -d '{"server_id": 16324}' \
+      "https://api.99stack.com/v1/server/remove"
     ```
 
     # Authentication
