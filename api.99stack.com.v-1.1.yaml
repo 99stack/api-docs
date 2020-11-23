@@ -68,8 +68,8 @@ info:
 
     POST request containing a JSON request body:
 
-    ```bash
-    curl -X POST -H 'Authorization: Bearer YOUR_TOKEN' -H 'Content-Type: application/json' -d '{"name": "New API token"}' "https://api.99stack.com/v1/account/token_create"
+    ```bash 
+    curl -X POST \\\n\t-H 'Authorization: Bearer YOUR_TOKEN' \\\n\t-H 'Content-Type: application/json' \\\n\t-d '{"name": "New API token"}' \\\n\t"https://api.99stack.com/v1/account/token_create"
     ```
 
     DELETE request containing a JSON request body:
