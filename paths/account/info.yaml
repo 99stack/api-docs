@@ -1,6 +1,6 @@
 get:
   summary: Account info
-  description: Fetch and dispalys a limited selection of information about the account associated with the provided authentication key.
+  description: The complete list of all information related to the requester account. Personal data on file, balance and limitations, referral stats, permissions, account activity, current usage and estimation of your next billing deadline.
   operationId: account-info
   parameters:
     - name: Authorization
