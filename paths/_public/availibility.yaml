@@ -27,12 +27,12 @@ get:
               summary: Server instance availibility
               value:
                 {
-                  "providers": [
+                  "providers": {
                     "G1": 0.03,
                     "G2": 0.37,
                     "G3": 0.54,
                     "E11": 1.00
-                  ]
+                  }
                 }
             example-2:
               summary: Legacy response
