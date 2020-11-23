@@ -2,7 +2,7 @@ post:
   tags:
     - Account
   summary: Activate
-  description: -|
+  description: |-
     Activate the account identified by `uuid` token sent in the request. Token is generated after the `/v1/account/register` function has been successfully executed. 
 
     **Security**
