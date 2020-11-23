@@ -40,28 +40,7 @@ post:
   security: []
   responses:
     '202':
-      application/json:
-        schema:
-          type: object
-          properties:
-            message:
-              type: string
-              description: Status message with more information
-            response_type:
-              type: string
-              description: Type of response message `success|info|warning|error`
-            response_code:
-              type: integer
-              description: The `http` status code
-        examples:
-          example-1:
-            summary: Success
-            value:
-              {
-                "message": "Your account was successfully activated",
-                "response_type": "success",
-                "response_code": 200
-              }
+      $ref: ../../models/2xx-responses/202.yaml
     '400':
       $ref: ../../models/4xx-responses/400.yaml
     '401':
