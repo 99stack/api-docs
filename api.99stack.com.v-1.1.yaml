@@ -65,7 +65,7 @@ info:
 
     ```bash
     curl -X GET \
-      -H 'Authorization: Bearer YOUR_TOKEN' 
+      -H 'Authorization: Bearer YOUR_TOKEN' \
       "https://api.99stack.com/v1/server/list"
     ```
 
@@ -74,7 +74,7 @@ info:
     ```bash 
     curl -X POST \
       -H 'Authorization: Bearer YOUR_TOKEN' \
-      -H 'Content-Type: application/json' \ 
+      -H 'Content-Type: application/json' \
       -d '{"name": "New API token"}'  \
       "https://api.99stack.com/v1/account/token_create"
     ```
@@ -83,8 +83,8 @@ info:
 
     ```bash
     curl -X DELETE \
-      -H 'Authorization: Bearer YOUR_TOKEN' \ 
-      -H 'Content-Type: application/json' \ 
+      -H 'Authorization: Bearer YOUR_TOKEN' \
+      -H 'Content-Type: application/json' \
       -d '{"server_id": 16324}' \
       "https://api.99stack.com/v1/server/remove"
     ```
