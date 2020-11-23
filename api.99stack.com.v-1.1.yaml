@@ -137,16 +137,16 @@ paths:
 
   /account/info:
     $ref: ./paths/account/info.yaml
-  /account/reset:
-    $ref: ./paths/account/reset.yaml
   /account/register:
     $ref: ./paths/account/register.yaml
-  /account/login:
-    $ref: ./paths/account/login.yaml
   /account/activate:
     $ref: ./paths/account/activate.yaml
+  /account/login:
+    $ref: ./paths/account/login.yaml
   /account/password:
     $ref: ./paths/account/change_passwd.yaml
+  /account/reset:
+    $ref: ./paths/account/reset.yaml
 
   /transaction/list:
     $ref: ./paths/billing/list_trans.yaml
