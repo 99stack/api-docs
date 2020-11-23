@@ -14,25 +14,49 @@ post:
       schema:
         type: string
         example: application/json
-  requestBody:
-    required: true
-    content:
-      application/json:
-        schema:
-          type: object
-          properties: {}
+
   x-operation-settings:
     CollectParameters: false
     AllowDynamicQueryParameters: false
     AllowDynamicFormParameters: false
     IsMultiContentStreaming: false
   security: []
+
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties: 
+            email:
+              type: string
+              description: Email address for the account whos password you want to change
+            password.old:
+              type: string
+              description: The old password
+            password.new:
+              type: string
+              description: The new password or passphrase
+        example:
+          {
+            "email": "john_doe@example.com",
+            "password": {
+              "old": "myoldtooshortpassword",
+              "new": "my new much longer and nearly impossible to guess passphrase that can and probably should be up to 4096 characters long"
+            }
+          }
+
   responses:
-    '200':
-      description: OK
+    '202':
+      $ref: ../../models/2xx-responses/202.yaml
+    '400':
+      $ref: ../../models/4xx-responses/400.yaml
     '401':
-      description: Unauthorized
+      $ref: ../../models/4xx-responses/401.yaml
     '403':
-      description: Forbidden
+      $ref: ../../models/4xx-responses/403.yaml
+    '405':
+      $ref: ../../models/4xx-responses/405.yaml
     '429':
-      description: Too Many Requests  
+      $ref: ../../models/4xx-responses/429.yaml

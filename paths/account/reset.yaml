@@ -23,6 +23,7 @@ post:
       schema:
         type: string
         example: application/json
+
   requestBody:
     required: true
     content:
@@ -37,6 +38,7 @@ post:
           {
             "email": "john_doe@example.com"
           }
+          
   responses:
     '202':
       $ref: ../../models/2xx-responses/202.yaml
