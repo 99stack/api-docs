@@ -6,7 +6,7 @@ post:
     Activate the account identified by `uuid` token sent in the request. Token is generated after the `/v1/account/register` function has been successfully executed. 
 
     **Security**
-    Please keep in mind that this function will respond with a 202 success message instead of a 404 message in the event that no account matches the provided `uuid`. This is a feature with the primary purpose to protect against robots harvesting personal data.
+    Please keep in mind that this function will respond with a 202 success message instead of a 404 message in the event that no account matches the provided `uuid`. This is a feature with the primary purpose to protect against robots seeking to harvest personal data.
   operationId: account-activate
   parameters:
     - name: Content-Type
