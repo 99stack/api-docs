@@ -2,7 +2,11 @@ post:
   tags:
     - Account
   summary: Login
-  description: "Checking credentials (email and password) and returns the first API key found on the associated account. Client applications can store this key locally in memory to be used for future API requests. \n\n**How do I log out?**\n\nDelete the locally saved key\n\n**Is there a rate limit?**\n\nYes, one login attempt each 30 second per account and IP address is allowed. Too many requests, (i.e bruteforce attempts) will result in denied access for up to 24 hours.\n\n**Security**\n\nTo prevent account information leaks the response will be the same in all three cases, i.e invalid email, invalid password or if both email and password is invalid.\n"
+  description: |-
+    Validate supplied email and password/passphrase and returns a login token that can be used for authentication towards other functions the authenticated account has access to. To log out, delete the token.
+    
+    **Security**
+    Please keep in mind that this function will respond with a 400 error message no matter if supplied information has errors or an account with the supplied information does not exist. This is a feature with the primary purpose to protect against robots seeking to harvest personal data.
   operationId: account-login
   parameters:
     - name: Content-Type
@@ -14,25 +18,60 @@ post:
       schema:
         type: string
         example: application/json
+
   requestBody:
-    required: true
     content:
       application/json:
         schema:
           type: object
-          properties: {}
+          properties:
+            email:
+              type: string
+              description: Email address linked to the account
+            password:
+              type: string
+              description: Password linked to the account
+        example:
+          {
+            "email": "john_doe@example.com",
+            "password": "a very long and secure password, preferrably a whole sentence"
+          }
+    required: true
+
+  responses:
+    '202':
+      application/json:
+        schema:
+          type: object
+          properties:
+            token:
+              type: string
+              description: API authentication token that can be used for future API requests until disposed
+            timestamp:
+              type: string
+              description: Logged authentication attempt timestamp, will be seen in activity log
+        examples:
+          example-1:
+            summary: Successful login
+            value:
+              {
+                "token": "3fa3992937bf09dbae37023f20bbed9b560bba83369c4154cfafcd35adfe1e1a",
+                "timestamp": "2020-11-23T14:36:44Z"
+              }
+    '400':
+      $ref: ../../models/4xx-responses/400.yaml
+    '401':
+      $ref: ../../models/4xx-responses/401.yaml
+    '403':
+      $ref: ../../models/4xx-responses/403.yaml
+    '405':
+      $ref: ../../models/4xx-responses/405.yaml
+    '429':
+      $ref: ../../models/4xx-responses/429.yaml
+
   x-operation-settings:
     CollectParameters: false
     AllowDynamicQueryParameters: false
     AllowDynamicFormParameters: false
     IsMultiContentStreaming: false
   security: []
-  responses:
-    '200':
-      description: OK
-    '401':
-      description: Unauthorized
-    '403':
-      description: Forbidden
-    '429':
-      description: Too Many Requests  

@@ -3,11 +3,10 @@ post:
     - Account
   summary: Register
   description: |-
-    Register a new account using provided information. On success, a new generated API key will be returned. (see /v1/account/login for information on usage). Provided email adress should receive an activation email within the next 5 minutes. The new account will be useless untill activated. However, client applications may still allow you to login.
+    Register a new account and returns a login token on success. This function is rate limited. See request schema for more information about individual fields.
 
     **Security**
-
-    To prevent data leaks, a generic error message will be used if registration fails for any reason, including the case where you cannot register because the account already exists. If you see this generic error message, please try to login or reset account before complaining to support.
+    Please keep in mind that this function will respond with a 400 error message no matter if supplied information has errors or an account with the same email already exist. This is a feature with the primary purpose to protect against robots seeking to harvest personal data.
   operationId: account-register
   parameters:
     - name: Content-Type
@@ -19,19 +18,76 @@ post:
       schema:
         type: string
         example: application/json
+
   requestBody:
-    required: true
     content:
       application/json:
         schema:
           type: object
-          properties: {}
+          properties:
+            email:
+              type: string
+              description: Email address linked to the account
+            password:
+              type: string
+              description: Password linked to the account
+            firstname:
+              type: string
+              description: Optional first name for display purpose, can be anything but must be set
+            lastname:
+              type: string
+              description: Optional last name for display purpose, can be anything but must be set
+            accept_tos:
+              type: boolean
+              description: Agree to terms of service, privacy policy, data processing agreement and acceptable use policies. Must be `true`
+            country:
+              type: string
+              description: Two letter country code, must be your legal country of residence even if you use VPN. Discovered mismatches may result in a temporary ban.
+        example:
+          {
+            "email": "john_doe@example.com",
+            "password": "a very long and secure password, preferrably a whole sentence",
+            "firstname": "John",
+            "lastname": "Doe",
+            "accept_tos": true,
+            "country": "US"
+          }
+    required: true
+
   x-operation-settings:
     CollectParameters: false
     AllowDynamicQueryParameters: false
     AllowDynamicFormParameters: false
     IsMultiContentStreaming: false
   security: []
+
   responses:
-    '201':
-      description: Created  
+    '202':
+      application/json:
+        schema:
+          type: object
+          properties:
+            token:
+              type: string
+              description: API authentication token that can be used for future API requests until disposed
+            timestamp:
+              type: string
+              description: Logged authentication attempt timestamp, will be seen in activity log
+        examples:
+          example-1:
+            summary: Successful login
+            value:
+              {
+                "token": "3fa3992937bf09dbae37023f20bbed9b560bba83369c4154cfafcd35adfe1e1a",
+                "timestamp": "2020-11-23T14:36:44Z"
+              }
+    '400':
+      $ref: ../../models/4xx-responses/400.yaml
+    '401':
+      $ref: ../../models/4xx-responses/401.yaml
+    '403':
+      $ref: ../../models/4xx-responses/403.yaml
+    '405':
+      $ref: ../../models/4xx-responses/405.yaml
+    '429':
+      $ref: ../../models/4xx-responses/429.yaml
