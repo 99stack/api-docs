@@ -57,25 +57,36 @@ info:
     GET request with no arguments:
 
     ```bash
-    curl -X GET "https://api.99stack.com/v1/region/list"
+    curl -X GET \
+      "https://api.99stack.com/v1/region/list"
     ```
 
     GET request that requires your API token:
 
     ```bash
-    curl -X GET -H 'Authorization: Bearer YOUR_TOKEN' "https://api.99stack.com/v1/server/list"
+    curl -X GET \
+      -H 'Authorization: Bearer YOUR_TOKEN' \
+      "https://api.99stack.com/v1/server/list"
     ```
 
     POST request containing a JSON request body:
 
-    ```bash
-    curl -X POST -H 'Authorization: Bearer YOUR_TOKEN' -H 'Content-Type: application/json' -d '{"name": "New API token"}' "https://api.99stack.com/v1/account/token_create"
+    ```bash 
+    curl -X POST \
+      -H 'Authorization: Bearer YOUR_TOKEN' \
+      -H 'Content-Type: application/json' \
+      -d '{"name": "New API token"}'  \
+      "https://api.99stack.com/v1/account/token_create"
     ```
 
     DELETE request containing a JSON request body:
 
     ```bash
-    curl -X DELETE -H 'Authorization: Bearer YOUR_TOKEN' -H 'Content-Type: application/json' -d '{"server_id": 16324}' "https://api.99stack.com/v1/server/remove"
+    curl -X DELETE \
+      -H 'Authorization: Bearer YOUR_TOKEN' \
+      -H 'Content-Type: application/json' \
+      -d '{"server_id": 16324}' \
+      "https://api.99stack.com/v1/server/remove"
     ```
 
     # Authentication
@@ -537,7 +548,7 @@ paths:
   /account/info:
     get:
       summary: Account info
-      description: Fetch and dispalys a limited selection of information about the account associated with the provided authentication key.
+      description: 'The complete list of all information related to the requester account. Personal data on file, balance and limitations, referral stats, permissions, account activity, current usage and estimation of your next billing deadline.'
       operationId: account-info
       parameters:
         - name: Authorization
@@ -564,64 +575,84 @@ paths:
             application/json:
               schema:
                 type: object
-              example:
-                ID: '123456'
-                UUID: 69472922-1725-11e9-ab14-d663bd873d93
-                profile:
-                  firstname: John
-                  lastname: Doe
-                  email: john.doe@example.com
-                balance: '1500'
-                activated: true
-                blocked_ports:
-                  TCP:
-                    - 17
-                    - 19
-                    - 25
-                    - 1900
-                  UDP:
-                    - 17
-                    - 19
-                    - 25
-                    - 1900
-                    - 53413
-                servers:
-                  limit: 500
-                  running: 150
-                registerdate: '2016-09-19T07:41:30z'
-                lastlogin: '2019-01-05T13:23:54z'
-                billing:
-                  secondsdue: 2592000
-                  duedate: '2019-02-05T13:23:54z'
-                  usage: 2.05
-                permissions: null
-          description: OK
+              examples:
+                account-1:
+                  summary: Account info summary
+                  value:
+                    id: 654321
+                    uuid: 753dd882-9246-4e7b-b52d-e7ff1febbede
+                    profile:
+                      firstname: John
+                      lastname: Doe
+                      email: john_doe@example.com
+                    balance: 4322.65474875
+                    activated: true
+                    smtp: true
+                    referrals:
+                      count: 14
+                      amount: 110
+                    servers:
+                      limit: 400
+                      running: 65
+                    registerdate: '2016-10-08T07:10:56Z'
+                    lastlogin: '2020-11-23T11:08:04Z'
+                    billing:
+                      secondsdue: 0
+                      duedate: '2021-03-03T11:23:45Z'
+                      usage: 1.78082191
+                    permissions: {}
+                    blocked_ports:
+                      TCP:
+                        - 17
+                        - 19
+                        - 25
+                        - 1900
+                      UDP:
+                        - 17
+                        - 19
+                        - 25
+                        - 1900
+                        - 53413
+                    activity:
+                      - ip_address: 12.34.56.78
+                        timestamp: '2020-11-16T09:51:44Z'
+                        status: success
+                      - ip_address: 12.34.56.78
+                        timestamp: '2020-11-20T09:45:00Z'
+                        status: success
+                      - ip_address: 12.34.56.78
+                        timestamp: '2020-11-23T09:31:32Z'
+                        status: success
+        '401':
+          $ref: '#/paths/~1account~1token_list/get/responses/401'
+          x-miro: /home/master/Documents/projects/99stack/api-docs/models/4xx-responses/401.yaml
         '403':
+          $ref: '#/paths/~1account~1token_list/get/responses/403'
+          x-miro: /home/master/Documents/projects/99stack/api-docs/models/4xx-responses/403.yaml
+        '405':
+          $ref: '#/paths/~1account~1token_list/get/responses/405'
+          x-miro: /home/master/Documents/projects/99stack/api-docs/models/4xx-responses/405.yaml
+        '429':
+          description: Too Many Requests
           content:
             application/json:
               schema:
                 type: object
-                description: 'Access denied, check your auth token'
-                x-examples:
-                  Response:
-                    message: Authorization token does not exist
-                    response_type: error
-                    response_code: 403
+                description: null
                 properties:
-                  message:
+                  reason:
                     type: string
-                    description: Response text with a simple description of the result
-                  response_type:
+                    description: Human readable explaination about why the request failed
+                  response:
                     type: string
-                    description: 'Type of message: success|info|warning|error'
-                  response_code:
-                    type: integer
-                    description: HTTP status code for quick reference
-              example:
-                message: Authorization token does not exist
-                response_type: error
-                response_code: 403
-          description: Forbidden
+                    description: HTTP error code and text representation
+              examples:
+                response-1:
+                  summary: Default response on "429 Too Many Requests" error
+                  value:
+                    errors:
+                      response: 429 Too Many Requests
+                      reason: 'Rate limit exceeded, please try again in a few moments'
       x-operation-settings:
         CollectParameters: false
         AllowDynamicQueryParameters: false
@@ -629,66 +660,16 @@ paths:
         IsMultiContentStreaming: false
       tags:
         - Account
-  /account/reset:
-    post:
-      tags:
-        - Account
-      summary: Reset password
-      description: |-
-        Generate and email a temporary one time password that can be used to login. (see /v1/account/login for more information).
-
-        **Will this disable my current password?**
-
-        No, it will only offer an alternative way to login. If you suspect that someone is trying to access your account, consider changing your password to a longer and more secure one.
-
-        **Security**
-
-        The one time password will only be active for a limited time, then revoked. Accounts can only be reset once per week. Response messages will not do any attempt to validate input email addresses. This to prevent account leaks.
-      operationId: account-reset
-      parameters:
-        - name: Content-Type
-          in: header
-          description: ''
-          required: true
-          style: simple
-          explode: false
-          schema:
-            type: string
-            example: application/json
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties: {}
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                message: 'Account reset request received, check your email inbox'
-                timestamp: '2019-01-13T11:19:21z'
-          description: OK
-      x-operation-settings:
-        CollectParameters: false
-        AllowDynamicQueryParameters: false
-        AllowDynamicFormParameters: false
-        IsMultiContentStreaming: false
-      security: []
   /account/register:
     post:
       tags:
         - Account
       summary: Register
       description: |-
-        Register a new account using provided information. On success, a new generated API key will be returned. (see /v1/account/login for information on usage). Provided email adress should receive an activation email within the next 5 minutes. The new account will be useless untill activated. However, client applications may still allow you to login.
+        Register a new account and returns a login token on success. This function is rate limited. See request schema for more information about individual fields.
 
         **Security**
-
-        To prevent data leaks, a generic error message will be used if registration fails for any reason, including the case where you cannot register because the account already exists. If you see this generic error message, please try to login or reset account before complaining to support.
+        Please keep in mind that this function will respond with a 400 error message no matter if supplied information has errors or an account with the same email already exist. This is a feature with the primary purpose to protect against robots seeking to harvest personal data.
       operationId: account-register
       parameters:
         - name: Content-Type
@@ -701,12 +682,37 @@ paths:
             type: string
             example: application/json
       requestBody:
-        required: true
         content:
           application/json:
             schema:
               type: object
-              properties: {}
+              properties:
+                email:
+                  type: string
+                  description: Email address linked to the account
+                password:
+                  type: string
+                  description: Password linked to the account
+                firstname:
+                  type: string
+                  description: 'Optional first name for display purpose, can be anything but must be set'
+                lastname:
+                  type: string
+                  description: 'Optional last name for display purpose, can be anything but must be set'
+                accept_tos:
+                  type: boolean
+                  description: 'Agree to terms of service, privacy policy, data processing agreement and acceptable use policies. Must be `true`'
+                country:
+                  type: string
+                  description: 'Two letter country code, must be your legal country of residence even if you use VPN. Discovered mismatches may result in a temporary ban.'
+            example:
+              email: john_doe@example.com
+              password: 'a very long and secure password, preferrably a whole sentence'
+              firstname: John
+              lastname: Doe
+              accept_tos: true
+              country: US
+        required: true
       x-operation-settings:
         CollectParameters: false
         AllowDynamicQueryParameters: false
@@ -716,64 +722,45 @@ paths:
       responses:
         '201':
           description: Created
-  /account/login:
-    post:
-      tags:
-        - Account
-      summary: Login
-      description: |
-        Checking credentials (email and password) and returns the first API key found on the associated account. Client applications can store this key locally in memory to be used for future API requests. 
-
-        **How do I log out?**
-
-        Delete the locally saved key
-
-        **Is there a rate limit?**
-
-        Yes, one login attempt each 30 second per account and IP address is allowed. Too many requests, (i.e bruteforce attempts) will result in denied access for up to 24 hours.
-
-        **Security**
-
-        To prevent account information leaks the response will be the same in all three cases, i.e invalid email, invalid password or if both email and password is invalid.
-      operationId: account-login
-      parameters:
-        - name: Content-Type
-          in: header
-          description: ''
-          required: true
-          style: simple
-          explode: false
-          schema:
-            type: string
-            example: application/json
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties: {}
-      x-operation-settings:
-        CollectParameters: false
-        AllowDynamicQueryParameters: false
-        AllowDynamicFormParameters: false
-        IsMultiContentStreaming: false
-      security: []
-      responses:
-        '200':
-          description: OK
-        '401':
-          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+                    description: API authentication token that can be used for future API requests until disposed
+                  timestamp:
+                    type: string
+                    description: 'Logged authentication attempt timestamp, will be seen in activity log'
+              examples:
+                example-1:
+                  summary: Successful login
+                  value:
+                    token: 3fa3992937bf09dbae37023f20bbed9b560bba83369c4154cfafcd35adfe1e1a
+                    timestamp: '2020-11-23T14:36:44Z'
+        '400':
+          $ref: '#/paths/~1account~1token_create/post/responses/400'
+          x-miro: /home/master/Documents/projects/99stack/api-docs/models/4xx-responses/400.yaml
         '403':
-          description: Forbidden
+          $ref: '#/paths/~1account~1token_list/get/responses/403'
+          x-miro: /home/master/Documents/projects/99stack/api-docs/models/4xx-responses/403.yaml
+        '405':
+          $ref: '#/paths/~1account~1token_list/get/responses/405'
+          x-miro: /home/master/Documents/projects/99stack/api-docs/models/4xx-responses/405.yaml
         '429':
-          description: Too Many Requests
+          $ref: '#/paths/~1account~1info/get/responses/429'
+          x-miro: /home/master/Documents/projects/99stack/api-docs/models/4xx-responses/429.yaml
   /account/activate:
     post:
       tags:
         - Account
       summary: Activate
-      description: Validates the `uuid` token sent to registration email address which enables the account.
+      description: |-
+        Activate the account identified by `uuid` token sent in the request. Token is generated after the `/v1/account/register` function has been successfully executed. 
+
+        **Security**
+        Please keep in mind that this function will respond with a 202 success message instead of a 404 message in the event that no account matches the provided `uuid`. This is a feature with the primary purpose to protect against robots seeking to harvest personal data.
       operationId: account-activate
       parameters:
         - name: Content-Type
@@ -790,19 +777,12 @@ paths:
           application/json:
             schema:
               type: object
+              properties:
+                uuid:
+                  type: string
+                  description: Unique identifer for the account to activate
             example:
-              hostname: web-server-2
-              label: Second Web server
-              region: 201
-              image: 2102
-              plan: 2101
-              auto_backups: false
-              ipv6_networking: true
-              ddos_protection: false
-              private_networking: true
-              ssh_key: 5cb46fd8-1b2d-11e9-ab14-d663bd873d93
-              script_url: 'https://raw.github.com...'
-              user_data: I2Nsb3VkLWluaXQ=
+              uuid: 38353138-6331-4233-b038-343035303839
         required: true
       x-operation-settings:
         CollectParameters: false
@@ -811,14 +791,117 @@ paths:
         IsMultiContentStreaming: false
       security: []
       responses:
+        '202':
+          description: Accepted
+          content:
+            application/json:
+              schema:
+                type: object
+                description: null
+                properties:
+                  message:
+                    type: string
+                    description: Response text with additional status information
+                  response_type:
+                    type: string
+                    description: Type of response message `success|info|warning|error`
+                  response_code:
+                    type: integer
+                    description: The `http` status code
+              example:
+                message: function executed successfully
+                response_type: success
+                response_code: 202
+        '400':
+          $ref: '#/paths/~1account~1token_create/post/responses/400'
+          x-miro: /home/master/Documents/projects/99stack/api-docs/models/4xx-responses/400.yaml
+        '401':
+          $ref: '#/paths/~1account~1token_list/get/responses/401'
+          x-miro: /home/master/Documents/projects/99stack/api-docs/models/4xx-responses/401.yaml
+        '403':
+          $ref: '#/paths/~1account~1token_list/get/responses/403'
+          x-miro: /home/master/Documents/projects/99stack/api-docs/models/4xx-responses/403.yaml
+        '405':
+          $ref: '#/paths/~1account~1token_list/get/responses/405'
+          x-miro: /home/master/Documents/projects/99stack/api-docs/models/4xx-responses/405.yaml
+        '429':
+          $ref: '#/paths/~1account~1info/get/responses/429'
+          x-miro: /home/master/Documents/projects/99stack/api-docs/models/4xx-responses/429.yaml
+  /account/login:
+    post:
+      tags:
+        - Account
+      summary: Login
+      description: |-
+        Validate supplied email and password/passphrase and returns a login token that can be used for authentication towards other functions the authenticated account has access to. To log out, delete the token.
+
+        **Security**
+        Please keep in mind that this function will respond with a 400 error message no matter if supplied information has errors or an account with the supplied information does not exist. This is a feature with the primary purpose to protect against robots seeking to harvest personal data.
+      operationId: account-login
+      parameters:
+        - name: Content-Type
+          in: header
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            example: application/json
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: Email address linked to the account
+                password:
+                  type: string
+                  description: Password linked to the account
+            example:
+              email: john_doe@example.com
+              password: 'a very long and secure password, preferrably a whole sentence'
+        required: true
+      responses:
         '200':
           description: OK
-        '401':
-          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+                    description: API authentication token that can be used for future API requests until disposed
+                  timestamp:
+                    type: string
+                    description: 'Logged authentication attempt timestamp, will be seen in activity log'
+              examples:
+                example-1:
+                  summary: Successful login
+                  value:
+                    token: 3fa3992937bf09dbae37023f20bbed9b560bba83369c4154cfafcd35adfe1e1a
+                    timestamp: '2020-11-23T14:36:44Z'
+        '400':
+          $ref: '#/paths/~1account~1token_create/post/responses/400'
+          x-miro: /home/master/Documents/projects/99stack/api-docs/models/4xx-responses/400.yaml
         '403':
-          description: Forbidden
+          $ref: '#/paths/~1account~1token_list/get/responses/403'
+          x-miro: /home/master/Documents/projects/99stack/api-docs/models/4xx-responses/403.yaml
+        '405':
+          $ref: '#/paths/~1account~1token_list/get/responses/405'
+          x-miro: /home/master/Documents/projects/99stack/api-docs/models/4xx-responses/405.yaml
         '429':
-          description: Too Many Requests
+          $ref: '#/paths/~1account~1info/get/responses/429'
+          x-miro: /home/master/Documents/projects/99stack/api-docs/models/4xx-responses/429.yaml
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+      security: []
   /account/password:
     post:
       tags:
@@ -836,28 +919,114 @@ paths:
           schema:
             type: string
             example: application/json
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties: {}
       x-operation-settings:
         CollectParameters: false
         AllowDynamicQueryParameters: false
         AllowDynamicFormParameters: false
         IsMultiContentStreaming: false
       security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: Email address for the account whos password you want to change
+                password.old:
+                  type: string
+                  description: The old password
+                password.new:
+                  type: string
+                  description: The new password or passphrase
+            example:
+              email: john_doe@example.com
+              password:
+                old: myoldtooshortpassword
+                new: my new much longer and nearly impossible to guess passphrase that can and probably should be up to 4096 characters long
       responses:
-        '200':
-          description: OK
+        '202':
+          $ref: '#/paths/~1account~1activate/post/responses/202'
+          x-miro: /home/master/Documents/projects/99stack/api-docs/models/2xx-responses/202.yaml
+        '400':
+          $ref: '#/paths/~1account~1token_create/post/responses/400'
+          x-miro: /home/master/Documents/projects/99stack/api-docs/models/4xx-responses/400.yaml
         '401':
-          description: Unauthorized
+          $ref: '#/paths/~1account~1token_list/get/responses/401'
+          x-miro: /home/master/Documents/projects/99stack/api-docs/models/4xx-responses/401.yaml
         '403':
-          description: Forbidden
+          $ref: '#/paths/~1account~1token_list/get/responses/403'
+          x-miro: /home/master/Documents/projects/99stack/api-docs/models/4xx-responses/403.yaml
+        '405':
+          $ref: '#/paths/~1account~1token_list/get/responses/405'
+          x-miro: /home/master/Documents/projects/99stack/api-docs/models/4xx-responses/405.yaml
         '429':
-          description: Too Many Requests
+          $ref: '#/paths/~1account~1info/get/responses/429'
+          x-miro: /home/master/Documents/projects/99stack/api-docs/models/4xx-responses/429.yaml
+  /account/reset:
+    post:
+      tags:
+        - Account
+      summary: Reset password
+      description: |-
+        Generate and email a temporary one time password that can be used to login. (see /v1/account/login for more information).
+
+        **Will this disable my current password?**
+
+        No, it will only offer an alternative way to login. If you suspect that someone is trying to access your account, consider changing your password to a longer and more secure one.
+
+        **Security**
+        Please keep in mind that this function will respond with a 202 success message instead of a 404 message in the event that no account matches the provided email address. This is a feature with the primary purpose to protect against robots seeking to harvest personal data.
+      operationId: account-reset
+      security: []
+      parameters:
+        - name: Content-Type
+          in: header
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            example: application/json
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: Email address for the account you want to reset
+            example:
+              email: john_doe@example.com
+      responses:
+        '202':
+          $ref: '#/paths/~1account~1activate/post/responses/202'
+          x-miro: /home/master/Documents/projects/99stack/api-docs/models/2xx-responses/202.yaml
+        '400':
+          $ref: '#/paths/~1account~1token_create/post/responses/400'
+          x-miro: /home/master/Documents/projects/99stack/api-docs/models/4xx-responses/400.yaml
+        '401':
+          $ref: '#/paths/~1account~1token_list/get/responses/401'
+          x-miro: /home/master/Documents/projects/99stack/api-docs/models/4xx-responses/401.yaml
+        '403':
+          $ref: '#/paths/~1account~1token_list/get/responses/403'
+          x-miro: /home/master/Documents/projects/99stack/api-docs/models/4xx-responses/403.yaml
+        '405':
+          $ref: '#/paths/~1account~1token_list/get/responses/405'
+          x-miro: /home/master/Documents/projects/99stack/api-docs/models/4xx-responses/405.yaml
+        '429':
+          $ref: '#/paths/~1account~1info/get/responses/429'
+          x-miro: /home/master/Documents/projects/99stack/api-docs/models/4xx-responses/429.yaml
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
   /transaction/list:
     get:
       tags:
@@ -1187,8 +1356,23 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1account~1info/get/responses/403/content/application~1json/schema'
-                x-miro: /home/master/Documents/projects/99stack/api-docs/models/response-forbidden.v1.yaml
+                type: object
+                description: 'Access denied, check your auth token'
+                x-examples:
+                  Response:
+                    message: Authorization token does not exist
+                    response_type: error
+                    response_code: 403
+                properties:
+                  message:
+                    type: string
+                    description: Response text with a simple description of the result
+                  response_type:
+                    type: string
+                    description: 'Type of message: success|info|warning|error'
+                  response_code:
+                    type: integer
+                    description: HTTP status code for quick reference
               example:
                 message: Authorization token does not exist
                 response_type: error
@@ -1234,7 +1418,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1account~1info/get/responses/403/content/application~1json/schema'
+                $ref: '#/paths/~1snapshot~1list/get/responses/403/content/application~1json/schema'
                 x-miro: /home/master/Documents/projects/99stack/api-docs/models/response-forbidden.v1.yaml
               example:
                 message: Authorization token does not exist
@@ -1292,7 +1476,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1account~1info/get/responses/403/content/application~1json/schema'
+                $ref: '#/paths/~1snapshot~1list/get/responses/403/content/application~1json/schema'
                 x-miro: /home/master/Documents/projects/99stack/api-docs/models/response-forbidden.v1.yaml
               example:
                 message: Authorization token does not exist
@@ -1357,7 +1541,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1account~1info/get/responses/403/content/application~1json/schema'
+                $ref: '#/paths/~1snapshot~1list/get/responses/403/content/application~1json/schema'
                 x-miro: /home/master/Documents/projects/99stack/api-docs/models/response-forbidden.v1.yaml
               example:
                 message: Authorization token does not exist
@@ -2154,26 +2338,8 @@ paths:
                   ip_id: fae640c3-537e-4820-ab9f-ef251405bfec
       responses:
         '202':
-          description: Accepted
-          content:
-            application/json:
-              schema:
-                type: object
-                description: null
-                properties:
-                  message:
-                    type: string
-                    description: Response text with additional status information
-                  response_type:
-                    type: string
-                    description: Type of response message `success|info|warning|error`
-                  response_code:
-                    type: integer
-                    description: The `http` status code
-              example:
-                message: function executed successfully
-                response_type: success
-                response_code: 202
+          $ref: '#/paths/~1account~1activate/post/responses/202'
+          x-miro: /home/master/Documents/projects/99stack/api-docs/models/2xx-responses/202.yaml
         '400':
           $ref: '#/paths/~1account~1token_create/post/responses/400'
           x-miro: /home/master/Documents/projects/99stack/api-docs/models/4xx-responses/400.yaml
@@ -2236,7 +2402,7 @@ paths:
                   ip_id: fae640c3-537e-4820-ab9f-ef251405bfec
       responses:
         '202':
-          $ref: '#/paths/~1floating_ip~1attach/post/responses/202'
+          $ref: '#/paths/~1account~1activate/post/responses/202'
           x-miro: /home/master/Documents/projects/99stack/api-docs/models/2xx-responses/202.yaml
         '400':
           $ref: '#/paths/~1account~1token_create/post/responses/400'
@@ -2550,7 +2716,7 @@ paths:
       security: []
       responses:
         '202':
-          $ref: '#/paths/~1floating_ip~1attach/post/responses/202'
+          $ref: '#/paths/~1account~1activate/post/responses/202'
           x-miro: /home/master/Documents/projects/99stack/api-docs/models/2xx-responses/202.yaml
         '400':
           $ref: '#/paths/~1account~1token_create/post/responses/400'
@@ -2683,7 +2849,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1account~1info/get/responses/403/content/application~1json/schema'
+                $ref: '#/paths/~1snapshot~1list/get/responses/403/content/application~1json/schema'
                 x-miro: /home/master/Documents/projects/99stack/api-docs/models/response-forbidden.v1.yaml
               example:
                 message: Invalid resource requested
@@ -2813,6 +2979,7 @@ paths:
                     description: Ability to enable the auto backup feature to have your server backed up automatically on a schedule
               examples:
                 region-101:
+                  summary: Features available in a G1 data center
                   value:
                     ddos_protection: false
                     block_storage: false
@@ -2820,6 +2987,7 @@ paths:
                     ipv6: true
                     backups: true
                 region-201:
+                  summary: Features available in a G2 data center
                   value:
                     ddos_protection: false
                     block_storage: true
@@ -2827,6 +2995,7 @@ paths:
                     ipv6: true
                     backups: true
                 region-301:
+                  summary: Features available in a G3 data center
                   value:
                     ddos_protection: false
                     block_storage: true
@@ -2901,6 +3070,7 @@ paths:
                     description: The estimated price of this plan per month (hourly price multiplied by 730 hours).
               examples:
                 region-101:
+                  summary: Plans available in a G1 data center
                   value:
                     plans:
                       '1101':
@@ -3016,6 +3186,7 @@ paths:
                     meta:
                       total: 11
                 region-201:
+                  summary: Plans available in a G2 data center
                   value:
                     plans:
                       '2101':
@@ -3381,6 +3552,7 @@ paths:
                     meta:
                       total: 36
                 region-301:
+                  summary: Plans available in a G3 data center
                   value:
                     plans:
                       '3101':
@@ -3991,435 +4163,9 @@ paths:
                   hourly_cost:
                     type: number
                     description: 'Price per hour, this is the license fee (only applies to proprietary software such as Windows or cPanel)'
-              example:
-                images:
-                  '1101':
-                    uuid: 30323430-3337-4239-b437-326431383833
-                    id: 127
-                    name: CentOS 6 x64
-                    type: os
-                    os_type: linux
-                    os_distro: centos
-                    min_disk_gb: 25
-                    hourly_cost: 0
-                  '1102':
-                    uuid: 36323062-6264-4131-a461-323037393435
-                    id: 147
-                    name: CentOS 6 i386
-                    type: os
-                    os_type: linux
-                    os_distro: centos
-                    min_disk_gb: 25
-                    hourly_cost: 0
-                  '1103':
-                    uuid: 65376639-3730-4639-b030-666432366264
-                    id: 167
-                    name: CentOS 7 x64
-                    type: os
-                    os_type: linux
-                    os_distro: centos
-                    min_disk_gb: 25
-                    hourly_cost: 0
-                  '1104':
-                    uuid: 33303937-3230-4664-b266-396662373564
-                    id: 160
-                    name: Ubuntu 14.04 x64
-                    type: os
-                    os_type: linux
-                    os_distro: ubuntu
-                    min_disk_gb: 25
-                    hourly_cost: 0
-                  '1105':
-                    uuid: 33363135-3438-4137-b061-643935643466
-                    id: 161
-                    name: Ubuntu 14.04 i386
-                    type: os
-                    os_type: linux
-                    os_distro: ubuntu
-                    min_disk_gb: 25
-                    hourly_cost: 0
-                  '1106':
-                    uuid: 34306231-3336-4964-a531-346461303137
-                    id: 215
-                    name: Ubuntu 16.04 x64
-                    type: os
-                    os_type: linux
-                    os_distro: ubuntu
-                    min_disk_gb: 25
-                    hourly_cost: 0
-                  '1107':
-                    uuid: 65386262-6264-4137-a636-383031313634
-                    id: 216
-                    name: Ubuntu 16.04 i386
-                    type: os
-                    os_type: linux
-                    os_distro: ubuntu
-                    min_disk_gb: 25
-                    hourly_cost: 0
-                  '1108':
-                    uuid: 38333265-3534-4564-b862-646337653166
-                    id: 270
-                    name: Ubuntu 18.04 x64
-                    type: os
-                    os_type: linux
-                    os_distro: ubuntu
-                    min_disk_gb: 25
-                    hourly_cost: 0
-                  '1109':
-                    uuid: 65376161-3430-4061-a132-383230623636
-                    id: 302
-                    name: Ubuntu 18.10 x64
-                    type: os
-                    os_type: linux
-                    os_distro: ubuntu
-                    min_disk_gb: 25
-                    hourly_cost: 0
-                  '1110':
-                    uuid: 38373035-6232-4031-a631-326135333165
-                    id: 193
-                    name: Debian 8 x64 (jessie)
-                    type: os
-                    os_type: linux
-                    os_distro: debian
-                    min_disk_gb: 25
-                    hourly_cost: 0
-                  '1111':
-                    uuid: 37323939-3131-4430-b864-663164353833
-                    id: 194
-                    name: Debian 8 i386 (jessie)
-                    type: os
-                    os_type: linux
-                    os_distro: debian
-                    min_disk_gb: 25
-                    hourly_cost: 0
-                  '1112':
-                    uuid: 61653961-3165-4363-b062-663532303036
-                    id: 244
-                    name: Debian 9 x64 (stretch)
-                    type: os
-                    os_type: linux
-                    os_distro: debian
-                    min_disk_gb: 25
-                    hourly_cost: 0
-                  '1113':
-                    uuid: 65313037-3234-4135-b061-633830373931
-                    id: 230
-                    name: FreeBSD 11 x64
-                    type: os
-                    os_type: linux
-                    os_distro: freebsd
-                    min_disk_gb: 25
-                    hourly_cost: 0
-                  '1114':
-                    uuid: 66373934-6264-4863-b361-616131353066
-                    id: 327
-                    name: FreeBSD 12 x64
-                    type: os
-                    os_type: linux
-                    os_distro: freebsd
-                    min_disk_gb: 25
-                    hourly_cost: 0
-                  '1115':
-                    uuid: 62303530-3662-4866-b533-623436373464
-                    id: 234
-                    name: OpenBSD 6.3 x64
-                    type: os
-                    os_type: linux
-                    os_distro: openbsd
-                    min_disk_gb: 25
-                    hourly_cost: 0
-                  '1116':
-                    uuid: 34313032-3964-4961-b963-323261353834
-                    id: 324
-                    name: OpenBSD 6.4 x64
-                    type: os
-                    os_type: linux
-                    os_distro: openbsd
-                    min_disk_gb: 25
-                    hourly_cost: 0
-                  '1117':
-                    uuid: 37663161-3065-4439-b334-373739396338
-                    id: 179
-                    name: CoreOS Stable
-                    type: os
-                    os_type: linux
-                    os_distro: coreos
-                    min_disk_gb: 25
-                    hourly_cost: 0
-                  '1118':
-                    uuid: 66626536-6637-4234-b731-313139396163
-                    id: 271
-                    name: Fedora 28 x64
-                    type: os
-                    os_type: linux
-                    os_distro: fedora
-                    min_disk_gb: 25
-                    hourly_cost: 0
-                  '1119':
-                    uuid: 66323338-6639-4362-a562-386434396639
-                    id: 322
-                    name: Fedora 29 x64
-                    type: os
-                    os_type: linux
-                    os_distro: fedora
-                    min_disk_gb: 25
-                    hourly_cost: 0
-                  '1120':
-                    uuid: 33373631-3866-4334-b164-303065613638
-                    id: 124
-                    name: Windows 2012 R2 x64
-                    type: os
-                    os_type: windows
-                    os_distro: windows
-                    min_disk_gb: 25
-                    hourly_cost: 0.02465753
-                  '1121':
-                    uuid: 65653765-3130-4233-b865-303030346134
-                    id: 240
-                    name: Windows 2016 x64
-                    type: os
-                    os_type: windows
-                    os_distro: windows
-                    min_disk_gb: 25
-                    hourly_cost: 0.02465753
-                  '1201':
-                    uuid: 37363337-3565-4736-a438-366436343164
-                    id: '1'
-                    name: LEMP on CentOS 6 x64
-                    type: app
-                    os_type: linux
-                    os_distro: centos
-                    min_disk: 25
-                    hourly_cost: 0
-                  '1202':
-                    uuid: 61376566-3036-4937-b036-373834326266
-                    id: '39'
-                    name: LEMP on CentOS 7 x64
-                    type: app
-                    os_type: linux
-                    os_distro: centos
-                    min_disk: 25
-                    hourly_cost: 0
-                  '1203':
-                    uuid: 39363865-6434-4232-a137-373332363333
-                    id: '40'
-                    name: LEMP on Ubuntu 16.04 x64
-                    type: app
-                    os_type: linux
-                    os_distro: centos
-                    min_disk: 25
-                    hourly_cost: 0
-                  '1204':
-                    uuid: 61666331-3764-4839-b161-393766373135
-                    id: '2'
-                    name: WordPress on Ubuntu 16.04 x64
-                    type: app
-                    os_type: linux
-                    os_distro: centos
-                    min_disk: 25
-                    hourly_cost: 0
-                  '1205':
-                    uuid: 34383735-3535-4366-a337-313764316537
-                    id: '3'
-                    name: Minecraft on Ubuntu 16.04 x64
-                    type: app
-                    os_type: linux
-                    os_distro: centos
-                    min_disk: 25
-                    hourly_cost: 0
-                  '1206':
-                    uuid: 64383666-3034-4237-b366-356366633131
-                    id: '4'
-                    name: Webmin on CentOS 6 x64
-                    type: app
-                    os_type: linux
-                    os_distro: centos
-                    min_disk: 25
-                    hourly_cost: 0
-                  '1207':
-                    uuid: 64393962-6136-4937-b365-613130393436
-                    id: '43'
-                    name: Webmin on CentOS 7 x64
-                    type: app
-                    os_type: linux
-                    os_distro: centos
-                    min_disk: 25
-                    hourly_cost: 0
-                  '1208':
-                    uuid: 35616335-6464-4130-a664-633134646561
-                    id: '44'
-                    name: Webmin on Ubuntu 16.04 x64
-                    type: app
-                    os_type: linux
-                    os_distro: centos
-                    min_disk: 25
-                    hourly_cost: 0
-                  '1209':
-                    uuid: 63636638-6331-4736-b432-613333353537
-                    id: '5'
-                    name: ownCloud on Ubuntu 16.04 x64
-                    type: app
-                    os_type: linux
-                    os_distro: centos
-                    min_disk: 25
-                    hourly_cost: 0
-                  '1210':
-                    uuid: 33363664-6632-4434-b536-303430666133
-                    id: '6'
-                    name: OpenVPN on Ubuntu 16.04 x64
-                    type: app
-                    os_type: linux
-                    os_distro: centos
-                    min_disk: 25
-                    hourly_cost: 0
-                  '1211':
-                    uuid: 37316634-3932-4030-b738-623037643734
-                    id: '38'
-                    name: cPanel on CentOS 7 x64
-                    type: app
-                    os_type: linux
-                    os_distro: centos
-                    min_disk: 25
-                    hourly_cost: 0
-                  '1212':
-                    uuid: 31313966-6264-4566-a638-353730333233
-                    id: '15'
-                    name: Drupal on Ubuntu 16.04 x64
-                    type: app
-                    os_type: linux
-                    os_distro: centos
-                    min_disk: 25
-                    hourly_cost: 0
-                  '1213':
-                    uuid: 30393636-3134-4934-b563-653335303162
-                    id: '17'
-                    name: Docker on CentOS 7 x64
-                    type: app
-                    os_type: linux
-                    os_distro: centos
-                    min_disk: 25
-                    hourly_cost: 0
-                  '1214':
-                    uuid: 32386632-6564-4538-a137-343161633332
-                    id: '37'
-                    name: Docker on Ubuntu 16.04 x64
-                    type: app
-                    os_type: linux
-                    os_distro: centos
-                    min_disk: 25
-                    hourly_cost: 0
-                  '1215':
-                    uuid: 38656434-6139-4663-b638-313934663732
-                    id: '19'
-                    name: LAMP on CentOS 6 x64
-                    type: app
-                    os_type: linux
-                    os_distro: centos
-                    min_disk: 25
-                    hourly_cost: 0
-                  '1216':
-                    uuid: 34633939-3662-4866-b635-373365656461
-                    id: '41'
-                    name: LAMP on CentOS 7 x64
-                    type: app
-                    os_type: linux
-                    os_distro: centos
-                    min_disk: 25
-                    hourly_cost: 0
-                  '1217':
-                    uuid: 32393733-3737-4430-b537-656236356364
-                    id: '42'
-                    name: LAMP on Ubuntu 16.04 x64
-                    type: app
-                    os_type: linux
-                    os_distro: centos
-                    min_disk: 25
-                    hourly_cost: 0
-                  '1218':
-                    uuid: 33316461-6231-4665-a236-373064643634
-                    id: '21'
-                    name: Joomla on Ubuntu 16.04 x64
-                    type: app
-                    os_type: linux
-                    os_distro: centos
-                    min_disk: 25
-                    hourly_cost: 0
-                  '1219':
-                    uuid: 66343363-3261-4966-b662-626165303532
-                    id: '23'
-                    name: Mediawiki on Ubuntu 16.04 x64
-                    type: app
-                    os_type: linux
-                    os_distro: centos
-                    min_disk: 25
-                    hourly_cost: 0
-                  '1220':
-                    uuid: 38666232-3766-4564-b535-393131626261
-                    id: '25'
-                    name: PrestaShop on Ubuntu 16.04 x64
-                    type: app
-                    os_type: linux
-                    os_distro: centos
-                    min_disk: 25
-                    hourly_cost: 0
-                  '1221':
-                    uuid: 32313863-6564-4566-b639-386562636531
-                    id: '27'
-                    name: Nextcloud on Ubuntu 16.04 x64
-                    type: app
-                    os_type: linux
-                    os_distro: centos
-                    min_disk: 25
-                    hourly_cost: 0
-                  '1222':
-                    uuid: 34393839-6532-4261-a661-363663643163
-                    id: '29'
-                    name: GitLab on Ubuntu 16.04 x64
-                    type: app
-                    os_type: linux
-                    os_distro: centos
-                    min_disk: 25
-                    hourly_cost: 0
-                  '1223':
-                    uuid: 35646230-3434-4334-b735-653833653939
-                    id: '31'
-                    name: Plesk Onyx (Web Admin SE) on Ubuntu 16.04 x64
-                    type: app
-                    os_type: linux
-                    os_distro: centos
-                    min_disk: 25
-                    hourly_cost: 0
-                  '1224':
-                    uuid: 34313934-6434-4539-a237-653336306562
-                    id: '35'
-                    name: Plesk Onyx (Web Pro) on Ubuntu 16.04 x64
-                    type: app
-                    os_type: linux
-                    os_distro: centos
-                    min_disk: 25
-                    hourly_cost: 0
-                  '1225':
-                    uuid: 61313136-3063-4362-b136-383439373137
-                    id: '36'
-                    name: Plesk Onyx (Web Host) on Ubuntu 16.04 x64
-                    type: app
-                    os_type: linux
-                    os_distro: centos
-                    min_disk: 25
-                    hourly_cost: 0
-                  '1226':
-                    uuid: 62633363-3636-4466-a266-393263383634
-                    id: '33'
-                    name: Magento on Ubuntu 16.04 x64
-                    type: app
-                    os_type: linux
-                    os_distro: centos
-                    min_disk: 25
-                    hourly_cost: 0
-                meta:
-                  total: 47
               examples:
                 region-101:
+                  summary: Software images available in a G1 data center
                   value:
                     images:
                       '1101':
@@ -4833,6 +4579,7 @@ paths:
                     meta:
                       total: 51
                 region-201:
+                  summary: Software images available in a G2 data center
                   value:
                     images:
                       '2101':
@@ -5525,9 +5272,10 @@ paths:
                     meta:
                       total: 83
                 region-301:
+                  summary: Software images available in a G3 data center
                   value:
                     images:
-                      '1':
+                      '3001':
                         uuid: 66623465-6665-4733-b239-366535303266
                         name: CoreOS - Container Linux 1298.6.0
                         os_type: linux
@@ -5535,7 +5283,7 @@ paths:
                         onapp_os_distro: coreos
                         min_disk: 10
                         hourly_cost: 0
-                      '2':
+                      '3002':
                         uuid: 32366262-3361-4462-b738-303865313765
                         name: Ubuntu 19.04 Server
                         os_type: linux
@@ -5543,7 +5291,7 @@ paths:
                         onapp_os_distro: ubuntu
                         min_disk: 10
                         hourly_cost: 0
-                      '3':
+                      '3003':
                         uuid: 30386133-3532-4761-b933-303432396631
                         name: SUSE Linux Enterprise Server 11 with SP3
                         os_type: linux
@@ -5551,7 +5299,7 @@ paths:
                         onapp_os_distro: suse linux enterprise
                         min_disk: 10
                         hourly_cost: 0
-                      '4':
+                      '3004':
                         uuid: 32393034-6662-4235-b365-613832313036
                         name: FreeBSD 12.0 Server
                         os_type: bsd
@@ -6269,6 +6017,15 @@ paths:
                     description: Availibility of third generation servers
               examples:
                 example-1:
+                  summary: Server instance availibility
+                  value:
+                    providers:
+                      G1: 0.03
+                      G2: 0.37
+                      G3: 0.54
+                      E11: 1
+                example-2:
+                  summary: Legacy response
                   value:
                     GEN_1: 0.03
                     GEN_2: 0.37
@@ -6532,7 +6289,7 @@ paths:
       security: []
       responses:
         '202':
-          $ref: '#/paths/~1floating_ip~1attach/post/responses/202'
+          $ref: '#/paths/~1account~1activate/post/responses/202'
           x-miro: /home/master/Documents/projects/99stack/api-docs/models/2xx-responses/202.yaml
         '400':
           $ref: '#/paths/~1account~1token_create/post/responses/400'
@@ -6601,7 +6358,7 @@ paths:
       security: []
       responses:
         '202':
-          $ref: '#/paths/~1floating_ip~1attach/post/responses/202'
+          $ref: '#/paths/~1account~1activate/post/responses/202'
           x-miro: /home/master/Documents/projects/99stack/api-docs/models/2xx-responses/202.yaml
         '400':
           $ref: '#/paths/~1account~1token_create/post/responses/400'
