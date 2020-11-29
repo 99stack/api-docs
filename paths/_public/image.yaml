@@ -37,435 +37,10 @@ get:
               hourly_cost:
                type: number
                description: Price per hour, this is the license fee (only applies to proprietary software such as Windows or cPanel)
-          example:
-            images:
-              '1101':
-                uuid: 30323430-3337-4239-b437-326431383833
-                id: 127
-                name: CentOS 6 x64
-                type: os
-                os_type: linux
-                os_distro: centos
-                min_disk_gb: 25
-                hourly_cost: 0
-              '1102':
-                uuid: 36323062-6264-4131-a461-323037393435
-                id: 147
-                name: CentOS 6 i386
-                type: os
-                os_type: linux
-                os_distro: centos
-                min_disk_gb: 25
-                hourly_cost: 0
-              '1103':
-                uuid: 65376639-3730-4639-b030-666432366264
-                id: 167
-                name: CentOS 7 x64
-                type: os
-                os_type: linux
-                os_distro: centos
-                min_disk_gb: 25
-                hourly_cost: 0
-              '1104':
-                uuid: 33303937-3230-4664-b266-396662373564
-                id: 160
-                name: Ubuntu 14.04 x64
-                type: os
-                os_type: linux
-                os_distro: ubuntu
-                min_disk_gb: 25
-                hourly_cost: 0
-              '1105':
-                uuid: 33363135-3438-4137-b061-643935643466
-                id: 161
-                name: Ubuntu 14.04 i386
-                type: os
-                os_type: linux
-                os_distro: ubuntu
-                min_disk_gb: 25
-                hourly_cost: 0
-              '1106':
-                uuid: 34306231-3336-4964-a531-346461303137
-                id: 215
-                name: Ubuntu 16.04 x64
-                type: os
-                os_type: linux
-                os_distro: ubuntu
-                min_disk_gb: 25
-                hourly_cost: 0
-              '1107':
-                uuid: 65386262-6264-4137-a636-383031313634
-                id: 216
-                name: Ubuntu 16.04 i386
-                type: os
-                os_type: linux
-                os_distro: ubuntu
-                min_disk_gb: 25
-                hourly_cost: 0
-              '1108':
-                uuid: 38333265-3534-4564-b862-646337653166
-                id: 270
-                name: Ubuntu 18.04 x64
-                type: os
-                os_type: linux
-                os_distro: ubuntu
-                min_disk_gb: 25
-                hourly_cost: 0
-              '1109':
-                uuid: 65376161-3430-4061-a132-383230623636
-                id: 302
-                name: Ubuntu 18.10 x64
-                type: os
-                os_type: linux
-                os_distro: ubuntu
-                min_disk_gb: 25
-                hourly_cost: 0
-              '1110':
-                uuid: 38373035-6232-4031-a631-326135333165
-                id: 193
-                name: Debian 8 x64 (jessie)
-                type: os
-                os_type: linux
-                os_distro: debian
-                min_disk_gb: 25
-                hourly_cost: 0
-              '1111':
-                uuid: 37323939-3131-4430-b864-663164353833
-                id: 194
-                name: Debian 8 i386 (jessie)
-                type: os
-                os_type: linux
-                os_distro: debian
-                min_disk_gb: 25
-                hourly_cost: 0
-              '1112':
-                uuid: 61653961-3165-4363-b062-663532303036
-                id: 244
-                name: Debian 9 x64 (stretch)
-                type: os
-                os_type: linux
-                os_distro: debian
-                min_disk_gb: 25
-                hourly_cost: 0
-              '1113':
-                uuid: 65313037-3234-4135-b061-633830373931
-                id: 230
-                name: FreeBSD 11 x64
-                type: os
-                os_type: linux
-                os_distro: freebsd
-                min_disk_gb: 25
-                hourly_cost: 0
-              '1114':
-                uuid: 66373934-6264-4863-b361-616131353066
-                id: 327
-                name: FreeBSD 12 x64
-                type: os
-                os_type: linux
-                os_distro: freebsd
-                min_disk_gb: 25
-                hourly_cost: 0
-              '1115':
-                uuid: 62303530-3662-4866-b533-623436373464
-                id: 234
-                name: OpenBSD 6.3 x64
-                type: os
-                os_type: linux
-                os_distro: openbsd
-                min_disk_gb: 25
-                hourly_cost: 0
-              '1116':
-                uuid: 34313032-3964-4961-b963-323261353834
-                id: 324
-                name: OpenBSD 6.4 x64
-                type: os
-                os_type: linux
-                os_distro: openbsd
-                min_disk_gb: 25
-                hourly_cost: 0
-              '1117':
-                uuid: 37663161-3065-4439-b334-373739396338
-                id: 179
-                name: CoreOS Stable
-                type: os
-                os_type: linux
-                os_distro: coreos
-                min_disk_gb: 25
-                hourly_cost: 0
-              '1118':
-                uuid: 66626536-6637-4234-b731-313139396163
-                id: 271
-                name: Fedora 28 x64
-                type: os
-                os_type: linux
-                os_distro: fedora
-                min_disk_gb: 25
-                hourly_cost: 0
-              '1119':
-                uuid: 66323338-6639-4362-a562-386434396639
-                id: 322
-                name: Fedora 29 x64
-                type: os
-                os_type: linux
-                os_distro: fedora
-                min_disk_gb: 25
-                hourly_cost: 0
-              '1120':
-                uuid: 33373631-3866-4334-b164-303065613638
-                id: 124
-                name: Windows 2012 R2 x64
-                type: os
-                os_type: windows
-                os_distro: windows
-                min_disk_gb: 25
-                hourly_cost: 0.02465753
-              '1121':
-                uuid: 65653765-3130-4233-b865-303030346134
-                id: 240
-                name: Windows 2016 x64
-                type: os
-                os_type: windows
-                os_distro: windows
-                min_disk_gb: 25
-                hourly_cost: 0.02465753
-              '1201':
-                uuid: 37363337-3565-4736-a438-366436343164
-                id: '1'
-                name: LEMP on CentOS 6 x64
-                type: app
-                os_type: linux
-                os_distro: centos
-                min_disk: 25
-                hourly_cost: 0
-              '1202':
-                uuid: 61376566-3036-4937-b036-373834326266
-                id: '39'
-                name: LEMP on CentOS 7 x64
-                type: app
-                os_type: linux
-                os_distro: centos
-                min_disk: 25
-                hourly_cost: 0
-              '1203':
-                uuid: 39363865-6434-4232-a137-373332363333
-                id: '40'
-                name: LEMP on Ubuntu 16.04 x64
-                type: app
-                os_type: linux
-                os_distro: centos
-                min_disk: 25
-                hourly_cost: 0
-              '1204':
-                uuid: 61666331-3764-4839-b161-393766373135
-                id: '2'
-                name: WordPress on Ubuntu 16.04 x64
-                type: app
-                os_type: linux
-                os_distro: centos
-                min_disk: 25
-                hourly_cost: 0
-              '1205':
-                uuid: 34383735-3535-4366-a337-313764316537
-                id: '3'
-                name: Minecraft on Ubuntu 16.04 x64
-                type: app
-                os_type: linux
-                os_distro: centos
-                min_disk: 25
-                hourly_cost: 0
-              '1206':
-                uuid: 64383666-3034-4237-b366-356366633131
-                id: '4'
-                name: Webmin on CentOS 6 x64
-                type: app
-                os_type: linux
-                os_distro: centos
-                min_disk: 25
-                hourly_cost: 0
-              '1207':
-                uuid: 64393962-6136-4937-b365-613130393436
-                id: '43'
-                name: Webmin on CentOS 7 x64
-                type: app
-                os_type: linux
-                os_distro: centos
-                min_disk: 25
-                hourly_cost: 0
-              '1208':
-                uuid: 35616335-6464-4130-a664-633134646561
-                id: '44'
-                name: Webmin on Ubuntu 16.04 x64
-                type: app
-                os_type: linux
-                os_distro: centos
-                min_disk: 25
-                hourly_cost: 0
-              '1209':
-                uuid: 63636638-6331-4736-b432-613333353537
-                id: '5'
-                name: ownCloud on Ubuntu 16.04 x64
-                type: app
-                os_type: linux
-                os_distro: centos
-                min_disk: 25
-                hourly_cost: 0
-              '1210':
-                uuid: 33363664-6632-4434-b536-303430666133
-                id: '6'
-                name: OpenVPN on Ubuntu 16.04 x64
-                type: app
-                os_type: linux
-                os_distro: centos
-                min_disk: 25
-                hourly_cost: 0
-              '1211':
-                uuid: 37316634-3932-4030-b738-623037643734
-                id: '38'
-                name: cPanel on CentOS 7 x64
-                type: app
-                os_type: linux
-                os_distro: centos
-                min_disk: 25
-                hourly_cost: 0
-              '1212':
-                uuid: 31313966-6264-4566-a638-353730333233
-                id: '15'
-                name: Drupal on Ubuntu 16.04 x64
-                type: app
-                os_type: linux
-                os_distro: centos
-                min_disk: 25
-                hourly_cost: 0
-              '1213':
-                uuid: 30393636-3134-4934-b563-653335303162
-                id: '17'
-                name: Docker on CentOS 7 x64
-                type: app
-                os_type: linux
-                os_distro: centos
-                min_disk: 25
-                hourly_cost: 0
-              '1214':
-                uuid: 32386632-6564-4538-a137-343161633332
-                id: '37'
-                name: Docker on Ubuntu 16.04 x64
-                type: app
-                os_type: linux
-                os_distro: centos
-                min_disk: 25
-                hourly_cost: 0
-              '1215':
-                uuid: 38656434-6139-4663-b638-313934663732
-                id: '19'
-                name: LAMP on CentOS 6 x64
-                type: app
-                os_type: linux
-                os_distro: centos
-                min_disk: 25
-                hourly_cost: 0
-              '1216':
-                uuid: 34633939-3662-4866-b635-373365656461
-                id: '41'
-                name: LAMP on CentOS 7 x64
-                type: app
-                os_type: linux
-                os_distro: centos
-                min_disk: 25
-                hourly_cost: 0
-              '1217':
-                uuid: 32393733-3737-4430-b537-656236356364
-                id: '42'
-                name: LAMP on Ubuntu 16.04 x64
-                type: app
-                os_type: linux
-                os_distro: centos
-                min_disk: 25
-                hourly_cost: 0
-              '1218':
-                uuid: 33316461-6231-4665-a236-373064643634
-                id: '21'
-                name: Joomla on Ubuntu 16.04 x64
-                type: app
-                os_type: linux
-                os_distro: centos
-                min_disk: 25
-                hourly_cost: 0
-              '1219':
-                uuid: 66343363-3261-4966-b662-626165303532
-                id: '23'
-                name: Mediawiki on Ubuntu 16.04 x64
-                type: app
-                os_type: linux
-                os_distro: centos
-                min_disk: 25
-                hourly_cost: 0
-              '1220':
-                uuid: 38666232-3766-4564-b535-393131626261
-                id: '25'
-                name: PrestaShop on Ubuntu 16.04 x64
-                type: app
-                os_type: linux
-                os_distro: centos
-                min_disk: 25
-                hourly_cost: 0
-              '1221':
-                uuid: 32313863-6564-4566-b639-386562636531
-                id: '27'
-                name: Nextcloud on Ubuntu 16.04 x64
-                type: app
-                os_type: linux
-                os_distro: centos
-                min_disk: 25
-                hourly_cost: 0
-              '1222':
-                uuid: 34393839-6532-4261-a661-363663643163
-                id: '29'
-                name: GitLab on Ubuntu 16.04 x64
-                type: app
-                os_type: linux
-                os_distro: centos
-                min_disk: 25
-                hourly_cost: 0
-              '1223':
-                uuid: 35646230-3434-4334-b735-653833653939
-                id: '31'
-                name: Plesk Onyx (Web Admin SE) on Ubuntu 16.04 x64
-                type: app
-                os_type: linux
-                os_distro: centos
-                min_disk: 25
-                hourly_cost: 0
-              '1224':
-                uuid: 34313934-6434-4539-a237-653336306562
-                id: '35'
-                name: Plesk Onyx (Web Pro) on Ubuntu 16.04 x64
-                type: app
-                os_type: linux
-                os_distro: centos
-                min_disk: 25
-                hourly_cost: 0
-              '1225':
-                uuid: 61313136-3063-4362-b136-383439373137
-                id: '36'
-                name: Plesk Onyx (Web Host) on Ubuntu 16.04 x64
-                type: app
-                os_type: linux
-                os_distro: centos
-                min_disk: 25
-                hourly_cost: 0
-              '1226':
-                uuid: 62633363-3636-4466-a266-393263383634
-                id: '33'
-                name: Magento on Ubuntu 16.04 x64
-                type: app
-                os_type: linux
-                os_distro: centos
-                min_disk: 25
-                hourly_cost: 0
-            meta:
-              total: 47
+
           examples:
             region-101:
+              summary: Software images available in a G1 data center
               value:
                 images:
                   '1101':
@@ -879,6 +454,7 @@ get:
                 meta:
                   total: 51
             region-201:
+              summary: Software images available in a G2 data center
               value:
                 images:
                   '2101':
@@ -1571,9 +1147,10 @@ get:
                 meta:
                   total: 83
             region-301:
+              summary: Software images available in a G3 data center
               value:
                 images:
-                  '1':
+                  '3001':
                     uuid: 66623465-6665-4733-b239-366535303266
                     name: CoreOS - Container Linux 1298.6.0
                     os_type: linux
@@ -1581,7 +1158,7 @@ get:
                     onapp_os_distro: coreos
                     min_disk: 10
                     hourly_cost: 0
-                  '2':
+                  '3002':
                     uuid: 32366262-3361-4462-b738-303865313765
                     name: Ubuntu 19.04 Server
                     os_type: linux
@@ -1589,7 +1166,7 @@ get:
                     onapp_os_distro: ubuntu
                     min_disk: 10
                     hourly_cost: 0
-                  '3':
+                  '3003':
                     uuid: 30386133-3532-4761-b933-303432396631
                     name: SUSE Linux Enterprise Server 11 with SP3
                     os_type: linux
@@ -1597,7 +1174,7 @@ get:
                     onapp_os_distro: suse linux enterprise
                     min_disk: 10
                     hourly_cost: 0
-                  '4':
+                  '3004':
                     uuid: 32393034-6662-4235-b365-613832313036
                     name: FreeBSD 12.0 Server
                     os_type: bsd

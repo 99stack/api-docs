@@ -10,9 +10,9 @@ post:
     No, it will only offer an alternative way to login. If you suspect that someone is trying to access your account, consider changing your password to a longer and more secure one.
 
     **Security**
-
-    The one time password will only be active for a limited time, then revoked. Accounts can only be reset once per week. Response messages will not do any attempt to validate input email addresses. This to prevent account leaks.
+    Please keep in mind that this function will respond with a 202 success message instead of a 404 message in the event that no account matches the provided email address. This is a feature with the primary purpose to protect against robots seeking to harvest personal data.
   operationId: account-reset
+  security: []  
   parameters:
     - name: Content-Type
       in: header
@@ -23,26 +23,38 @@ post:
       schema:
         type: string
         example: application/json
+
   requestBody:
     required: true
     content:
       application/json:
         schema:
           type: object
-          properties: {}
+          properties: 
+            email:
+              type: string
+              description: Email address for the account you want to reset
+        example:
+          {
+            "email": "john_doe@example.com"
+          }
+          
   responses:
-    '200':
-      content:
-        application/json:
-          schema:
-            type: object
-          example:
-            message: 'Account reset request received, check your email inbox'
-            timestamp: '2019-01-13T11:19:21z'
-      description: OK
+    '202':
+      $ref: ../../models/2xx-responses/202.yaml
+    '400':
+      $ref: ../../models/4xx-responses/400.yaml
+    '401':
+      $ref: ../../models/4xx-responses/401.yaml
+    '403':
+      $ref: ../../models/4xx-responses/403.yaml
+    '405':
+      $ref: ../../models/4xx-responses/405.yaml
+    '429':
+      $ref: ../../models/4xx-responses/429.yaml
+
   x-operation-settings:
     CollectParameters: false
     AllowDynamicQueryParameters: false
     AllowDynamicFormParameters: false
     IsMultiContentStreaming: false
-  security: []  

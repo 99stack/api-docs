@@ -57,25 +57,36 @@ info:
     GET request with no arguments:
 
     ```bash
-    curl -X GET "https://api.99stack.com/v1/region/list"
+    curl -X GET \
+      "https://api.99stack.com/v1/region/list"
     ```
 
     GET request that requires your API token:
 
     ```bash
-    curl -X GET -H 'Authorization: Bearer YOUR_TOKEN' "https://api.99stack.com/v1/server/list"
+    curl -X GET \
+      -H 'Authorization: Bearer YOUR_TOKEN' \
+      "https://api.99stack.com/v1/server/list"
     ```
 
     POST request containing a JSON request body:
 
-    ```bash
-    curl -X POST -H 'Authorization: Bearer YOUR_TOKEN' -H 'Content-Type: application/json' -d '{"name": "New API token"}' "https://api.99stack.com/v1/account/token_create"
+    ```bash 
+    curl -X POST \
+      -H 'Authorization: Bearer YOUR_TOKEN' \
+      -H 'Content-Type: application/json' \
+      -d '{"name": "New API token"}'  \
+      "https://api.99stack.com/v1/account/token_create"
     ```
 
     DELETE request containing a JSON request body:
 
     ```bash
-    curl -X DELETE -H 'Authorization: Bearer YOUR_TOKEN' -H 'Content-Type: application/json' -d '{"server_id": 16324}' "https://api.99stack.com/v1/server/remove"
+    curl -X DELETE \
+      -H 'Authorization: Bearer YOUR_TOKEN' \
+      -H 'Content-Type: application/json' \
+      -d '{"server_id": 16324}' \
+      "https://api.99stack.com/v1/server/remove"
     ```
 
     # Authentication
@@ -126,16 +137,16 @@ paths:
 
   /account/info:
     $ref: ./paths/account/info.yaml
-  /account/reset:
-    $ref: ./paths/account/reset.yaml
   /account/register:
     $ref: ./paths/account/register.yaml
-  /account/login:
-    $ref: ./paths/account/login.yaml
   /account/activate:
     $ref: ./paths/account/activate.yaml
+  /account/login:
+    $ref: ./paths/account/login.yaml
   /account/password:
     $ref: ./paths/account/change_passwd.yaml
+  /account/reset:
+    $ref: ./paths/account/reset.yaml
 
   /transaction/list:
     $ref: ./paths/billing/list_trans.yaml

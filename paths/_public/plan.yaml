@@ -47,6 +47,7 @@ get:
                 description: The estimated price of this plan per month (hourly price multiplied by 730 hours). 
           examples:
             region-101:
+              summary: Plans available in a G1 data center
               value:
                 plans:
                   '1101':
@@ -162,6 +163,7 @@ get:
                 meta:
                   total: 11
             region-201:
+              summary: Plans available in a G2 data center
               value:
                 plans:
                   '2101':
@@ -527,6 +529,7 @@ get:
                 meta:
                   total: 36
             region-301:
+              summary: Plans available in a G3 data center
               value:
                 plans:
                   '3101':

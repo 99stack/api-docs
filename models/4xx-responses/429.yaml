@@ -1,0 +1,24 @@
+description: Too Many Requests
+content:
+  application/json:
+    schema:
+      type: object
+      description: 
+      properties:
+        reason:
+          type: string
+          description: Human readable explaination about why the request failed
+        response:
+          type: string
+          description: HTTP error code and text representation
+
+    examples:
+      response-1:
+        summary: Default response on "429 Too Many Requests" error
+        value:
+          {
+            "errors": {
+              "response": "429 Too Many Requests",
+              "reason": "Rate limit exceeded, please try again in a few moments"
+            }
+          }

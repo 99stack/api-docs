@@ -2,7 +2,11 @@ post:
   tags:
     - Account
   summary: Activate
-  description: Validates the `uuid` token sent to registration email address which enables the account. 
+  description: |-
+    Activate the account identified by `uuid` token sent in the request. Token is generated after the `/v1/account/register` function has been successfully executed. 
+
+    **Security**
+    Please keep in mind that this function will respond with a 202 success message instead of a 404 message in the event that no account matches the provided `uuid`. This is a feature with the primary purpose to protect against robots seeking to harvest personal data.
   operationId: account-activate
   parameters:
     - name: Content-Type
@@ -19,19 +23,14 @@ post:
       application/json:
         schema:
           type: object
+          properties:
+            uuid:
+              type: string
+              description: Unique identifer for the account to activate
         example:
-          hostname: web-server-2
-          label: Second Web server
-          region: 201
-          image: 2102
-          plan: 2101
-          auto_backups: false
-          ipv6_networking: true
-          ddos_protection: false
-          private_networking: true
-          ssh_key: 5cb46fd8-1b2d-11e9-ab14-d663bd873d93
-          script_url: 'https://raw.github.com...'
-          user_data: I2Nsb3VkLWluaXQ=
+          {
+            "uuid": "38353138-6331-4233-b038-343035303839"
+          }
     required: true
   x-operation-settings:
     CollectParameters: false
@@ -40,11 +39,15 @@ post:
     IsMultiContentStreaming: false
   security: []
   responses:
-    '200':
-      description: OK
+    '202':
+      $ref: ../../models/2xx-responses/202.yaml
+    '400':
+      $ref: ../../models/4xx-responses/400.yaml
     '401':
-      description: Unauthorized
+      $ref: ../../models/4xx-responses/401.yaml
     '403':
-      description: Forbidden
+      $ref: ../../models/4xx-responses/403.yaml
+    '405':
+      $ref: ../../models/4xx-responses/405.yaml
     '429':
-      description: Too Many Requests  
+      $ref: ../../models/4xx-responses/429.yaml
