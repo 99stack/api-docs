@@ -4,7 +4,7 @@ post:
   summary: Login
   description: |-
     Validate supplied email and password/passphrase and returns a login token that can be used for authentication towards other functions the authenticated account has access to. To log out, delete the token.
-    
+
     **Security**
     Please keep in mind that this function will respond with a 400 error message no matter if supplied information has errors or an account with the supplied information does not exist. This is a feature with the primary purpose to protect against robots seeking to harvest personal data.
   operationId: account-login
@@ -39,29 +39,29 @@ post:
     required: true
 
   responses:
-    '202':
-      application/json:
-        schema:
-          type: object
-          properties:
-            token:
-              type: string
-              description: API authentication token that can be used for future API requests until disposed
-            timestamp:
-              type: string
-              description: Logged authentication attempt timestamp, will be seen in activity log
-        examples:
-          example-1:
-            summary: Successful login
-            value:
-              {
-                "token": "3fa3992937bf09dbae37023f20bbed9b560bba83369c4154cfafcd35adfe1e1a",
-                "timestamp": "2020-11-23T14:36:44Z"
-              }
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              token:
+                type: string
+                description: API authentication token that can be used for future API requests until disposed
+              timestamp:
+                type: string
+                description: Logged authentication attempt timestamp, will be seen in activity log
+          examples:
+            example-1:
+              summary: Successful login
+              value:
+                {
+                  "token": "3fa3992937bf09dbae37023f20bbed9b560bba83369c4154cfafcd35adfe1e1a",
+                  "timestamp": "2020-11-23T14:36:44Z"
+                }
     '400':
       $ref: ../../models/4xx-responses/400.yaml
-    '401':
-      $ref: ../../models/4xx-responses/401.yaml
     '403':
       $ref: ../../models/4xx-responses/403.yaml
     '405':
