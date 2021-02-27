@@ -44,7 +44,7 @@ post:
                 "server_id": 654321
               }
   
-    responses:
+  responses:
     '200':
       content:
         application/json:
