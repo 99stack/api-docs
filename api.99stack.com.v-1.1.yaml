@@ -9,9 +9,9 @@ info:
       * https://api.eu-west.aws.99stack.com/docs/
       * https://api.us-east.aws.99stack.com/docs/
       * https://api.us-west.aws.99stack.com/docs/
+      * https://api.au-east.aws.99stack.com/docs/
       * https://api.as-east.aws.99stack.com/docs/
       * https://api.as-south.aws.99stack.com/docs/
-      * https://api.au-east.aws.99stack.com/docs/
  
     **Control panel GUI**:
       * https://dash.99stack.com
@@ -27,11 +27,11 @@ info:
     Each response comes with a HTTP status code, this code indicates the status of your request. Any 2xx response indicates success. 4xx responses indicates an error in data input, access, rate-limits or software errors. 5xx indicates server errors or errors in external resources.
 
     | HTTP Response Code  | Description  | Note
-    |---|---|
+    |---|---|---|
     | 200  | OK | Used in `GET` responses | 
     | 201  | Created | Resource creation was successfull | 
     | 202  | Accepted | Method executed successfully  | 
-    | 204  | ... | Resource was successfully removed (no response body) |
+    | 204  | No Response| Resource was successfully removed |
     | 301  | Moved Permanently | Function is deprecated  |
     | 400  | Bad Request | See response message for more details | 
     | 401  | Unauthorized | Invalid auth token | 
