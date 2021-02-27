@@ -5,7 +5,9 @@ get:
   description: |-
     Takes a `region_id` as url parameter and returns a list over all images available in that specific region. Sending this request without `region_id` returns a large list over all available images, on all generations in all datacenters (~110KB).
     
-    Images are listed by order of it's four digit `id` where the first number indicates generation (G1, G2, G3 etc..). The second number indicates image type (raw os, application, snapshot or custom), and the last two digits is the image `id`.
+    Images are listed by order of it's four digit `id` where the first number indicates generation (G1, G2, G3, G4 etc..). The second number indicates image type (raw os, application, snapshot or custom), and the last two digits is the image `id`.
+
+    See `/v1/iso` or `/v1/server/create` for more information on uploading and using custom ISOs.
   operationId: image-list
   parameters: []
   responses:

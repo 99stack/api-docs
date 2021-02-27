@@ -218,16 +218,16 @@ paths:
   /backup/disable:
     $ref: ./paths/backup/disable.yaml
 
-  '/feature/list/{region_id}':
-    $ref: ./paths/_public/feature.yaml
-  '/plan/list/{region_id}':
-    $ref: ./paths/_public/plan.yaml
-  '/image/list/{region_id}':
-    $ref: ./paths/_public/image.yaml
   /region/list:
     $ref: ./paths/_public/region.yaml
+  '/image/list/{region_id}':
+    $ref: ./paths/_public/image.yaml
+  '/plan/list/{region_id}':
+    $ref: ./paths/_public/plan.yaml
   /availability/list:
     $ref: ./paths/_public/availibility.yaml
+  '/feature/list/{region_id}':
+    $ref: ./paths/_public/feature.yaml
 
   /volume/list:
     $ref: ./paths/volume/list.yaml
