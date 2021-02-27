@@ -169,8 +169,8 @@ paths:
   /snapshot/remove:
     $ref: ./paths/snapshot/remove.yaml
 
-  /server/remove:
-    $ref: ./paths/server/remove.yaml
+  /server/list:
+    $ref: ./paths/server/list.yaml
   /server/create:
     $ref: ./paths/server/create.yaml
   /server/stop:
@@ -179,12 +179,12 @@ paths:
     $ref: ./paths/server/start.yaml
   /server/reboot:
     $ref: ./paths/server/reboot.yaml
-  /server/is_online:
+  /server/ping:
     $ref: ./paths/server/ping.yaml
   /server/info:
     $ref: ./paths/server/info.yaml
-  /server/list:
-    $ref: ./paths/server/list.yaml
+  /server/remove:
+    $ref: ./paths/server/remove.yaml
 
   /server/ddos_protection:
     $ref: ./paths/server/features/ddos.yaml
