@@ -246,15 +246,15 @@ x-tagGroups:
     tags:
       - Account
       - Billing
+      - SSH Keys
       - Token
   - name: Server
     tags:
-      - SSH Keys
       - Actions
       - Features
+      - Backup
   - name: Storage
     tags:
-      - Backup
       - Snapshot
       - Block storage
       - Object storage
