@@ -1,10 +1,10 @@
 get:
   tags:
     - Public
-  summary: Feature list
+  summary: Features
   description: |-
     List over available features in a specific region passed as `region_id` in url args.
-  operationId: feature-list
+  operationId: features
   parameters: []
   responses:
     '200':

@@ -1,11 +1,13 @@
 get:
   tags:
     - Public
-  summary: Region list
+  summary: Regions
   description: |-
     Regions are listed by order of it's three digit `id` where the first number indicates generation (G1, G2, G3 etc..). The last two digits represent the region `id` in no specific order.
 
     Generations determine the company in charge of the datacenters which indicates what laws and terms of service applies. Before uploading any controversial or potentially illgal content, please consult 99Stack support to discuss available regions.
+  operationId: regions
+
   responses:
     '200':
       description: OK
@@ -652,7 +654,7 @@ get:
       $ref: ../../models/4xx-responses/400.yaml
     '405':
       $ref: ../../models/4xx-responses/405.yaml
-  operationId: region-list
+
   parameters: []
   x-operation-settings:
     CollectParameters: false

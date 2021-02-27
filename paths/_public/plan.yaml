@@ -1,14 +1,14 @@
 get:
   tags:
     - Public
-  summary: Plan list
+  summary: Plans
   description: |-
     Takes a `region_id` as url parameter and returns a list over all plans available in that specific region. Sending this request without `region_id` returns a large list over all available plans, on all generations in all datacenters (~55KB).
     
     Plans are listed by order of it's four digit `id` where the first number indicates generation (G1, G2, G3 etc..). The second number indicates plan type (ssd-vps, dedicated, compute, memory), and the last two digits is the plan `id`, organized by size.
     
     **Note:** from may 2020 plans will be listed as a `plans` object, instead of one `ready` and one `custom` object, just like regions and images are listed.
-  operationId: plan-list
+  operationId: plans
   parameters: []
   responses:
     '200':
