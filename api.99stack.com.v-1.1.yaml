@@ -5,15 +5,14 @@ info:
   contact: {}
   description: |-
     **Mirrors**:
-      * https://www.99stack.com/resources/docs/
+      * https://api.eu-central.aws.99stack.com/docs/
       * https://api.eu-west.aws.99stack.com/docs/
       * https://api.us-east.aws.99stack.com/docs/
       * https://api.us-west.aws.99stack.com/docs/
       * https://api.as-east.aws.99stack.com/docs/
       * https://api.as-south.aws.99stack.com/docs/
-      * https://cf-api.99stack.com/docs/
-      * https://api.99stack.com/docs/
-
+      * https://api.au-east.aws.99stack.com/docs/
+ 
     **Control panel GUI**:
       * https://dash.99stack.com
 
@@ -21,28 +20,31 @@ info:
 
     ### Information
 
-    99Stack API is designed to be fast, secure and reliable. Requests and responses are in JSON format (Content-Type: application/json) and requests follows the following format: *version/object/function*, alternatively *version/object/function/args* for `GET` functions that takes one single argument. Standard HTTP error codes are used together with status messages to indicate status.
+    99Stack API is designed to be fast, secure and reliable. Requests and responses are in JSON format (Content-Type: application/json) and requests follows the following format: `version/object/function`, alternatively `version/object/function/args` for `GET` functions that takes one single argument. Standard HTTP error codes are used together with status messages to indicate status.
 
     ### Response codes
 
     Each response comes with a HTTP status code, this code indicates the status of your request. Any 2xx response indicates success. 4xx responses indicates an error in data input, access, rate-limits or software errors. 5xx indicates server errors or errors in external resources.
 
-    | HTTP Response Code  | Description  |
+    | HTTP Response Code  | Description  | Note
     |---|---|
-    | 200  | Response OK  |
-    | 201  | Resource created successfully  |
-    | 202  | Function successfully executed  |
-    | 204  | Resource removed successfully (no response body)  |
-    | 301  | Function is deprecated, (see documentation)  |
-    | 400  | Invalid input data, (see documentation)  |
-    | 403  | Access denied, check authentication token  |
-    | 404  | Function not found  |
-    | 405  | Invalid HTTP method (see response for correct method) |
-    | 429  | Too many requests, please wait  |
-    | 500  | Internal server error  |
-    | 501  | Function not implemented   |
-    | 502  | Bad gateway, failed to contact external API  |
-    | 503  | Service unavailable, maintenance in progress  |
+    | 200  | OK | Used in `GET` responses | 
+    | 201  | Created | Resource creation was successfull | 
+    | 202  | Accepted | Method executed successfully  | 
+    | 204  | ... | Resource was successfully removed (no response body) |
+    | 301  | Moved Permanently | Function is deprecated  |
+    | 400  | Bad Request | See response message for more details | 
+    | 401  | Unauthorized | Invalid auth token | 
+    | 402  | Payment required | Account balance is too low | 
+    | 403  | Forbidden | Method not allowed for authorized account | 
+    | 404  | Not Found | Resource does not exist, or is not available | 
+    | 405  | Method Not Allowed | Incorrect HTTP method, see response message for more details | 
+    | 429  | Too many requests | Rate limit was hit, try again in a few seconds|
+    | 500  | Internal Server Error | Communication error in our system |
+    | 501  | Not Implemented  | Function does not exist, check spelling |
+    | 502  | Bad Gateway | Failed to contact remote servers, or proxy error  |
+    | 503  | Service Unavailable | Maintenance in progress  |
+    | 504  | Gateway Timeout | Back-end servers was unable to handle your request |
 
     ### Rate limits
 
