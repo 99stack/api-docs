@@ -22,23 +22,79 @@ get:
       schema:
         $ref: ../../models/headers/content-type.yaml
 
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              uuid:
+                type: string
+                description: Unique `UUID` for snapshot
+              region_id:
+                type: integer
+                description: ID of the datacenter the snapshot is located in
+              type:
+                type: string
+                description: Snapshot type, can be `snapshot` or `backup`
+              name:
+                type: string
+                description: Snapshot display name
+              server_id:
+                type: string
+                description: UUID of the server the snapshot was created from 
+              expires:
+                type: string
+                description: Date and time when a backup expires, this is not used for snapshots
+              status:
+                type: string
+                description: Current status of the snapshot, can be `processing` or `completed`
+              size_gb:
+                type: integer
+                description: Snapshot size in gigabytes
+              created:
+                type: string
+                description: Date created
+          examples:
+            example-1:
+              summary: List of volumes
+              value:
+                {
+                  "snapshots": [
+                    {
+                      "uuid": "2812c19f-0d2b-43b1-91c5-7b6c590bdd8f",
+                      "region": 101,
+                      "type": "snapshot",
+                      "name": "my-first-snapshot",
+                      "server_id": "ea7d52d6-b3cf-4179-a656-913eb389487c",
+                      "expires": "N/A",
+                      "status": "processing",
+                      "size_gb": 0,
+                      "created": "2020-04-21T09:19:15Z"
+                    },
+                    {
+                      "uuid": "f56b993b-e8ac-4936-bff8-f6869f96b210",
+                      "region": 208,
+                      "type": "snapshot",
+                      "name": "my-second-snapshot",
+                      "server_id": "d8a2cdad-83ee-4355-9b3c-c96ad2fef295",
+                      "expires": "N/A",
+                      "status": "completed",
+                      "size_gb": 25,
+                      "created": "2020-04-21T09:19:15Z"
+                    }
+                  ]
+                }
+      description: OK
+    '401':
+      $ref: ../../models/4xx-responses/401.yaml
+    '405':
+      $ref: ../../models/4xx-responses/405.yaml
+
   x-operation-settings:
     CollectParameters: false
     AllowDynamicQueryParameters: false
     AllowDynamicFormParameters: false
     IsMultiContentStreaming: false
   security: []
-
-  responses:
-    '200':
-      description: OK
-    '403':
-      description: Forbidden
-      content:
-        application/json:
-          schema:
-            $ref: ../../models/response-forbidden.v1.yaml
-          example:
-            message: Authorization token does not exist
-            response_type: error
-            response_code: 403

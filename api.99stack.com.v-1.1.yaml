@@ -268,7 +268,7 @@ tags:
     description: 'View account payment transactions, taxes, fees and detailed billing information sorted by resource'
   - name: Token
     description: Manage account tokens. Create and remove API tokens and
-  - name: SSH Keys
+  - name: SSH Key
     description: 'Upload and manage your public SSH keys, these keys will be deployed to new servers upon creation, and used instead of password authentication.'
   - name: Floating IPs
     description: 'Create and manage network interfaces, IPv4 and IPv6 addresses'
