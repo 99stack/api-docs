@@ -45,8 +45,8 @@ post:
               }
   
   responses:
-    '204':
-      $ref: ../../models/2xx-responses/204.yaml
+    '202':
+      $ref: ../../models/2xx-responses/202.yaml
     '400':
       $ref: ../../models/4xx-responses/400.yaml
     '401':
