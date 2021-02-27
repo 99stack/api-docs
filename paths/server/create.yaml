@@ -27,46 +27,46 @@ post:
   requestBody:
     required: true
     content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              hostname:
-                type: string
-                description: Hostname for the new server
-              label:
-                type: string
-                description: Name for the new server
-              region:
-                type: integer
-                description: Region to deploy in, this decides which generation the server will be on
-              image:
-                type: integer
-                description: Operating system, app, snapshot or custom ISO to deploy from
-              plan:
-                type: integer
-                description: Server plan ID, decides the size of the new server
-              ddos_protection:
-                type: boolean
-                description: Value `true` if DDoS protection is enabled
-              backup_enabled:
-                type: boolean
-                description: Value `true` if automatic backups is enabled
-              ipv6_enabled:
-                type: boolean
-                description: Value `true` if IPv6 is enabled
-              private_network:
-                type: boolean
-                description: Value `true` if private_networks is enabled (reqiored to use VPCs)
-              ssh_key:
-                type: string
-                description: Deploy a SSH key identified by `uuid` as login key to the new server
-              script_url:
-                type: string
-                description: URL to server installation script
-              image_type:
-                type: string
-                description: Default is `os`, use `app` to deploy an app, `snapshot` for a snapshot or backup image and `iso` for a custom ISO. Always pass the ID via the `image` field
+      application/json:
+        schema:
+          type: object
+          properties:
+            hostname:
+              type: string
+              description: Hostname for the new server
+            label:
+              type: string
+              description: Name for the new server
+            region:
+              type: integer
+              description: Region to deploy in, this decides which generation the server will be on
+            image:
+              type: integer
+              description: Operating system, app, snapshot or custom ISO to deploy from
+            plan:
+              type: integer
+              description: Server plan ID, decides the size of the new server
+            ddos_protection:
+              type: boolean
+              description: Value `true` if DDoS protection is enabled
+            backup_enabled:
+              type: boolean
+              description: Value `true` if automatic backups is enabled
+            ipv6_enabled:
+              type: boolean
+              description: Value `true` if IPv6 is enabled
+            private_network:
+              type: boolean
+              description: Value `true` if private_networks is enabled (reqiored to use VPCs)
+            ssh_key:
+              type: string
+              description: Deploy a SSH key identified by `uuid` as login key to the new server
+            script_url:
+              type: string
+              description: URL to server installation script
+            image_type:
+              type: string
+              description: Default is `os`, use `app` to deploy an app, `snapshot` for a snapshot or backup image and `iso` for a custom ISO. Always pass the ID via the `image` field
         examples:
           gen-1: 
             summary: Create a G1-standard-1 server in Atlanta with Debian 10
