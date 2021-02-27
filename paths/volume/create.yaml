@@ -43,7 +43,7 @@ post:
             summary: Create a 100GB volume in Frankfurt
             value:
               {
-                "name":"a-100gb-volume",
+                "name": "a-100gb-volume",
                 "region": 310,
                 "size_gb": 100
               }
@@ -51,7 +51,7 @@ post:
             summary: Create a 5TB volume in London
             value:
               {
-                "name":"a-5tb-volume",
+                "name": "a-5tb-volume",
                 "region": 206,
                 "size_gb": 5000
               }

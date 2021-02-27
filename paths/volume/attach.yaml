@@ -33,8 +33,8 @@ post:
             summary: Request with uuid
             value:
               {
-                "volume_id": "34626233-3739-4637-b638-376532306637", 
-                "server_id": "33333462-6165-4230-b363-356230383139" 
+                "volume_id": "a10eded7-4993-4f12-9f89-31fed3cfadc2", 
+                "server_id": "232a7c3a-adef-4e3a-a348-0735f74515da" 
               }
           id: 
             summary: Request with id
@@ -43,12 +43,7 @@ post:
                 "volume_id": 123456, 
                 "server_id": 654321
               }
-  x-operation-settings:
-    CollectParameters: false
-    AllowDynamicQueryParameters: false
-    AllowDynamicFormParameters: false
-    IsMultiContentStreaming: false
-  security: []
+
   responses:
     '202':
       $ref: ../../models/2xx-responses/202.yaml
@@ -62,3 +57,10 @@ post:
       $ref: ../../models/4xx-responses/404.yaml
     '405':
       $ref: ../../models/4xx-responses/405.yaml
+
+  x-operation-settings:
+    CollectParameters: false
+    AllowDynamicQueryParameters: false
+    AllowDynamicFormParameters: false
+    IsMultiContentStreaming: false
+  security: []
