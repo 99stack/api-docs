@@ -195,7 +195,7 @@ post:
                   "script_url": null
                 }
             gen-2: 
-              summary: Generation 1 server created (Debian GNU+Linux)
+              summary: Generation 2 server created (Debian GNU+Linux)
               value:
                 {
                   "uuid": "79d73a27-0b2c-4c8b-be4c-89c354b03465",
@@ -221,7 +221,7 @@ post:
                   "script_url": null
                 }
             gen-3: 
-              summary: Generation 1 server created (Debian GNU+Linux)
+              summary: Generation 3 server created (Debian GNU+Linux)
               value:
                 {
                   "uuid": "db1dba87-f25f-4303-8e5a-610b436f5dcf",
