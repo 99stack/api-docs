@@ -28,20 +28,53 @@ post:
       application/json:
         schema:
           type: object
-          properties: {}
+          properties: 
+            name:
+              type: string
+              description: Name of the new snapshot
+            server_id:
+              type: string
+              description: The `id` or `uuid` of the server to create a snapshot from
+        examples:
+          example-1: 
+            summary: Create a snapshot from server
+            value:
+              {
+                "name": "my-new-snapshot",
+                "server_id": "f7100ab4-ed86-4d38-b487-7034ac1ced2c"
+              }
+
   responses:
     '201':
       description: Created
-    '403':
-      description: Forbidden
       content:
         application/json:
           schema:
-            $ref: ../../models/response-forbidden.v1.yaml
-          example:
-            message: Authorization token does not exist
-            response_type: error
-            response_code: 403
+            type: object
+            properties:
+              uuid:
+                type: string
+                description: Unique `UUID` for the new volume
+          examples:
+            object-1: 
+              summary: New snapshot
+              value:
+                {
+                  "snapshot_id": "1284eff3-b9fd-4ab6-8b51-79e9133dd05a",
+                }
+    '400':
+      $ref: ../../models/4xx-responses/400.yaml
+    '401':
+      $ref: ../../models/4xx-responses/401.yaml
+    '402':
+      $ref: ../../models/4xx-responses/402.yaml
+    '403':
+      $ref: ../../models/4xx-responses/403.yaml
+    '404':
+      $ref: ../../models/4xx-responses/404.yaml
+    '405':
+      $ref: ../../models/4xx-responses/405.yaml
+
   x-operation-settings:
     CollectParameters: false
     AllowDynamicQueryParameters: false

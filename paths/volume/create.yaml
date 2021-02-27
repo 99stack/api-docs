@@ -55,6 +55,7 @@ post:
                 "region": 206,
                 "size_gb": 5000
               }
+
   responses:
     '201':
       description: Created
@@ -105,6 +106,7 @@ post:
       $ref: ../../models/4xx-responses/404.yaml
     '405':
       $ref: ../../models/4xx-responses/405.yaml
+      
   x-operation-settings:
     CollectParameters: false
     AllowDynamicQueryParameters: false
