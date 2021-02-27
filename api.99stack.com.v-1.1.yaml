@@ -167,7 +167,6 @@ paths:
   /snapshot/remove:
     $ref: ./paths/snapshot/remove.yaml
 
-
   /server/remove:
     $ref: ./paths/server/remove.yaml
   /server/create:
@@ -179,7 +178,7 @@ paths:
   /server/reboot:
     $ref: ./paths/server/reboot.yaml
   /server/is_online:
-    $ref: ./paths/server/is_online.yaml
+    $ref: ./paths/server/ping.yaml
   /server/info:
     $ref: ./paths/server/info.yaml
   /server/list:

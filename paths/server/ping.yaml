@@ -1,9 +1,9 @@
 post:
   tags:
     - Actions
-  summary: Check if online
+  summary: Ping
   description: 'Returns power status for the server.'
-  operationId: server-is_online
+  operationId: server-ping
   parameters:
     - name: Authorization
       in: header
