@@ -24,37 +24,132 @@ get:
         type: string
         example: application/json
 
-  requestBody:
-    required: true
-    content:
-      application/json:
-        schema:
-          $ref: ../../models/request-id_or_uuid.yaml
-        examples:
-          uuid: 
-            summary: Request with uuid
-            value:
-              {
-                "server_id": "0e61f8e7-eace-464a-8461-8a6bc94ed5a9" 
-              }
-          id: 
-            summary: Request with id
-            value: 
-              { 
-                "server_id": 654321
-              }
-  
   responses:
-    '202':
-      $ref: ../../models/2xx-responses/202.yaml
-    '400':
-      $ref: ../../models/4xx-responses/400.yaml
+    '200':
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              uuid:
+                type: string
+                description: Unique `UUID` for the new server
+              name:
+                type: string
+                description: Name for the new server
+              power:
+                type: string
+                description: Server power status, `provisioning`, `running`, `stopped` etc..
+              iface:
+                type: object
+                description: JSON formatted data containing all the network interfaces (default is `null`)
+              bandwidth:
+                type: object
+                description: JSON formatted data containing bandwith usage and limits
+              info:
+                type: object
+                description: JSON formatted data containing basic server information
+              password:
+                type: string
+                description: Server SSH password, always set, but not always in use
+              ddos_protection:
+                type: boolean
+                description: Value `true` if DDoS protection is enabled
+              backup_enabled:
+                type: boolean
+                description: Value `true` if automatic backups is enabled
+              ipv6_enabled:
+                type: boolean
+                description: Value `true` if IPv6 is enabled
+              private_network:
+                type: boolean
+                description: Value `true` if private_networks is enabled (reqiored to use VPCs)
+              script_url:
+                type: string
+                description: URL to server installation script
+              created:
+                type: string
+                description: Date created
+          examples:
+            example-1:
+              summary: List of servers
+              value:
+                {
+                  "servers": [
+                    {
+                      "uuid": "febd10b1-7190-4e68-a384-e8cb25685d1f",
+                      "name": "web-server",
+                      "power": "running",
+                      "created": "2021-02-13T11:56:39Z",
+                      "iface": {
+                          "v4": [
+                              {
+                                  "address": "98.76.54.32",
+                                  "netmask": "255.255.255.0",
+                                  "gateway": "98.76.54.1",
+                                  "type": "public",
+                                  "reverse": "98.76.54.32.rdns.99stack.com"
+                              }
+                          ],
+                          "v6": null
+                      },
+                      "bandwidth": {
+                          "usage": 21.55,
+                          "limit": 4000
+                      },
+                      "info": {
+                          "region": 101,
+                          "image": 1112,
+                          "plan": 1103,
+                          "price": 32
+                      },
+                      "password": "5=Xe])H9+zXZ9_S,",
+                      "ddos_protection": false,
+                      "backup_enabled": false,
+                      "ipv6_enabled": false,
+                      "private_network": false,
+                      "script_url": null
+                    },
+                    {
+                      "uuid": "8e942f2b-ef8c-469c-8c4a-f9ade867094d",
+                      "name": "database-server",
+                      "power": "running",
+                      "created": "2021-02-13T12:56:39Z",
+                      "iface": {
+                          "v4": [
+                              {
+                                  "address": "12.34.56.78",
+                                  "netmask": "255.255.255.0",
+                                  "gateway": "12.34.56.1",
+                                  "type": "public",
+                                  "reverse": "12.34.56.78.rdns.99stack.com"
+                              }
+                          ],
+                          "v6": null
+                      },
+                      "bandwidth": {
+                          "usage": 5.33,
+                          "limit": 4000
+                      },
+                      "info": {
+                          "region": 101,
+                          "image": 1112,
+                          "plan": 1103,
+                          "price": 32
+                      },
+                      "password": "5=Xe])H9+zXZ9_S,",
+                      "ddos_protection": false,
+                      "backup_enabled": false,
+                      "ipv6_enabled": false,
+                      "private_network": false,
+                      "script_url": null
+                    }
+                  ]
+                }
     '401':
       $ref: ../../models/4xx-responses/401.yaml
     '403':
       $ref: ../../models/4xx-responses/403.yaml
-    '404':
-      $ref: ../../models/4xx-responses/404.yaml
     '405':
       $ref: ../../models/4xx-responses/405.yaml
 

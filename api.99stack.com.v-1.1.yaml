@@ -171,6 +171,8 @@ paths:
 
   /server/list:
     $ref: ./paths/server/list.yaml
+  /server/info:
+    $ref: ./paths/server/info.yaml
   /server/create:
     $ref: ./paths/server/create.yaml
   /server/stop:
@@ -181,8 +183,6 @@ paths:
     $ref: ./paths/server/reboot.yaml
   /server/ping:
     $ref: ./paths/server/ping.yaml
-  /server/info:
-    $ref: ./paths/server/info.yaml
   /server/remove:
     $ref: ./paths/server/remove.yaml
 
