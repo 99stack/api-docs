@@ -23,56 +23,242 @@ post:
       schema:
         type: string
         example: application/json
+
   requestBody:
-    content:
-      application/json:
-        schema:
-          type: object
-        example:
-          hostname: web-server-2
-          label: Second Web server
-          region: 201
-          image: 2102
-          plan: 2101
-          auto_backups: false
-          ipv6_networking: true
-          ddos_protection: false
-          private_networking: true
-          ssh_key: 5cb46fd8-1b2d-11e9-ab14-d663bd873d93
-          script_url: 'https://raw.github.com...'
-          user_data: I2Nsb3VkLWluaXQ=
     required: true
+    content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              hostname:
+                type: string
+                description: Hostname for the new server
+              label:
+                type: string
+                description: Name for the new server
+              region:
+                type: integer
+                description: Region to deploy in, this decides which generation the server will be on
+              image:
+                type: integer
+                description: Operating system, app, snapshot or custom ISO to deploy from
+              plan:
+                type: integer
+                description: Server plan ID, decides the size of the new server
+              ddos_protection:
+                type: boolean
+                description: Value `true` if DDoS protection is enabled
+              backup_enabled:
+                type: boolean
+                description: Value `true` if automatic backups is enabled
+              ipv6_enabled:
+                type: boolean
+                description: Value `true` if IPv6 is enabled
+              private_network:
+                type: boolean
+                description: Value `true` if private_networks is enabled (reqiored to use VPCs)
+              ssh_key:
+                type: string
+                description: Deploy a SSH key identified by `uuid` as login key to the new server
+              script_url:
+                type: string
+                description: URL to server installation script
+              image_type:
+                type: string
+                description: Default is `os`, use `app` to deploy an app, `snapshot` for a snapshot or backup image and `iso` for a custom ISO. Always pass the ID via the `image` field
+        examples:
+          gen-1: 
+            summary: Create a G1-standard-1 server in Atlanta with Debian 10
+            value:
+              {
+                "hostname": "standard-1",
+                "label": "G1 Standard 1",
+                "region": 101,
+                "image": 1114,
+                "plan": 1101,
+                "auto_backups": false,
+                "ipv6_networking": false,
+                "ddos_protection": false,
+                "private_networking": false,
+                "ssh_key": "ee95ef44-2ed2-436e-9d49-20889d69bd2e",
+                "script_url": "https://...",
+                "image_type": "os"
+              }
+          gen-2: 
+            summary: Create a G2-standard-1 server in Amsterdam with Debian 10
+            value:
+              {
+                "hostname": "standard-1",
+                "label": "G2 Standard 1",
+                "region": 206,
+                "image": 2117,
+                "plan": 2101,
+                "auto_backups": false,
+                "ipv6_networking": false,
+                "ddos_protection": false,
+                "private_networking": false,
+                "ssh_key": "ee95ef44-2ed2-436e-9d49-20889d69bd2e",
+                "script_url": "https://...",
+                "image_type": "os"
+              }
+          gen-3: 
+            summary: Create a G3-standard-1 server in Frankfurt with Debian 10
+            value:
+              {
+                "hostname": "standard-1",
+                "label": "G3 Standard 1",
+                "region": 310,
+                "image": 3134,
+                "plan": 3101,
+                "auto_backups": false,
+                "ipv6_networking": false,
+                "ddos_protection": false,
+                "private_networking": false,
+                "ssh_key": "ee95ef44-2ed2-436e-9d49-20889d69bd2e",
+                "script_url": "https://...",
+                "image_type": "os"
+              }
+
   responses:
     '201':
       description: Created
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              uuid:
+                type: string
+                description: Unique `UUID` for the new server
+              name:
+                type: string
+                description: Name for the new server
+              power:
+                type: string
+                description: Server power status, `provisioning`, `running`, `stopped` etc..
+              iface:
+                type: object
+                description: JSON formatted data containing all the network interfaces (default is `null`)
+              bandwidth:
+                type: object
+                description: JSON formatted data containing bandwith usage and limits
+              info:
+                type: object
+                description: JSON formatted data containing basic server information
+              password:
+                type: string
+                description: Server SSH password, always set, but not always in use
+              ddos_protection:
+                type: boolean
+                description: Value `true` if DDoS protection is enabled
+              backup_enabled:
+                type: boolean
+                description: Value `true` if automatic backups is enabled
+              ipv6_enabled:
+                type: boolean
+                description: Value `true` if IPv6 is enabled
+              private_network:
+                type: boolean
+                description: Value `true` if private_networks is enabled (reqiored to use VPCs)
+              script_url:
+                type: string
+                description: URL to server installation script
+              created:
+                type: string
+                description: Date created
+          examples:
+            gen-1: 
+              summary: Generation 1 server created (Debian GNU+Linux)
+              value:
+                {
+                  "uuid": "e5152a2e-6b6b-4dac-b9ed-46e083b58048",
+                  "name": "gen-1-server",
+                  "power": "provisioning",
+                  "created": "2021-02-13T12:13:33Z",
+                  "iface": null,
+                  "bandwidth": {
+                    "usage": 0,
+                    "limit": 1000
+                  },
+                  "info": {
+                    "region": 101,
+                    "image": 1114,
+                    "plan": 1101,
+                    "price": 8
+                  },
+                  "password": "Gy?s{a_ZRk688(+2",
+                  "ddos_protection": false,
+                  "backup_enabled": false,
+                  "ipv6_enabled": false,
+                  "private_network": false,
+                  "script_url": null
+                }
+            gen-2: 
+              summary: Generation 1 server created (Debian GNU+Linux)
+              value:
+                {
+                  "uuid": "79d73a27-0b2c-4c8b-be4c-89c354b03465",
+                  "name": "gen-2-server",
+                  "power": "provisioning",
+                  "created": "2021-02-13T13:13:33Z",
+                  "iface": null,
+                  "bandwidth": {
+                    "usage": 0,
+                    "limit": 1000
+                  },
+                  "info": {
+                    "region": 106,
+                    "image": 2117,
+                    "plan": 2101,
+                    "price": 8
+                  },
+                  "password": "fDv7tr~9#G{!H'8^",
+                  "ddos_protection": false,
+                  "backup_enabled": false,
+                  "ipv6_enabled": false,
+                  "private_network": false,
+                  "script_url": null
+                }
+            gen-3: 
+              summary: Generation 1 server created (Debian GNU+Linux)
+              value:
+                {
+                  "uuid": "db1dba87-f25f-4303-8e5a-610b436f5dcf",
+                  "name": "gen-3-server",
+                  "power": "provisioning",
+                  "created": "2021-02-13T14:13:33Z",
+                  "iface": null,
+                  "bandwidth": {
+                    "usage": 0,
+                    "limit": 1000
+                  },
+                  "info": {
+                    "region": 310,
+                    "image": 3134,
+                    "plan": 3101,
+                    "price": 8
+                  },
+                  "password": "GN_Tgh=%tA8kL;-S",
+                  "ddos_protection": false,
+                  "backup_enabled": false,
+                  "ipv6_enabled": false,
+                  "private_network": false,
+                  "script_url": null
+                }
     '400':
-      content:
-        application/json:
-          schema:
-            $ref: ../../models/response-message.v1.yaml
-          example:
-            message: "Expected: '...', not found"
-            response_type: warning
-            response_code: 400
-      description: Bad Request
+      $ref: ../../models/4xx-responses/400.yaml
     '401':
-      content:
-        application/json:
-          schema:
-            $ref: ../../models/response-message.v1.yaml
-          example:
-            message: Authorization token does not exist
-      description: Unauthorized
-    '502':
-      content:
-        application/json:
-          schema:
-            $ref: ../../models/response-message.v1.yaml
-          example:
-            message: Deployment failed...
-            response_type: error
-            response_code: 502
-      description: Bad Gateway
+      $ref: ../../models/4xx-responses/401.yaml
+    '402':
+      $ref: ../../models/4xx-responses/402.yaml
+    '403':
+      $ref: ../../models/4xx-responses/403.yaml
+    '404':
+      $ref: ../../models/4xx-responses/404.yaml
+    '405':
+      $ref: ../../models/4xx-responses/405.yaml
+
   x-operation-settings:
     CollectParameters: false
     AllowDynamicQueryParameters: false

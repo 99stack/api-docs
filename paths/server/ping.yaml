@@ -23,19 +23,44 @@ post:
       schema:
         type: string
         example: application/json
+
   requestBody:
     required: true
     content:
       application/json:
         schema:
-          type: object
-          properties: {}
+          $ref: ../../models/request-id_or_uuid.yaml
+        examples:
+          uuid: 
+            summary: Request with uuid
+            value:
+              {
+                "server_id": "0e61f8e7-eace-464a-8461-8a6bc94ed5a9" 
+              }
+          id: 
+            summary: Request with id
+            value: 
+              { 
+                "server_id": 654321
+              }
+  
+  responses:
+    '202':
+      $ref: ../../models/2xx-responses/202.yaml
+    '400':
+      $ref: ../../models/4xx-responses/400.yaml
+    '401':
+      $ref: ../../models/4xx-responses/401.yaml
+    '403':
+      $ref: ../../models/4xx-responses/403.yaml
+    '404':
+      $ref: ../../models/4xx-responses/404.yaml
+    '405':
+      $ref: ../../models/4xx-responses/405.yaml
+
   x-operation-settings:
     CollectParameters: false
     AllowDynamicQueryParameters: false
     AllowDynamicFormParameters: false
     IsMultiContentStreaming: false
   security: []
-  responses:
-    '200':
-      description: OK  

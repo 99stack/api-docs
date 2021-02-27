@@ -56,14 +56,14 @@ info:
 
     ### Examples
 
-    GET request with no arguments:
+    `GET` request with no arguments:
 
     ```bash
     curl -X GET \
       "https://api.99stack.com/v1/region/list"
     ```
 
-    GET request that requires your API token:
+    `GET` request that requires your API token:
 
     ```bash
     curl -X GET \
@@ -71,7 +71,7 @@ info:
       "https://api.99stack.com/v1/server/list"
     ```
 
-    POST request containing a JSON request body:
+    `POST` request containing a JSON request body:
 
     ```bash 
     curl -X POST \
@@ -81,7 +81,7 @@ info:
       "https://api.99stack.com/v1/account/token_create"
     ```
 
-    DELETE request containing a JSON request body:
+    `DELETE` request containing a JSON request body:
 
     ```bash
     curl -X DELETE \
