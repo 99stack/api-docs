@@ -13,11 +13,12 @@ https://www.99stack.com/resources/docs
 
 ### Global API endpoints
 * Global: https://api.99stack.com
-* Cloudflare: https://cf-api.99stack.com
 
 ### Regional API enpoints
+* Germany (Europe): https://api.eu-central.aws.99stack.com
 * Ireland (Europe): https://api.eu-west.aws.99stack.com
 * Virginia (USA): https://api.us-east.aws.99stack.com
 * Oregon (USA): https://api.us-west.aws.99stack.com
 * India (Asia): https://api.as-east.aws.99stack.com
 * South Korea (Asia): https://api.as-south.aws.99stack.com
+* New South Wales (Australia): https://api.au-east.aws.99stack.com
