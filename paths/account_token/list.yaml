@@ -46,16 +46,17 @@ get:
           examples:
             example-1:
               value:
-                - name: MyAuthToken
-                  uuid: 62666431-3936-4936-b561-626536613733
-                  auth_token: 502fff2b09c8e0877323de558a0a84633e295b1572a69526
-                  created: '2019-11-16T08:41:57Z'
-                  last_used: '1970-01-01T00:00:00Z'
-                - name: MySecondAuthToken
-                  uuid: 32356538-6564-4235-a239-383564386433
-                  auth_token: 122140a4727ff1442411979b65d65af0b57e945f99461ac7
-                  created: '2019-11-16T08:42:07Z'
-                  last_used: '1970-01-01T00:00:00Z'
+                - tokens:
+                  - name: MyAuthToken
+                    uuid: 62666431-3936-4936-b561-626536613733
+                    auth_token: 502fff2b09c8e0877323de558a0a84633e295b1572a69526
+                    created: '2019-11-16T08:41:57Z'
+                    last_used: '1970-01-01T00:00:00Z'
+                  - name: MySecondAuthToken
+                    uuid: 32356538-6564-4235-a239-383564386433
+                    auth_token: 122140a4727ff1442411979b65d65af0b57e945f99461ac7
+                    created: '2019-11-16T08:42:07Z'
+                    last_used: '1970-01-01T00:00:00Z'
     '401':
       $ref: ../../models/4xx-responses/401.yaml
     '403':
