@@ -5,12 +5,12 @@ content:
       type: object
       description: 
       properties:
-        reason:
-          type: string
-          description: Human readable explaination about why the request failed
         response:
           type: string
           description: HTTP error code and text representation
+        reason:
+          type: string
+          description: Details about why the request failed
 
     examples:
       response-1:

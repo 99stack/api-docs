@@ -1,4 +1,4 @@
-post:
+patch:
   tags:
     - SSH Keys
   summary: Rename SSH Key

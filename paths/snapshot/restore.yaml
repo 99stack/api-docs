@@ -1,4 +1,4 @@
-post:
+patch:
   tags:
     - Snapshot
   summary: Restore snapshot

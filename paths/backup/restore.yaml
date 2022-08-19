@@ -1,4 +1,4 @@
-post:
+patch:
   tags:
     - Backup
   summary: Restore backup

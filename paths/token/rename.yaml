@@ -1,4 +1,4 @@
-post:
+patch:
   summary: Rename auth token
   description: Change display name of a auth token
   operationId: token-rename

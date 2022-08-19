@@ -1,0 +1,91 @@
+post:
+  tags:
+    - VPCs
+  summary: Create VPC
+  description: |-
+    Create a new VPC address that can be used in a specific region.
+  operationId: vpc-create
+  security: []
+  parameters:
+    - name: Authorization
+      in: header
+      description: ''
+      required: true
+      style: simple
+      explode: false
+      schema:
+        $ref: ../../../models/headers/authorization.yaml
+    - name: Content-Type
+      in: header
+      description: ''
+      required: true
+      style: simple
+      explode: false
+      schema:
+        $ref: ../../../models/headers/content-type.yaml
+
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            region_id: 
+              type: integer
+              description: Data center id, this is where the new VPC will be created
+            name:
+              type: string
+              description: Name of the new VPC object
+        examples:
+          vpc-ams: 
+            summary: Create a VPC in Amsterdam
+            value:
+              {
+                "region_id": 110,
+                "name": "ams-vpc"
+              }
+          vpc-lon: 
+            summary: Create a VPC in London
+            value:
+              {
+                "region_id": 206,
+                "name": "lon-vpc"
+              }
+
+  responses:
+    '201':
+      description: Created
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              uuid:
+                type: string
+                description: Unique `UUID` for the new VPC
+          examples:
+            object-1: 
+              summary: VPC object
+              value:
+                {
+                  "uuid": "39343439-3938-4963-b035-343462393435"
+                }
+    '400':
+      $ref: ../../../models/4xx-responses/400.yaml
+    '401':
+      $ref: ../../../models/4xx-responses/401.yaml
+    '402':
+      $ref: ../../../models/4xx-responses/402.yaml
+    '403':
+      $ref: ../../../models/4xx-responses/403.yaml
+    '404':
+      $ref: ../../../models/4xx-responses/404.yaml
+    '405':
+      $ref: ../../../models/4xx-responses/405.yaml
+
+  x-operation-settings:
+    CollectParameters: false
+    AllowDynamicQueryParameters: false
+    AllowDynamicFormParameters: false
+    IsMultiContentStreaming: false

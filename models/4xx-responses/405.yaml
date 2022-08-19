@@ -5,16 +5,18 @@ content:
       type: object
       description: 
       properties:
-        message:
+        response:
           type: string
-          description: Response text with more information about the problem
-        response_type:
+          description: HTTP error code and text representation
+        reason:
           type: string
-          description: Type of response message `success|info|warning|error`
-        response_code:
-          type: integer
-          description: The `http` status code
+          description: Details about why the request failed
+          
     example:
-      message: invalid http method, use [GET|POST|PUT|DELETE] instead.
-      response_type: error
-      response_code: 405
+      {
+        "errors": {
+          "response": "405 Method Not Allowed",
+          "reason": "Invalid http method, use <METHOD> instead"
+        }
+      }
+

@@ -1,6 +1,6 @@
-post:
+get:
   tags:
-    - Actions
+    - Server
   summary: View info
   description: 'Returns a server object with information about requested server.'
   operationId: server-info
@@ -23,26 +23,10 @@ post:
       schema:
         type: string
         example: application/json
-
-  requestBody:
-    required: true
-    content:
-      application/json:
-        schema:
-          $ref: ../../models/request-id_or_uuid.yaml
-        examples:
-          uuid: 
-            summary: Request with uuid
-            value:
-              {
-                "server_id": "c2dec301-d6ab-4208-998e-665a0174f794" 
-              }
-          id: 
-            summary: Request with id
-            value: 
-              { 
-                "server_id": 654321
-              }
+    - name: server_id
+      in: path
+      type: string
+      description: Server identifier `uuid` referencing the server whos info you wish to view
   
   responses:
     '200':
@@ -145,3 +129,4 @@ post:
     AllowDynamicFormParameters: false
     IsMultiContentStreaming: false
   security: []
+  

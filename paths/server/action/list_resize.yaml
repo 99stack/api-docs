@@ -1,0 +1,86 @@
+get:
+  tags:
+    - Action
+  summary: List resize plans
+  description: |-
+    Shows the available plan upgrades for the server identified by `server_id` 
+  operationId: server-reboot-list
+  parameters:
+    - name: Authorization
+      in: header
+      description: ''
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+        example: Bearer API_TOKEN
+    - name: Content-Type
+      in: header
+      description: ''
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+        example: application/json
+    - name: server_id
+      in: path
+      type: string
+      description: Server identifier `uuid` referencing the server to interact with
+
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              uuid:
+                type: string
+                description: Unique `UUID` for the image object
+              name:
+                type: string
+                description: Name of the image object
+          examples:
+            object-1: 
+              summary: List of available rebuild images
+              value:
+                {
+                  "plans": {
+                    "1101": {
+                      "uuid": "27dd1cca-12c0-48d4-88e7-16b51abbc263",
+                      "name": "standard-1m-1c"
+                    },
+                    "1103": {
+                      "uuid": "935ef4c6-79f2-4a0e-9c39-c784a0ffcec4",
+                      "name": "standard-2m-1c"
+                    },
+                    "1105": {
+                      "uuid": "94614621-860f-417b-a509-928bd5897dc5",
+                      "name": "standard-4m-2c"
+                    },
+                    "1107": {
+                      "uuid": "31fa9ea2-1c66-4fc6-9d3e-5484fcc458e6",
+                      "name": "standard-8m-4c"
+                    }
+                  }
+                }
+    '400':
+      $ref: ../../../models/4xx-responses/400.yaml
+    '401':
+      $ref: ../../../models/4xx-responses/401.yaml
+    '403':
+      $ref: ../../../models/4xx-responses/403.yaml
+    '404':
+      $ref: ../../../models/4xx-responses/404.yaml
+    '405':
+      $ref: ../../../models/4xx-responses/405.yaml
+
+  x-operation-settings:
+    CollectParameters: false
+    AllowDynamicQueryParameters: false
+    AllowDynamicFormParameters: false
+    IsMultiContentStreaming: false
+  security: []

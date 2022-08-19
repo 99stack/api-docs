@@ -1,4 +1,4 @@
-post:
+patch:
   tags:
     - "Block storage"
   summary: Attach volume

@@ -1,0 +1,88 @@
+get:
+  tags:
+   - "Object storage"
+  summary: List object storages
+  description: "Displays a list over all volumes owned by the account."
+  operationId: object-storage-list
+  parameters:
+    - name: Authorization
+      in: header
+      description: ''
+      required: true
+      style: simple
+      explode: false
+      schema:
+        $ref: ../../models/headers/authorization.yaml
+    - name: Content-Type
+      in: header
+      description: ''
+      required: true
+      style: simple
+      explode: false
+      schema:
+        $ref: ../../models/headers/content-type.yaml
+
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              uuid:
+                type: string
+                description: Unique `UUID` for the new volume
+              name:
+                type: string
+                description: Name for the new volume
+              size_gb:
+                type: integer
+                description: Volume size in gigabytes
+              server_id:
+                type: integer
+                description: ID of the server the volume is attached to 
+              region_id:
+                type: integer
+                description: ID of the datacenter the volume is located in
+              created:
+                type: string
+                description: Date created
+          examples:
+            example-1:
+              summary: List of object storages
+              value:
+                {
+                  "objects": [
+                    {
+                      "uuid": "e6b5fcba-d1d5-4373-86ff-942413d2051b",
+                      "region": "407",
+                      "name": "ob-storage-1",
+                      "endpoint": "ob-storage-1.pl-waw1.<provider>objects.com",
+                      "access_key": "RDdBNDM0MjY0NEY3QTUwNDY...",
+                      "secret_key": "MjQzMjc5MjQzMTMwMjQ2RTUzNjM...",
+                      "size_gb": 250,
+                      "created": "2021-12-26T14:47:39z"
+                    },
+                    {
+                      "uuid": "7cf097fd-34ba-4ebf-8f05-612105680f82",
+                      "region": "407",
+                      "name": "ob-storage-2",
+                      "endpoint": "ob-storage-2.pl-waw1.<provider>objects.com",
+                      "access_key": "QTQzNDI2NDRGN0E1MDQ2NzI...",
+                      "secret_key": "MzQyNTA0NjcyNzA3MjQ1NDU2NjF...",
+                      "size_gb": 1000,
+                      "created": "2021-12-26T14:47:39z"
+                    }
+                  ]
+                }
+      description: OK
+    '401':
+      $ref: ../../models/4xx-responses/401.yaml
+    '405':
+      $ref: ../../models/4xx-responses/405.yaml
+  x-operation-settings:
+    CollectParameters: false
+    AllowDynamicQueryParameters: false
+    AllowDynamicFormParameters: false
+    IsMultiContentStreaming: false
+  security: [] 

@@ -1,8 +1,9 @@
-post:
+patch:
   tags:
-    - Actions
+    - Action
   summary: Start server
-  description: 'Send a startup signal to server, this is similar to pressing the power on button.'
+  description: |- 
+    Send a startup signal to server, this is similar to pressing the power on button.
   operationId: server-start
   parameters:
     - name: Authorization
@@ -29,7 +30,7 @@ post:
     content:
       application/json:
         schema:
-          $ref: ../../models/request-id_or_uuid.yaml
+          $ref: ../../../models/request-id_or_uuid.yaml
         examples:
           uuid: 
             summary: Request with uuid
@@ -46,17 +47,17 @@ post:
   
   responses:
     '202':
-      $ref: ../../models/2xx-responses/202.yaml
+      $ref: ../../../models/2xx-responses/202.yaml
     '400':
-      $ref: ../../models/4xx-responses/400.yaml
+      $ref: ../../../models/4xx-responses/400.yaml
     '401':
-      $ref: ../../models/4xx-responses/401.yaml
+      $ref: ../../../models/4xx-responses/401.yaml
     '403':
-      $ref: ../../models/4xx-responses/403.yaml
+      $ref: ../../../models/4xx-responses/403.yaml
     '404':
-      $ref: ../../models/4xx-responses/404.yaml
+      $ref: ../../../models/4xx-responses/404.yaml
     '405':
-      $ref: ../../models/4xx-responses/405.yaml
+      $ref: ../../../models/4xx-responses/405.yaml
 
   x-operation-settings:
     CollectParameters: false

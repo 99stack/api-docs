@@ -5,16 +5,17 @@ content:
       type: object
       description: 
       properties:
-        message:
+        response:
           type: string
-          description: Response text with more information about the problem
-        response_type:
+          description: HTTP error code and text representation
+        reason:
           type: string
-          description: Type of response message `success|info|warning|error`
-        response_code:
-          type: integer
-          description: The `http` status code
+          description: Details about why the request failed
+          
     example:
-      message: access denied, your account does not have permissions to use this function
-      response_type: error
-      response_code: 403
+      {
+        "errors": {
+          "response": "403 Access Denied",
+          "reason": "Access denied, your account does not have permission to use this feature"
+        }
+      }

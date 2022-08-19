@@ -1,9 +1,10 @@
-post:
+patch:
   tags:
-    - Features
-  summary: Private networking
-  description: 'Toggle private networking to obtain and attach a private network to your server which allows communication to other servers in the same datacenter without bandwidth quotas.'
-  operationId: private-networking
+    - VPCs
+  summary: Attach VPC
+  description: Attach existing VPC address to a server
+  operationId: vpc-attach
+  security: []
   parameters:
     - name: Authorization
       in: header
@@ -12,8 +13,7 @@ post:
       style: simple
       explode: false
       schema:
-        type: string
-        example: Bearer API_TOKEN
+        $ref: ../../../models/headers/authorization.yaml
     - name: Content-Type
       in: header
       description: ''
@@ -21,29 +21,23 @@ post:
       style: simple
       explode: false
       schema:
-        type: string
-        example: application/json
+        $ref: ../../../models/headers/content-type.yaml
 
   requestBody:
     required: true
     content:
       application/json:
         schema:
-          $ref: ../../../models/request-id_or_uuid.yaml
+          $ref: ../../../models/requests/res-schema.yaml
         examples:
-          uuid: 
-            summary: Request with uuid
+          example-1: 
+            summary: Attach vpc to a server instance
             value:
               {
-                "server_id": "0e61f8e7-eace-464a-8461-8a6bc94ed5a9" 
+                "server_id": "39343439-3938-4963-b035-343462393435",
+                "vpc_id": "fae640c3-537e-4820-ab9f-ef251405bfec"
               }
-          id: 
-            summary: Request with id
-            value: 
-              { 
-                "server_id": 654321
-              }
-  
+
   responses:
     '202':
       $ref: ../../../models/2xx-responses/202.yaml
@@ -63,4 +57,3 @@ post:
     AllowDynamicQueryParameters: false
     AllowDynamicFormParameters: false
     IsMultiContentStreaming: false
-  security: []

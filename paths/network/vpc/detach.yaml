@@ -1,9 +1,10 @@
 patch:
   tags:
-    - Floating IPs
-  summary: Attach floating IP
-  description: Attach existing floating IP address to a server
-  operationId: floating_ip-attach
+    - VPCs
+  summary: Detach VPC
+  description: |-
+    Detach server from VPC
+  operationId: vpc-detach
   security: []
   parameters:
     - name: Authorization
@@ -31,11 +32,11 @@ patch:
           $ref: ../../../models/requests/res-schema.yaml
         examples:
           example-1: 
-            summary: Attach floating point ip to a server instance
+            summary: Detach vpc from a server instance
             value:
               {
                 "server_id": "39343439-3938-4963-b035-343462393435",
-                "ip_id": "fae640c3-537e-4820-ab9f-ef251405bfec"
+                "vpc_id": "fae640c3-537e-4820-ab9f-ef251405bfec"
               }
 
   responses:

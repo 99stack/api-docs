@@ -1,0 +1,84 @@
+get:
+  tags:
+    - VPCs
+  summary: List VPCs
+  description: |-
+    Returns a list over VPCs associated with account and which server it's attached to (if any).
+  operationId: vpc-list
+  security: []
+  parameters:
+    - name: Authorization
+      in: header
+      description: ''
+      required: true
+      style: simple
+      explode: false
+      schema:
+        $ref: ../../../models/headers/authorization.yaml
+    - name: Content-Type
+      in: header
+      description: ''
+      required: true
+      style: simple
+      explode: false
+      schema:
+        $ref: ../../../models/headers/content-type.yaml
+
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              uuid:
+                type: string
+                description: Unique `UUID` for a VPC
+              servers:
+                type: object
+                description: List of servers attached to the VPC
+              name:
+                type: string
+                description: Display name for VPC object
+              region:
+                type: integer
+                description: Region id where VPC is located
+              created:
+                type: string
+                description: Date created in UTC format
+          examples:
+            example-1:
+              summary: List of VPCs
+              value:
+                {
+                  "vpcs": [
+                    {
+                      "uuid": "ecab0cb0-7493-4d79-ba48-e5ccc7d5631a",
+                      "servers": [
+                        "3c4d05e7-ec65-407c-87ce-356b5d213351",
+                        "d9f8392c-3c74-442b-ab0e-eb9189c09ca3"
+                      ],
+                      "name": "stockholm",
+                      "region": "118",
+                      "created": "2021-12-25T13:07:54z"
+                    },
+                    {
+                      "uuid": "8ec8fc87-1c48-462d-a71f-8ec9e89006e7",
+                      "servers": [],
+                      "name": "stockholm",
+                      "region": "118",
+                      "created": "2021-12-25T13:07:54z"
+                    }
+                  ]
+                }
+      description: OK
+    '401':
+      $ref: ../../../models/4xx-responses/401.yaml
+    '405':
+      $ref: ../../../models/4xx-responses/405.yaml
+
+  x-operation-settings:
+    CollectParameters: false
+    AllowDynamicQueryParameters: false
+    AllowDynamicFormParameters: false
+    IsMultiContentStreaming: false

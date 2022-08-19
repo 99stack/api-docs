@@ -1,9 +1,9 @@
-patch:
+delete:
   tags:
-    - Backup
-  summary: Enable backup
-  description: 'Enable automatic backups and schedule creation of snapshots.'
-  operationId: backup-enable
+    - "Object storage"
+  summary: Remove object storage
+  description: "Removes a volume by `ID` or `UUID`, the volume must be detached before it can be removed."
+  operationId: object-storage-remove
   parameters:
     - name: Authorization
       in: header
@@ -30,21 +30,21 @@ patch:
           $ref: ../../models/request-id_or_uuid.yaml
         examples:
           uuid: 
-            summary: Request with uuid
+            summary: using uuid
             value:
               {
-                "server_id": "0e61f8e7-eace-464a-8461-8a6bc94ed5a9"
+                "volume_id": "34626233-3739-4637-b638-376532306637"
               }
           id: 
-            summary: Request with id
+            summary: using id
             value: 
               { 
-                "server_id": 654321
+                "volume_id": 123456
               }
-  
+
   responses:
-    '202':
-      $ref: ../../models/2xx-responses/202.yaml
+    '204':
+      $ref: ../../models/2xx-responses/204.yaml
     '400':
       $ref: ../../models/4xx-responses/400.yaml
     '401':

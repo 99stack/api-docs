@@ -1,7 +1,7 @@
-post:
+patch:
   tags:
     - Account
-  summary: Reset password
+  summary: Reset
   description: |-
     Generate and email a temporary one time password that can be used to login. (see /v1/account/login for more information).
 

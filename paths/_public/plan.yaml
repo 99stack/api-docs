@@ -9,7 +9,12 @@ get:
     
     **Note:** from may 2020 plans will be listed as a `plans` object, instead of one `ready` and one `custom` object, just like regions and images are listed.
   operationId: plans
-  parameters: []
+  parameters: 
+    - name: region_id
+      in: path
+      required: false
+      type: integer
+      description: Region `id` to filter out plans available in a specific region 
   responses:
     '200':
       description: ''
@@ -1086,16 +1091,10 @@ get:
       $ref: ../../models/4xx-responses/400.yaml
     '405':
       $ref: ../../models/4xx-responses/405.yaml
+      
   x-operation-settings:
     CollectParameters: false
     AllowDynamicQueryParameters: false
     AllowDynamicFormParameters: false
     IsMultiContentStreaming: false
 
-parameters:
-  - schema:
-      type: integer
-    name: region_id
-    in: path
-    required: true
-    description: Region ID  

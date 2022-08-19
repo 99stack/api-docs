@@ -7,7 +7,7 @@ content:
       properties:
         reason:
           type: string
-          description: Human readable explaination about why the request failed
+          description: Details about why the request failed
         field:
           type: string
           description: The malformed input field

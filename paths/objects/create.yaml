@@ -1,0 +1,115 @@
+post:
+  tags:
+    - "Object storage"
+  summary: Create object storage
+  description: Create a new volume with desired size in GB in desired region.
+  operationId: object-storage-create
+  parameters:
+    - name: Authorization
+      in: header
+      description: ''
+      required: true
+      style: simple
+      explode: false
+      schema:
+        $ref: ../../models/headers/authorization.yaml
+    - name: Content-Type
+      in: header
+      description: ''
+      required: true
+      style: simple
+      explode: false
+      schema:
+        $ref: ../../models/headers/content-type.yaml
+
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties: 
+            name:
+              type: string
+              description: Name of the new volume
+            size_gb:
+              type: integer
+              description: Size in gigabytes
+            region_id:
+              type: integer
+              description: The `id` of the region the volume will be created in
+        examples:
+          100gb: 
+            summary: Create a 100GB volume in Frankfurt
+            value:
+              {
+                "name": "a-100gb-volume",
+                "region": 310,
+                "size_gb": 100
+              }
+          5tb: 
+            summary: Create a 5TB volume in London
+            value:
+              {
+                "name": "a-5tb-volume",
+                "region": 206,
+                "size_gb": 5000
+              }
+
+  responses:
+    '201':
+      description: Created
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              uuid:
+                type: string
+                description: Unique `UUID` for the new volume
+              name:
+                type: string
+                description: Name for the new volume
+              size_gb:
+                type: integer
+                description: Volume size in gigabytes
+              server_id:
+                type: integer
+                description: ID of the server the volume is attached to (null after creation)
+              region_id:
+                type: integer
+                description: ID of the datacenter the volume is located in
+              created:
+                type: string
+                description: Date created
+          examples:
+            object-1: 
+              summary: Example volume
+              value:
+                {
+                  "uuid": "39343531-6231-4634-b733-393234323362",
+                  "name": "a-5tb-volume",
+                  "size_gb": 5000,
+                  "server_id": 123456,
+                  "region_id": 204,
+                  "created": "2020-04-21T09:19:15Z"
+                }
+    '400':
+      $ref: ../../models/4xx-responses/400.yaml
+    '401':
+      $ref: ../../models/4xx-responses/401.yaml
+    '402':
+      $ref: ../../models/4xx-responses/402.yaml
+    '403':
+      $ref: ../../models/4xx-responses/403.yaml
+    '404':
+      $ref: ../../models/4xx-responses/404.yaml
+    '405':
+      $ref: ../../models/4xx-responses/405.yaml
+      
+  x-operation-settings:
+    CollectParameters: false
+    AllowDynamicQueryParameters: false
+    AllowDynamicFormParameters: false
+    IsMultiContentStreaming: false
+  security: []  

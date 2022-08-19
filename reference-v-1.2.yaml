@@ -1,0 +1,354 @@
+openapi: 3.0.2
+info:
+  title: 99Stack Cloud docs
+  version: '1.2'
+  contact:
+    name: 99Stack Cloud Support
+    email: 'support@99stack.com'
+  description: |-
+    ### Introduction
+
+    The 99Stack Cloud API allows you to manage servers and resources within the 99Stack Cloud in a simple, programmatic way using conventional HTTP requests.
+
+    All of the functionality that you are familiar with in the 99Stack Cloud control panel, is also available within the API, allowing you to script the complex actions that your situation may require.
+
+    For simplicity, you may download this file and import it into your favorite api request and development tool, such as Postman or Insomnia. This is a great way to test before implementation.
+
+    The API documentation will start with a general overview about the design and technology that has been implemented, followed by reference information about specific endpoints.
+
+    ## Using the api
+
+    ### Response codes
+
+    Each response comes with a HTTP status code, this code indicates the status of your request. Any 2xx response indicates success. 4xx responses indicates an error in data input, access, rate-limits or software errors. 5xx indicates server errors or errors in external resources.
+
+    | HTTP Response Code  | Description  | Note
+    |---|---|---|
+    | 200  | OK | Used in `GET` responses |
+    | 201  | Created | Resource creation was successfull |
+    | 202  | Accepted | Method executed successfully  |
+    | 204  | No Response| Resource was successfully removed |
+    | 301  | Moved Permanently | Function is deprecated  |
+    | 400  | Bad Request | See response message for more details |
+    | 401  | Unauthorized | Invalid auth token |
+    | 402  | Payment required | Account balance is too low |
+    | 403  | Forbidden | Method not allowed for authorized account |
+    | 404  | Not Found | Resource does not exist, or is not available |
+    | 405  | Method Not Allowed | Incorrect HTTP method, see response message for more details |
+    | 429  | Too many requests | Rate limit was hit, try again in a few seconds|
+    | 500  | Internal Server Error | Communication error in our system |
+    | 501  | Not Implemented  | Function does not exist, check spelling |
+    | 502  | Bad Gateway | Failed to contact remote servers, or proxy error  |
+    | 503  | Service Unavailable | Maintenance in progress  |
+    | 504  | Gateway Timeout | Back-end servers was unable to handle your request |
+
+    ### Rate limits
+
+    The general rate limit is 2 requests per second with a burst of 10 requests. Some functions has additional limits, `/v1/account` allows 5 requests per minute with a burst of 5 for security. Create requests are generally limited to 1 request per second without burst.
+
+    ### Time and Date
+
+    Timestamps are represented according to the ISO-8601 format. `Y-m-d\TH:i:s\Z`, by default in `UTC+0000`. 99Stack control panel uses timeago.js to represent this in local time.
+
+    ### Examples
+
+    `GET` request with no arguments:
+
+    ```bash
+    curl -X GET \
+      "https://api.99stack.com/v1/region/list"
+    ```
+
+    `GET` request that requires your API token:
+
+    ```bash
+    curl -X GET \
+      -H 'Authorization: Bearer YOUR_TOKEN' \
+      "https://api.99stack.com/v1/server/list"
+    ```
+
+    `POST` request containing a JSON request body:
+
+    ```bash
+    curl -X POST \
+      -H 'Authorization: Bearer YOUR_TOKEN' \
+      -H 'Content-Type: application/json' \
+      -d '{"name": "New API token"}'  \
+      "https://api.99stack.com/v1/account/token_create"
+    ```
+
+    `DELETE` request containing a JSON request body:
+
+    ```bash
+    curl -X DELETE \
+      -H 'Authorization: Bearer YOUR_TOKEN' \
+      -H 'Content-Type: application/json' \
+      -d '{"server_id": 16324}' \
+      "https://api.99stack.com/v1/server/remove"
+    ```
+
+    # Authentication
+
+    For any API request that requires authentication, the Authorization header needs to be set to a valid Bearer token, these tokens can be generated in the [control panel](https://dash.99stack.com/auth/manage-api-tokens), or by sending a valid request to `/v1/account/login`. Once you have the token, use the following format:
+
+    ```bash
+    Authorization: Bearer YOUR_TOKEN
+    ```
+
+    See examples above for usage with cURL.
+  termsOfService: 'https://www.99stack.com/legal/terms-of-service'
+  license:
+    name: MIT
+    url: 'https://github.com/99stack/api-docs/blob/master/LICENSE'
+servers:
+  - url: 'https://api.99stack.com/v1.2'
+    variables: {}
+    description: Global
+  - url: 'https://api.eu.99stack.com/v1.2'
+    variables: {}
+    description: Europe
+  - url: 'https://api.na.99stack.com/v1.2'
+    variables: {}
+    description: North America
+  - url: 'https://api.as.99stack.com/v1.2'
+    variables: {}
+    description: Asia
+
+paths:
+  /account/token_list:
+    $ref: ./paths/token/list.yaml
+  /account/token_create:
+    $ref: ./paths/token/create.yaml
+  /account/token_rename:
+    $ref: ./paths/token/rename.yaml
+  /account/token_remove:
+    $ref: ./paths/token/remove.yaml
+
+  /account/info:
+    $ref: ./paths/account/info.yaml
+  /account/register:
+    $ref: ./paths/account/register.yaml
+  /account/login:
+    $ref: ./paths/account/login.yaml
+  /account/activate:
+    $ref: ./paths/account/activate.yaml
+  /account/update:
+    $ref: ./paths/account/update.yaml
+  /account/reset:
+    $ref: ./paths/account/reset.yaml
+
+  /transaction/list:
+    $ref: ./paths/billing/list_trans.yaml
+  /invoice/list:
+    $ref: ./paths/billing/list_invoice.yaml
+  /invoice/sum:
+    $ref: ./paths/billing/sum_invoice.yaml
+
+  /snapshot/list:
+    $ref: ./paths/snapshot/list.yaml
+  /snapshot/create:
+    $ref: ./paths/snapshot/create.yaml
+  /snapshot/restore:
+    $ref: ./paths/snapshot/restore.yaml
+  /snapshot/remove:
+    $ref: ./paths/snapshot/remove.yaml
+
+  /server/list:
+    $ref: ./paths/server/list.yaml
+  /server/info/{server_id}:
+    $ref: ./paths/server/info.yaml
+  /server/create:
+    $ref: ./paths/server/create.yaml
+  /server/remove:
+    $ref: ./paths/server/remove.yaml
+
+  /server/resize/{server_id}:
+    $ref: ./paths/server/action/list_resize.yaml
+  /server/rebuild/{server_id}:
+    $ref: ./paths/server/action/list_rebuild.yaml
+  /server/resize:
+    $ref: ./paths/server/action/resize.yaml
+  /server/rebuild:
+    $ref: ./paths/server/action/rebuild.yaml
+  /server/start:
+    $ref: ./paths/server/action/start.yaml
+  /server/stop:
+    $ref: ./paths/server/action/stop.yaml
+  /server/reboot:
+    $ref: ./paths/server/action/reboot.yaml
+
+  /rdns/get:
+    $ref: ./paths/server/rdns/get.yaml
+  /rdns/put:
+    $ref: ./paths/server/rdns/put.yaml
+
+  /floating_ip/list:
+    $ref: ./paths/network/ipv4/list.yaml
+  /floating_ip/create:
+    $ref: ./paths/network/ipv4/create.yaml
+  /floating_ip/attach:
+    $ref: ./paths/network/ipv4/attach.yaml
+  /floating_ip/detach:
+    $ref: ./paths/network/ipv4/detach.yaml
+  /floating_ip/remove:
+    $ref: ./paths/network/ipv4/remove.yaml
+
+  /vpc/list:
+    $ref: ./paths/network/vpc/list.yaml
+  /vpc/create:
+    $ref: ./paths/network/vpc/create.yaml
+  /vpc/attach:
+    $ref: ./paths/network/vpc/attach.yaml
+  /vpc/detach:
+    $ref: ./paths/network/vpc/detach.yaml
+  /vpc/remove:
+    $ref: ./paths/network/vpc/remove.yaml
+
+  /ssh_key/list:
+    $ref: ./paths/ssh_key/list.yaml
+  /ssh_key/create:
+    $ref: ./paths/ssh_key/create.yaml
+  /ssh_key/rename:
+    $ref: ./paths/ssh_key/rename.yaml
+  /ssh_key/remove:
+    $ref: ./paths/ssh_key/remove.yaml
+
+  /backup/restore:
+    $ref: ./paths/backup/restore.yaml
+  /backup/enable:
+    $ref: ./paths/backup/enable.yaml
+  /backup/disable:
+    $ref: ./paths/backup/disable.yaml
+
+  /region/list:
+    $ref: ./paths/_public/region.yaml
+  /image/list/{region_id}:
+    $ref: ./paths/_public/image.yaml
+  /plan/list/{region_id}:
+    $ref: ./paths/_public/plan.yaml
+  /availability/list:
+    $ref: ./paths/_public/availibility.yaml
+  /feature/list/{region_id}:
+    $ref: ./paths/_public/feature.yaml
+
+  /object/list:
+    $ref: ./paths/objects/list.yaml
+  /object/create:
+    $ref: ./paths/objects/create.yaml
+  /object/remove:
+    $ref: ./paths/objects/remove.yaml
+
+  /volume/list:
+    $ref: ./paths/volume/list.yaml
+  /volume/create:
+    $ref: ./paths/volume/create.yaml
+  /volume/attach:
+    $ref: ./paths/volume/attach.yaml
+  /volume/detach:
+    $ref: ./paths/volume/detach.yaml
+  /volume/remove:
+    $ref: ./paths/volume/remove.yaml
+
+x-tagGroups:
+  - name: Information
+    tags:
+      - Public
+  - name: Account
+    tags:
+      - Account
+      - SSH Keys
+      - Billing
+      - Token
+  - name: Server
+    tags:
+      - Server
+      - Action
+      - rDNS
+      - Backup
+  - name: Storage
+    tags:
+      - Snapshot
+      - Block storage
+      - Object storage
+  - name: Network
+    tags:
+      - Floating IPs
+      - VPCs
+tags:
+  - name: Public
+    description: |-
+      Public endpoints provides information about 99Stack Cloud data center regions.
+
+      A system image can be used to create a server, and may come in a number of flavors. Currently, there are four types of images: `os`, `app`, `snapshot` and `iso`.
+
+      - OS are pre-installed ready to deploy blank operating system images with minimal tweaks from default
+      - Apps are just like operating system images, pre-installed, but also comes with a application stack pre installed, this can be a webserver plus php and database, a nodejs app and much more.
+      - Snapshots provide a full copy of an existing server instance taken on demand.
+      - ISOs are Linux-based virtual machine images (raw, qcow2, vhdx, vdi, and vmdk formats are supported) that you may upload for use on 99Stack Cloud.
+
+      The plan objects represent different packages of hardware resources that can be used for servers. When a server is created, a plan must be selected so that the correct resources can be allocated.
+
+      Each plan represents a specific set of pre-defined hardware resources. This includes the amount of RAM, the number of virtual CPUs, disk space, and transfer. The plan object also includes the pricing details and the regions that the plan is available in.
+
+
+  - name: Account
+    description: |-
+      Manage account and sub-accounts. View status and enabled features.
+  - name: SSH Keys
+    description: |-
+      You can add SSH keys to your account, which can be copied to new instances when first deployed. Updating a key does not update any running instances, this is for new deployments only. If you reinstall an instance, it will inherit the updated key.
+  - name: Billing
+    description: |-
+      View account payment transactions, taxes, fees and detailed billing information sorted by resource. You may also load payment forms via API if you prefer not to use javascript, which is required when using 99Stack Cloud control panel.
+  - name: Token
+    description: |-
+      Account tokens grant users access to 99Stack Cloud api, you may create mutltiple tokens, assign permissions and manage expiration on your own based on your own security preferences.
+
+      A token exist for as long as you choose to keep it by default. If your account has no tokens, a new one will be generated when you call `/v1.2/account/login`.
+
+
+  - name: Server
+    description: |-
+      Cloud instances can be deployed with your preferred operating system or pre-installed application in seconds. High Frequency Compute instances are powered by high clock speed CPU's and NVMe local storage to power your most demanding applications.
+
+      Dedicated Cloud instances have dedicated CPU, SSD drives, and RAM. And no noisy neighbours.
+  - name: Action
+    description: |-
+      Server actions let you send various actions to a server, such as `start` and `stop`, but also more specific troubleshooting actions such as `power_off` i.e a hard reboot, `rescue` which boot your server into a rescue CD and similar.
+  - name: Backup
+    description: |-
+      A backup is a scheduled, automatic, point-in-time image of an instance. We do not stop the instance when taking a backup. Booting from a backup is similar to rebooting after a non-graceful restart.
+
+      Snapshots are physically the same as backups, but snapshots are manual while backups run automatically on a schedule. Backups can be converted into a snapshot.
+
+
+  - name: Snapshot
+    description: |-
+      Snapshots are saved instances of a server or a block storage volume. In order to avoid problems with compressing filesystems, each defines a min_disk_size attribute which is the minimum size of the server or volume disk when creating a new resource from a saved snapshot.
+  - name: Block storage
+    description: |-
+      Block Storage Volumes provide expanded storage capacity for your servers, and can be moved between servers within a specific region. Volumes function as raw block devices, meaning that they appear to the operating system as locally attached storage, which can be formatted using any file system supported by the OS.
+
+      They may be created in sizes from 10 GiB to up to 16 TiB, regional limitations applies. By sending requests to the `/v1.2/volumes` endpoint, you can list, create, or delete volumes as well as attach and detach them from servers.
+  - name: Object storage
+    description: |-
+      Object storage is S3 API compatible storage optimized server instances. Objects uploaded to object storage can be accessed privately or publicly on the web. Object storage supports a virtually unlimited number of objects and buckets. Control your Object Storage via the S3 API.
+
+
+  - name: Floating IPs
+    description: |-
+      Floating IPs are publicly accessible static IP addresses, that can be mapped to one of your servers. They can be used to create highly available setups or other configurations requiring movable addresses. Floating IPs are bound to a specific region. Regional limitations applies.
+  - name: VPCs
+    description: |-
+      VPC (virtual private cloud) allow you to create virtual networks, containing resources that can communicate with each other in full isolation, using private IP addresses.
+
+components:
+  headers:
+    Content-Type:
+      description: Should be set to application/json
+      schema:
+        type: string
+    Authorization:
+      description: "Must contain the following: 'Bearer auth_token' where auth_token is one of your accounts authentication tokens"
+      schema:
+        type: string

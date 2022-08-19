@@ -1,9 +1,10 @@
 patch:
   tags:
-    - Backup
-  summary: Enable backup
-  description: 'Enable automatic backups and schedule creation of snapshots.'
-  operationId: backup-enable
+    - Action
+  summary: Stop server
+  description: |-
+    Force a server to halt, this is the same as pressing the power off button on a physical machine.
+  operationId: server-stop
   parameters:
     - name: Authorization
       in: header
@@ -12,7 +13,8 @@ patch:
       style: simple
       explode: false
       schema:
-        $ref: ../../models/headers/authorization.yaml
+        type: string
+        example: Bearer API_TOKEN
     - name: Content-Type
       in: header
       description: ''
@@ -20,20 +22,21 @@ patch:
       style: simple
       explode: false
       schema:
-        $ref: ../../models/headers/content-type.yaml
+        type: string
+        example: application/json
 
   requestBody:
     required: true
     content:
       application/json:
         schema:
-          $ref: ../../models/request-id_or_uuid.yaml
+          $ref: ../../../models/request-id_or_uuid.yaml
         examples:
           uuid: 
             summary: Request with uuid
             value:
               {
-                "server_id": "0e61f8e7-eace-464a-8461-8a6bc94ed5a9"
+                "server_id": "0e61f8e7-eace-464a-8461-8a6bc94ed5a9" 
               }
           id: 
             summary: Request with id
@@ -44,17 +47,17 @@ patch:
   
   responses:
     '202':
-      $ref: ../../models/2xx-responses/202.yaml
+      $ref: ../../../models/2xx-responses/202.yaml
     '400':
-      $ref: ../../models/4xx-responses/400.yaml
+      $ref: ../../../models/4xx-responses/400.yaml
     '401':
-      $ref: ../../models/4xx-responses/401.yaml
+      $ref: ../../../models/4xx-responses/401.yaml
     '403':
-      $ref: ../../models/4xx-responses/403.yaml
+      $ref: ../../../models/4xx-responses/403.yaml
     '404':
-      $ref: ../../models/4xx-responses/404.yaml
+      $ref: ../../../models/4xx-responses/404.yaml
     '405':
-      $ref: ../../models/4xx-responses/405.yaml
+      $ref: ../../../models/4xx-responses/405.yaml
 
   x-operation-settings:
     CollectParameters: false

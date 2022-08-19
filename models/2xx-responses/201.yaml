@@ -1,4 +1,4 @@
-description: Accepted
+description: Created
 content:
   application/json:
     schema:
@@ -15,7 +15,7 @@ content:
     example:
       {
         "success": {
-          "response": "202 Accepted",
-          "reason": "Function executed successfully"
+          "response": "201 Created",
+          "reason": "Resource created successfully"
         }
       }

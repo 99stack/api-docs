@@ -1,6 +1,6 @@
 post:
   tags:
-    - Actions
+    - Server
   summary: Create server
   description: 'Deploy a new server anywhere in 99Stack cloud.'
   operationId: server-create
@@ -30,22 +30,33 @@ post:
       application/json:
         schema:
           type: object
+          required:
+            - hostname
+            - label
+            - region
+            - image
+            - plan
           properties:
             hostname:
               type: string
               description: Hostname for the new server
+              required: true
             label:
               type: string
               description: Name for the new server
+              required: true
             region:
               type: integer
               description: Region to deploy in, this decides which generation the server will be on
+              required: true
             image:
               type: integer
               description: Operating system, app, snapshot or custom ISO to deploy from
+              required: true
             plan:
               type: integer
               description: Server plan ID, decides the size of the new server
+              required: true
             ddos_protection:
               type: boolean
               description: Value `true` if DDoS protection is enabled
@@ -67,6 +78,12 @@ post:
             image_type:
               type: string
               description: Default is `os`, use `app` to deploy an app, `snapshot` for a snapshot or backup image and `iso` for a custom ISO. Always pass the ID via the `image` field
+            commit:
+              type: integer
+              description: Number of hours you want to pay up-front (default is 0)
+            vpc:
+              type: string
+              description: UUID of a VPC within the same datacenter to assign the server too (default is null)
         examples:
           gen-1: 
             summary: Create a G1-standard-1 server in Atlanta with Debian 10

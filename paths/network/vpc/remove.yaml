@@ -1,9 +1,11 @@
-post:
+delete:
   tags:
-    - Features
-  summary: DDoS protection
-  description: 'Toggle DDoS protection for additional protection up to 100GBit/s in supported regions.'
-  operationId: ddos-protection
+    - VPCs
+  summary: Remove VPC
+  description: |-
+    Removes a VPC. The VPC must be detached or this function will return an error. Please note that some regions won't allow removal of VPC's until a certain time has passed, usually 24 hour.
+  operationId: vpc-remove
+  security: []
   parameters:
     - name: Authorization
       in: header
@@ -12,8 +14,7 @@ post:
       style: simple
       explode: false
       schema:
-        type: string
-        example: Bearer API_TOKEN
+        $ref: ../../../models/headers/authorization.yaml
     - name: Content-Type
       in: header
       description: ''
@@ -21,32 +22,25 @@ post:
       style: simple
       explode: false
       schema:
-        type: string
-        example: application/json
+        $ref: ../../../models/headers/content-type.yaml
 
   requestBody:
     required: true
     content:
       application/json:
         schema:
-          $ref: ../../../models/request-id_or_uuid.yaml
+          $ref: ../../../models/requests/res-schema.yaml
         examples:
-          uuid: 
-            summary: Request with uuid
+          example-1: 
+            summary: Remove floating point ip object
             value:
               {
-                "server_id": "0e61f8e7-eace-464a-8461-8a6bc94ed5a9" 
+                "vpc_id": "fae640c3-537e-4820-ab9f-ef251405bfec"
               }
-          id: 
-            summary: Request with id
-            value: 
-              { 
-                "server_id": 654321
-              }
-  
+
   responses:
-    '202':
-      $ref: ../../../models/2xx-responses/202.yaml
+    '204':
+      $ref: ../../../models/2xx-responses/204.yaml
     '400':
       $ref: ../../../models/4xx-responses/400.yaml
     '401':
@@ -63,4 +57,3 @@ post:
     AllowDynamicQueryParameters: false
     AllowDynamicFormParameters: false
     IsMultiContentStreaming: false
-  security: []

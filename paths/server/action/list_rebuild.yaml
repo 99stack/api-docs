@@ -1,0 +1,90 @@
+get:
+  tags:
+    - Action
+  summary: List rebuild images
+  description: |-
+    List available rebuild images for the server identified by `server_id`
+  operationId: server-rebuild-list
+  parameters:
+    - name: Authorization
+      in: header
+      description: ''
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+        example: Bearer API_TOKEN
+    - name: Content-Type
+      in: header
+      description: ''
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+        example: application/json
+    - name: server_id
+      in: path
+      type: string
+      description: Server identifier `uuid` referencing the server to interact with
+
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              uuid:
+                type: string
+                description: Unique `UUID` for the plan object
+              name:
+                type: string
+                description: Name of the plan object
+          examples:
+            object-1: 
+              summary: List of available plan upgrades
+              value:
+                {
+                  "images": {
+                    "4105": {
+                      "uuid": "4feccd8a-fafc-4b4a-8f27-1aba0505d334",
+                      "name": "Debian GNU/Linux 9 (Stretch)"
+                    },
+                    "4106": {
+                      "uuid": "c3b1b6ef-2e63-40e9-a50b-b0d3e07409e2",
+                      "name": "Debian GNU/Linux 10 (Buster)"
+                    },
+                    "4107": {
+                      "uuid": "a87917ab-6e9b-451c-a1fb-25f8daa4f3ab",
+                      "name": "Debian GNU/Linux 11 (Bullseye)"
+                    },
+                    "4108": {
+                      "uuid": "a551959f-5922-4c52-9105-30a307a2d9d4",
+                      "name": "Ubuntu Server 18.04 LTS (Bionic Beaver)"
+                    },
+                    "4109": {
+                      "uuid": "5798ef36-644a-4596-b69a-635b6e5b6ef3",
+                      "name": "Ubuntu Server 20.04 LTS (Focal Fossa)"
+                    }
+                  }
+                }
+    '400':
+      $ref: ../../../models/4xx-responses/400.yaml
+    '401':
+      $ref: ../../../models/4xx-responses/401.yaml
+    '403':
+      $ref: ../../../models/4xx-responses/403.yaml
+    '404':
+      $ref: ../../../models/4xx-responses/404.yaml
+    '405':
+      $ref: ../../../models/4xx-responses/405.yaml
+
+  x-operation-settings:
+    CollectParameters: false
+    AllowDynamicQueryParameters: false
+    AllowDynamicFormParameters: false
+    IsMultiContentStreaming: false
+  security: []

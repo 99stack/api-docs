@@ -69,7 +69,7 @@ get:
                         "created": "2020-06-25T10:09:22Z",
                         "fingerprint": "de:ad:be:ef:de:ad:be:ef:de:ad:be:ef:de:ad:be:ef"
                     }
-                ]
+                  ]
                 }
     '401':
       $ref: ../../models/4xx-responses/401.yaml
