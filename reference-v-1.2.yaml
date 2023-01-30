@@ -176,6 +176,8 @@ paths:
     $ref: ./paths/server/action/stop.yaml
   /server/reboot:
     $ref: ./paths/server/action/reboot.yaml
+  /server/recover:
+    $ref: ./paths/server/action/recover.yaml
 
   /rdns/get:
     $ref: ./paths/server/rdns/get.yaml
