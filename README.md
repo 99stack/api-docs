@@ -11,14 +11,8 @@ JSON is used for every available request and response, the documentation is howe
 Documentation built from the source in this project can be seen live on our website:
 https://www.99stack.com/resources/docs
 
-### Global API endpoints
-* Global: https://api.99stack.com
+### API endpoints
+* https://api.99stack.com
 
-### Regional API enpoints
-* Germany (Europe): https://api.eu-central.aws.99stack.com
-* Ireland (Europe): https://api.eu-west.aws.99stack.com
-* Virginia (USA): https://api.us-east.aws.99stack.com
-* Oregon (USA): https://api.us-west.aws.99stack.com
-* India (Asia): https://api.as-east.aws.99stack.com
-* South Korea (Asia): https://api.as-south.aws.99stack.com
-* New South Wales (Australia): https://api.au-east.aws.99stack.com
+### Development
+Modules are read from subdirectories `paths` and `models`, when referenced in the root file `reference-v-<version>.yaml`. A complete file can be generated using `speccy`. Install globally with: `sudo npm install -g speccy`. Then run the command `speccy resolve ~/99stack/api-docs/reference-v-1.2.yaml -o <output>.yaml` to generate a complete openapi yaml file with all included.
