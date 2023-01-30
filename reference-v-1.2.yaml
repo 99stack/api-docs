@@ -170,14 +170,14 @@ paths:
     $ref: ./paths/server/action/resize.yaml
   /server/rebuild:
     $ref: ./paths/server/action/rebuild.yaml
+  /server/rescue:
+    $ref: ./paths/server/action/rescue.yaml
   /server/start:
     $ref: ./paths/server/action/start.yaml
   /server/stop:
     $ref: ./paths/server/action/stop.yaml
   /server/reboot:
     $ref: ./paths/server/action/reboot.yaml
-  /server/recover:
-    $ref: ./paths/server/action/recover.yaml
 
   /rdns/get:
     $ref: ./paths/server/rdns/get.yaml
