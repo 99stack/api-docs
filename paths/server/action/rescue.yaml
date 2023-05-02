@@ -1,12 +1,10 @@
 post:
   tags:
     - Action
-  summary: Rebuild server
+  summary: Rescue server
   description: |-
-    Reinstall a server with any available image: `os`, `app`, `snapshot` or `iso`.
-    
-    **Note:** In some regions, this does not work with the same OS.
-  operationId: server-rebuild
+    Toggle rescue mode and reboot into a recovery image if enabled, otherwise boot from disk
+  operationId: server-rescue
   parameters:
     - name: Authorization
       in: header
@@ -38,15 +36,15 @@ post:
             summary: Request with uuid
             value:
               {
-                "server_id": "0e61f8e7-eace-464a-8461-8a6bc94ed5a9", 
-                "image_id": "ce8811bd-6c13-4d5e-9754-ce2c23343c66"
+                "server_id": "0e61f8e7-eace-464a-8461-8a6bc94ed5a9",
+                "enable": true
               }
           id: 
             summary: Request with id
             value: 
               { 
                 "server_id": 654321,
-                "image_id": 123456
+                "enable": true
               }
   
   responses:
@@ -69,4 +67,3 @@ post:
     AllowDynamicFormParameters: false
     IsMultiContentStreaming: false
   security: []
-
