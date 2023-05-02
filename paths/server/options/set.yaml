@@ -1,8 +1,9 @@
 put:
   tags:
     - Options
-  summary: Edit option
-  description: 'Create, remove or update option value at specific key'
+  summary: Set option by key
+  description: |-
+     Create, remove or update server option paramter defined by `name` key. Server option paramteters can be used to modify a servers behaviour in various situations, see examples for a selection of variables to modify. 
   operationId: server-put-option
   parameters:
     - name: Authorization
@@ -28,7 +29,7 @@ put:
     content:
       application/json:
         schema:
-          $ref: ../../../models/request-id_or_uuid.yaml
+          $ref: ../../../models/requests/option.yaml
         examples:
           bw_overage_policy:
             summary: Change bandwidth overage behavior
@@ -36,7 +37,7 @@ put:
               name: bw_overage_policy
               value: power_off
           bw_overage_treshold:
-            summary: Request with id
+            summary: Change bandwidth overage treshold
             value:
               name: bw_overage_treshold
               value: 0.9

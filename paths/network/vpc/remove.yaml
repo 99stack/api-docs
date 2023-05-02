@@ -29,7 +29,7 @@ delete:
     content:
       application/json:
         schema:
-          $ref: ../../../models/requests/res-schema.yaml
+          $ref: ../../../models/request-uuid.yaml
         examples:
           example-1: 
             summary: Remove floating point ip object

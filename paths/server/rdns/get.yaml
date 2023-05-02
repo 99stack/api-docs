@@ -30,7 +30,7 @@ get:
     content:
       application/json:
         schema:
-          $ref: ../../../models/request-id_or_uuid.yaml
+          $ref: ../../../models/request-uuid.yaml
         examples:
           uuid:
             summary: Request with uuid

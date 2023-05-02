@@ -1,0 +1,9 @@
+type: object
+properties:
+  name:
+    type: string
+    description: Key identifier for the value to get or set.
+  value:
+    type: string
+    description: (optional) The value to set, use "null" to unset. Only applies to `PUT /option/set`
+description: Get or set optional paramters for a server instance in order to change the server behaviour.

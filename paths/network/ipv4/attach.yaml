@@ -28,7 +28,7 @@ patch:
     content:
       application/json:
         schema:
-          $ref: ../../../models/requests/res-schema.yaml
+          $ref: ../../../models/request-uuid.yaml
         examples:
           example-1: 
             summary: Attach floating point ip to a server instance

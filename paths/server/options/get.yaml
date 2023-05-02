@@ -1,8 +1,9 @@
 get:
   tags:
     - Options
-  summary: View option
-  description: Get the value of option defined by key.
+  summary: Get option by key
+  description: |-
+    Get server option paramter defined by `name` key. Server option paramteters can be used to modify a servers behaviour in various situations, see examples for a selection of variables to modify.
   operationId: server-get-option
   parameters:
     - name: Authorization
@@ -28,18 +29,18 @@ get:
     content:
       application/json:
         schema:
-          $ref: ../../../models/request-id_or_uuid.yaml
+          $ref: ../../../models/requests/option.yaml
         examples:
           bw_overage_policy:
-            summary: Change bandwidth overage behavior
+            summary: Get bandwidth overage behavior
             value:
               name: bw_overage_policy
           bw_overage_treshold:
-            summary: Request with id
+            summary: Get bandwidth overage treshold
             value:
               name: bw_overage_treshold
   responses:
-    '202':
+    '200':
       $ref: ../../../models/2xx-responses/202.yaml
     '400':
       $ref: ../../../models/4xx-responses/400.yaml

@@ -27,7 +27,7 @@ delete:
     content:
       application/json:
         schema:
-          $ref: ../../models/request-id_or_uuid.yaml
+          $ref: ../../models/request-uuid.yaml
         examples:
           uuid: 
             summary: using uuid

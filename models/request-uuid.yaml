@@ -1,0 +1,5 @@
+type: object
+properties:
+  <uuid>:
+    type: string
+    description: Unique resource `uuid`, a 36 character string identifier. Example `123e4567-e89b-12d3-a456-426655440000`

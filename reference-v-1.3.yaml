@@ -1,7 +1,7 @@
 openapi: 3.0.2
 info:
-  title: 99Stack Cloud docs
-  version: '1.2'
+  title: 99Stack Cloud API
+  version: '1.3'
   contact:
     name: 99Stack Cloud Support
     email: 'support@99stack.com'
@@ -83,7 +83,7 @@ info:
     curl -X DELETE \
       -H 'Authorization: Bearer YOUR_TOKEN' \
       -H 'Content-Type: application/json' \
-      -d '{"server_id": 16324}' \
+      -d '{"server_id": "123e4567-e89b-12d3-a456-426655440000"}' \
       "https://api.99stack.com/v1/server/remove"
     ```
 
@@ -184,10 +184,10 @@ paths:
   /rdns/put:
     $ref: ./paths/server/rdns/put.yaml
     
-  /options/get:
+  /option/get:
     $ref: ./paths/server/options/get.yaml
-  /options/put:
-    $ref: ./paths/server/options/put.yaml
+  /option/set:
+    $ref: ./paths/server/options/set.yaml
 
   /floating_ip/list:
     $ref: ./paths/network/ipv4/list.yaml
