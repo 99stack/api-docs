@@ -183,6 +183,11 @@ paths:
     $ref: ./paths/server/rdns/get.yaml
   /rdns/put:
     $ref: ./paths/server/rdns/put.yaml
+    
+  /options/get:
+    $ref: ./paths/server/options/get.yaml
+  /options/put:
+    $ref: ./paths/server/options/put.yaml
 
   /floating_ip/list:
     $ref: ./paths/network/ipv4/list.yaml
@@ -265,8 +270,9 @@ x-tagGroups:
     tags:
       - Server
       - Action
-      - rDNS
       - Backup
+      - Options
+      - Reverse DNS
   - name: Storage
     tags:
       - Snapshot

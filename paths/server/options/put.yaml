@@ -1,10 +1,9 @@
-get:
+put:
   tags:
-    - Reverse DNS
-  summary: View reverse DNS
-  description: |-
-    Shows the reverse DNS record assigned to the server identified by `server_id`
-  operationId: server-get-rdns
+    - Options
+  summary: Edit option
+  description: 'Create, remove or update option value at specific key'
+  operationId: server-put-option
   parameters:
     - name: Authorization
       in: header
@@ -24,7 +23,6 @@ get:
       schema:
         type: string
         example: application/json
-
   requestBody:
     required: true
     content:
@@ -32,19 +30,16 @@ get:
         schema:
           $ref: ../../../models/request-id_or_uuid.yaml
         examples:
-          uuid:
-            summary: Request with uuid
+          bw_overage_policy:
+            summary: Change bandwidth overage behavior
             value:
-              {
-                "server_id": "0e61f8e7-eace-464a-8461-8a6bc94ed5a9"
-              }
-          id:
+              name: bw_overage_policy
+              value: power_off
+          bw_overage_treshold:
             summary: Request with id
             value:
-              {
-                "server_id": 654321
-              }
-
+              name: bw_overage_treshold
+              value: 0.9
   responses:
     '202':
       $ref: ../../../models/2xx-responses/202.yaml
@@ -58,7 +53,6 @@ get:
       $ref: ../../../models/4xx-responses/404.yaml
     '405':
       $ref: ../../../models/4xx-responses/405.yaml
-
   x-operation-settings:
     CollectParameters: false
     AllowDynamicQueryParameters: false

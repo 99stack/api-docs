@@ -1,6 +1,6 @@
 put:
   tags:
-    - rDNS
+    - Reverse DNS
   summary: Edit reverse DNS
   description: |-
     Edit the reverse DNS record assigned to the server identified by `server_id`
