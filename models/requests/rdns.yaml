@@ -1,9 +1,0 @@
-type: object
-properties:
-  server_id:
-    type: string
-    description: Unique resource `uuid`, a 36 character string identifier. Example `123e4567-e89b-12d3-a456-426655440000`
-  rdns:
-    type: string
-    description: (optional) The new RDNS to set, only applies to `PUT /rdns/put`
-description: Get or set optional paramters for a server instance in order to change the server behaviour.

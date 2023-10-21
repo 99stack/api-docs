@@ -2,25 +2,11 @@ patch:
   tags:
     - "Block storage"
   summary: Attach volume
-  description: Attach existing volume to a server, the server and the volume must be located within the same datacenter.
+  description: |-
+    This function enables you to connect an existing volume to a server. It's important to note that both the server and the volume must be located within the same data center for this operation to succeed.
   operationId: volume-attach
   parameters:
-    - name: Authorization
-      in: header
-      description: ''
-      required: true
-      style: simple
-      explode: false
-      schema:
-        $ref: ../../models/headers/authorization.yaml
-    - name: Content-Type
-      in: header
-      description: ''
-      required: true
-      style: simple
-      explode: false
-      schema:
-        $ref: ../../models/headers/content-type.yaml
+    []
 
   requestBody:
     required: true
@@ -63,4 +49,5 @@ patch:
     AllowDynamicQueryParameters: false
     AllowDynamicFormParameters: false
     IsMultiContentStreaming: false
-  security: []
+  security:
+    - bearer: []

@@ -1,24 +1,17 @@
 put:
   tags:
-    - Account
+    - Management
   summary: Activate
   description: |-
-    Activate the account identified by `uuid` token sent in the request. Token is generated after the `/v1/account/register` function has been successfully executed. 
-
-    **Security**
-    Please keep in mind that this function will respond with a 202 success message instead of a 404 message in the event that no account matches the provided `uuid`. This is a feature with the primary purpose to protect against robots seeking to harvest personal data.
+    Upon completing your registration, please check your email for further instructions. Once received, send the `uuid` to this designated endpoint to activate your account.
+    
+    Please bear in mind that this endpoint will consistently return a status code of `202`. As a result, this code cannot be relied upon to ascertain the success or failure of this operation.
   operationId: account-activate
   parameters:
-    - name: Content-Type
-      in: header
-      description: ''
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-        example: application/json
+    []
+    
   requestBody:
+    required: true
     content:
       application/json:
         schema:
@@ -31,13 +24,7 @@ put:
           {
             "uuid": "38353138-6331-4233-b038-343035303839"
           }
-    required: true
-  x-operation-settings:
-    CollectParameters: false
-    AllowDynamicQueryParameters: false
-    AllowDynamicFormParameters: false
-    IsMultiContentStreaming: false
-  security: []
+ 
   responses:
     '202':
       $ref: ../../models/2xx-responses/202.yaml
@@ -51,3 +38,9 @@ put:
       $ref: ../../models/4xx-responses/405.yaml
     '429':
       $ref: ../../models/4xx-responses/429.yaml
+
+  x-operation-settings:
+    CollectParameters: false
+    AllowDynamicQueryParameters: false
+    AllowDynamicFormParameters: false
+    IsMultiContentStreaming: false

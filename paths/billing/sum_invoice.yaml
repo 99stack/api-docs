@@ -2,25 +2,11 @@ post:
   tags:
     - Billing
   summary: Sum invioice
-  description: Sum how much you have paid over a specified time `default` is current month
+  description: |-
+    This function enables you to calculate the total amount you have paid over a specified period of time. The default timeframe is set to the current month, but you can customize it according to your specific requirements. This feature offers a clear and concise overview of your financial activity within the specified time frame.
   operationId: invoice-sum
   parameters:
-    - name: Authorization
-      in: header
-      description: ''
-      required: true
-      style: simple
-      explode: false
-      schema:
-        $ref: ../../models/headers/authorization.yaml
-    - name: Content-Type
-      in: header
-      description: ''
-      required: true
-      style: simple
-      explode: false
-      schema:
-        $ref: ../../models/headers/content-type.yaml
+    []
 
   requestBody:
     required: true
@@ -30,10 +16,10 @@ post:
           type: object
           properties:
             from:
-              type: timestamp
+              type: string
               description: Start time, accepts any string that can be parsed into a timestamp
             to:
-              type: timestamp
+              type: string
               description: End time, accepts any string that can be parsed into a timestamp
         examples:
           example-1: 
@@ -52,25 +38,25 @@ post:
             type: object
             properties:
               server:
-                type: double
+                type: number
                 description: Total cost of server instances in given interval
               license:
-                type: double
+                type: number
                 description: Total cost of licenses in given interval
               snapshot:
-                type: double
+                type: number
                 description: Total cost of snapshots in given interval
               backup:
-                type: double
+                type: number
                 description: Total cost of backups in given interval
               block_storage:
-                type: double
+                type: number
                 description: Total cost of block storage in given interval
               object_storage:
-                type: double
+                type: number
                 description: Total cost of object storage in given interval
               ddos_protection:
-                type: double
+                type: number
                 description: Total cost of ddos protection in given interval
               ts_start:
                 type: string
@@ -110,4 +96,5 @@ post:
     AllowDynamicQueryParameters: false
     AllowDynamicFormParameters: false
     IsMultiContentStreaming: false
-  security: []
+  security:
+    - bearer: []

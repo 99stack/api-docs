@@ -3,33 +3,30 @@ put:
     - Options
   summary: Set option by key
   description: |-
-     Create, remove or update server option paramter defined by `name` key. Server option paramteters can be used to modify a servers behaviour in various situations, see examples for a selection of variables to modify. 
+     This function allows you to create, remove, or update a server option parameter defined by the `name` key. Server option parameters enable you to adjust a server's behavior in diverse scenarios. For specific variables that can be modified, refer to the provided examples.
   operationId: server-put-option
   parameters:
-    - name: Authorization
-      in: header
-      description: ''
-      required: true
-      style: simple
-      explode: false
+    - in: path
+      name: server_id
       schema:
-        type: string
-        example: Bearer API_TOKEN
-    - name: Content-Type
-      in: header
-      description: ''
+        type: integer
       required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-        example: application/json
+      description: Server ID for the server instance to edit
+    
   requestBody:
     required: true
     content:
       application/json:
         schema:
-          $ref: ../../../models/requests/option.yaml
+          type: object
+          properties:
+            name:
+              type: string
+              description: Key identifier for the value to set.
+            value:
+              type: string
+              description: The value to set, use "null" to unset. 
+          description: Edit server option paramters to modify it`s behaviour
         examples:
           bw_overage_policy:
             summary: Change bandwidth overage behavior
@@ -41,6 +38,7 @@ put:
             value:
               name: bw_overage_treshold
               value: 0.9
+              
   responses:
     '202':
       $ref: ../../../models/2xx-responses/202.yaml
@@ -54,9 +52,11 @@ put:
       $ref: ../../../models/4xx-responses/404.yaml
     '405':
       $ref: ../../../models/4xx-responses/405.yaml
+      
   x-operation-settings:
     CollectParameters: false
     AllowDynamicQueryParameters: false
     AllowDynamicFormParameters: false
     IsMultiContentStreaming: false
-  security: []
+  security:
+    - bearer: []

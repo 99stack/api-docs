@@ -3,14 +3,18 @@ content:
   application/json:
     schema:
       type: object
-      description: 
+      description: Type of error
       properties:
-        response:
-          type: string
-          description: HTTP error code and text representation
-        reason:
-          type: string
-          description: Details about why the request failed
+        errors:
+          type: object
+          description: Error object
+          properties:
+            response:
+              type: string
+              description: HTTP error code and text representation
+            reason:
+              type: string
+              description: Details about why the request failed
 
     examples:
       response-1:

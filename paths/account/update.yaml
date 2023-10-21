@@ -1,21 +1,17 @@
 patch:
   tags:
-    - Account
+    - Management
   summary: Update
-  description: Change the account password, password repeat is only used for validation, if you do not wish to use this feature set it to the same as new password.
+  description: |-
+    You can utilize this endpoint to modify your account information.
   operationId: account-update
+  security:
+    - bearer: []
   parameters:
-    - name: Content-Type
-      in: header
-      description: ''
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-        example: application/json
-
+    []
+  
   requestBody:
+    required: true
     content:
       application/json:
         schema:
@@ -68,4 +64,3 @@ patch:
     AllowDynamicQueryParameters: false
     AllowDynamicFormParameters: false
     IsMultiContentStreaming: false
-  security: []

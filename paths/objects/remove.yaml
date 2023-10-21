@@ -2,45 +2,18 @@ delete:
   tags:
     - "Object storage"
   summary: Remove object storage
-  description: "Removes a volume by `ID` or `UUID`, the volume must be detached before it can be removed."
+  description: |-
+    This function allows you to remove an object storage instance from your account. Please proceed with caution, as this action is irreversible and will permanently delete the specified storage including all buckets on the instance.
   operationId: object-storage-remove
-  parameters:
-    - name: Authorization
-      in: header
-      description: ''
-      required: true
-      style: simple
-      explode: false
+  parameters: 
+    - in: path
+      name: object_id
       schema:
-        $ref: ../../models/headers/authorization.yaml
-    - name: Content-Type
-      in: header
-      description: ''
+        oneOf:
+          - type: string
+          - type: integer
       required: true
-      style: simple
-      explode: false
-      schema:
-        $ref: ../../models/headers/content-type.yaml
-
-  requestBody:
-    required: true
-    content:
-      application/json:
-        schema:
-          $ref: ../../models/request-uuid.yaml
-        examples:
-          uuid: 
-            summary: using uuid
-            value:
-              {
-                "volume_id": "34626233-3739-4637-b638-376532306637"
-              }
-          id: 
-            summary: using id
-            value: 
-              { 
-                "volume_id": 123456
-              }
+      description: Object storage `ID` or `uuid` to be removed
 
   responses:
     '204':
@@ -61,4 +34,5 @@ delete:
     AllowDynamicQueryParameters: false
     AllowDynamicFormParameters: false
     IsMultiContentStreaming: false
-  security: []
+  security:
+    - bearer: []

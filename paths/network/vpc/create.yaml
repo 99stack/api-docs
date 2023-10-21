@@ -3,26 +3,12 @@ post:
     - VPCs
   summary: Create VPC
   description: |-
-    Create a new VPC address that can be used in a specific region.
+    This action generates a new Virtual Private Cloud (VPC) address specifically designed for use in the chosen region. VPC addresses facilitate secure communication within isolated virtual networks, ensuring data privacy and network isolation.
   operationId: vpc-create
-  security: []
+  security:
+    - bearer: []
   parameters:
-    - name: Authorization
-      in: header
-      description: ''
-      required: true
-      style: simple
-      explode: false
-      schema:
-        $ref: ../../../models/headers/authorization.yaml
-    - name: Content-Type
-      in: header
-      description: ''
-      required: true
-      style: simple
-      explode: false
-      schema:
-        $ref: ../../../models/headers/content-type.yaml
+    []
 
   requestBody:
     required: true

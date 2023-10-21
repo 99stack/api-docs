@@ -1,28 +1,12 @@
 post:
   tags:
-    - Server
+    - Instance
   summary: Create server
-  description: 'Deploy a new server anywhere in 99Stack cloud.'
+  description: |-
+    Initiate the creation of a fresh server instance with the option to customize its configuration. For further details on the available configuration parameters, consult the provided schema.
   operationId: server-create
   parameters:
-    - name: Authorization
-      in: header
-      description: ''
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-        example: Bearer API_TOKEN
-    - name: Content-Type
-      in: header
-      description: ''
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-        example: application/json
+    []
 
   requestBody:
     required: true
@@ -40,53 +24,46 @@ post:
             hostname:
               type: string
               description: Hostname for the new server
-              required: true
             label:
               type: string
-              description: Name for the new server
-              required: true
+              description: Display name for the new server
             region:
               type: integer
-              description: Region to deploy in, this decides which generation the server will be on
-              required: true
+              description: Data center to deploy in, accepts `ID` or `uuid`
             image:
               type: integer
-              description: Operating system, app, snapshot or custom ISO to deploy from
-              required: true
+              description: Software image to install, accepts `ID` or `uuid`
             plan:
               type: integer
-              description: Server plan ID, decides the size of the new server
-              required: true
+              description: Plan configuration to use, accepts `ID` or `uuid`
             ddos_protection:
               type: boolean
-              description: Value `true` if DDoS protection is enabled
-            backup_enabled:
+              description: Use `true` to enable additional DDoS protection
+            auto_backups:
               type: boolean
-              description: Value `true` if automatic backups is enabled
-            ipv6_enabled:
+              description: Use `true` to enable automatic backups
+            ipv6_networking:
               type: boolean
-              description: Value `true` if IPv6 is enabled
-            private_network:
-              type: boolean
-              description: Value `true` if private_networks is enabled (reqiored to use VPCs)
+              description: Use `true` to enable IPv6 networking
             ssh_key:
               type: string
-              description: Deploy a SSH key identified by `uuid` as login key to the new server
+              description: Public SSH Key to install, accepts `ID` or `uuid`
             script_url:
               type: string
-              description: URL to server installation script
+              description: URL to custom `bash` installation script to run at first boot
             image_type:
               type: string
-              description: Default is `os`, use `app` to deploy an app, `snapshot` for a snapshot or backup image and `iso` for a custom ISO. Always pass the ID via the `image` field
+              description: Set to `app`, `snapshot` or `iso` when software image is not a default `os`
             commit:
               type: integer
               description: Number of hours you want to pay up-front (default is 0)
             vpc:
               type: string
-              description: UUID of a VPC within the same datacenter to assign the server too (default is null)
+              description: Connect to a private network, accepts `ID` or `uuid`
+              
         examples:
           gen-1: 
-            summary: Create a G1-standard-1 server in Atlanta with Debian 10
+            summary: Create a G1-standard-1 instance
             value:
               {
                 "hostname": "standard-1",
@@ -97,13 +74,13 @@ post:
                 "auto_backups": false,
                 "ipv6_networking": false,
                 "ddos_protection": false,
-                "private_networking": false,
                 "ssh_key": "ee95ef44-2ed2-436e-9d49-20889d69bd2e",
                 "script_url": "https://...",
-                "image_type": "os"
+                "image_type": "os",
+                "vpc": "cddf1a7b-052e-418e-8ea2-1f52cf288c5b"
               }
           gen-2: 
-            summary: Create a G2-standard-1 server in Amsterdam with Debian 10
+            summary: Create a G2-standard-1 instance
             value:
               {
                 "hostname": "standard-1",
@@ -114,13 +91,13 @@ post:
                 "auto_backups": false,
                 "ipv6_networking": false,
                 "ddos_protection": false,
-                "private_networking": false,
                 "ssh_key": "ee95ef44-2ed2-436e-9d49-20889d69bd2e",
                 "script_url": "https://...",
-                "image_type": "os"
+                "image_type": "os",
+                "vpc": "cddf1a7b-052e-418e-8ea2-1f52cf288c5b"
               }
           gen-3: 
-            summary: Create a G3-standard-1 server in Frankfurt with Debian 10
+            summary: Create a G3-standard-1 instance
             value:
               {
                 "hostname": "standard-1",
@@ -131,10 +108,10 @@ post:
                 "auto_backups": false,
                 "ipv6_networking": false,
                 "ddos_protection": false,
-                "private_networking": false,
                 "ssh_key": "ee95ef44-2ed2-436e-9d49-20889d69bd2e",
                 "script_url": "https://...",
-                "image_type": "os"
+                "image_type": "os",
+                "vpc": "cddf1a7b-052e-418e-8ea2-1f52cf288c5b"
               }
 
   responses:
@@ -143,50 +120,11 @@ post:
       content:
         application/json:
           schema:
-            type: object
-            properties:
-              uuid:
-                type: string
-                description: Unique `UUID` for the new server
-              name:
-                type: string
-                description: Name for the new server
-              power:
-                type: string
-                description: Server power status, `provisioning`, `running`, `stopped` etc..
-              iface:
-                type: object
-                description: JSON formatted data containing all the network interfaces (default is `null`)
-              bandwidth:
-                type: object
-                description: JSON formatted data containing bandwith usage and limits
-              info:
-                type: object
-                description: JSON formatted data containing basic server information
-              password:
-                type: string
-                description: Server SSH password, always set, but not always in use
-              ddos_protection:
-                type: boolean
-                description: Value `true` if DDoS protection is enabled
-              backup_enabled:
-                type: boolean
-                description: Value `true` if automatic backups is enabled
-              ipv6_enabled:
-                type: boolean
-                description: Value `true` if IPv6 is enabled
-              private_network:
-                type: boolean
-                description: Value `true` if private_networks is enabled (reqiored to use VPCs)
-              script_url:
-                type: string
-                description: URL to server installation script
-              created:
-                type: string
-                description: Date created
+            $ref: '../../models/objects/server.yaml'
+              
           examples:
             gen-1: 
-              summary: Generation 1 server created (Debian GNU+Linux)
+              summary: G1 server created (Debian GNU+Linux)
               value:
                 {
                   "uuid": "e5152a2e-6b6b-4dac-b9ed-46e083b58048",
@@ -204,15 +142,12 @@ post:
                     "plan": 1101,
                     "price": 8
                   },
-                  "password": "Gy?s{a_ZRk688(+2",
-                  "ddos_protection": false,
-                  "backup_enabled": false,
+                  "password": "long-passphrase-goes-here",
                   "ipv6_enabled": false,
-                  "private_network": false,
                   "script_url": null
                 }
             gen-2: 
-              summary: Generation 2 server created (Debian GNU+Linux)
+              summary: G2 server created (Debian GNU+Linux)
               value:
                 {
                   "uuid": "79d73a27-0b2c-4c8b-be4c-89c354b03465",
@@ -230,15 +165,12 @@ post:
                     "plan": 2101,
                     "price": 8
                   },
-                  "password": "fDv7tr~9#G{!H'8^",
-                  "ddos_protection": false,
-                  "backup_enabled": false,
+                  "password": "long-passphrase-goes-here",
                   "ipv6_enabled": false,
-                  "private_network": false,
                   "script_url": null
                 }
             gen-3: 
-              summary: Generation 3 server created (Debian GNU+Linux)
+              summary: G3 server created (Debian GNU+Linux)
               value:
                 {
                   "uuid": "db1dba87-f25f-4303-8e5a-610b436f5dcf",
@@ -256,11 +188,8 @@ post:
                     "plan": 3101,
                     "price": 8
                   },
-                  "password": "GN_Tgh=%tA8kL;-S",
-                  "ddos_protection": false,
-                  "backup_enabled": false,
+                  "password": "long-passphrase-goes-here",
                   "ipv6_enabled": false,
-                  "private_network": false,
                   "script_url": null
                 }
     '400':
@@ -281,4 +210,5 @@ post:
     AllowDynamicQueryParameters: false
     AllowDynamicFormParameters: false
     IsMultiContentStreaming: false
-  security: []  
+  security:
+    - bearer: []  

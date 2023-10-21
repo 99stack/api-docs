@@ -3,17 +3,20 @@ get:
     - Public
   summary: Plans
   description: |-
-    Takes a `region_id` as url parameter and returns a list over all plans available in that specific region. Sending this request without `region_id` returns a large list over all available plans, on all generations in all datacenters (~55KB).
+    A server plan comprises a predetermined selection of accessible hardware components, including CPU cores, memory capacity, disk storage, and allocated bandwidth quotas.
     
-    Plans are listed by order of it's four digit `id` where the first number indicates generation (G1, G2, G3 etc..). The second number indicates plan type (ssd-vps, dedicated, compute, memory), and the last two digits is the plan `id`, organized by size.
+    Every server operates within a virtual environment powered by the KVM hypervisor. This strategic implementation guarantees the precise allocation of hardware resources, ensuring optimal performance without any interference from neighboring servers across all available plans. This means that you can count on a consistently smooth and reliable computing experience, regardless of the specific plan you choose within the 99Stack Cloud infrastructure.
+    
+    Plan IDs are composed of three parts. The first digit denotes the legal jurisdiction and corresponding data centers. The second digit specifies the plan's optimization focus. The last two digits represent the unique Plan ID for sorting by size or resources. This format ensures efficient categorization and selection of plans.
     
   operationId: plans
   parameters: 
-    - name: region_id
-      in: path
-      required: false
-      type: integer
-      description: Region `id` to filter out plans available in a specific region 
+    - in: query
+      name: region_id
+      schema:
+        type: integer
+      description: (Optional) Region ID to filter results
+    
   responses:
     '200':
       description: ''

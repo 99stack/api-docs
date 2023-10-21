@@ -2,25 +2,11 @@ patch:
   tags:
     - Snapshot
   summary: Restore snapshot
-  description: Restore a server from provided snapshot image
+  description: |-
+    This operation will restore a server using the provided snapshot image. Essentially, it reverts the server to a previous state captured in the snapshot. This can be invaluable for recovery or for creating duplicates of servers in known working configurations.
   operationId: snapshot-restore
   parameters:
-    - name: Authorization
-      in: header
-      description: ''
-      required: true
-      style: simple
-      explode: false
-      schema:
-        $ref: ../../models/headers/authorization.yaml
-    - name: Content-Type
-      in: header
-      description: ''
-      required: true
-      style: simple
-      explode: false
-      schema:
-        $ref: ../../models/headers/content-type.yaml
+    []
 
   requestBody:
     required: true
@@ -63,4 +49,5 @@ patch:
     AllowDynamicQueryParameters: false
     AllowDynamicFormParameters: false
     IsMultiContentStreaming: false
-  security: []  
+  security:
+    - bearer: []  

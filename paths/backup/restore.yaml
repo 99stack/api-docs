@@ -2,25 +2,11 @@ patch:
   tags:
     - Backup
   summary: Restore backup
-  description: "Restore a source backup image (from ID or uuid) to a target server (identified by ID or uuid). \n\n**Caution**\n\nThe content on target server will be overwritten by the backup image and thus lost forever."
+  description: |-
+    This operation restore a backup image to the specified server, effectively reverting it to a previous state captured in the backup. This can be a useful step in recovering from unexpected issues or making significant changes with the safety net of a known working configuration.
   operationId: backup-restore
   parameters:
-    - name: Authorization
-      in: header
-      description: ''
-      required: true
-      style: simple
-      explode: false
-      schema:
-        $ref: ../../models/headers/authorization.yaml
-    - name: Content-Type
-      in: header
-      description: ''
-      required: true
-      style: simple
-      explode: false
-      schema:
-        $ref: ../../models/headers/content-type.yaml
+    []
 
   requestBody:
     required: true
@@ -63,4 +49,5 @@ patch:
     AllowDynamicQueryParameters: false
     AllowDynamicFormParameters: false
     IsMultiContentStreaming: false
-  security: []  
+  security:
+    - bearer: []  

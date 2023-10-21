@@ -3,27 +3,10 @@ patch:
     - Action
   summary: Start server
   description: |- 
-    Send a startup signal to server, this is similar to pressing the power on button.
+    This command dispatches a start signal to the server, effectively initiating the booting process and bringing the server into an active state.
   operationId: server-start
   parameters:
-    - name: Authorization
-      in: header
-      description: ''
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-        example: Bearer API_TOKEN
-    - name: Content-Type
-      in: header
-      description: ''
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-        example: application/json
+    []
 
   requestBody:
     required: true
@@ -64,4 +47,5 @@ patch:
     AllowDynamicQueryParameters: false
     AllowDynamicFormParameters: false
     IsMultiContentStreaming: false
-  security: []
+  security:
+    - bearer: []

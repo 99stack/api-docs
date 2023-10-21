@@ -2,26 +2,13 @@ patch:
   tags:
     - VPCs
   summary: Attach VPC
-  description: Attach existing VPC address to a server
+  description: |-
+    This action connects an existing Virtual Private Cloud (VPC) address to a server, enabling secure communication within the isolated virtual network.
   operationId: vpc-attach
-  security: []
+  security:
+    - bearer: []
   parameters:
-    - name: Authorization
-      in: header
-      description: ''
-      required: true
-      style: simple
-      explode: false
-      schema:
-        $ref: ../../../models/headers/authorization.yaml
-    - name: Content-Type
-      in: header
-      description: ''
-      required: true
-      style: simple
-      explode: false
-      schema:
-        $ref: ../../../models/headers/content-type.yaml
+    []
 
   requestBody:
     required: true

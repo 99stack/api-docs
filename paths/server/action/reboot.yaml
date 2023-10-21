@@ -3,27 +3,10 @@ patch:
     - Action
   summary: Reboot server
   description: |-
-    Send a reboot signal to the server, if the server is not running this will only start the server.
+    This function triggers a reboot signal to be sent to the server, prompting it to restart. If the server is not currently running, this will start the server.
   operationId: server-reboot
   parameters:
-    - name: Authorization
-      in: header
-      description: ''
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-        example: Bearer API_TOKEN
-    - name: Content-Type
-      in: header
-      description: ''
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-        example: application/json
+    []
 
   requestBody:
     required: true
@@ -64,4 +47,5 @@ patch:
     AllowDynamicQueryParameters: false
     AllowDynamicFormParameters: false
     IsMultiContentStreaming: false
-  security: []
+  security:
+    - bearer: []

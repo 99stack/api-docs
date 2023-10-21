@@ -3,14 +3,18 @@ content:
   application/json:
     schema:
       type: object
-      description: 
+      description: Successfull request
       properties:
-        response:
-          type: string
-          description: HTTP status code and text representation
-        reason:
-          type: string
-          description: Additional information if needed, can be empty
+        success:
+          type: object
+          description: Success object
+          properties:
+            response:
+              type: string
+              description: HTTP error code and text representation
+            reason:
+              type: string
+              description: Additional information if needed, can be empty
           
     example:
       {

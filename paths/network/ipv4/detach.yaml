@@ -2,26 +2,13 @@ patch:
   tags:
     - Floating IPs
   summary: Detach floating IP
-  description: "Detach existing floating IP address from the server it's currently attached to."
+  description: |-
+    This function detaches an existing floating IP address from the server to which it is currently assigned. This operation allows you to manage and reassign floating IPs as necessary.
   operationId: floating_ip-detach
-  security: []
+  security:
+    - bearer: []
   parameters:
-    - name: Authorization
-      in: header
-      description: ''
-      required: true
-      style: simple
-      explode: false
-      schema:
-        $ref: ../../../models/headers/authorization.yaml
-    - name: Content-Type
-      in: header
-      description: ''
-      required: true
-      style: simple
-      explode: false
-      schema:
-        $ref: ../../../models/headers/content-type.yaml
+    []
 
   requestBody:
     required: true

@@ -1,28 +1,14 @@
 patch:
   tags:
-    - Account
+    - Management
   summary: Reset
   description: |-
-    Generate and email a temporary one time password that can be used to login. (see /v1/account/login for more information).
+    As a supplementary login method, you can generate and send a temporary password via email. It's important to note that this action will not deactivate or modify your primary account password in any way.
 
-    **Will this disable my current password?**
-
-    No, it will only offer an alternative way to login. If you suspect that someone is trying to access your account, consider changing your password to a longer and more secure one.
-
-    **Security**
-    Please keep in mind that this function will respond with a 202 success message instead of a 404 message in the event that no account matches the provided email address. This is a feature with the primary purpose to protect against robots seeking to harvest personal data.
+    Please bear in mind that this endpoint will consistently return a status code of `202`. As a result, this code cannot be relied upon to ascertain the success or failure of this operation.
   operationId: account-reset
-  security: []  
   parameters:
-    - name: Content-Type
-      in: header
-      description: ''
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-        example: application/json
+    []
 
   requestBody:
     required: true

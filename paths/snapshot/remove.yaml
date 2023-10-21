@@ -2,45 +2,18 @@ delete:
   tags:
     - Snapshot
   summary: Remove snapshot
-  description: Remove snapshot by id or uuid
+  description: |-
+    This function allows you to remove a snapshot from your account, effectively deleting the saved state associated with it. Please exercise caution, as this action is irreversible and will result in the permanent removal of the snapshot.
   operationId: snapshot-remove
-  parameters:
-    - name: Authorization
-      in: header
-      description: ''
-      required: true
-      style: simple
-      explode: false
+  parameters: 
+    - in: path
+      name: snapshot_id
       schema:
-        $ref: ../../models/headers/authorization.yaml
-    - name: Content-Type
-      in: header
-      description: ''
+        oneOf:
+          - type: string
+          - type: integer
       required: true
-      style: simple
-      explode: false
-      schema:
-        $ref: ../../models/headers/content-type.yaml
-
-  requestBody:
-    required: true
-    content:
-      application/json:
-        schema:
-          $ref: ../../models/request-uuid.yaml
-        examples:
-          uuid: 
-            summary: using uuid
-            value:
-              {
-                "snapshot_id": "ea7d52d6-b3cf-4179-a656-913eb389487c"
-              }
-          id: 
-            summary: using id
-            value: 
-              { 
-                "snapshot_id": 123456
-              }
+      description: Snapshot `ID` or `uuid` to be removed
 
   responses:
     '204':
@@ -61,4 +34,5 @@ delete:
     AllowDynamicQueryParameters: false
     AllowDynamicFormParameters: false
     IsMultiContentStreaming: false
-  security: []  
+  security:
+    - bearer: []  

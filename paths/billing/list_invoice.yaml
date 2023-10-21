@@ -2,25 +2,15 @@ get:
   tags:
     - Billing
   summary: List invioice
-  description: List all billable items, activity, cost, start/end times and more, pass a number to `args` to view more.
+  description: |-
+    To view a detailed list of billable items, including activity, associated costs, start and end times, and additional information, simply provide a numeric value as an argument to `args` to access more entries. This function allows for comprehensive oversight of billing-related data.
   operationId: invoice-list
   parameters:
-    - name: Authorization
-      in: header
-      description: ''
-      required: true
-      style: simple
-      explode: false
+    - in: query
+      name: start_id
       schema:
-        $ref: ../../models/headers/authorization.yaml
-    - name: Content-Type
-      in: header
-      description: ''
-      required: true
-      style: simple
-      explode: false
-      schema:
-        $ref: ../../models/headers/content-type.yaml
+        type: integer
+      description: (Optional) Fetch older transactions `25`, `50`, `75`.
 
   responses:
     '200':
@@ -33,10 +23,10 @@ get:
                 type: integer
                 description: Indicates if account is being billed for the linked resource, `1` means yes, `0` means no
               amount_hr:
-                type: double
+                type: number
                 description: Price per hour
               amount_mo:
-                type: double
+                type: number
                 description: Price per month
               resource_type:
                 type: string
@@ -87,4 +77,5 @@ get:
     AllowDynamicQueryParameters: false
     AllowDynamicFormParameters: false
     IsMultiContentStreaming: false
-  security: []
+  security:
+    - bearer: []

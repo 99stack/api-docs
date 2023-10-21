@@ -1,10 +1,10 @@
 post:
   tags:
     - Action
-  summary: Rescue server
+  summary: Reinstall server
   description: |-
-    This action toggles the rescue mode, allowing the server to reboot into a recovery image if it's enabled. If not, it will proceed to boot from the disk as usual. This functionality provides a means to troubleshoot and recover server instances when needed.
-  operationId: server-rescue
+    This operation will reinstall the server using its original image, essentially restoring it to its initial state as per the original configuration. This can be useful for starting afresh or troubleshooting specific issues.
+  operationId: server-reinstall
   parameters:
     []
 

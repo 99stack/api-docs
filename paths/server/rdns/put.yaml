@@ -3,34 +3,25 @@ put:
     - Reverse DNS
   summary: Edit reverse DNS
   description: |-
-    Edit the reverse DNS record assigned to the server identified by `server_id`
+    This function allows you to modify the reverse DNS record that is assigned to the server. This can be useful for updating the domain associated with the server's IP address.
   operationId: server-put-rdns
   parameters:
-    - name: Authorization
-      in: header
-      description: ''
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-        example: Bearer API_TOKEN
-    - name: Content-Type
-      in: header
-      description: ''
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-        example: application/json
+    []
 
   requestBody:
     required: true
     content:
       application/json:
         schema:
-          $ref: ../../../models/request-uuid.yaml
+          type: object
+          properties:
+            server_id:
+              type: string
+              description: Unique resource `uuid`, a 36 character string identifier. Example `123e4567-e89b-12d3-a456-426655440000`
+            rdns:
+              type: string
+              description: (optional) The new RDNS to set, only applies to `PUT /rdns/put`
+          description: Get or set optional paramters for a server instance in order to change the server behaviour.
         examples:
           uuid:
             summary: Request with uuid
@@ -66,4 +57,5 @@ put:
     AllowDynamicQueryParameters: false
     AllowDynamicFormParameters: false
     IsMultiContentStreaming: false
-  security: []
+  security:
+    - bearer: []

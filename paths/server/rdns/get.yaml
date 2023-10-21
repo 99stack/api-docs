@@ -3,47 +3,15 @@ get:
     - Reverse DNS
   summary: View reverse DNS
   description: |-
-    Shows the reverse DNS record assigned to the server identified by `server_id`
+    This function displays the reverse DNS record that is currently assigned to the server. This information helps identify the domain associated with the server's IP address.
   operationId: server-get-rdns
   parameters:
-    - name: Authorization
-      in: header
-      description: ''
-      required: true
-      style: simple
-      explode: false
+    - in: path
+      name: server_id
       schema:
-        type: string
-        example: Bearer API_TOKEN
-    - name: Content-Type
-      in: header
-      description: ''
+        type: integer
       required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-        example: application/json
-
-  requestBody:
-    required: true
-    content:
-      application/json:
-        schema:
-          $ref: ../../../models/request-uuid.yaml
-        examples:
-          uuid:
-            summary: Request with uuid
-            value:
-              {
-                "server_id": "0e61f8e7-eace-464a-8461-8a6bc94ed5a9"
-              }
-          id:
-            summary: Request with id
-            value:
-              {
-                "server_id": 654321
-              }
+      description: Server ID for the server instance to view
 
   responses:
     '202':
@@ -64,4 +32,5 @@ get:
     AllowDynamicQueryParameters: false
     AllowDynamicFormParameters: false
     IsMultiContentStreaming: false
-  security: []
+  security:
+    - bearer: []

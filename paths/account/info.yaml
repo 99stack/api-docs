@@ -1,32 +1,93 @@
 get:
+  tags:
+    - Management 
   summary: Account info
-  description: The complete list of all information related to the requester account. Personal data on file, balance and limitations, referral stats, permissions, account activity, current usage and estimation of your next billing deadline.
+  description: |-
+    This endpoint provides an exhaustive compilation of all information pertaining to the requester's account. This encompasses personal data on record, current account balance, any applicable limitations, detailed referral statistics, assigned permissions, a comprehensive log of account activity, current resource usage, and an estimate of the upcoming billing deadline.
   operationId: account-info
+  security:
+    - bearer: []
   parameters:
-    - name: Authorization
-      in: header
-      description: ''
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-        example: Bearer API_TOKEN
-    - name: Content-Type
-      in: header
-      description: ''
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-        example: application/json
+    []
+    
   responses:
     '200':
+      description: OK
       content:
         application/json:
           schema:
             type: object
+            description: Status success
+            properties:
+              id:
+                type: integer
+                description: Account unique identifier
+              uuid:
+                type: string
+                description: 36 character unique uuid account identifier
+              email:
+                type: string
+                description: Email addres
+              profile:
+                type: object
+                properties:
+                  firstname:
+                    type: string
+                    description: First name       
+                  lastname:
+                    type: string
+                    description: Last name
+                  country:
+                    type: string
+                    description: Two letter country code
+                  dark_mode:
+                    type: boolean
+                    description: Use dark mode or ligth mode in control panel
+              balance:
+                type: number
+                description: Current account balance
+              activated:
+                type: boolean
+                description: Will be set to `true` when account is activated
+              smtp:
+                type: boolean
+                description: If `true`, SMTP enabled servers can be deployed
+              referrals:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    description: Numer of referrals       
+                  amount:
+                    type: number
+                    description: Total amount earned from referrals
+              servers:
+                type: object
+                properties:
+                  limit:
+                    type: integer
+                    description: Max number of server instances allowed on account       
+                  running:
+                    type: integer
+                    description: Current number of server instances running
+              registerdate:
+                type: string
+                description: Timestamp showing when the account was created
+              lastlogin:
+                type: string
+                description: Timestamp showing when the account was last modified
+              billing:
+                type: object
+                properties:
+                  secondsdue:
+                    type: integer
+                    description: Seconds left until account runs out of money at current usage
+                  duedate:
+                    type: string
+                    description: Timestamp showing when account will run  out of money
+                  usage:
+                    type: number
+                    description: Sum of current usage billed every hour 
           examples:
             account-1:
               summary: Account info summary
@@ -99,10 +160,10 @@ get:
       $ref: ../../models/4xx-responses/405.yaml
     '429':
       $ref: ../../models/4xx-responses/429.yaml
+      
   x-operation-settings:
     CollectParameters: false
     AllowDynamicQueryParameters: false
     AllowDynamicFormParameters: false
     IsMultiContentStreaming: false
-  tags:
-  - Account  
+ 

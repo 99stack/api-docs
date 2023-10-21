@@ -1,79 +1,26 @@
 get:
   tags:
-    - Server
+    - Instance
   summary: View info
-  description: 'Returns a server object with information about requested server.'
+  description: |-
+    This function returns a server object containing detailed information about the requested server. It provides a comprehensive overview of the specified server's attributes and status.
   operationId: server-info
   parameters:
-    - name: Authorization
-      in: header
-      description: ''
-      required: true
-      style: simple
-      explode: false
+    - in: path
+      name: server_id
       schema:
-        type: string
-        example: Bearer API_TOKEN
-    - name: Content-Type
-      in: header
-      description: ''
+        type: integer
       required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-        example: application/json
-    - name: server_id
-      in: path
-      type: string
-      description: Server identifier `uuid` referencing the server whos info you wish to view
+      description: Server ID for the server to view
   
   responses:
     '200':
+      description: OK
       content:
         application/json:
           schema:
-            type: object
-            properties:
-              uuid:
-                type: string
-                description: Unique `UUID` for the new server
-              name:
-                type: string
-                description: Name for the new server
-              power:
-                type: string
-                description: Server power status, `provisioning`, `running`, `stopped` etc..
-              iface:
-                type: object
-                description: JSON formatted data containing all the network interfaces (default is `null`)
-              bandwidth:
-                type: object
-                description: JSON formatted data containing bandwith usage and limits
-              info:
-                type: object
-                description: JSON formatted data containing basic server information
-              password:
-                type: string
-                description: Server SSH password, always set, but not always in use
-              ddos_protection:
-                type: boolean
-                description: Value `true` if DDoS protection is enabled
-              backup_enabled:
-                type: boolean
-                description: Value `true` if automatic backups is enabled
-              ipv6_enabled:
-                type: boolean
-                description: Value `true` if IPv6 is enabled
-              private_network:
-                type: boolean
-                description: Value `true` if private_networks is enabled (reqiored to use VPCs)
-              script_url:
-                type: string
-                description: URL to server installation script
-              created:
-                type: string
-                description: Date created
+            $ref: '../../models/objects/server.yaml'
+            
           examples:
             example-1:
               summary: Show server information
@@ -128,5 +75,6 @@ get:
     AllowDynamicQueryParameters: false
     AllowDynamicFormParameters: false
     IsMultiContentStreaming: false
-  security: []
+  security:
+    - bearer: []
   

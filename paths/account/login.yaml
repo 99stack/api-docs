@@ -1,26 +1,18 @@
 post:
   tags:
-    - Account
+    - Management
   summary: Login
   description: |-
-    Validate supplied email and password/passphrase and returns a login token that can be used for authentication towards other functions the authenticated account has access to. To log out, delete the token.
+    This endpoint serves to authenticate the provided email and password. If no token currently exists in your account, this function can be employed to generate a new one. Upon successful validation, a token will be returned.
 
-    **Security**
-    Please keep in mind that this function will respond with a 400 error message no matter if supplied information has errors or an account with the supplied information does not exist. This is a feature with the primary purpose to protect against robots seeking to harvest personal data.
+    Please bear in mind that this endpoint will consistently return a status code of `200`. As a result, this code cannot be relied upon to ascertain the success or failure of this operation.
   operationId: account-login
   parameters:
-    - name: Content-Type
-      in: header
-      description: ''
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-        example: application/json
+    []
 
   requestBody:
-    content:
+    required: true
+    content:  
       application/json:
         schema:
           type: object
@@ -36,7 +28,7 @@ post:
             "email": "john_doe@example.com",
             "password": "a very long and secure password, preferrably a whole sentence"
           }
-    required: true
+    
 
   responses:
     '200':
@@ -74,4 +66,3 @@ post:
     AllowDynamicQueryParameters: false
     AllowDynamicFormParameters: false
     IsMultiContentStreaming: false
-  security: []

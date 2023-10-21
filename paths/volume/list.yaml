@@ -2,25 +2,11 @@ get:
   tags:
    - "Block storage"
   summary: List volumes
-  description: "Displays a list over all volumes owned by the account."
+  description: |-
+    This function provides a comprehensive list of all volumes owned by the account. It offers an overview of the storage resources associated with your account, allowing for efficient management and retrieval when needed.
   operationId: volume-list
   parameters:
-    - name: Authorization
-      in: header
-      description: ''
-      required: true
-      style: simple
-      explode: false
-      schema:
-        $ref: ../../models/headers/authorization.yaml
-    - name: Content-Type
-      in: header
-      description: ''
-      required: true
-      style: simple
-      explode: false
-      schema:
-        $ref: ../../models/headers/content-type.yaml
+    []
 
   responses:
     '200':
@@ -81,4 +67,5 @@ get:
     AllowDynamicQueryParameters: false
     AllowDynamicFormParameters: false
     IsMultiContentStreaming: false
-  security: [] 
+  security:
+    - bearer: [] 

@@ -2,51 +2,19 @@ delete:
   tags:
     - SSH Keys
   summary: Remove SSH key
-  description: Delete a specific ssh key by ID or uuid.
+  description: |-
+    Utilize this endpoint to remove a public SSH key that is no longer in use. This ensures that your account remains organized and secure, with only active and relevant keys retained.
   operationId: ssh_key-remove
-  parameters:
-    - name: Authorization
-      in: header
-      description: ''
-      required: true
-      style: simple
-      explode: false
+  parameters: 
+    - in: path
+      name: ssh_key_id
       schema:
-        $ref: ../../models/headers/authorization.yaml
-    - name: Content-Type
-      in: header
-      description: ''
+        oneOf:
+          - type: string
+          - type: integer
       required: true
-      style: simple
-      explode: false
-      schema:
-        $ref: ../../models/headers/content-type.yaml
+      description: SSH_Key `ID` or `uuid` to be removed
 
-  requestBody:
-    required: true
-    content:
-      application/json:
-        schema:
-          $ref: ../../models/request-uuid.yaml
-        examples:
-          uuid: 
-            summary: using uuid
-            value:
-              {
-                "ssh_key_id":"34626233-3739-4637-b638-376532306637"
-              }
-          id: 
-            summary: using id
-            value: 
-              { 
-                "ssh_key_id": 123456
-              }
-  x-operation-settings:
-    CollectParameters: false
-    AllowDynamicQueryParameters: false
-    AllowDynamicFormParameters: false
-    IsMultiContentStreaming: false
-  security: []
   responses:
     '204':
       $ref: ../../models/2xx-responses/204.yaml
@@ -60,3 +28,11 @@ delete:
       $ref: ../../models/4xx-responses/404.yaml
     '405':
       $ref: ../../models/4xx-responses/405.yaml
+      
+  x-operation-settings:
+    CollectParameters: false
+    AllowDynamicQueryParameters: false
+    AllowDynamicFormParameters: false
+    IsMultiContentStreaming: false
+  security:
+    - bearer: []

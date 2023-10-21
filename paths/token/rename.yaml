@@ -1,40 +1,15 @@
 patch:
-  summary: Rename auth token
-  description: Change display name of a auth token
-  operationId: token-rename
   tags:
-    - Token  
-  parameters:
-  - name: Authorization
-    in: header
-    description: ''
-    required: true
-    style: simple
-    explode: false
-    schema:
-      $ref: ../../models/headers/authorization.yaml
-  - name: Content-Type
-    in: header
-    description: ''
-    required: true
-    style: simple
-    explode: false
-    schema:
-      $ref: ../../models/headers/content-type.yaml
+    - Token 
+  summary: Rename auth token
+  description: |-
+    Use this endpoint to update the display name associated with an authentication token, allowing for personalized organization and identification of your access credentials.
+  operationId: token-rename
+  parameters: []
 
   responses:
     '202':
-      description: Accepted
-      content:
-        application/json:
-          schema:
-            $ref: ../../models/response-message.v1.yaml
-          examples:
-            example-1:
-              value:
-                message: Token name successfully updated
-                response_type: success
-                response_code: 202
+      $ref: ../../models/2xx-responses/202.yaml
     '400':
       $ref: ../../models/4xx-responses/400.yaml
     '401':

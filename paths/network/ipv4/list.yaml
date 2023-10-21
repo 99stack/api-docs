@@ -2,26 +2,13 @@ get:
   tags:
     - Floating IPs
   summary: List floating IPs
-  description: "Returns a list over floating IP's associated with account and which server it's attached to (if any)."
+  description: |-
+    This function provides a comprehensive list of floating IP addresses associated with your account, along with information about which server they are currently attached to. This overview allows you to keep track of your floating IPs and their current assignments.
   operationId: floating_ip-list
-  security: []
+  security:
+    - bearer: []
   parameters:
-    - name: Authorization
-      in: header
-      description: ''
-      required: true
-      style: simple
-      explode: false
-      schema:
-        $ref: ../../../models/headers/authorization.yaml
-    - name: Content-Type
-      in: header
-      description: ''
-      required: true
-      style: simple
-      explode: false
-      schema:
-        $ref: ../../../models/headers/content-type.yaml
+    []
 
   responses:
     '200':

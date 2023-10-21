@@ -1,26 +1,18 @@
 post:
   tags:
-    - Account
+    - Management
   summary: Register
   description: |-
-    Register a new account and returns a login token on success. This function is rate limited. See request schema for more information about individual fields.
+    By registering a new account, you will receive a login token upon successful completion. Please be aware that this function is subject to rate limiting. For further details regarding specific fields, refer to the request schema provided.
 
-    **Security**
-    Please keep in mind that this function will respond with a 400 error message no matter if supplied information has errors or an account with the same email already exist. This is a feature with the primary purpose to protect against robots seeking to harvest personal data.
+    Please bear in mind that this endpoint will consistently return a status code of `201`. As a result, this code cannot be relied upon to ascertain the success or failure of this operation.
   operationId: account-register
   parameters:
-    - name: Content-Type
-      in: header
-      description: ''
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-        example: application/json
+    []
 
   requestBody:
-    content:
+    required: true
+    content: 
       application/json:
         schema:
           type: object
@@ -52,15 +44,7 @@ post:
             "accept_tos": true,
             "country": "US"
           }
-    required: true
-
-  x-operation-settings:
-    CollectParameters: false
-    AllowDynamicQueryParameters: false
-    AllowDynamicFormParameters: false
-    IsMultiContentStreaming: false
-  security: []
-
+    
   responses:
     '201':
       description: Created
@@ -91,3 +75,9 @@ post:
       $ref: ../../models/4xx-responses/405.yaml
     '429':
       $ref: ../../models/4xx-responses/429.yaml
+      
+  x-operation-settings:
+    CollectParameters: false
+    AllowDynamicQueryParameters: false
+    AllowDynamicFormParameters: false
+    IsMultiContentStreaming: false

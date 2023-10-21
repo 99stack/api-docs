@@ -3,9 +3,17 @@ get:
     - Public
   summary: Features
   description: |-
-    List over available features in a specific region passed as `region_id` in url args.
+    This function serves as a swift means to acquire information about the available features in a particular data center. It's worth noting that the range of available features may differ between data centers located within the same jurisdiction.
+    
   operationId: features
-  parameters: []
+  parameters: 
+    - in: path
+      name: region_id
+      schema:
+        type: integer
+      required: true
+      description: Region ID to list available features 
+    
   responses:
     '200':
       description: OK
@@ -14,60 +22,96 @@ get:
           schema:
             type: object
             properties:
+              virtual_private_cloud:
+                type: boolean
+                description: Enable VPC to setup secure isolated private networks.
               ddos_protection:
                 type: boolean
-                description: Extra DDoS protection in the same datacenter (only available in limited regions)
+                description: Enable additional DDoS protection in the same datacenter
               block_storage:
                 type: boolean
-                description: Block storage allows you to attach additional disk space in sizes from 10GB up to 10TB per disk
-              private_networking:
+                description: Ability to add additional NVMe/HDD storage to your server
+              object_storage:
                 type: boolean
-                description: Can be used to send unlimited amounts of data between servers in the same datacenter without paying additional bandwidth fees
+                description: Ability to store files as objects on S3 compatible object storage
+              floating_ip:
+                type: boolean
+                description: Ability to attach additional IPv4/IPv6 addresses to your server
               ipv6:
                 type: boolean
-                description: Ability to attach and use one or more IPv6 adresses on your server
+                description: Enable IPv6 networking to support dual stack networking
               backups:
                 type: boolean
-                description: Ability to enable the auto backup feature to have your server backed up automatically on a schedule
+                description: Enable automatic backups to protect your server files and software
+              instances:
+                type: boolean
+                description: Ability to deploy server instances VPS/VDS/VDI or bare metal
+              custom_iso:
+                type: boolean
+                description: Ability to upload and install custom ISO images
+              smtp:
+                type: boolean
+                description: Ability to open port 25 and send emails directly from your server
           examples:
             region-101:
-              summary: Features available in a G1 data center
+              summary: Features available in G1 regions
               value:
-                ddos_protection: false
-                block_storage: false
-                private_networking: true
+                virtual_private_cloud: true
+                ddos_protection: true
+                block_storage: true
+                object_storage: true
+                floating_ip: true
                 ipv6: true
                 backups: true
+                instances: true
+                custom_iso: true
+                smtp: false
             region-201:
-              summary: Features available in a G2 data center
+              summary: Features available in G2 regions
               value:
-                ddos_protection: false
+                virtual_private_cloud: true
+                ddos_protection: true
                 block_storage: true
-                private_networking: true
+                object_storage: false
+                floating_ip: true
                 ipv6: true
                 backups: true
+                instances: true
+                custom_iso: true
+                smtp: false
             region-301:
-              summary: Features available in a G3 data center
+              summary: Features available in G3 regions
               value:
-                ddos_protection: false
+                virtual_private_cloud: true
+                ddos_protection: true
                 block_storage: true
-                private_networking: true
+                object_storage: false
+                floating_ip: true
                 ipv6: true
                 backups: true
+                instances: true
+                custom_iso: false
+                smtp: true
+            region-401:
+              summary: Features available in G4 regions
+              value:
+                virtual_private_cloud: true
+                ddos_protection: true
+                block_storage: true
+                object_storage: false
+                floating_ip: true
+                ipv6: true
+                backups: true
+                instances: true
+                custom_iso: true
+                smtp: false
     '400':
       $ref: ../../models/4xx-responses/400.yaml
     '405':
       $ref: ../../models/4xx-responses/405.yaml
+      
   x-operation-settings:
     CollectParameters: false
     AllowDynamicQueryParameters: false
     AllowDynamicFormParameters: false
     IsMultiContentStreaming: false
-
-parameters:
-  - schema:
-      type: integer
-    name: region_id
-    in: path
-    required: true
-    description: Region ID  

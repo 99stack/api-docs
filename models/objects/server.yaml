@@ -1,0 +1,42 @@
+type: object
+properties:
+  uuid:
+    type: string
+    description: Unique `uuid` for the new server
+  name:
+    type: string
+    description: Display name for the new server
+  power:
+    type: string
+    description: Power status, `provisioning`, `running`, `stopped` etc..
+  created:
+    type: string
+    description: Timestamp wen server instance was created
+  price:
+    type: number
+    description: Monthly price in USD
+  iface:
+    type: object
+    description: List of network interfaces (default is `null`)
+  bandwidth:
+    type: object
+    description: Bandwidth limits and usage
+    properties:
+      usage:
+        type: number
+        description: Bandwidth usage in GB
+      limit:
+        type: number
+        description: Bandwidth limit for plan in GB
+  info:
+    type: object
+    description: List of information and settings for server instance
+  password:
+    type: string
+    description: Default SSH password for user `root` and `admin`
+  ipv6_enabled:
+    type: boolean
+    description: Value `true` if IPv6 is enabled
+  script_url:
+    type: string
+    description: URL to server installation script

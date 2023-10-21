@@ -3,14 +3,18 @@ content:
   application/json:
     schema:
       type: object
-      description: 
+      description: Type of error
       properties:
-        reason:
-          type: string
-          description: Details about why the request failed
-        field:
-          type: string
-          description: The malformed input field
+        errors:
+          type: object
+          description: Error object
+          properties:
+            reason:
+              type: string
+              description: Details about why the request failed
+            field:
+              type: string
+              description: The malformed input field
 
     examples:
       response-1:

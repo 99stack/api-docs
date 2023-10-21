@@ -2,45 +2,18 @@ delete:
   tags:
     - "Block storage"
   summary: Remove volume
-  description: "Removes a volume by `ID` or `UUID`, the volume must be detached before it can be removed."
+  description: |-
+    This function allows you to delete a volume. However, it's important to note that the volume must first be detached from any server before it can be removed. This precaution ensures that there are no active dependencies on the volume that could be disrupted by its deletion.
   operationId: volume-remove
-  parameters:
-    - name: Authorization
-      in: header
-      description: ''
-      required: true
-      style: simple
-      explode: false
+  parameters: 
+    - in: path
+      name: volume_id
       schema:
-        $ref: ../../models/headers/authorization.yaml
-    - name: Content-Type
-      in: header
-      description: ''
+        oneOf:
+          - type: string
+          - type: integer
       required: true
-      style: simple
-      explode: false
-      schema:
-        $ref: ../../models/headers/content-type.yaml
-
-  requestBody:
-    required: true
-    content:
-      application/json:
-        schema:
-          $ref: ../../models/request-uuid.yaml
-        examples:
-          uuid: 
-            summary: using uuid
-            value:
-              {
-                "volume_id": "34626233-3739-4637-b638-376532306637"
-              }
-          id: 
-            summary: using id
-            value: 
-              { 
-                "volume_id": 123456
-              }
+      description: Volume `ID` or `uuid` to be removed
 
   responses:
     '204':
@@ -61,4 +34,5 @@ delete:
     AllowDynamicQueryParameters: false
     AllowDynamicFormParameters: false
     IsMultiContentStreaming: false
-  security: []
+  security:
+    - bearer: []

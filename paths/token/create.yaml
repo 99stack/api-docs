@@ -1,24 +1,12 @@
 post:
+  tags:
+    - Token  
   summary: Create auth token
-  description: 'Generates a new authentication token. On success, the response will be the new token.'
+  description: |-
+    This function generates a fresh authentication token. Upon successful execution, the response will provide you with the newly generated token for further use.
   operationId: token-create
-  parameters:
-    - name: Authorization
-      in: header
-      description: ''
-      required: true
-      style: simple
-      explode: false
-      schema:
-        $ref: ../../models/headers/authorization.yaml
-    - name: Content-Type
-      in: header
-      description: ''
-      required: true
-      style: simple
-      explode: false
-      schema:
-        $ref: ../../models/headers/content-type.yaml
+  security:
+    - bearer: []
 
   requestBody:
     required: true
@@ -77,5 +65,4 @@ post:
     AllowDynamicQueryParameters: false
     AllowDynamicFormParameters: false
     IsMultiContentStreaming: false
-  tags:
-    - Token  
+  

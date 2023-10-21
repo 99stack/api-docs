@@ -2,25 +2,11 @@ get:
   tags:
     - Billing
   summary: List transactions
-  description: List all transactions, fees, taxes, types, timestamps and more.
+  description: |-
+    This function provides an extensive list of transactions, encompassing details such as fees, taxes, types, timestamps, and additional relevant information. It offers a comprehensive view of financial activities associated with the account.
   operationId: transaction-list
   parameters:
-    - name: Authorization
-      in: header
-      description: ''
-      required: true
-      style: simple
-      explode: false
-      schema:
-        $ref: ../../models/headers/authorization.yaml
-    - name: Content-Type
-      in: header
-      description: ''
-      required: true
-      style: simple
-      explode: false
-      schema:
-        $ref: ../../models/headers/content-type.yaml
+    []
 
   responses:
     '200':
@@ -39,13 +25,13 @@ get:
                 type: string
                 description: Payment status
               amount:
-                type: double
+                type: number
                 description: Amount in USD
               fee:
-                type: double
+                type: number
                 description: Fee in USD
               taxrate:
-                type: double
+                type: number
                 description: Value added tax in percent
               created:
                 type: string
@@ -92,4 +78,5 @@ get:
     AllowDynamicQueryParameters: false
     AllowDynamicFormParameters: false
     IsMultiContentStreaming: false
-  security: []
+  security:
+    - bearer: []

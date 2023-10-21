@@ -2,9 +2,15 @@ get:
   tags:
     - Public
   summary: Availibility
-  description: "Returns the availability in percent for each server generation. A value of 0.00 means sold out, anything above 0.00 up to 1.00 means that there are servers in stock. The higher value, the more servers in stock. Use this in case you're planning to deploy a large amount of servers (+100) and don't want your request to fail because we're out of stock for the specific generation you'd choosed."
+  description: |-
+    This function provides the availability percentage for each server jurisdiction. A value of 0.00 indicates that it is sold out, while any value above 0.00 up to 1.00 signifies that servers are in stock. 
+    
+    A higher value indicates a greater stock availability. This feature is particularly useful when planning to deploy a substantial number of servers, especially over 100, as it helps preemptively address potential stock shortages for your selected jurisdiction. This way, you can avoid potential request failures due to stock limitations.
+    
   operationId: availibility
-  parameters: []
+  parameters: 
+    []
+      
   responses:
     '200':
       description: OK
@@ -15,35 +21,37 @@ get:
             properties:
               GEN_1:
                 type: number
-                description: Availibility of first generation servers
+                description: Availibility of G1 servers
               GEN_2:
                 type: number
-                description: Availibility of second generation servers
+                description: Availibility of G2 servers
               GEN_3:
                 type: number
-                description: Availibility of third generation servers
+                description: Availibility of G3 servers
+              GEN_4:
+                type: number
+                description: Availibility of G4 servers
+              ENT_11:
+                type: number
+                description: Availibility of E11 servers
           examples:
-            example-1:
+            current-resp:
               summary: Server instance availibility
               value:
                 {
                   "providers": {
-                    "G1": 0.03,
-                    "G2": 0.37,
-                    "G3": 0.54,
-                    "E11": 1.00
+                    "GEN_1": 0.46,
+                    "GEN_2": 0.37,
+                    "GEN_3": 0.54,
+                    "GEN_4": 0.84,
+                    "ENT_11": 0.98
                   }
                 }
-            example-2:
-              summary: Legacy response
-              value:
-                GEN_1: 0.03
-                GEN_2: 0.37
-                GEN_3: 0.54
     '400':
       $ref: ../../models/4xx-responses/400.yaml
     '405':
       $ref: ../../models/4xx-responses/405.yaml
+      
   x-operation-settings:
     CollectParameters: false
     AllowDynamicQueryParameters: false

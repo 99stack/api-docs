@@ -3,26 +3,12 @@ patch:
     - VPCs
   summary: Detach VPC
   description: |-
-    Detach server from VPC
+    This action disconnects a server from a Virtual Private Cloud (VPC), effectively removing it from the isolated network environment.
   operationId: vpc-detach
-  security: []
+  security:
+    - bearer: []
   parameters:
-    - name: Authorization
-      in: header
-      description: ''
-      required: true
-      style: simple
-      explode: false
-      schema:
-        $ref: ../../../models/headers/authorization.yaml
-    - name: Content-Type
-      in: header
-      description: ''
-      required: true
-      style: simple
-      explode: false
-      schema:
-        $ref: ../../../models/headers/content-type.yaml
+    []
 
   requestBody:
     required: true

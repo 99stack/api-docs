@@ -2,25 +2,11 @@ post:
   tags:
     - "Object storage"
   summary: Create object storage
-  description: Create a new volume with desired size in GB in desired region.
+  description: |-
+    This action triggers the creation of a new object storage instance. This instance provides a platform for storing and managing objects, making it an essential component for handling large amounts of files in a fast, secure, and convenient manner.
   operationId: object-storage-create
   parameters:
-    - name: Authorization
-      in: header
-      description: ''
-      required: true
-      style: simple
-      explode: false
-      schema:
-        $ref: ../../models/headers/authorization.yaml
-    - name: Content-Type
-      in: header
-      description: ''
-      required: true
-      style: simple
-      explode: false
-      schema:
-        $ref: ../../models/headers/content-type.yaml
+    []
 
   requestBody:
     required: true
@@ -112,4 +98,5 @@ post:
     AllowDynamicQueryParameters: false
     AllowDynamicFormParameters: false
     IsMultiContentStreaming: false
-  security: []  
+  security:
+    - bearer: []  

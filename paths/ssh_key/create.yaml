@@ -2,25 +2,11 @@ post:
   tags:
     - SSH Keys
   summary: Create SSH key
-  description: 'Upload a public SSH key, on success the response body will contain the new key object'
+  description: |-
+    By uploading your public SSH keys, you enable the convenience of one-click installations on your newly created server instances. This streamlined process enhances accessibility and security for your server management tasks.
   operationId: ssh_key-create
   parameters:
-    - name: Authorization
-      in: header
-      description: ''
-      required: true
-      style: simple
-      explode: false
-      schema:
-        $ref: ../../models/headers/authorization.yaml
-    - name: Content-Type
-      in: header
-      description: ''
-      required: true
-      style: simple
-      explode: false
-      schema:
-        $ref: ../../models/headers/content-type.yaml
+    []
 
   requestBody:
     required: true
@@ -48,7 +34,8 @@ post:
     AllowDynamicQueryParameters: false
     AllowDynamicFormParameters: false
     IsMultiContentStreaming: false
-  security: []
+  security:
+    - bearer: []
   responses:
     '201':
       description: Created

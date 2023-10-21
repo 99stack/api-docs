@@ -2,26 +2,13 @@ patch:
   tags:
     - Floating IPs
   summary: Attach floating IP
-  description: Attach existing floating IP address to a server
+  description: |-
+    This action links an existing floating IP address to a server, providing it with a publicly accessible static IP. This can be useful for scenarios that require a stable, movable address.
   operationId: floating_ip-attach
-  security: []
+  security:
+    - bearer: []
   parameters:
-    - name: Authorization
-      in: header
-      description: ''
-      required: true
-      style: simple
-      explode: false
-      schema:
-        $ref: ../../../models/headers/authorization.yaml
-    - name: Content-Type
-      in: header
-      description: ''
-      required: true
-      style: simple
-      explode: false
-      schema:
-        $ref: ../../../models/headers/content-type.yaml
+    []
 
   requestBody:
     required: true

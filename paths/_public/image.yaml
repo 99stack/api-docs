@@ -3,21 +3,20 @@ get:
     - Public
   summary: Images
   description: |-
-    Takes a `region_id` as url parameter and returns a list over all images available in that specific region. Sending this request without `region_id` returns a large list over all available images, on all generations in all datacenters (~110KB).
+    Images serve as raw disk snapshots encompassing elements such as default operating systems, pre-installed applications, server snapshots for duplication, or personalized uploads.
     
-    Images are listed by order of it's four digit `id` where the first number indicates generation (G1, G2, G3, G4 etc..). The second number indicates image type (raw os, application, snapshot or custom), and the last two digits is the image `id`.
-
-    See `/v1/iso` or `/v1/server/create` for more information on uploading and using custom ISOs.
+    For a server to initialize and become operational, it requires an operating system. At 99Stack Cloud, every image includes full `root` access and is free from any preinstalled bloatware, providing a clean and customizable environment.
   operationId: images
-  parameters: 
-    - name: region_id
-      in: path
-      required: false
-      type: integer
-      description: Region `id` to filter out images available in a specific region 
+  parameters:
+    - in: query
+      name: region_id
+      schema:
+        type: integer
+      description: (Optional) Region ID to filter results
+
   responses:
     '200':
-      description: ''
+      description: Status OK
       content:
         application/json:
           schema:

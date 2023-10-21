@@ -2,25 +2,11 @@ patch:
   tags:
     - "Block storage"
   summary: Detach Volume
-  description: "Detach existing volume from the server it's currently attached to."
+  description: |-
+    This action will detach an existing volume from the server to which it is currently attached. This allows you to manage and reassign storage resources as needed.
   operationId: volume-detach
   parameters:
-    - name: Authorization
-      in: header
-      description: ''
-      required: true
-      style: simple
-      explode: false
-      schema:
-        $ref: ../../models/headers/authorization.yaml
-    - name: Content-Type
-      in: header
-      description: ''
-      required: true
-      style: simple
-      explode: false
-      schema:
-        $ref: ../../models/headers/content-type.yaml
+    []
 
   requestBody:
     required: true
@@ -49,7 +35,8 @@ patch:
     AllowDynamicQueryParameters: false
     AllowDynamicFormParameters: false
     IsMultiContentStreaming: false
-  security: []
+  security:
+    - bearer: []
   responses:
     '202':
       $ref: ../../models/2xx-responses/202.yaml

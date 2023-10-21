@@ -2,25 +2,11 @@ post:
   tags:
     - Snapshot
   summary: Create snapshot
-  description: Create a snapshot of a server
+  description: |-
+    This action captures a snapshot of the server, creating a saved state that can be used for backup or recovery purposes.
   operationId: snapshot-create
   parameters:
-    - name: Authorization
-      in: header
-      description: ''
-      required: true
-      style: simple
-      explode: false
-      schema:
-        $ref: ../../models/headers/authorization.yaml
-    - name: Content-Type
-      in: header
-      description: ''
-      required: true
-      style: simple
-      explode: false
-      schema:
-        $ref: ../../models/headers/content-type.yaml
+    []
 
   requestBody:
     required: true
@@ -80,4 +66,5 @@ post:
     AllowDynamicQueryParameters: false
     AllowDynamicFormParameters: false
     IsMultiContentStreaming: false
-  security: []  
+  security:
+    - bearer: []  

@@ -1,35 +1,29 @@
-get:
+put:
   tags:
     - Options
   summary: Get option by key
   description: |-
-    Get server option paramter defined by `name` key. Server option paramteters can be used to modify a servers behaviour in various situations, see examples for a selection of variables to modify.
+    This function retrieves a server option parameter specified by the `name` key. Server option parameters serve to fine-tune a server's behavior in various scenarios. For a range of variables that can be customized, refer to the provided examples.
   operationId: server-get-option
   parameters:
-    - name: Authorization
-      in: header
-      description: ''
-      required: true
-      style: simple
-      explode: false
+    - in: path
+      name: server_id
       schema:
-        type: string
-        example: Bearer API_TOKEN
-    - name: Content-Type
-      in: header
-      description: ''
+        type: integer
       required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-        example: application/json
+      description: Server ID for the server instance to view
+    
   requestBody:
     required: true
     content:
       application/json:
         schema:
-          $ref: ../../../models/requests/option.yaml
+          type: object
+          properties:
+            name:
+              type: string
+              description: Key identifier for the value to get.
+          description: View current option paramter by key.
         examples:
           bw_overage_policy:
             summary: Get bandwidth overage behavior
@@ -39,6 +33,7 @@ get:
             summary: Get bandwidth overage treshold
             value:
               name: bw_overage_treshold
+              
   responses:
     '200':
       $ref: ../../../models/2xx-responses/202.yaml
@@ -52,9 +47,11 @@ get:
       $ref: ../../../models/4xx-responses/404.yaml
     '405':
       $ref: ../../../models/4xx-responses/405.yaml
+      
   x-operation-settings:
     CollectParameters: false
     AllowDynamicQueryParameters: false
     AllowDynamicFormParameters: false
     IsMultiContentStreaming: false
-  security: []
+  security:
+    - bearer: []

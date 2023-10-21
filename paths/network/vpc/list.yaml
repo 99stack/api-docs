@@ -3,26 +3,12 @@ get:
     - VPCs
   summary: List VPCs
   description: |-
-    Returns a list over VPCs associated with account and which server it's attached to (if any).
+    This function provides a comprehensive list of Virtual Private Clouds (VPCs) associated with your account, along with information about which servers are currently attached to each VPC (if applicable). This overview allows you to manage your VPC resources effectively.
   operationId: vpc-list
-  security: []
+  security:
+    - bearer: []
   parameters:
-    - name: Authorization
-      in: header
-      description: ''
-      required: true
-      style: simple
-      explode: false
-      schema:
-        $ref: ../../../models/headers/authorization.yaml
-    - name: Content-Type
-      in: header
-      description: ''
-      required: true
-      style: simple
-      explode: false
-      schema:
-        $ref: ../../../models/headers/content-type.yaml
+    []
 
   responses:
     '200':

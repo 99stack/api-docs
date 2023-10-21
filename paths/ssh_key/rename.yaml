@@ -2,25 +2,11 @@ patch:
   tags:
     - SSH Keys
   summary: Rename SSH Key
-  description: Give your SSH Key a new display name
+  description: |-
+    This endpoint allows you to modify the display name associated with an SSH key, providing a way to personalize and organize your authentication credentials.
   operationId: ssh_key-rename
   parameters:
-    - name: Authorization
-      in: header
-      description: ''
-      required: true
-      style: simple
-      explode: false
-      schema:
-        $ref: ../../models/headers/authorization.yaml
-    - name: Content-Type
-      in: header
-      description: ''
-      required: true
-      style: simple
-      explode: false
-      schema:
-        $ref: ../../models/headers/content-type.yaml
+    []
 
   requestBody:
     required: true
@@ -59,7 +45,8 @@ patch:
     AllowDynamicQueryParameters: false
     AllowDynamicFormParameters: false
     IsMultiContentStreaming: false
-  security: []
+  security:
+    - bearer: []
   responses:
     '202':
       $ref: ../../models/2xx-responses/202.yaml

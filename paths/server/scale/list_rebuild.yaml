@@ -1,33 +1,17 @@
 get:
   tags:
-    - Action
+    - Scaling
   summary: List rebuild images
   description: |-
-    List available rebuild images for the server identified by `server_id`
+    This function provides a comprehensive list of available rebuild images specifically tailored for the server in question. It allows you to choose from a selection of images to restore or reconfigure your server according to your requirements.
   operationId: server-rebuild-list
   parameters:
-    - name: Authorization
-      in: header
-      description: ''
-      required: true
-      style: simple
-      explode: false
+    - in: path
+      name: server_id
       schema:
-        type: string
-        example: Bearer API_TOKEN
-    - name: Content-Type
-      in: header
-      description: ''
+        type: integer
       required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-        example: application/json
-    - name: server_id
-      in: path
-      type: string
-      description: Server identifier `uuid` referencing the server to interact with
+      description: Server ID for the server to view
 
   responses:
     '200':
@@ -87,4 +71,5 @@ get:
     AllowDynamicQueryParameters: false
     AllowDynamicFormParameters: false
     IsMultiContentStreaming: false
-  security: []
+  security:
+    - bearer: []

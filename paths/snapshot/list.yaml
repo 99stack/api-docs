@@ -2,25 +2,11 @@ get:
   tags:
     - Snapshot
   summary: List snapshots
-  description: Returns a JSON formatted list over all snapshots on this account
+  description: |-
+    This function provides a comprehensive list of all the snapshots associated with your account. It offers an overview of the saved states of your resources, allowing for efficient management and retrieval when needed.
   operationId: snapshot-list
   parameters:
-    - name: Authorization
-      in: header
-      description: ''
-      required: true
-      style: simple
-      explode: false
-      schema:
-        $ref: ../../models/headers/authorization.yaml
-    - name: Content-Type
-      in: header
-      description: ''
-      required: true
-      style: simple
-      explode: false
-      schema:
-        $ref: ../../models/headers/content-type.yaml
+    []
 
   responses:
     '200':
@@ -97,4 +83,5 @@ get:
     AllowDynamicQueryParameters: false
     AllowDynamicFormParameters: false
     IsMultiContentStreaming: false
-  security: []
+  security:
+    - bearer: []

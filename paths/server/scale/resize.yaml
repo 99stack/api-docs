@@ -1,31 +1,12 @@
 post:
   tags:
-    - Action
-  summary: Rebuild server
+    - Scaling
+  summary: Resize server
   description: |-
-    Reinstall a server with any available image: `os`, `app`, `snapshot` or `iso`.
-    
-    **Note:** In some regions, this does not work with the same OS.
-  operationId: server-rebuild
+    This action allows you to modify the plan of an already existing server, providing flexibility to adjust its resources and capabilities to better suit your evolving requirements.
+  operationId: server-resize
   parameters:
-    - name: Authorization
-      in: header
-      description: ''
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-        example: Bearer API_TOKEN
-    - name: Content-Type
-      in: header
-      description: ''
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-        example: application/json
+    []
 
   requestBody:
     required: true
@@ -38,15 +19,15 @@ post:
             summary: Request with uuid
             value:
               {
-                "server_id": "0e61f8e7-eace-464a-8461-8a6bc94ed5a9", 
-                "image_id": "ce8811bd-6c13-4d5e-9754-ce2c23343c66"
+                "server_id": "0e61f8e7-eace-464a-8461-8a6bc94ed5a9",
+                "plan_id": "4838b8c4-88ee-44c1-9eab-00c6944c0054"
               }
           id: 
             summary: Request with id
             value: 
               { 
                 "server_id": 654321,
-                "image_id": 123456
+                "plan_id": 123456
               }
   
   responses:
@@ -56,6 +37,8 @@ post:
       $ref: ../../../models/4xx-responses/400.yaml
     '401':
       $ref: ../../../models/4xx-responses/401.yaml
+    '402':
+      $ref: ../../../models/4xx-responses/402.yaml
     '403':
       $ref: ../../../models/4xx-responses/403.yaml
     '404':
@@ -68,5 +51,5 @@ post:
     AllowDynamicQueryParameters: false
     AllowDynamicFormParameters: false
     IsMultiContentStreaming: false
-  security: []
-
+  security:
+    - bearer: []

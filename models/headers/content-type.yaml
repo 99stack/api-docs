@@ -1,3 +1,0 @@
-type: string
-example: application/json
-description: Input data must be in JSON format

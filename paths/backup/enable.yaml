@@ -2,25 +2,11 @@ patch:
   tags:
     - Backup
   summary: Enable backup
-  description: 'Enable automatic backups and schedule creation of snapshots.'
+  description: |-
+    This command activates the automatic backup feature for the server. This means that scheduled backups will now be generated for this server at regular intervals.
   operationId: backup-enable
   parameters:
-    - name: Authorization
-      in: header
-      description: ''
-      required: true
-      style: simple
-      explode: false
-      schema:
-        $ref: ../../models/headers/authorization.yaml
-    - name: Content-Type
-      in: header
-      description: ''
-      required: true
-      style: simple
-      explode: false
-      schema:
-        $ref: ../../models/headers/content-type.yaml
+    []
 
   requestBody:
     required: true
@@ -61,4 +47,5 @@ patch:
     AllowDynamicQueryParameters: false
     AllowDynamicFormParameters: false
     IsMultiContentStreaming: false
-  security: []
+  security:
+    - bearer: []

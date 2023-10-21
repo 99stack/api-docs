@@ -3,27 +3,10 @@ patch:
     - Action
   summary: Stop server
   description: |-
-    Force a server to halt, this is the same as pressing the power off button on a physical machine.
+    This command sends a power-off signal to the server, effectively shutting it down. Performing this action is equivalent to physically pressing the power-off button. It initiates a graceful shutdown of the server.
   operationId: server-stop
   parameters:
-    - name: Authorization
-      in: header
-      description: ''
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-        example: Bearer API_TOKEN
-    - name: Content-Type
-      in: header
-      description: ''
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-        example: application/json
+    []
 
   requestBody:
     required: true
@@ -64,4 +47,5 @@ patch:
     AllowDynamicQueryParameters: false
     AllowDynamicFormParameters: false
     IsMultiContentStreaming: false
-  security: []
+  security:
+    - bearer: []

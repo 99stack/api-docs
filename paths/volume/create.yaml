@@ -2,25 +2,11 @@ post:
   tags:
     - "Block storage"
   summary: Create volume
-  description: Create a new volume with desired size in GB in desired region.
+  description: |-
+    This action allows you to generate a new NVMe/HDD volume with a specified size in gigabytes (GB) within the desired region. This provides you with additional storage resources tailored to your specific requirements.
   operationId: volume-create
   parameters:
-    - name: Authorization
-      in: header
-      description: ''
-      required: true
-      style: simple
-      explode: false
-      schema:
-        $ref: ../../models/headers/authorization.yaml
-    - name: Content-Type
-      in: header
-      description: ''
-      required: true
-      style: simple
-      explode: false
-      schema:
-        $ref: ../../models/headers/content-type.yaml
+    []
 
   requestBody:
     required: true
@@ -112,4 +98,5 @@ post:
     AllowDynamicQueryParameters: false
     AllowDynamicFormParameters: false
     IsMultiContentStreaming: false
-  security: []  
+  security:
+    - bearer: []  

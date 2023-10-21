@@ -1,29 +1,12 @@
 post:
   tags:
-    - Action
-  summary: Resize server
+    - Scaling
+  summary: Change OS image
   description: |-
-    Change the plan of a already existing server, this allows both upgrades and downgrades.
-  operationId: server-resize
+    Executing this action will result in a complete change of the server's operating system. It's important to note that this process involves overwriting all data currently stored on the system disk. Please exercise caution, as this operation is irreversible and will result in the loss of existing data.
+  operationId: server-rebuild
   parameters:
-    - name: Authorization
-      in: header
-      description: ''
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-        example: Bearer API_TOKEN
-    - name: Content-Type
-      in: header
-      description: ''
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-        example: application/json
+    []
 
   requestBody:
     required: true
@@ -36,15 +19,15 @@ post:
             summary: Request with uuid
             value:
               {
-                "server_id": "0e61f8e7-eace-464a-8461-8a6bc94ed5a9",
-                "plan_id": "4838b8c4-88ee-44c1-9eab-00c6944c0054"
+                "server_id": "0e61f8e7-eace-464a-8461-8a6bc94ed5a9", 
+                "image_id": "ce8811bd-6c13-4d5e-9754-ce2c23343c66"
               }
           id: 
             summary: Request with id
             value: 
               { 
                 "server_id": 654321,
-                "plan_id": 123456
+                "image_id": 123456
               }
   
   responses:
@@ -54,8 +37,6 @@ post:
       $ref: ../../../models/4xx-responses/400.yaml
     '401':
       $ref: ../../../models/4xx-responses/401.yaml
-    '402':
-      $ref: ../../../models/4xx-responses/402.yaml
     '403':
       $ref: ../../../models/4xx-responses/403.yaml
     '404':
@@ -68,4 +49,6 @@ post:
     AllowDynamicQueryParameters: false
     AllowDynamicFormParameters: false
     IsMultiContentStreaming: false
-  security: []
+  security:
+    - bearer: []
+

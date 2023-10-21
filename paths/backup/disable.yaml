@@ -2,25 +2,11 @@ patch:
   tags:
     - Backup
   summary: Disable backup
-  description: 'Disable automatic backups'
+  description: |-
+    This command deactivates the automatic backup feature for the server. This means that scheduled backups will no longer be generated for this server.
   operationId: backup-disable
   parameters:
-    - name: Authorization
-      in: header
-      description: ''
-      required: true
-      style: simple
-      explode: false
-      schema:
-        $ref: ../../models/headers/authorization.yaml
-    - name: Content-Type
-      in: header
-      description: ''
-      required: true
-      style: simple
-      explode: false
-      schema:
-        $ref: ../../models/headers/content-type.yaml
+    []
 
   requestBody:
     required: true
@@ -61,4 +47,5 @@ patch:
     AllowDynamicQueryParameters: false
     AllowDynamicFormParameters: false
     IsMultiContentStreaming: false
-  security: []
+  security:
+    - bearer: []

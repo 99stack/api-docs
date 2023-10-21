@@ -2,32 +2,19 @@ get:
   tags:
     - SSH Keys
   summary: List SSH keys
-  description: Lists all available ssh keys on your account.
+  description: |-
+    To retrieve a list of all the public SSH keys associated with your account, simply call this endpoint. This function provides a convenient way to access and manage your authentication credentials.
   operationId: ssh_key-list
   parameters:
-    - name: Authorization
-      in: header
-      description: ''
-      required: true
-      style: simple
-      explode: false
-      schema:
-        $ref: ../../models/headers/authorization.yaml
-    - name: Content-Type
-      in: header
-      description: ''
-      required: true
-      style: simple
-      explode: false
-      schema:
-        $ref: ../../models/headers/content-type.yaml
+    []
 
   x-operation-settings:
     CollectParameters: false
     AllowDynamicQueryParameters: false
     AllowDynamicFormParameters: false
     IsMultiContentStreaming: false
-  security: []
+  security:
+    - bearer: []
 
   responses:
     '200':

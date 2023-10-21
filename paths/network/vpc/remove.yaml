@@ -3,40 +3,21 @@ delete:
     - VPCs
   summary: Remove VPC
   description: |-
-    Removes a VPC. The VPC must be detached or this function will return an error. Please note that some regions won't allow removal of VPC's until a certain time has passed, usually 24 hour.
+    This function allows you to remove a Virtual Private Cloud (VPC). However, it's important to note that the VPC must first be detached from any servers, or the function will return an error. 
+    
+    Additionally, please be aware that in some regions, the removal of VPCs may be restricted until a certain amount of time has elapsed, typically around 24 hours. This precaution is in place to ensure proper handling of network resources.
   operationId: vpc-remove
-  security: []
-  parameters:
-    - name: Authorization
-      in: header
-      description: ''
-      required: true
-      style: simple
-      explode: false
+  security:
+    - bearer: []
+  parameters: 
+    - in: path
+      name: vpc_id
       schema:
-        $ref: ../../../models/headers/authorization.yaml
-    - name: Content-Type
-      in: header
-      description: ''
+        oneOf:
+          - type: string
+          - type: integer
       required: true
-      style: simple
-      explode: false
-      schema:
-        $ref: ../../../models/headers/content-type.yaml
-
-  requestBody:
-    required: true
-    content:
-      application/json:
-        schema:
-          $ref: ../../../models/request-uuid.yaml
-        examples:
-          example-1: 
-            summary: Remove floating point ip object
-            value:
-              {
-                "vpc_id": "fae640c3-537e-4820-ab9f-ef251405bfec"
-              }
+      description: VPC `ID` or `uuid` to be removed
 
   responses:
     '204':

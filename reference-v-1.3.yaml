@@ -1,26 +1,31 @@
-openapi: 3.0.2
+openapi: 3.0.3
 info:
   title: 99Stack Cloud API
   version: '1.3'
   contact:
     name: 99Stack Cloud Support
     email: 'support@99stack.com'
+    url: https://www.99stack.com/contact
   description: |-
-    ### Introduction
+    ## Introduction
 
-    The 99Stack Cloud API allows you to manage servers and resources within the 99Stack Cloud in a simple, programmatic way using conventional HTTP requests.
+    The 99Stack Cloud API is designed to provide you with a seamless, programmatic means of managing servers and resources within the 99Stack Cloud environment. Through conventional HTTP requests, you can execute a wide array of functionalities that you are already familiar with from the 99Stack Cloud control panel.
 
-    All of the functionality that you are familiar with in the 99Stack Cloud control panel, is also available within the API, allowing you to script the complex actions that your situation may require.
+    In fact, all the features and capabilities that you have come to know within the 99Stack Cloud interface are also readily available within the API. This grants you the power to script intricate actions that may be necessitated by your specific circumstances. Whether it's provisioning servers, configuring settings, or managing your cloud infrastructure, the API offers a robust and flexible solution.
 
-    For simplicity, you may download this file and import it into your favorite api request and development tool, such as Postman or Insomnia. This is a great way to test before implementation.
+    To streamline your experience, we offer the option to download a file containing the API documentation. This file can be effortlessly imported into your preferred API request and development tool, such as Postman or Insomnia. This approach not only simplifies the integration process but also provides an effective way to conduct thorough testing before actual implementation.
 
-    The API documentation will start with a general overview about the design and technology that has been implemented, followed by reference information about specific endpoints.
+    Delving deeper into the documentation, we begin with a comprehensive overview, shedding light on the underlying design principles and the technology stack that has been employed. This understanding lays a solid foundation for effectively utilizing the API to its fullest potential. Following this, you will find detailed reference information pertaining to specific endpoints. 
+    
+    This includes precise details on how to structure requests, expected responses, and any additional parameters or options that may be applicable. This granular level of documentation ensures that you have all the necessary information at your fingertips to make the most of the API's capabilities.
 
     ## Using the api
 
     ### Response codes
 
-    Each response comes with a HTTP status code, this code indicates the status of your request. Any 2xx response indicates success. 4xx responses indicates an error in data input, access, rate-limits or software errors. 5xx indicates server errors or errors in external resources.
+    When you interact with the API, every response is accompanied by an HTTP status code. This code serves as a clear indicator of the status of your request. A response in the 2xx range signifies a successful operation. On the other hand, if you receive a response in the 4xx range, it signifies an error related to data input, access permissions, rate-limits, or potential software issues. 
+
+    If the response falls within the 5xx range, it suggests server-related errors or issues arising from external resources. Understanding these status codes allows for a more nuanced interpretation of the API's feedback, aiding in troubleshooting and ensuring a smoother interaction with the 99Stack Cloud services.
 
     | HTTP Response Code  | Description  | Note
     |---|---|---|
@@ -44,19 +49,21 @@ info:
 
     ### Rate limits
 
-    The general rate limit is 2 requests per second with a burst of 10 requests. Some functions has additional limits, `/v1/account` allows 5 requests per minute with a burst of 5 for security. Create requests are generally limited to 1 request per second without burst.
+    The 99Stack Cloud API operates with stringent rate limits as a means to judiciously allocate available resources and maintain equitable usage for all users. Each limit is carefully established, taking into account various factors including security considerations and the objective of resource conservation. This approach ensures a balanced and efficient utilization of the API, promoting a seamless experience for every user.
 
-    ### Time and Date
+    ### Timestamps
 
-    Timestamps are represented according to the ISO-8601 format. `Y-m-d\TH:i:s\Z`, by default in `UTC+0000`. 99Stack control panel uses timeago.js to represent this in local time.
+    Timestamps within the 99Stack Cloud API are formatted in accordance with the ISO-8601 standard, specifically as `YYYY-mm-dd\THH:ii:ss\Z`. By default, timestamps are presented in the `UTC+0000` timezone. In the 99Stack Cloud control panel, the timeago.js library is employed to display timestamps in the user's local time, ensuring a more intuitive and user-friendly experience. This feature allows users to seamlessly interpret and work with time-related information within the control panel interface.
 
     ### Examples
+    
+    Here are some examples that you can employ to test different API calls directly in your terminal using the `curl` command. Make sure to substitute variables written in all caps with your own specific data.
 
     `GET` request with no arguments:
 
     ```bash
     curl -X GET \
-      "https://api.99stack.com/v1/region/list"
+      "https://api.99stack.com/v1.3/region/list"
     ```
 
     `GET` request that requires your API token:
@@ -64,7 +71,7 @@ info:
     ```bash
     curl -X GET \
       -H 'Authorization: Bearer YOUR_TOKEN' \
-      "https://api.99stack.com/v1/server/list"
+      "https://api.99stack.com/v1.3/server/list"
     ```
 
     `POST` request containing a JSON request body:
@@ -73,8 +80,8 @@ info:
     curl -X POST \
       -H 'Authorization: Bearer YOUR_TOKEN' \
       -H 'Content-Type: application/json' \
-      -d '{"name": "New API token"}'  \
-      "https://api.99stack.com/v1/account/token_create"
+      -d '{"name": "NEW_TOKEN_NAME"}'  \
+      "https://api.99stack.com/v1.3/account/token_create"
     ```
 
     `DELETE` request containing a JSON request body:
@@ -84,35 +91,35 @@ info:
       -H 'Authorization: Bearer YOUR_TOKEN' \
       -H 'Content-Type: application/json' \
       -d '{"server_id": "123e4567-e89b-12d3-a456-426655440000"}' \
-      "https://api.99stack.com/v1/server/remove"
+      "https://api.99stack.com/v1.3/server/remove"
     ```
 
     # Authentication
 
-    For any API request that requires authentication, the Authorization header needs to be set to a valid Bearer token, these tokens can be generated in the [control panel](https://dash.99stack.com/auth/manage-api-tokens), or by sending a valid request to `/v1/account/login`. Once you have the token, use the following format:
+    To authenticate any API request, ensure that the Authorization header is configured with a valid Bearer token. These tokens can be generated through the [control panel](https://dash.99stack.com/auth/manage-api-tokens), or by sending a valid request to [/account/login](/docs/v1.3/#operation/account-login). Once you've obtained the token, employ the following format:
 
     ```bash
     Authorization: Bearer YOUR_TOKEN
     ```
+    
+    To verify the validity of your token, you can perform the following API call to `/account/info`. This will allow you to access and view your account information.
+    
+    ```bash
+    curl -X GET \
+      -H 'Authorization: Bearer YOUR_TOKEN' \
+      "https://api.99stack.com/v1.3/account/info"
+    ```
+    
+    See supported token types below.
 
-    See examples above for usage with cURL.
   termsOfService: 'https://www.99stack.com/legal/terms-of-service'
   license:
     name: MIT
     url: 'https://github.com/99stack/api-docs/blob/master/LICENSE'
 servers:
-  - url: 'https://api.99stack.com/v1.2'
+  - url: 'https://api.99stack.com/v1.3'
     variables: {}
     description: Global
-  - url: 'https://api.eu.99stack.com/v1.2'
-    variables: {}
-    description: Europe
-  - url: 'https://api.na.99stack.com/v1.2'
-    variables: {}
-    description: North America
-  - url: 'https://api.as.99stack.com/v1.2'
-    variables: {}
-    description: Asia
 
 paths:
   /account/token_list:
@@ -121,7 +128,7 @@ paths:
     $ref: ./paths/token/create.yaml
   /account/token_rename:
     $ref: ./paths/token/rename.yaml
-  /account/token_remove:
+  /account/token_remove/{token_id}:
     $ref: ./paths/token/remove.yaml
 
   /account/info:
@@ -150,7 +157,7 @@ paths:
     $ref: ./paths/snapshot/create.yaml
   /snapshot/restore:
     $ref: ./paths/snapshot/restore.yaml
-  /snapshot/remove:
+  /snapshot/remove/{snapshot_id}:
     $ref: ./paths/snapshot/remove.yaml
 
   /server/list:
@@ -159,19 +166,22 @@ paths:
     $ref: ./paths/server/info.yaml
   /server/create:
     $ref: ./paths/server/create.yaml
-  /server/remove:
+  /server/remove/{server_id}:
     $ref: ./paths/server/remove.yaml
 
-  /server/resize/{server_id}:
-    $ref: ./paths/server/action/list_resize.yaml
   /server/rebuild/{server_id}:
-    $ref: ./paths/server/action/list_rebuild.yaml
-  /server/resize:
-    $ref: ./paths/server/action/resize.yaml
+    $ref: ./paths/server/scale/list_rebuild.yaml
+  /server/resize/{server_id}:
+    $ref: ./paths/server/scale/list_resize.yaml
   /server/rebuild:
-    $ref: ./paths/server/action/rebuild.yaml
+    $ref: ./paths/server/scale/rebuild.yaml
+  /server/resize:
+    $ref: ./paths/server/scale/resize.yaml
+    
   /server/rescue:
     $ref: ./paths/server/action/rescue.yaml
+  /server/reinstall:
+    $ref: ./paths/server/action/reinstall.yaml
   /server/start:
     $ref: ./paths/server/action/start.yaml
   /server/stop:
@@ -179,14 +189,14 @@ paths:
   /server/reboot:
     $ref: ./paths/server/action/reboot.yaml
 
-  /rdns/get:
+  /rdns/get/{server_id}:
     $ref: ./paths/server/rdns/get.yaml
   /rdns/put:
     $ref: ./paths/server/rdns/put.yaml
     
-  /option/get:
+  /option/get/{server_id}:
     $ref: ./paths/server/options/get.yaml
-  /option/set:
+  /option/set/{server_id}:
     $ref: ./paths/server/options/set.yaml
 
   /floating_ip/list:
@@ -197,7 +207,7 @@ paths:
     $ref: ./paths/network/ipv4/attach.yaml
   /floating_ip/detach:
     $ref: ./paths/network/ipv4/detach.yaml
-  /floating_ip/remove:
+  /floating_ip/remove/{ip_id}:
     $ref: ./paths/network/ipv4/remove.yaml
 
   /vpc/list:
@@ -208,7 +218,7 @@ paths:
     $ref: ./paths/network/vpc/attach.yaml
   /vpc/detach:
     $ref: ./paths/network/vpc/detach.yaml
-  /vpc/remove:
+  /vpc/remove/{vpc_id}:
     $ref: ./paths/network/vpc/remove.yaml
 
   /ssh_key/list:
@@ -217,7 +227,7 @@ paths:
     $ref: ./paths/ssh_key/create.yaml
   /ssh_key/rename:
     $ref: ./paths/ssh_key/rename.yaml
-  /ssh_key/remove:
+  /ssh_key/remove/{ssh_key_id}:
     $ref: ./paths/ssh_key/remove.yaml
 
   /backup/restore:
@@ -229,9 +239,9 @@ paths:
 
   /region/list:
     $ref: ./paths/_public/region.yaml
-  /image/list/{region_id}:
+  /image/list:
     $ref: ./paths/_public/image.yaml
-  /plan/list/{region_id}:
+  /plan/list:
     $ref: ./paths/_public/plan.yaml
   /availability/list:
     $ref: ./paths/_public/availibility.yaml
@@ -242,7 +252,7 @@ paths:
     $ref: ./paths/objects/list.yaml
   /object/create:
     $ref: ./paths/objects/create.yaml
-  /object/remove:
+  /object/remove/{object_id}:
     $ref: ./paths/objects/remove.yaml
 
   /volume/list:
@@ -253,7 +263,7 @@ paths:
     $ref: ./paths/volume/attach.yaml
   /volume/detach:
     $ref: ./paths/volume/detach.yaml
-  /volume/remove:
+  /volume/remove/{volume_id}:
     $ref: ./paths/volume/remove.yaml
 
 x-tagGroups:
@@ -262,13 +272,14 @@ x-tagGroups:
       - Public
   - name: Account
     tags:
-      - Account
+      - Management
       - SSH Keys
       - Billing
       - Token
   - name: Server
     tags:
-      - Server
+      - Instance
+      - Scaling
       - Action
       - Backup
       - Options
@@ -282,75 +293,74 @@ x-tagGroups:
     tags:
       - Floating IPs
       - VPCs
+      
 tags:
   - name: Public
     description: |-
-      Public endpoints provides information about 99Stack Cloud data center regions.
+      These endpoints are accessible without the need for authentication. This allows users to retrieve information about regions, images, plans, specific features, availability, and status effortlessly.
+      
+      Within our system, regions, images, and plans are examples of objects categorized by unique numeric IDs. It is imperative to take note of these IDs, as they serve as crucial indicators of compatibility.
 
-      A system image can be used to create a server, and may come in a number of flavors. Currently, there are four types of images: `os`, `app`, `snapshot` and `iso`.
-
-      - OS are pre-installed ready to deploy blank operating system images with minimal tweaks from default
-      - Apps are just like operating system images, pre-installed, but also comes with a application stack pre installed, this can be a webserver plus php and database, a nodejs app and much more.
-      - Snapshots provide a full copy of an existing server instance taken on demand.
-      - ISOs are Linux-based virtual machine images (raw, qcow2, vhdx, vdi, and vmdk formats are supported) that you may upload for use on 99Stack Cloud.
-
-      The plan objects represent different packages of hardware resources that can be used for servers. When a server is created, a plan must be selected so that the correct resources can be allocated.
-
-      Each plan represents a specific set of pre-defined hardware resources. This includes the amount of RAM, the number of virtual CPUs, disk space, and transfer. The plan object also includes the pricing details and the regions that the plan is available in.
-
-
-  - name: Account
+  - name: Management
     description: |-
-      Manage account and sub-accounts. View status and enabled features.
+      These functions allows you to oversee both your primary account and any associated sub-accounts. It also provides a view of their respective statuses and the enabled features.
   - name: SSH Keys
     description: |-
-      You can add SSH keys to your account, which can be copied to new instances when first deployed. Updating a key does not update any running instances, this is for new deployments only. If you reinstall an instance, it will inherit the updated key.
+      You have the ability to incorporate SSH keys into your account. These keys can be automatically transferred to new instances during their initial deployment. It's important to note that modifying a key does not impact any currently operational instances; this change only applies to newly created deployments. However, if you choose to reinstall an instance, it will inherit the updated key.
   - name: Billing
     description: |-
-      View account payment transactions, taxes, fees and detailed billing information sorted by resource. You may also load payment forms via API if you prefer not to use javascript, which is required when using 99Stack Cloud control panel.
+      Access a comprehensive overview of your account's payment transactions, including details on taxes, fees, and a breakdown of billing information organized by resource. Additionally, if you opt not to use JavaScript, you have the option to load payment forms via API. This provides an alternative method for interacting with the payment system, particularly useful for those who prefer not to utilize the 99Stack Cloud control panel.
   - name: Token
     description: |-
-      Account tokens grant users access to 99Stack Cloud api, you may create mutltiple tokens, assign permissions and manage expiration on your own based on your own security preferences.
+      Account tokens serve as access credentials for the 99Stack Cloud API, allowing users to interact with it. You have the flexibility to generate multiple tokens, allocate specific permissions, and independently manage their expiration dates in accordance with your own security preferences. This empowers you to fine-tune access levels and enhance the overall security of your account.
 
-      A token exist for as long as you choose to keep it by default. If your account has no tokens, a new one will be generated when you call `/v1.2/account/login`.
-
-
-  - name: Server
+  - name: Instance
     description: |-
-      Cloud instances can be deployed with your preferred operating system or pre-installed application in seconds. High Frequency Compute instances are powered by high clock speed CPU's and NVMe local storage to power your most demanding applications.
-
-      Dedicated Cloud instances have dedicated CPU, SSD drives, and RAM. And no noisy neighbours.
+      Our cloud instances are designed for swift deployment, allowing you to select your preferred operating system or even opt for pre-installed applications within a matter of seconds. High Frequency Compute instances are driven by high clock speed CPUs and feature NVMe local storage, ensuring optimal performance for even the most resource-intensive applications. This combination of cutting-edge hardware and rapid deployment capabilities empowers you to tackle demanding tasks with ease and efficiency.
+  - name: Scaling
+    description: |-
+      This section enables you to view and request modifications to existing servers. You have the option to upgrade to a larger plan or change the operating system image according to your specific requirements. This provides flexibility and adaptability to meet evolving needs.
   - name: Action
     description: |-
-      Server actions let you send various actions to a server, such as `start` and `stop`, but also more specific troubleshooting actions such as `power_off` i.e a hard reboot, `rescue` which boot your server into a rescue CD and similar.
+      Server actions empower you to dispatch a range of commands to a server, including standard actions like `start` and `stop`. Additionally, there are more specialized troubleshooting actions available, such as `power_off` which performs a hard reboot, and `rescue` which boots your server into a rescue CD environment. These functionalities offer a versatile toolkit for managing and troubleshooting your server instances effectively.
   - name: Backup
     description: |-
-      A backup is a scheduled, automatic, point-in-time image of an instance. We do not stop the instance when taking a backup. Booting from a backup is similar to rebooting after a non-graceful restart.
-
-      Snapshots are physically the same as backups, but snapshots are manual while backups run automatically on a schedule. Backups can be converted into a snapshot.
-
+      A backup is a pre-scheduled, automated snapshot taken at a specific point in time of an instance. Importantly, the instance remains operational and is not halted during the backup process. Restoring from a backup is akin to performing a reboot following a non-graceful restart, ensuring continuity of service while reverting to the saved state.
+  - name: Options
+    description: |-
+      Server options provide a means to customize the configuration and behavior of server objects, particularly in specific scenarios or circumstances. This feature grants you greater control and adaptability over your server instances.
+  - name: Reverse DNS
+    description: |-
+      Reverse DNS functionality allows you to set up PTR (Pointer) records, establishing a connection between a server's IP address and a corresponding domain name. This capability proves valuable for authentication purposes, especially when sending emails via SMTP or similar protocols. It ensures that your server's identity is properly validated in email communications.
 
   - name: Snapshot
     description: |-
-      Snapshots are saved instances of a server or a block storage volume. In order to avoid problems with compressing filesystems, each defines a min_disk_size attribute which is the minimum size of the server or volume disk when creating a new resource from a saved snapshot.
+      Snapshots represent preserved states of a server. To prevent issues arising from compressing filesystems, each snapshot is accompanied by a `min_disk_size` attribute. This attribute denotes the minimum required disk size for the server volume when generating a new resource based on the saved snapshot. This ensures a seamless and compatible transition when creating new resources from existing snapshots.
   - name: Block storage
     description: |-
-      Block Storage Volumes provide expanded storage capacity for your servers, and can be moved between servers within a specific region. Volumes function as raw block devices, meaning that they appear to the operating system as locally attached storage, which can be formatted using any file system supported by the OS.
+      Block Storage Volumes offer additional storage capacity for your servers and can be seamlessly moved between servers within a specific region. These volumes function as raw block devices, presenting themselves to the operating system as locally attached storage. This allows them to be formatted using any file system supported by the OS.
 
-      They may be created in sizes from 10 GiB to up to 16 TiB, regional limitations applies. By sending requests to the `/v1.2/volumes` endpoint, you can list, create, or delete volumes as well as attach and detach them from servers.
+      You can create volumes ranging in size from 10 GiB up to a substantial 16 TiB, though regional limitations do apply. Through requests made to the `/volumes` endpoint, you have the capability to perform a range of actions, including listing, creating, and deleting volumes, as well as attaching and detaching them from servers. This flexibility ensures that you can effectively manage your storage resources to suit your specific needs.
+
   - name: Object storage
     description: |-
-      Object storage is S3 API compatible storage optimized server instances. Objects uploaded to object storage can be accessed privately or publicly on the web. Object storage supports a virtually unlimited number of objects and buckets. Control your Object Storage via the S3 API.
-
+      Object storage within our system is specifically tailored for compatibility with the S3 API, ensuring seamless integration with server instances optimized for storage. Objects uploaded to this storage can be accessed either privately or made publicly available on the web. The scalability of object storage is impressive, allowing for an extensive number of objects and buckets to be managed. You have full control over your object storage through the S3 API, providing a robust and versatile storage solution.
 
   - name: Floating IPs
     description: |-
-      Floating IPs are publicly accessible static IP addresses, that can be mapped to one of your servers. They can be used to create highly available setups or other configurations requiring movable addresses. Floating IPs are bound to a specific region. Regional limitations applies.
+      Floating IPs are fixed, publicly accessible IP addresses that can be assigned to one of your servers. They serve a crucial role in creating highly available setups or other configurations that necessitate movable addresses. 
+      
+      It's important to note that Floating IPs are associated with a specific region, and as such, they are subject to regional limitations. This feature provides a flexible and reliable means to manage and maintain your network configurations.
   - name: VPCs
     description: |-
-      VPC (virtual private cloud) allow you to create virtual networks, containing resources that can communicate with each other in full isolation, using private IP addresses.
+      A Virtual Private Cloud (VPC) empowers you to establish virtual networks, housing resources capable of seamless communication while maintaining complete isolation. This is facilitated through the utilization of private IP addresses, ensuring a secure and dedicated environment for your networked resources.
 
 components:
+  securitySchemes:
+    bearer:
+      type: http
+      scheme: bearer
+      
   headers:
     Content-Type:
       description: Should be set to application/json
