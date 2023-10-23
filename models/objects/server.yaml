@@ -18,6 +18,13 @@ properties:
   iface:
     type: object
     description: List of network interfaces (default is `null`)
+    properties:
+      v4: 
+        type: array
+        description: List of IPv4 interfaces
+      v6: 
+        type: array
+        description: List of IPv6 interfaces
   bandwidth:
     type: object
     description: Bandwidth limits and usage
@@ -31,6 +38,35 @@ properties:
   info:
     type: object
     description: List of information and settings for server instance
+    properties:
+      features:
+        type: array
+        description: List of features in use by the server
+      options:
+        type: object
+        description: List of options in use by the server
+        properties:
+          bw_overage_policy:
+            type: string
+            description: What to do when your server runs out of allocated bandwidth (default `power_off`)
+          bw_overage_tresgold:
+            type: number
+            description: Allow bandwidth overage on this server (`1.0` is 100%)
+      reg_country:
+        type: string
+        description: Name of the country were the server is located
+      reg_city:
+        type: string
+        description: Name of the city were the server is located
+      reg_id:
+        type: integer
+        description: Region ID were the server is located
+      img_id:
+        type: integer
+        description: Image ID of the software image used on the server
+      plan_id:
+        type: integer
+        description: Plan ID of the plan specifications for the server
   password:
     type: string
     description: Default SSH password for user `root` and `admin`

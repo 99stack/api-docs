@@ -47,6 +47,415 @@ get:
                   Unique ID representing the company object responsible for this
                   datacenter
           examples:
+            region-1101:
+              summary: List of all E11 data center regions
+              value:
+                regions:
+                  '1101':
+                    uuid: 1f58980d-8337-448b-ac38-97b056d48db0
+                    city: Zurich
+                    state: Zurich
+                    country: Switzerland
+                    continent: Europe
+                    features:
+                      virtual_private_cloud: false
+                      private_networking: false
+                      ddos_protection: false
+                      block_storage: false
+                      object_storage: false
+                      floating_ip: false
+                      ipv6: false
+                      backups: false
+                      instances: false
+                      custom_iso: false
+                      smtp: false
+                    ping_ip: ''
+                    latitude: 47.3768866
+                    longitude: 8.541694
+                    is_public: false
+                    generation: 11
+                    operator_id: 71db70e7
+                  '1102':
+                    uuid: 65824b5a-3cfe-49b6-a2a4-b43a1383f5cf
+                    city: Perth
+                    state: Western Australia
+                    country: Australia
+                    continent: Australia
+                    features:
+                      virtual_private_cloud: false
+                      private_networking: false
+                      ddos_protection: false
+                      block_storage: false
+                      object_storage: false
+                      floating_ip: false
+                      ipv6: false
+                      backups: false
+                      instances: false
+                      custom_iso: false
+                      smtp: false
+                    ping_ip: ''
+                    latitude: -31.9523123
+                    longitude: 115.861309
+                    is_public: false
+                    generation: 11
+                    operator_id: 71db70e7
+                  '1103':
+                    uuid: 3e6f30b9-8d23-49f3-aaef-a413a40aef92
+                    city: London
+                    state: England
+                    country: United Kingdom
+                    continent: Europe
+                    features:
+                      virtual_private_cloud: false
+                      private_networking: false
+                      ddos_protection: false
+                      block_storage: false
+                      object_storage: false
+                      floating_ip: false
+                      ipv6: false
+                      backups: false
+                      instances: false
+                      custom_iso: false
+                      smtp: false
+                    ping_ip: ''
+                    latitude: 51.5073509
+                    longitude: -0.1277583
+                    is_public: false
+                    generation: 11
+                    operator_id: 71db70e7
+                  '1104':
+                    uuid: 9a4c1754-c2b7-4355-841c-18457c3d0f08
+                    city: Frankfurt
+                    state: Hessen
+                    country: Germany
+                    continent: Europe
+                    features:
+                      virtual_private_cloud: false
+                      private_networking: false
+                      ddos_protection: false
+                      block_storage: false
+                      object_storage: false
+                      floating_ip: false
+                      ipv6: false
+                      backups: false
+                      instances: false
+                      custom_iso: false
+                      smtp: false
+                    ping_ip: ''
+                    latitude: 50.1109221
+                    longitude: 8.6821267
+                    is_public: false
+                    generation: 11
+                    operator_id: 71db70e7
+                  '1105':
+                    uuid: 6b7eb1c6-299d-461c-9e3c-39e9c088bc70
+                    city: Dublin
+                    state: County Dublin
+                    country: Ireland
+                    continent: Europe
+                    features:
+                      virtual_private_cloud: false
+                      private_networking: false
+                      ddos_protection: false
+                      block_storage: false
+                      object_storage: false
+                      floating_ip: false
+                      ipv6: false
+                      backups: false
+                      instances: false
+                      custom_iso: false
+                      smtp: false
+                    ping_ip: ''
+                    latitude: 53.3498053
+                    longitude: -6.2603097
+                    is_public: false
+                    generation: 11
+                    operator_id: 71db70e7
+                  '1106':
+                    uuid: aa0267a1-fd6f-49af-9eff-da9725f93882
+                    city: Tokyo
+                    state: Tokyo
+                    country: Japan
+                    continent: Asia
+                    features:
+                      virtual_private_cloud: false
+                      private_networking: false
+                      ddos_protection: false
+                      block_storage: false
+                      object_storage: false
+                      floating_ip: false
+                      ipv6: false
+                      backups: false
+                      instances: false
+                      custom_iso: false
+                      smtp: false
+                    ping_ip: ''
+                    latitude: 35.6761919
+                    longitude: 139.6503106
+                    is_public: false
+                    generation: 11
+                    operator_id: 71db70e7
+                  '1107':
+                    uuid: 768afc59-b744-436d-a2f4-82fa2f4001f1
+                    city: Clark
+                    state: Pampanga
+                    country: Philippines
+                    continent: Asia
+                    features:
+                      virtual_private_cloud: false
+                      private_networking: false
+                      ddos_protection: false
+                      block_storage: false
+                      object_storage: false
+                      floating_ip: false
+                      ipv6: false
+                      backups: false
+                      instances: false
+                      custom_iso: false
+                      smtp: false
+                    ping_ip: ''
+                    latitude: 36.6544793
+                    longitude: -95.1553966
+                    is_public: false
+                    generation: 11
+                    operator_id: 71db70e7
+                  '1108':
+                    uuid: 0fc5d8b1-f257-469d-9328-b5ed3704793d
+                    city: Manila
+                    state: Metro Manila
+                    country: Philippines
+                    continent: Asia
+                    features:
+                      virtual_private_cloud: false
+                      private_networking: false
+                      ddos_protection: false
+                      block_storage: false
+                      object_storage: false
+                      floating_ip: false
+                      ipv6: false
+                      backups: false
+                      instances: false
+                      custom_iso: false
+                      smtp: false
+                    ping_ip: ''
+                    latitude: 14.5995124
+                    longitude: 120.9842195
+                    is_public: false
+                    generation: 11
+                    operator_id: 71db70e7
+                  '1109':
+                    uuid: 697f841d-b6e8-4400-bbbb-5529852ee7f0
+                    city: Manila
+                    state: Metro Manila
+                    country: Philippines
+                    continent: Asia
+                    features:
+                      virtual_private_cloud: false
+                      private_networking: false
+                      ddos_protection: false
+                      block_storage: false
+                      object_storage: false
+                      floating_ip: false
+                      ipv6: false
+                      backups: false
+                      instances: false
+                      custom_iso: false
+                      smtp: false
+                    ping_ip: ''
+                    latitude: 14.5995124
+                    longitude: 120.9842195
+                    is_public: false
+                    generation: 11
+                    operator_id: 71db70e7
+                  '1110':
+                    uuid: 7d528cf4-e7c9-4df7-813c-57de50fb2adb
+                    city: Riyadh
+                    state: Riyadh Province
+                    country: Saudi Arabia
+                    continent: Middle east
+                    features:
+                      virtual_private_cloud: false
+                      private_networking: false
+                      ddos_protection: false
+                      block_storage: false
+                      object_storage: false
+                      floating_ip: false
+                      ipv6: false
+                      backups: false
+                      instances: false
+                      custom_iso: false
+                      smtp: false
+                    ping_ip: ''
+                    latitude: 24.7135517
+                    longitude: 46.6752957
+                    is_public: false
+                    generation: 11
+                    operator_id: 71db70e7
+                  '1111':
+                    uuid: ce90314c-9e64-4989-97a3-d4a65db82b4a
+                    city: Boden
+                    state: Norrbotten County
+                    country: Sweden
+                    continent: Europe
+                    features:
+                      virtual_private_cloud: false
+                      private_networking: false
+                      ddos_protection: false
+                      block_storage: false
+                      object_storage: false
+                      floating_ip: false
+                      ipv6: false
+                      backups: false
+                      instances: false
+                      custom_iso: false
+                      smtp: false
+                    ping_ip: ''
+                    latitude: 41.2994055
+                    longitude: -75.7628603
+                    is_public: false
+                    generation: 11
+                    operator_id: 71db70e7
+                  '1112':
+                    uuid: 448d4114-895a-42f1-b004-08c345614af1
+                    city: Geneva
+                    state: Geneva
+                    country: Switzerland
+                    continent: Europe
+                    features:
+                      virtual_private_cloud: false
+                      private_networking: false
+                      ddos_protection: false
+                      block_storage: false
+                      object_storage: false
+                      floating_ip: false
+                      ipv6: false
+                      backups: false
+                      instances: false
+                      custom_iso: false
+                      smtp: false
+                    ping_ip: ''
+                    latitude: 46.2043907
+                    longitude: 6.1431577
+                    is_public: false
+                    generation: 11
+                    operator_id: 71db70e7
+                  '1113':
+                    uuid: 732af70c-b8a6-4107-83f4-318c092c9034
+                    city: Honolulu
+                    state: Hawaii
+                    country: United States
+                    continent: North america
+                    features:
+                      virtual_private_cloud: false
+                      private_networking: false
+                      ddos_protection: false
+                      block_storage: false
+                      object_storage: false
+                      floating_ip: false
+                      ipv6: false
+                      backups: false
+                      instances: false
+                      custom_iso: false
+                      smtp: false
+                    ping_ip: ''
+                    latitude: 21.3069444
+                    longitude: -157.8583333
+                    is_public: false
+                    generation: 11
+                    operator_id: 71db70e7
+                  '1114':
+                    uuid: 2a35a3d0-7f2c-45f3-b2ac-6cc73f6d88a8
+                    city: San Jose
+                    state: California
+                    country: United States
+                    continent: North america
+                    features:
+                      virtual_private_cloud: false
+                      private_networking: false
+                      ddos_protection: false
+                      block_storage: false
+                      object_storage: false
+                      floating_ip: false
+                      ipv6: false
+                      backups: false
+                      instances: false
+                      custom_iso: false
+                      smtp: false
+                    ping_ip: ''
+                    latitude: 37.3382082
+                    longitude: -121.8863286
+                    is_public: false
+                    generation: 11
+                    operator_id: 71db70e7
+                  '1115':
+                    uuid: c351859a-b868-47bb-94b3-6c33a297fdfe
+                    city: Washington DC
+                    state: District of Columbia
+                    country: United States
+                    continent: North america
+                    features:
+                      virtual_private_cloud: false
+                      private_networking: false
+                      ddos_protection: false
+                      block_storage: false
+                      object_storage: false
+                      floating_ip: false
+                      ipv6: false
+                      backups: false
+                      instances: false
+                      custom_iso: false
+                      smtp: false
+                    ping_ip: ''
+                    latitude: 38.9071923
+                    longitude: -77.0368707
+                    is_public: false
+                    generation: 11
+                    operator_id: 71db70e7
+                  '1116':
+                    uuid: 1b163ef0-8f04-48d1-842b-2ce96572c99e
+                    city: Cardiff
+                    state: Wales
+                    country: United Kingdom
+                    continent: Europe
+                    features:
+                      virtual_private_cloud: false
+                      private_networking: false
+                      ddos_protection: false
+                      block_storage: false
+                      object_storage: false
+                      floating_ip: false
+                      ipv6: false
+                      backups: false
+                      instances: false
+                      custom_iso: false
+                      smtp: false
+                    ping_ip: ''
+                    latitude: 51.483707
+                    longitude: -3.1680962
+                    is_public: false
+                    generation: 11
+                    operator_id: 71db70e7
+                meta:
+                  count:
+                    public:
+                      north-america: 27
+                      south-america: 3
+                      middle-east: 1
+                      australia: 4
+                      europe: 18
+                      africa: 1
+                      asia: 15
+                    private:
+                      north-america: 6
+                      south-america: 0
+                      middle-east: 1
+                      australia: 2
+                      europe: 15
+                      africa: 0
+                      asia: 5
+                  total: 98
+                  cached: true
+                  timestamp: '2023-10-19T20:26:51Z'
             region-101:
               summary: List of all G1 data center regions
               value:
@@ -2033,415 +2442,7 @@ get:
                   total: 98
                   cached: true
                   timestamp: '2023-10-19T20:26:51Z'
-            region-1101:
-              summary: List of all E11 data center regions
-              value:
-                regions:
-                  '1101':
-                    uuid: 1f58980d-8337-448b-ac38-97b056d48db0
-                    city: Zurich
-                    state: Zurich
-                    country: Switzerland
-                    continent: Europe
-                    features:
-                      virtual_private_cloud: false
-                      private_networking: false
-                      ddos_protection: false
-                      block_storage: false
-                      object_storage: false
-                      floating_ip: false
-                      ipv6: false
-                      backups: false
-                      instances: false
-                      custom_iso: false
-                      smtp: false
-                    ping_ip: ''
-                    latitude: 47.3768866
-                    longitude: 8.541694
-                    is_public: false
-                    generation: 11
-                    operator_id: 71db70e7
-                  '1102':
-                    uuid: 65824b5a-3cfe-49b6-a2a4-b43a1383f5cf
-                    city: Perth
-                    state: Western Australia
-                    country: Australia
-                    continent: Australia
-                    features:
-                      virtual_private_cloud: false
-                      private_networking: false
-                      ddos_protection: false
-                      block_storage: false
-                      object_storage: false
-                      floating_ip: false
-                      ipv6: false
-                      backups: false
-                      instances: false
-                      custom_iso: false
-                      smtp: false
-                    ping_ip: ''
-                    latitude: -31.9523123
-                    longitude: 115.861309
-                    is_public: false
-                    generation: 11
-                    operator_id: 71db70e7
-                  '1103':
-                    uuid: 3e6f30b9-8d23-49f3-aaef-a413a40aef92
-                    city: London
-                    state: England
-                    country: United Kingdom
-                    continent: Europe
-                    features:
-                      virtual_private_cloud: false
-                      private_networking: false
-                      ddos_protection: false
-                      block_storage: false
-                      object_storage: false
-                      floating_ip: false
-                      ipv6: false
-                      backups: false
-                      instances: false
-                      custom_iso: false
-                      smtp: false
-                    ping_ip: ''
-                    latitude: 51.5073509
-                    longitude: -0.1277583
-                    is_public: false
-                    generation: 11
-                    operator_id: 71db70e7
-                  '1104':
-                    uuid: 9a4c1754-c2b7-4355-841c-18457c3d0f08
-                    city: Frankfurt
-                    state: Hessen
-                    country: Germany
-                    continent: Europe
-                    features:
-                      virtual_private_cloud: false
-                      private_networking: false
-                      ddos_protection: false
-                      block_storage: false
-                      object_storage: false
-                      floating_ip: false
-                      ipv6: false
-                      backups: false
-                      instances: false
-                      custom_iso: false
-                      smtp: false
-                    ping_ip: ''
-                    latitude: 50.1109221
-                    longitude: 8.6821267
-                    is_public: false
-                    generation: 11
-                    operator_id: 71db70e7
-                  '1105':
-                    uuid: 6b7eb1c6-299d-461c-9e3c-39e9c088bc70
-                    city: Dublin
-                    state: County Dublin
-                    country: Ireland
-                    continent: Europe
-                    features:
-                      virtual_private_cloud: false
-                      private_networking: false
-                      ddos_protection: false
-                      block_storage: false
-                      object_storage: false
-                      floating_ip: false
-                      ipv6: false
-                      backups: false
-                      instances: false
-                      custom_iso: false
-                      smtp: false
-                    ping_ip: ''
-                    latitude: 53.3498053
-                    longitude: -6.2603097
-                    is_public: false
-                    generation: 11
-                    operator_id: 71db70e7
-                  '1106':
-                    uuid: aa0267a1-fd6f-49af-9eff-da9725f93882
-                    city: Tokyo
-                    state: Tokyo
-                    country: Japan
-                    continent: Asia
-                    features:
-                      virtual_private_cloud: false
-                      private_networking: false
-                      ddos_protection: false
-                      block_storage: false
-                      object_storage: false
-                      floating_ip: false
-                      ipv6: false
-                      backups: false
-                      instances: false
-                      custom_iso: false
-                      smtp: false
-                    ping_ip: ''
-                    latitude: 35.6761919
-                    longitude: 139.6503106
-                    is_public: false
-                    generation: 11
-                    operator_id: 71db70e7
-                  '1107':
-                    uuid: 768afc59-b744-436d-a2f4-82fa2f4001f1
-                    city: Clark
-                    state: Pampanga
-                    country: Philippines
-                    continent: Asia
-                    features:
-                      virtual_private_cloud: false
-                      private_networking: false
-                      ddos_protection: false
-                      block_storage: false
-                      object_storage: false
-                      floating_ip: false
-                      ipv6: false
-                      backups: false
-                      instances: false
-                      custom_iso: false
-                      smtp: false
-                    ping_ip: ''
-                    latitude: 36.6544793
-                    longitude: -95.1553966
-                    is_public: false
-                    generation: 11
-                    operator_id: 71db70e7
-                  '1108':
-                    uuid: 0fc5d8b1-f257-469d-9328-b5ed3704793d
-                    city: Manila
-                    state: Metro Manila
-                    country: Philippines
-                    continent: Asia
-                    features:
-                      virtual_private_cloud: false
-                      private_networking: false
-                      ddos_protection: false
-                      block_storage: false
-                      object_storage: false
-                      floating_ip: false
-                      ipv6: false
-                      backups: false
-                      instances: false
-                      custom_iso: false
-                      smtp: false
-                    ping_ip: ''
-                    latitude: 14.5995124
-                    longitude: 120.9842195
-                    is_public: false
-                    generation: 11
-                    operator_id: 71db70e7
-                  '1109':
-                    uuid: 697f841d-b6e8-4400-bbbb-5529852ee7f0
-                    city: Manila
-                    state: Metro Manila
-                    country: Philippines
-                    continent: Asia
-                    features:
-                      virtual_private_cloud: false
-                      private_networking: false
-                      ddos_protection: false
-                      block_storage: false
-                      object_storage: false
-                      floating_ip: false
-                      ipv6: false
-                      backups: false
-                      instances: false
-                      custom_iso: false
-                      smtp: false
-                    ping_ip: ''
-                    latitude: 14.5995124
-                    longitude: 120.9842195
-                    is_public: false
-                    generation: 11
-                    operator_id: 71db70e7
-                  '1110':
-                    uuid: 7d528cf4-e7c9-4df7-813c-57de50fb2adb
-                    city: Riyadh
-                    state: Riyadh Province
-                    country: Saudi Arabia
-                    continent: Middle east
-                    features:
-                      virtual_private_cloud: false
-                      private_networking: false
-                      ddos_protection: false
-                      block_storage: false
-                      object_storage: false
-                      floating_ip: false
-                      ipv6: false
-                      backups: false
-                      instances: false
-                      custom_iso: false
-                      smtp: false
-                    ping_ip: ''
-                    latitude: 24.7135517
-                    longitude: 46.6752957
-                    is_public: false
-                    generation: 11
-                    operator_id: 71db70e7
-                  '1111':
-                    uuid: ce90314c-9e64-4989-97a3-d4a65db82b4a
-                    city: Boden
-                    state: Norrbotten County
-                    country: Sweden
-                    continent: Europe
-                    features:
-                      virtual_private_cloud: false
-                      private_networking: false
-                      ddos_protection: false
-                      block_storage: false
-                      object_storage: false
-                      floating_ip: false
-                      ipv6: false
-                      backups: false
-                      instances: false
-                      custom_iso: false
-                      smtp: false
-                    ping_ip: ''
-                    latitude: 41.2994055
-                    longitude: -75.7628603
-                    is_public: false
-                    generation: 11
-                    operator_id: 71db70e7
-                  '1112':
-                    uuid: 448d4114-895a-42f1-b004-08c345614af1
-                    city: Geneva
-                    state: Geneva
-                    country: Switzerland
-                    continent: Europe
-                    features:
-                      virtual_private_cloud: false
-                      private_networking: false
-                      ddos_protection: false
-                      block_storage: false
-                      object_storage: false
-                      floating_ip: false
-                      ipv6: false
-                      backups: false
-                      instances: false
-                      custom_iso: false
-                      smtp: false
-                    ping_ip: ''
-                    latitude: 46.2043907
-                    longitude: 6.1431577
-                    is_public: false
-                    generation: 11
-                    operator_id: 71db70e7
-                  '1113':
-                    uuid: 732af70c-b8a6-4107-83f4-318c092c9034
-                    city: Honolulu
-                    state: Hawaii
-                    country: United States
-                    continent: North america
-                    features:
-                      virtual_private_cloud: false
-                      private_networking: false
-                      ddos_protection: false
-                      block_storage: false
-                      object_storage: false
-                      floating_ip: false
-                      ipv6: false
-                      backups: false
-                      instances: false
-                      custom_iso: false
-                      smtp: false
-                    ping_ip: ''
-                    latitude: 21.3069444
-                    longitude: -157.8583333
-                    is_public: false
-                    generation: 11
-                    operator_id: 71db70e7
-                  '1114':
-                    uuid: 2a35a3d0-7f2c-45f3-b2ac-6cc73f6d88a8
-                    city: San Jose
-                    state: California
-                    country: United States
-                    continent: North america
-                    features:
-                      virtual_private_cloud: false
-                      private_networking: false
-                      ddos_protection: false
-                      block_storage: false
-                      object_storage: false
-                      floating_ip: false
-                      ipv6: false
-                      backups: false
-                      instances: false
-                      custom_iso: false
-                      smtp: false
-                    ping_ip: ''
-                    latitude: 37.3382082
-                    longitude: -121.8863286
-                    is_public: false
-                    generation: 11
-                    operator_id: 71db70e7
-                  '1115':
-                    uuid: c351859a-b868-47bb-94b3-6c33a297fdfe
-                    city: Washington DC
-                    state: District of Columbia
-                    country: United States
-                    continent: North america
-                    features:
-                      virtual_private_cloud: false
-                      private_networking: false
-                      ddos_protection: false
-                      block_storage: false
-                      object_storage: false
-                      floating_ip: false
-                      ipv6: false
-                      backups: false
-                      instances: false
-                      custom_iso: false
-                      smtp: false
-                    ping_ip: ''
-                    latitude: 38.9071923
-                    longitude: -77.0368707
-                    is_public: false
-                    generation: 11
-                    operator_id: 71db70e7
-                  '1116':
-                    uuid: 1b163ef0-8f04-48d1-842b-2ce96572c99e
-                    city: Cardiff
-                    state: Wales
-                    country: United Kingdom
-                    continent: Europe
-                    features:
-                      virtual_private_cloud: false
-                      private_networking: false
-                      ddos_protection: false
-                      block_storage: false
-                      object_storage: false
-                      floating_ip: false
-                      ipv6: false
-                      backups: false
-                      instances: false
-                      custom_iso: false
-                      smtp: false
-                    ping_ip: ''
-                    latitude: 51.483707
-                    longitude: -3.1680962
-                    is_public: false
-                    generation: 11
-                    operator_id: 71db70e7
-                meta:
-                  count:
-                    public:
-                      north-america: 27
-                      south-america: 3
-                      middle-east: 1
-                      australia: 4
-                      europe: 18
-                      africa: 1
-                      asia: 15
-                    private:
-                      north-america: 6
-                      south-america: 0
-                      middle-east: 1
-                      australia: 2
-                      europe: 15
-                      africa: 0
-                      asia: 5
-                  total: 98
-                  cached: true
-                  timestamp: '2023-10-19T20:26:51Z'
+          
     '400':
       $ref: ../../models/4xx-responses/400.yaml
     '405':
