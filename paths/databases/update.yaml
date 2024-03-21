@@ -1,0 +1,63 @@
+patch:
+  tags:
+    - Database
+  summary: Update database
+  description: |-
+    This function provides you with the capability to modify the limits of an existing database, empowering you to fine-tune resource allocation according to evolving requirements and optimize performance based on your specific needs.
+  operationId: database-update
+  parameters:
+    []
+    
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties: 
+            database_id:
+              type: string
+              description: ID or uuid of the database you wish to modify.
+            max_reads:
+              type: integer
+              description: Limits the number of read operations per hour.
+            max_writes:
+              type: integer
+              description: Limits the number of write operations per hour.
+            max_conn:
+              type: integer
+              description: Limits the number of connections per hour.
+        examples:
+          update-db: 
+            summary: Update a database in E11 region
+            value:
+              {
+                  "database_id": "e345066a-8dd4-4eea-bee1-fc522e98c64a",
+                  "max_reads": 1000000000,
+                  "max_writes": 2000000,
+                  "max_conn": 500
+              }
+
+  responses:
+    '202':
+      $ref: ../../models/2xx-responses/202.yaml
+    '400':
+      $ref: ../../models/4xx-responses/400.yaml
+    '401':
+      $ref: ../../models/4xx-responses/401.yaml
+    '402':
+      $ref: ../../models/4xx-responses/402.yaml
+    '403':
+      $ref: ../../models/4xx-responses/403.yaml
+    '404':
+      $ref: ../../models/4xx-responses/404.yaml
+    '405':
+      $ref: ../../models/4xx-responses/405.yaml
+
+  x-operation-settings:
+    CollectParameters: false
+    AllowDynamicQueryParameters: false
+    AllowDynamicFormParameters: false
+    IsMultiContentStreaming: false
+  security:
+    - bearer: []

@@ -247,6 +247,15 @@ paths:
     $ref: ./paths/_public/availibility.yaml
   /feature/list/{region_id}:
     $ref: ./paths/_public/feature.yaml
+    
+  /database/list:
+    $ref: ./paths/databases/list.yaml
+  /database/create:
+    $ref: ./paths/databases/create.yaml
+  /database/update:
+    $ref: ./paths/databases/update.yaml
+  /database/remove:
+    $ref: ./paths/databases/remove.yaml
 
   /object/list:
     $ref: ./paths/objects/list.yaml
@@ -284,6 +293,9 @@ x-tagGroups:
       - Backup
       - Options
       - Reverse DNS
+  - name: Container
+    tags:
+      - Database
   - name: Storage
     tags:
       - Snapshot
@@ -345,6 +357,10 @@ tags:
   - name: Object storage
     description: |-
       Object storage within our system is specifically tailored for compatibility with the S3 API, ensuring seamless integration with server instances optimized for storage. Objects uploaded to this storage can be accessed either privately or made publicly available on the web. The scalability of object storage is impressive, allowing for an extensive number of objects and buckets to be managed. You have full control over your object storage through the S3 API, providing a robust and versatile storage solution.
+      
+  - name: Database
+    description: |-
+      Containerized databases offer unparalleled scalability, allowing users to effortlessly adjust resources based on demand. With flexible pricing models, users pay only for the resources they consume, minimizing costs and maximizing efficiency. This approach ensures optimal resource utilization, enabling businesses to scale operations seamlessly while maintaining control over expenses. Additionally, containerized databases facilitate rapid deployment and resource allocation, supporting agile development and enhancing overall productivity.
 
   - name: Floating IPs
     description: |-

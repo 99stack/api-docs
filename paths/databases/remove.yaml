@@ -1,19 +1,19 @@
 delete:
   tags:
-    - SSH Keys
-  summary: Remove SSH key
+    - Database
+  summary: Remove database
   description: |-
-    Utilize this endpoint to remove a public SSH key that is no longer in use. This ensures that your account remains organized and secure, with only active and relevant keys retained.
-  operationId: ssh_key-remove
-  parameters: 
+    This function removes a database from the container cluster, halting billing immediately upon deletion. It ensures cost savings by ceasing charges for the removed database, offering flexibility and control over resource allocation within the containerized environment.
+  operationId: database-remove
+  parameters:
     - in: path
-      name: ssh_key_id
+      name: database_id
       schema:
         oneOf:
           - type: string
           - type: integer
       required: true
-      description: SSH_Key `ID` or `uuid` to be removed
+      description: Database `ID` or `uuid` to be removed
 
   responses:
     '204':
@@ -28,7 +28,7 @@ delete:
       $ref: ../../models/4xx-responses/404.yaml
     '405':
       $ref: ../../models/4xx-responses/405.yaml
-      
+
   x-operation-settings:
     CollectParameters: false
     AllowDynamicQueryParameters: false

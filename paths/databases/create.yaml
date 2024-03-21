@@ -1,0 +1,102 @@
+post:
+  tags:
+    - Database
+  summary: Create database
+  description: |-
+    Initiate the creation of a new database within a region of your preference, granting you the flexibility to tailor usage limits for the optimal balance between price and performance. This empowers you to fine-tune resource allocation, ensuring efficient utilization while maximizing the value derived from your database operations.
+  operationId: database-create
+  parameters:
+    []
+
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            region:
+              type: integer
+              description: Region ID to deploy new database in.
+            max_reads:
+              type: integer
+              description: Limits the number of read operations per hour.
+            max_writes:
+              type: integer
+              description: Limits the number of write operations per hour.
+            max_conn:
+              type: integer
+              description: Limits the number of connections per hour.
+        examples:
+          create-small: 
+            summary: Create a small database on E11
+            value:
+              {
+                  "region": 1101,
+                  "max_reads": 100000,
+                  "max_writes": 500,
+                  "max_conn": 100
+              }
+          create-large: 
+            summary: Create a large database on E11
+            value:
+              {
+                  "region": 1101,
+                  "max_reads": 1000000000,
+                  "max_writes": 10000000,
+                  "max_conn": 200
+              }
+
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              database:
+                type: object
+                description: Database object
+                properties:
+                  name:
+                    type: string
+                    description: Name of the new database.
+                  user:
+                    type: string
+                    description: User to access the new database.
+                  password:
+                    type: string
+                    description: Password to access the new database.
+          examples:
+            example-1:
+              summary: Basic information on new database
+              value:
+                {
+                    "database": {
+                        "name": "zrh_cxxxxx_123456",
+                        "user": "zrh_cxxxxx_123456",
+                        "pasword": "zrh_d5fef23ea75cf403195753f100a86d27f6..."
+                    }
+                }
+                
+      description: OK
+    '400':
+      $ref: ../../models/4xx-responses/400.yaml
+    '401':
+      $ref: ../../models/4xx-responses/401.yaml
+    '402':
+      $ref: ../../models/4xx-responses/402.yaml
+    '403':
+      $ref: ../../models/4xx-responses/403.yaml
+    '404':
+      $ref: ../../models/4xx-responses/404.yaml
+    '405':
+      $ref: ../../models/4xx-responses/405.yaml
+
+  x-operation-settings:
+    CollectParameters: false
+    AllowDynamicQueryParameters: false
+    AllowDynamicFormParameters: false
+    IsMultiContentStreaming: false
+  security:
+    - bearer: []
