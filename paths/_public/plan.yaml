@@ -7,8 +7,6 @@ get:
     
     Every server operates within a virtual environment powered by the KVM hypervisor. This strategic implementation guarantees the precise allocation of hardware resources, ensuring optimal performance without any interference from neighboring servers across all available plans. This means that you can count on a consistently smooth and reliable computing experience, regardless of the specific plan you choose within the 99Stack Cloud infrastructure.
     
-    Plan IDs are composed of three parts. The first digit denotes the legal jurisdiction and corresponding data centers. The second digit specifies the plan's optimization focus. The last two digits represent the unique Plan ID for sorting by size or resources. This format ensures efficient categorization and selection of plans.
-    
   operationId: plans
   parameters: 
     - in: query
@@ -31,24 +29,33 @@ get:
               name:
                 type: string
                 description: Display name for this plan
-              windows:
-                type: boolean
-                description: Indicates if this plan can run Windows server
+              type:
+                type: string
+                description: Describes what the plan is optimized for in terms of hardware resources
               cpu:
                 type: integer
-                description: Number of CPU cores on this plan
+                description: Number of vCPU cores on this plan
               ram:
                 type: integer
-                description: Amount of RAM on this plan in megabytes
+                description: Amount of RAM memory on this plan in megabytes
               disk:
                 type: integer
                 description: Amount of disk space on this plan in gigabytes
+              gpu_type:
+                type: string
+                description: GPU model name (only applies to GPU servers, will be `empty` otherwise)
+              gpu_vram_gb:
+                type: integer
+                description: GPU memory (only applies to GPU servers, will be `0` otherwise)
               bandwidth:
                 type: integer
                 description: Bandwidth limit in terabytes for this plan, bandwidth usage up to this limit is free of charge. Zero means that there is no bandwidth limit or additional fees 
+              regions:
+                type: array
+                description: List of regions were this plan is available
               price_per_hour:
                 type: number
-                description: The price of this plan per hour (reduced to 16 decimals)
+                description: The price of this plan per hour (reduced to 8 decimals)
               price_per_month:
                 type: number
                 description: The estimated price of this plan per month (hourly price multiplied by 730 hours). 
@@ -57,1038 +64,110 @@ get:
               summary: Plans available in a G1 data center
               value:
                 plans:
-                  '1101':
-                    uuid: 3230313a-3433-4937-b465-643734303636
-                    name: gen1-standard-1
-                    windows: false
+                  - uuid: 27dd1cca-12c0-48d4-88e7-16b51abbc263
+                    name: G1-standard-small-1m-1c
+                    type: G1-standard-small
                     cpu: 1
                     ram: 1024
                     disk: 25
+                    gpu_type: ''
+                    gpu_vram_gb: 0
                     bandwidth: 1
-                    price_per_hour: 0.0136986301369863
-                    price_per_month: 10
-                  '1102':
-                    uuid: 3230323a-6331-4765-a461-616538366534
-                    name: gen1-standard-2
-                    windows: false
+                    regions:
+                      - 101
+                      - 102
+                    price_per_hour: 0.0109589
+                    price_per_month: 8
+                  - uuid: 935ef4c6-79f2-4a0e-9c39-c784a0ffcec4
+                    name: G1-standard-small-2m-1c
+                    type: G1-standard-small
                     cpu: 1
                     ram: 2048
                     disk: 55
+                    gpu_type: ''
+                    gpu_vram_gb: 0
                     bandwidth: 2
-                    price_per_hour: 0.0273972602739726
-                    price_per_month: 20
-                  '1103':
-                    uuid: 3230333a-3436-4231-a331-643535666134
-                    name: gen1-standard-3
-                    windows: false
-                    cpu: 2
-                    ram: 4096
-                    disk: 80
-                    bandwidth: 3
-                    price_per_hour: 0.0547945205479452
-                    price_per_month: 40
-                  '1104':
-                    uuid: 3230343a-6663-4536-a462-633664343635
-                    name: gen1-standard-4
-                    windows: false
-                    cpu: 4
-                    ram: 8192
-                    disk: 160
-                    bandwidth: 4
-                    price_per_hour: 0.1095890410958904
-                    price_per_month: 80
-                  '1105':
-                    uuid: 3230353a-6638-4830-b961-666634643639
-                    name: gen1-standard-5
-                    windows: false
-                    cpu: 6
-                    ram: 16384
-                    disk: 320
-                    bandwidth: 5
-                    price_per_hour: 0.2191780821917808
-                    price_per_month: 160
-                  '1106':
-                    uuid: 3230363a-3563-4634-a532-366264336438
-                    name: gen1-standard-6
-                    windows: false
-                    cpu: 8
-                    ram: 32768
-                    disk: 640
-                    bandwidth: 6
-                    price_per_hour: 0.4383561643835616
-                    price_per_month: 320
-                  '1107':
-                    uuid: 3230373a-3936-4830-b736-626532653338
-                    name: gen1-standard-7
-                    windows: false
-                    cpu: 16
-                    ram: 65536
-                    disk: 1280
-                    bandwidth: 10
-                    price_per_hour: 0.8767123287671232
-                    price_per_month: 640
-                  '1401':
-                    uuid: 66353263-6462-4336-b466-623561333235
-                    name: gen1-compute-1
-                    windows: false
-                    cpu: 1
-                    ram: 1024
-                    disk: 32
-                    bandwidth: 1
-                    price_per_hour: 0.0164383561643836
-                    price_per_month: 12
-                  '1402':
-                    uuid: 38653835-3530-4531-a633-643631346236
-                    name: gen1-compute-2
-                    windows: false
-                    cpu: 1
-                    ram: 2048
-                    disk: 64
-                    bandwidth: 2
-                    price_per_hour: 0.0328767123287671
-                    price_per_month: 24
-                  '1403':
-                    uuid: 65613233-3234-4534-b762-636464626133
-                    name: gen1-compute-3
-                    windows: false
-                    cpu: 2
-                    ram: 4096
-                    disk: 128
-                    bandwidth: 3
-                    price_per_hour: 0.0657534246575342
-                    price_per_month: 48
-                  '1404':
-                    uuid: 33383937-3835-4364-b961-653466396161
-                    name: gen1-compute-4
-                    windows: false
-                    cpu: 3
-                    ram: 8192
-                    disk: 256
-                    bandwidth: 4
-                    price_per_hour: 0.13150684931506848
-                    price_per_month: 96
+                    regions:
+                      - 101
+                      - 102
+                    price_per_hour: 0.02191781
+                    price_per_month: 16
                 meta:
-                  total: 11
+                  total: 60
+                  cached: true,
+                  timestamp: 2024-04-27T17:05:54Z
             region-201:
               summary: Plans available in a G2 data center
               value:
                 plans:
-                  '2101':
-                    uuid: 63303439-6435-4262-b165-393363346463
-                    name: gen2-standard-1
-                    windows: false
+                  - uuid: 27dd1cca-12c0-48d4-88e7-16b51abbc263
+                    name: G2-standard-small-1m-1c
+                    type: G2-standard-small
+                    cpu: 1
+                    ram: 512
+                    disk: 10
+                    gpu_type: ''
+                    gpu_vram_gb: 0
+                    bandwidth: 1
+                    regions:
+                      - 201
+                      - 205
+                    price_per_hour: 0.00684932
+                    price_per_month: 5
+                  - uuid: 935ef4c6-79f2-4a0e-9c39-c784a0ffcec4
+                    name: G2-standard-small-2m-1c
+                    type: G2-standard-small
                     cpu: 1
                     ram: 1024
                     disk: 25
-                    bandwidth: 0
-                    price_per_hour: 0.0136986301369863
-                    price_per_month: 10
-                  '2102':
-                    uuid: 62316361-3766-4336-a335-316631666335
-                    name: gen2-standard-2
-                    windows: false
-                    cpu: 1
-                    ram: 2048
-                    disk: 50
-                    bandwidth: 0
-                    price_per_hour: 0.0273972602739726
-                    price_per_month: 20
-                  '2103':
-                    uuid: 37363735-6136-4431-a662-386338643838
-                    name: gen2-standard-3
-                    windows: false
-                    cpu: 1
-                    ram: 3072
-                    disk: 60
-                    bandwidth: 0
-                    price_per_hour: 0.0410958904109589
-                    price_per_month: 30
-                  '2104':
-                    uuid: 64336165-3564-4135-a335-623232646137
-                    name: gen2-standard-4
-                    windows: false
-                    cpu: 2
-                    ram: 2048
-                    disk: 60
-                    bandwidth: 0
-                    price_per_hour: 0.0410958904109589
-                    price_per_month: 30
-                  '2105':
-                    uuid: 31363562-3737-4964-a235-383365666134
-                    name: gen2-standard-5
-                    windows: false
-                    cpu: 3
-                    ram: 1024
-                    disk: 60
-                    bandwidth: 0
-                    price_per_hour: 0.0410958904109589
-                    price_per_month: 30
-                  '2106':
-                    uuid: 35356263-3438-4563-b036-653064363133
-                    name: gen2-standard-6
-                    windows: false
-                    cpu: 2
-                    ram: 4096
-                    disk: 80
-                    bandwidth: 0
-                    price_per_hour: 0.0547945205479452
-                    price_per_month: 40
-                  '2107':
-                    uuid: 63343737-6135-4237-a666-386531373436
-                    name: gen2-standard-8
-                    windows: false
-                    cpu: 4
-                    ram: 8192
-                    disk: 160
-                    bandwidth: 0
-                    price_per_hour: 0.1095890410958904
-                    price_per_month: 80
-                  '2108':
-                    uuid: 63626365-3362-4462-b664-373933316166
-                    name: gen2-standard-9
-                    windows: false
-                    cpu: 6
-                    ram: 16384
-                    disk: 320
-                    bandwidth: 0
-                    price_per_hour: 0.2191780821917808
-                    price_per_month: 160
-                  '2109':
-                    uuid: 30386361-3035-4333-b464-666639316133
-                    name: gen2-standard-10
-                    windows: false
-                    cpu: 8
-                    ram: 32768
-                    disk: 640
-                    bandwidth: 0
-                    price_per_hour: 0.4383561643835616
-                    price_per_month: 320
-                  '2110':
-                    uuid: 61656232-3231-4533-b039-316133393863
-                    name: gen2-standard-7
-                    windows: false
-                    cpu: 12
-                    ram: 49152
-                    disk: 960
-                    bandwidth: 0
-                    price_per_hour: 0.6575342465753424
-                    price_per_month: 480
-                  '2111':
-                    uuid: 65363630-3136-4964-b137-363735313534
-                    name: gen2-performance-1
-                    windows: false
-                    cpu: 16
-                    ram: 65536
-                    disk: 1280
-                    bandwidth: 0
-                    price_per_hour: 0.8767123287671232
-                    price_per_month: 640
-                  '2112':
-                    uuid: 66336138-3732-4033-b537-626236363339
-                    name: gen2-performance-2
-                    windows: false
-                    cpu: 20
-                    ram: 98304
-                    disk: 1920
-                    bandwidth: 0
-                    price_per_hour: 1.3150684931506849
-                    price_per_month: 960
-                  '2113':
-                    uuid: 36353730-3163-4535-a163-386162336362
-                    name: gen2-performance-3
-                    windows: false
-                    cpu: 24
-                    ram: 131072
-                    disk: 2560
-                    bandwidth: 0
-                    price_per_hour: 1.7534246575342465
-                    price_per_month: 1280
-                  '2114':
-                    uuid: 35383438-6564-4963-b330-663431363361
-                    name: gen2-performance-5
-                    windows: false
-                    cpu: 32
-                    ram: 196608
-                    disk: 3840
-                    bandwidth: 0
-                    price_per_hour: 2.6301369863013697
-                    price_per_month: 1920
-                  '2201':
-                    uuid: 30313334-3132-4366-b434-363331386637
-                    name: gen2-compute-1
-                    windows: false
-                    cpu: 2
-                    ram: 4096
-                    disk: 25
-                    bandwidth: 0
-                    price_per_hour: 0.1095890410958904
-                    price_per_month: 80
-                  '2202':
-                    uuid: 32663631-3161-4066-b736-623366653965
-                    name: gen2-compute-2
-                    windows: false
-                    cpu: 4
-                    ram: 8192
-                    disk: 50
-                    bandwidth: 0
-                    price_per_hour: 0.2191780821917808
-                    price_per_month: 160
-                  '2203':
-                    uuid: 32313566-6438-4437-a239-336533623662
-                    name: gen2-compute-3
-                    windows: false
-                    cpu: 8
-                    ram: 16384
-                    disk: 100
-                    bandwidth: 0
-                    price_per_hour: 0.4383561643835616
-                    price_per_month: 320
-                  '2204':
-                    uuid: 39626139-3639-4634-a539-343337353233
-                    name: gen2-compute-4
-                    windows: false
-                    cpu: 16
-                    ram: 32768
-                    disk: 200
-                    bandwidth: 0
-                    price_per_hour: 0.8767123287671232
-                    price_per_month: 640
-                  '2205':
-                    uuid: 64396533-3766-4463-a437-633765393233
-                    name: gen2-compute-5
-                    windows: false
-                    cpu: 32
-                    ram: 65536
-                    disk: 400
-                    bandwidth: 0
-                    price_per_hour: 1.7534246575342465
-                    price_per_month: 1280
-                  '2301':
-                    uuid: 38303731-6637-4131-b561-336665613161
-                    name: gen2-memory-1
-                    windows: false
-                    cpu: 1
-                    ram: 8192
-                    disk: 40
-                    bandwidth: 0
-                    price_per_hour: 0.1095890410958904
-                    price_per_month: 80
-                  '2302':
-                    uuid: 33656237-6662-4261-a633-366662623631
-                    name: gen2-memory-2
-                    windows: false
-                    cpu: 2
-                    ram: 16384
-                    disk: 60
-                    bandwidth: 0
-                    price_per_hour: 0.2054794520547945
-                    price_per_month: 150
-                  '2303':
-                    uuid: 64376566-3638-4539-b465-666536653861
-                    name: false
-                    windows: false
-                    cpu: 2
-                    ram: 16384
-                    disk: 50
-                    bandwidth: 0
-                    price_per_hour: 0.2465753424657534
-                    price_per_month: 180
-                  '2304':
-                    uuid: 37643665-3961-4630-b634-666530373331
-                    name: gen2-memory-3
-                    windows: false
-                    cpu: 4
-                    ram: 32768
-                    disk: 90
-                    bandwidth: 0
-                    price_per_hour: 0.410958904109589
-                    price_per_month: 300
-                  '2305':
-                    uuid: 61643936-3461-4133-b434-623734343462
-                    name: false
-                    windows: false
-                    cpu: 4
-                    ram: 32768
-                    disk: 100
-                    bandwidth: 0
-                    price_per_hour: 0.4931506849315068
-                    price_per_month: 360
-                  '2306':
-                    uuid: 33336361-6635-4564-b563-313161316333
-                    name: gen2-memory-4
-                    windows: false
-                    cpu: 8
-                    ram: 65536
-                    disk: 200
-                    bandwidth: 0
-                    price_per_hour: 0.821917808219178
-                    price_per_month: 600
-                  '2307':
-                    uuid: 38353866-6363-4639-b733-343836346637
-                    name: false
-                    windows: false
-                    cpu: 8
-                    ram: 65536
-                    disk: 200
-                    bandwidth: 0
-                    price_per_hour: 0.9863013698630136
-                    price_per_month: 720
-                  '2308':
-                    uuid: 61316236-6664-4064-b233-613761363263
-                    name: gen2-memory-5
-                    windows: false
-                    cpu: 16
-                    ram: 131072
-                    disk: 340
-                    bandwidth: 0
-                    price_per_hour: 1.643835616438356
-                    price_per_month: 1200
-                  '2309':
-                    uuid: 38363730-3535-4638-a435-363439363430
-                    name: false
-                    windows: false
-                    cpu: 16
-                    ram: 131072
-                    disk: 400
-                    bandwidth: 0
-                    price_per_hour: 1.9726027397260273
-                    price_per_month: 1440
-                  '2310':
-                    uuid: 37393961-6665-4161-a136-653939313063
-                    name: false
-                    windows: false
-                    cpu: 24
-                    ram: 196608
-                    disk: 600
-                    bandwidth: 0
-                    price_per_hour: 2.958904109589041
-                    price_per_month: 2160
-                  '2311':
-                    uuid: 66623935-3266-4930-a430-353961663564
-                    name: gen2-memory-6
-                    windows: false
-                    cpu: 32
-                    ram: 229376
-                    disk: 500
-                    bandwidth: 0
-                    price_per_hour: 3.0136986301369864
-                    price_per_month: 2200
-                  '2401':
-                    uuid: 33613362-3737-4236-b066-363935326131
-                    name: gen2-general-purpose-1
-                    windows: false
-                    cpu: 2
-                    ram: 8192
-                    disk: 25
-                    bandwidth: 0
-                    price_per_hour: 0.1643835616438356
-                    price_per_month: 120
-                  '2402':
-                    uuid: 38303631-3563-4162-b364-303265346335
-                    name: gen2-general-purpose-2
-                    windows: false
-                    cpu: 4
-                    ram: 16384
-                    disk: 50
-                    bandwidth: 0
-                    price_per_hour: 0.3287671232876712
-                    price_per_month: 240
-                  '2403':
-                    uuid: 37653063-3864-4735-b464-646233343662
-                    name: gen2-general-purpose-3
-                    windows: false
-                    cpu: 8
-                    ram: 32768
-                    disk: 100
-                    bandwidth: 0
-                    price_per_hour: 0.6575342465753424
-                    price_per_month: 480
-                  '2404':
-                    uuid: 32346466-3732-4637-b761-613761613566
-                    name: gen2-general-purpose-4
-                    windows: false
-                    cpu: 16
-                    ram: 65536
-                    disk: 200
-                    bandwidth: 0
-                    price_per_hour: 1.3150684931506849
-                    price_per_month: 960
-                  '2405':
-                    uuid: 62663564-3435-4761-a663-663038323561
-                    name: false
-                    windows: false
-                    cpu: 32
-                    ram: 131072
-                    disk: 400
-                    bandwidth: 0
-                    price_per_hour: 2.6301369863013697
-                    price_per_month: 1920
-                  '2406':
-                    uuid: 31303136-3037-4238-b436-363139633636
-                    name: false
-                    windows: false
-                    cpu: 40
-                    ram: 163840
-                    disk: 500
-                    bandwidth: 0
-                    price_per_hour: 3.287671232876712
-                    price_per_month: 2400
+                    gpu_type: ''
+                    gpu_vram_gb: 0
+                    bandwidth: 2
+                    regions:
+                      - 201
+                      - 204
+                    price_per_hour: 0.0109589
+                    price_per_month: 8
                 meta:
-                  total: 36
+                  total: 60
+                  cached: true,
+                  timestamp: 2024-04-27T17:05:54Z
             region-301:
               summary: Plans available in a G3 data center
               value:
                 plans:
-                  '3101':
-                    uuid: 34616262-3634-4465-a636-613066363461
-                    name: optimized-1
-                    type: optimized
+                  - uuid: af862fb1-107d-491a-aeca-613f614ccc1c
+                    name: G3-standard-small-1m-1c
+                    type: G3-standard-small
                     cpu: 1
                     ram: 1024
                     disk: 25
+                    gpu_type: ''
+                    gpu_vram_gb: 0
                     bandwidth: 1
                     regions:
-                    - 301
-                    - 302
-                    - 303
-                    - 304
-                    - 305
-                    - 306
-                    - 307
-                    - 308
-                    - 309
-                    - 310
-                    generation: 3
-                    price_per_hour: 0.01369863
-                    price_per_month: 10
-                  '3111':
-                    uuid: 61663836-3266-4231-b130-376435393161
-                    name: standard-1
-                    type: standard
+                      - 301
+                      - 302
+                    price_per_hour: 0.00958904
+                    price_per_month: 7
+                  - uuid: 4a593523-7bcb-464f-8009-1a26fdfd6ac5
+                    name: G3-standard-small-2m-1c
+                    type: G3-standard-small
                     cpu: 1
                     ram: 2048
-                    disk: 50
+                    disk: 55
+                    gpu_type: ''
+                    gpu_vram_gb: 0
                     bandwidth: 2
                     regions:
-                    - 301
-                    - 302
-                    - 303
-                    - 304
-                    - 305
-                    - 306
-                    - 307
-                    - 308
-                    - 309
-                    - 310
-                    generation: 3
-                    price_per_hour: 0.02739726
-                    price_per_month: 20
-                  '3112':
-                    uuid: 34613539-3335-4233-b762-636235363466
-                    name: standard-2
-                    type: standard
-                    cpu: 2
-                    ram: 4096
-                    disk: 80
-                    bandwidth: 4
-                    regions:
-                    - 301
-                    - 302
-                    - 303
-                    - 304
-                    - 305
-                    - 306
-                    - 307
-                    - 308
-                    - 309
-                    - 310
-                    generation: 3
-                    price_per_hour: 0.04931507
-                    price_per_month: 36
-                  '3113':
-                    uuid: 34313335-3635-4632-b665-313265656231
-                    name: standard-3
-                    type: standard
-                    cpu: 4
-                    ram: 8192
-                    disk: 160
-                    bandwidth: 5
-                    regions:
-                    - 301
-                    - 302
-                    - 303
-                    - 304
-                    - 305
-                    - 306
-                    - 307
-                    - 308
-                    - 309
-                    - 310
-                    generation: 3
-                    price_per_hour: 0.09863014
-                    price_per_month: 72
-                  '3114':
-                    uuid: 64626332-3238-4261-b132-356561383635
-                    name: standard-4
-                    type: standard
-                    cpu: 6
-                    ram: 16384
-                    disk: 320
-                    bandwidth: 8
-                    regions:
-                    - 301
-                    - 302
-                    - 303
-                    - 304
-                    - 305
-                    - 306
-                    - 307
-                    - 308
-                    - 309
-                    - 310
-                    generation: 3
-                    price_per_hour: 0.19726027
-                    price_per_month: 144
-                  '3115':
-                    uuid: 31313237-3731-4333-b564-636566323261
-                    name: standard-5
-                    type: standard
-                    cpu: 8
-                    ram: 32768
-                    disk: 640
-                    bandwidth: 16
-                    regions:
-                    - 301
-                    - 302
-                    - 303
-                    - 304
-                    - 305
-                    - 306
-                    - 307
-                    - 308
-                    - 309
-                    - 310
-                    generation: 3
-                    price_per_hour: 0.35068493
-                    price_per_month: 256
-                  '3116':
-                    uuid: 31613763-3561-4234-a532-303763353234
-                    name: standard-6
-                    type: standard
-                    cpu: 16
-                    ram: 65536
-                    disk: 1280
-                    bandwidth: 20
-                    regions:
-                    - 301
-                    - 302
-                    - 303
-                    - 304
-                    - 305
-                    - 306
-                    - 307
-                    - 308
-                    - 309
-                    - 310
-                    generation: 3
-                    price_per_hour: 0.70136986
-                    price_per_month: 512
-                  '3117':
-                    uuid: 30326335-6638-4132-b138-353363396337
-                    name: standard-7
-                    type: standard
-                    cpu: 20
-                    ram: 98304
-                    disk: 1920
-                    bandwidth: 20
-                    regions:
-                    - 301
-                    - 302
-                    - 303
-                    - 304
-                    - 305
-                    - 306
-                    - 307
-                    - 308
-                    - 309
-                    - 310
-                    generation: 3
-                    price_per_hour: 1.05205479
-                    price_per_month: 768
-                  '3118':
-                    uuid: 64616134-3639-4439-b639-346638323633
-                    name: standard-8
-                    type: standard
-                    cpu: 24
-                    ram: 131072
-                    disk: 2560
-                    bandwidth: 20
-                    regions:
-                    - 301
-                    - 302
-                    - 303
-                    - 304
-                    - 305
-                    - 306
-                    - 307
-                    - 308
-                    - 309
-                    - 310
-                    generation: 3
-                    price_per_hour: 1.40273973
-                    price_per_month: 1024
-                  '3119':
-                    uuid: 30343965-3566-4162-a437-313761613230
-                    name: standard-9
-                    type: standard
-                    cpu: 32
-                    ram: 196608
-                    disk: 3840
-                    bandwidth: 20
-                    regions:
-                    - 301
-                    - 302
-                    - 303
-                    - 304
-                    - 305
-                    - 306
-                    - 307
-                    - 308
-                    - 309
-                    - 310
-                    generation: 3
-                    price_per_hour: 2.10410959
-                    price_per_month: 1536
-                  '3201':
-                    uuid: 30663165-3130-4663-b533-613635636331
-                    name: dedicated-1
-                    type: dedicated
-                    cpu: 2
-                    ram: 4096
-                    disk: 80
-                    bandwidth: 4
-                    regions:
-                    - 301
-                    - 302
-                    - 303
-                    - 304
-                    - 305
-                    - 306
-                    - 307
-                    - 308
-                    - 309
-                    - 310
-                    generation: 3
-                    price_per_hour: 0.0739726
-                    price_per_month: 54
-                  '3202':
-                    uuid: 37646365-6163-4433-b634-653432656430
-                    name: dedicated-2
-                    type: dedicated
-                    cpu: 4
-                    ram: 8192
-                    disk: 160
-                    bandwidth: 5
-                    regions:
-                    - 301
-                    - 302
-                    - 303
-                    - 304
-                    - 305
-                    - 306
-                    - 307
-                    - 308
-                    - 309
-                    - 310
-                    generation: 3
-                    price_per_hour: 0.14794521
-                    price_per_month: 108
-                  '3203':
-                    uuid: 39363036-6666-4739-b633-373432333538
-                    name: dedicated-3
-                    type: dedicated
-                    cpu: 8
-                    ram: 16384
-                    disk: 320
-                    bandwidth: 6
-                    regions:
-                    - 301
-                    - 302
-                    - 303
-                    - 304
-                    - 305
-                    - 306
-                    - 307
-                    - 308
-                    - 309
-                    - 310
-                    generation: 3
-                    price_per_hour: 0.2630137
-                    price_per_month: 192
-                  '3204':
-                    uuid: 65663534-6364-4532-a563-336662633963
-                    name: dedicated-4
-                    type: dedicated
-                    cpu: 16
-                    ram: 32768
-                    disk: 640
-                    bandwidth: 7
-                    regions:
-                    - 301
-                    - 302
-                    - 303
-                    - 304
-                    - 305
-                    - 306
-                    - 307
-                    - 308
-                    - 309
-                    - 310
-                    generation: 3
-                    price_per_hour: 0.5260274
-                    price_per_month: 384
-                  '3205':
-                    uuid: 31656238-3362-4338-b462-646365383930
-                    name: dedicated-5
-                    type: dedicated
-                    cpu: 32
-                    ram: 65536
-                    disk: 1280
-                    bandwidth: 8
-                    regions:
-                    - 301
-                    - 302
-                    - 303
-                    - 304
-                    - 305
-                    - 306
-                    - 307
-                    - 308
-                    - 309
-                    - 310
-                    generation: 3
-                    price_per_hour: 1.05205479
-                    price_per_month: 768
-                  '3206':
-                    uuid: 61326563-6133-4534-b666-336461306439
-                    name: dedicated-6
-                    type: dedicated
-                    cpu: 48
-                    ram: 98304
-                    disk: 1920
-                    bandwidth: 9
-                    regions:
-                    - 301
-                    - 302
-                    - 303
-                    - 304
-                    - 305
-                    - 306
-                    - 307
-                    - 308
-                    - 309
-                    - 310
-                    generation: 3
-                    price_per_hour: 1.57808219
-                    price_per_month: 1152
-                  '3301':
-                    uuid: 30626539-6634-4531-b734-376531386434
-                    name: memory-1
-                    type: memory
-                    cpu: 1
-                    ram: 24576
-                    disk: 20
-                    bandwidth: 5
-                    regions:
-                    - 301
-                    - 302
-                    - 303
-                    - 304
-                    - 305
-                    - 306
-                    - 307
-                    - 308
-                    - 309
-                    - 310
-                    generation: 3
-                    price_per_hour: 0.14794521
-                    price_per_month: 108
-                  '3302':
-                    uuid: 31663462-3131-4237-a434-656663343734
-                    name: memory-2
-                    type: memory
-                    cpu: 2
-                    ram: 49152
-                    disk: 40
-                    bandwidth: 6
-                    regions:
-                    - 301
-                    - 302
-                    - 303
-                    - 304
-                    - 305
-                    - 306
-                    - 307
-                    - 308
-                    - 309
-                    - 310
-                    generation: 3
-                    price_per_hour: 0.2630137
-                    price_per_month: 192
-                  '3303':
-                    uuid: 61656637-3466-4462-b262-623566336331
-                    name: memory-3
-                    type: memory
-                    cpu: 4
-                    ram: 92160
-                    disk: 90
-                    bandwidth: 7
-                    regions:
-                    - 301
-                    - 302
-                    - 303
-                    - 304
-                    - 305
-                    - 306
-                    - 307
-                    - 308
-                    - 309
-                    - 310
-                    generation: 3
-                    price_per_hour: 0.5260274
-                    price_per_month: 384
-                  '3304':
-                    uuid: 65356432-3664-4633-a433-343730346666
-                    name: memory-4
-                    type: memory
-                    cpu: 8
-                    ram: 153600
-                    disk: 200
-                    bandwidth: 8
-                    regions:
-                    - 301
-                    - 302
-                    - 303
-                    - 304
-                    - 305
-                    - 306
-                    - 307
-                    - 308
-                    - 309
-                    - 310
-                    generation: 3
-                    price_per_hour: 1.05205479
-                    price_per_month: 768
-                  '3305':
-                    uuid: 36393630-3564-4430-b765-333866363065
-                    name: memory-5
-                    type: memory
-                    cpu: 16
-                    ram: 307200
-                    disk: 340
-                    bandwidth: 9
-                    regions:
-                    - 301
-                    - 302
-                    - 303
-                    - 304
-                    - 305
-                    - 306
-                    - 307
-                    - 308
-                    - 309
-                    - 310
-                    generation: 3
-                    price_per_hour: 2.10410959
-                    price_per_month: 1536
-                  '3401':
-                    uuid: 63393830-6362-4636-b261-356661366265
-                    name: gpu-1
-                    type: gpu
-                    cpu: 8
-                    ram: 32768
-                    disk: 640
-                    bandwidth: 16
-                    regions:
-                    - 301
-                    - 302
-                    - 303
-                    - 304
-                    - 305
-                    - 306
-                    - 307
-                    - 308
-                    - 309
-                    - 310
-                    generation: 3
-                    price_per_hour: 2.19178082
-                    price_per_month: 1600
-                  '3402':
-                    uuid: 65643432-6135-4633-b531-616262393936
-                    name: gpu-2
-                    type: gpu
-                    cpu: 16
-                    ram: 65536
-                    disk: 1280
-                    bandwidth: 20
-                    regions:
-                    - 301
-                    - 302
-                    - 303
-                    - 304
-                    - 305
-                    - 306
-                    - 307
-                    - 308
-                    - 309
-                    - 310
-                    generation: 3
-                    price_per_hour: 3.83561644
-                    price_per_month: 2800
-                  '3403':
-                    uuid: 65386263-3965-4335-b138-373561353266
-                    name: gpu-3
-                    type: gpu
-                    cpu: 20
-                    ram: 98304
-                    disk: 1920
-                    bandwidth: 20
-                    regions:
-                    - 301
-                    - 302
-                    - 303
-                    - 304
-                    - 305
-                    - 306
-                    - 307
-                    - 308
-                    - 309
-                    - 310
-                    generation: 3
-                    price_per_hour: 4.93150685
-                    price_per_month: 3600
-                  '3404':
-                    uuid: 33343132-6261-4434-b963-326336663262
-                    name: gpu-4
-                    type: gpu
-                    cpu: 24
-                    ram: 131072
-                    disk: 2560
-                    bandwidth: 20
-                    regions:
-                    - 301
-                    - 302
-                    - 303
-                    - 304
-                    - 305
-                    - 306
-                    - 307
-                    - 308
-                    - 309
-                    - 310
-                    generation: 3
-                    price_per_hour: 6.02739726
-                    price_per_month: 4400
+                      - 301
+                      - 302
+                    price_per_hour: 0.01917808
+                    price_per_month: 14
+                meta:
+                  total: 60
+                  cached: true,
+                  timestamp: 2024-04-27T17:05:54Z
     '400':
       $ref: ../../models/4xx-responses/400.yaml
     '405':

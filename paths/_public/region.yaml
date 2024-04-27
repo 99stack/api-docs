@@ -3,10 +3,10 @@ get:
     - Public
   summary: Regions
   description: |-
-    Region IDs follow a specific structure, divided into two distinct sections. The final two digits signify the data center ID, falling within the range of `1-99`. Meanwhile, the initial one or two digits denote the legal jurisdiction, functioning to cluster data centers based on regulatory allowances and restrictions within that jurisdiction. This systematic approach ensures compliance and efficiency in data management across our network of data centers.
-    
+    Region IDs follow a specific structure, divided into two distinct sections. The final two digits signify the data center ID, falling within the range of `01-99`. Meanwhile, the initial one or two digits denote the legal jurisdiction, functioning to cluster data centers based on regulatory allowances and restrictions within that jurisdiction. This systematic approach ensures compliance and efficiency in data management across our network of data centers.
+
     For further insights into legal jurisdictions, especially if you're considering hosting content in a potentially ambiguous legal context, we encourage you to consult our comprehensive [knowledge base](https://support.99stack.com). It provides a wealth of information that can be invaluable in navigating such situations effectively and responsibly.
-    
+
     *Legal jurisdictions, sometimes called 'generations,' should not be confused with the age or quality of the hardware in the data center.*
   operationId: regions
   responses:
@@ -32,9 +32,51 @@ get:
               continent:
                 type: string
                 description: The continent this datacenter is located in
+              datacenter_id:
+                type: number
+                description: >-
+                  Numeric ID for the data center region (use `uuid` in your app 
+                  to ensure consistent function calls as this ID may change).
               features:
                 type: object
                 description: Features available in this region
+                properties:
+                  virtual_private_cloud:
+                    type: boolean
+                    description: Availibility of virtual private networking
+                  ddos_protection:
+                    type: boolean
+                    description: Availibility of on-site DDoS protection
+                  block_storage:
+                    type: boolean
+                    description: Block storage volumes
+                  object_storage:
+                    type: boolean
+                    description: Object storage instances
+                  floating_ip:
+                    type: boolean
+                    description: Additional IP addresses (IPv4 and IPv6)
+                  ipv6:
+                    type: boolean
+                    description: Availibility of IPv6 (true in all regions)
+                  backups:
+                    type: boolean
+                    description: Automated backups on a daily or weekly basis
+                  instances:
+                    type: boolean
+                    description: Availibility of virtual server instances
+                  custom_iso:
+                    type: boolean
+                    description: Custom ISOs can be uploaded and mounted
+                  databases:
+                    type: boolean
+                    description: BETA Shared databases (may be replaced by containers)
+                  smtp:
+                    type: boolean
+                    description: Support for SMTP over port 25
+              ping_ip:
+                type: string
+                description: IP addresses available for ping to test latency
               latitude:
                 type: number
                 description: Latitude (exact location is not revealed)
@@ -51,12 +93,12 @@ get:
               summary: List of all E11 data center regions
               value:
                 regions:
-                  '1101':
-                    uuid: 1f58980d-8337-448b-ac38-97b056d48db0
+                  - uuid: 1f58980d-8337-448b-ac38-97b056d48db0
                     city: Zurich
                     state: Zurich
                     country: Switzerland
                     continent: Europe
+                    datacenter_id: 1101
                     features:
                       virtual_private_cloud: false
                       private_networking: false
@@ -73,14 +115,13 @@ get:
                     latitude: 47.3768866
                     longitude: 8.541694
                     is_public: false
-                    generation: 11
                     operator_id: 71db70e7
-                  '1102':
-                    uuid: 65824b5a-3cfe-49b6-a2a4-b43a1383f5cf
+                  - uuid: 65824b5a-3cfe-49b6-a2a4-b43a1383f5cf
                     city: Perth
                     state: Western Australia
                     country: Australia
                     continent: Australia
+                    datacenter_id: 1102
                     features:
                       virtual_private_cloud: false
                       private_networking: false
@@ -97,343 +138,6 @@ get:
                     latitude: -31.9523123
                     longitude: 115.861309
                     is_public: false
-                    generation: 11
-                    operator_id: 71db70e7
-                  '1103':
-                    uuid: 3e6f30b9-8d23-49f3-aaef-a413a40aef92
-                    city: London
-                    state: England
-                    country: United Kingdom
-                    continent: Europe
-                    features:
-                      virtual_private_cloud: false
-                      private_networking: false
-                      ddos_protection: false
-                      block_storage: false
-                      object_storage: false
-                      floating_ip: false
-                      ipv6: false
-                      backups: false
-                      instances: false
-                      custom_iso: false
-                      smtp: false
-                    ping_ip: ''
-                    latitude: 51.5073509
-                    longitude: -0.1277583
-                    is_public: false
-                    generation: 11
-                    operator_id: 71db70e7
-                  '1104':
-                    uuid: 9a4c1754-c2b7-4355-841c-18457c3d0f08
-                    city: Frankfurt
-                    state: Hessen
-                    country: Germany
-                    continent: Europe
-                    features:
-                      virtual_private_cloud: false
-                      private_networking: false
-                      ddos_protection: false
-                      block_storage: false
-                      object_storage: false
-                      floating_ip: false
-                      ipv6: false
-                      backups: false
-                      instances: false
-                      custom_iso: false
-                      smtp: false
-                    ping_ip: ''
-                    latitude: 50.1109221
-                    longitude: 8.6821267
-                    is_public: false
-                    generation: 11
-                    operator_id: 71db70e7
-                  '1105':
-                    uuid: 6b7eb1c6-299d-461c-9e3c-39e9c088bc70
-                    city: Dublin
-                    state: County Dublin
-                    country: Ireland
-                    continent: Europe
-                    features:
-                      virtual_private_cloud: false
-                      private_networking: false
-                      ddos_protection: false
-                      block_storage: false
-                      object_storage: false
-                      floating_ip: false
-                      ipv6: false
-                      backups: false
-                      instances: false
-                      custom_iso: false
-                      smtp: false
-                    ping_ip: ''
-                    latitude: 53.3498053
-                    longitude: -6.2603097
-                    is_public: false
-                    generation: 11
-                    operator_id: 71db70e7
-                  '1106':
-                    uuid: aa0267a1-fd6f-49af-9eff-da9725f93882
-                    city: Tokyo
-                    state: Tokyo
-                    country: Japan
-                    continent: Asia
-                    features:
-                      virtual_private_cloud: false
-                      private_networking: false
-                      ddos_protection: false
-                      block_storage: false
-                      object_storage: false
-                      floating_ip: false
-                      ipv6: false
-                      backups: false
-                      instances: false
-                      custom_iso: false
-                      smtp: false
-                    ping_ip: ''
-                    latitude: 35.6761919
-                    longitude: 139.6503106
-                    is_public: false
-                    generation: 11
-                    operator_id: 71db70e7
-                  '1107':
-                    uuid: 768afc59-b744-436d-a2f4-82fa2f4001f1
-                    city: Clark
-                    state: Pampanga
-                    country: Philippines
-                    continent: Asia
-                    features:
-                      virtual_private_cloud: false
-                      private_networking: false
-                      ddos_protection: false
-                      block_storage: false
-                      object_storage: false
-                      floating_ip: false
-                      ipv6: false
-                      backups: false
-                      instances: false
-                      custom_iso: false
-                      smtp: false
-                    ping_ip: ''
-                    latitude: 36.6544793
-                    longitude: -95.1553966
-                    is_public: false
-                    generation: 11
-                    operator_id: 71db70e7
-                  '1108':
-                    uuid: 0fc5d8b1-f257-469d-9328-b5ed3704793d
-                    city: Manila
-                    state: Metro Manila
-                    country: Philippines
-                    continent: Asia
-                    features:
-                      virtual_private_cloud: false
-                      private_networking: false
-                      ddos_protection: false
-                      block_storage: false
-                      object_storage: false
-                      floating_ip: false
-                      ipv6: false
-                      backups: false
-                      instances: false
-                      custom_iso: false
-                      smtp: false
-                    ping_ip: ''
-                    latitude: 14.5995124
-                    longitude: 120.9842195
-                    is_public: false
-                    generation: 11
-                    operator_id: 71db70e7
-                  '1109':
-                    uuid: 697f841d-b6e8-4400-bbbb-5529852ee7f0
-                    city: Manila
-                    state: Metro Manila
-                    country: Philippines
-                    continent: Asia
-                    features:
-                      virtual_private_cloud: false
-                      private_networking: false
-                      ddos_protection: false
-                      block_storage: false
-                      object_storage: false
-                      floating_ip: false
-                      ipv6: false
-                      backups: false
-                      instances: false
-                      custom_iso: false
-                      smtp: false
-                    ping_ip: ''
-                    latitude: 14.5995124
-                    longitude: 120.9842195
-                    is_public: false
-                    generation: 11
-                    operator_id: 71db70e7
-                  '1110':
-                    uuid: 7d528cf4-e7c9-4df7-813c-57de50fb2adb
-                    city: Riyadh
-                    state: Riyadh Province
-                    country: Saudi Arabia
-                    continent: Middle east
-                    features:
-                      virtual_private_cloud: false
-                      private_networking: false
-                      ddos_protection: false
-                      block_storage: false
-                      object_storage: false
-                      floating_ip: false
-                      ipv6: false
-                      backups: false
-                      instances: false
-                      custom_iso: false
-                      smtp: false
-                    ping_ip: ''
-                    latitude: 24.7135517
-                    longitude: 46.6752957
-                    is_public: false
-                    generation: 11
-                    operator_id: 71db70e7
-                  '1111':
-                    uuid: ce90314c-9e64-4989-97a3-d4a65db82b4a
-                    city: Boden
-                    state: Norrbotten County
-                    country: Sweden
-                    continent: Europe
-                    features:
-                      virtual_private_cloud: false
-                      private_networking: false
-                      ddos_protection: false
-                      block_storage: false
-                      object_storage: false
-                      floating_ip: false
-                      ipv6: false
-                      backups: false
-                      instances: false
-                      custom_iso: false
-                      smtp: false
-                    ping_ip: ''
-                    latitude: 41.2994055
-                    longitude: -75.7628603
-                    is_public: false
-                    generation: 11
-                    operator_id: 71db70e7
-                  '1112':
-                    uuid: 448d4114-895a-42f1-b004-08c345614af1
-                    city: Geneva
-                    state: Geneva
-                    country: Switzerland
-                    continent: Europe
-                    features:
-                      virtual_private_cloud: false
-                      private_networking: false
-                      ddos_protection: false
-                      block_storage: false
-                      object_storage: false
-                      floating_ip: false
-                      ipv6: false
-                      backups: false
-                      instances: false
-                      custom_iso: false
-                      smtp: false
-                    ping_ip: ''
-                    latitude: 46.2043907
-                    longitude: 6.1431577
-                    is_public: false
-                    generation: 11
-                    operator_id: 71db70e7
-                  '1113':
-                    uuid: 732af70c-b8a6-4107-83f4-318c092c9034
-                    city: Honolulu
-                    state: Hawaii
-                    country: United States
-                    continent: North america
-                    features:
-                      virtual_private_cloud: false
-                      private_networking: false
-                      ddos_protection: false
-                      block_storage: false
-                      object_storage: false
-                      floating_ip: false
-                      ipv6: false
-                      backups: false
-                      instances: false
-                      custom_iso: false
-                      smtp: false
-                    ping_ip: ''
-                    latitude: 21.3069444
-                    longitude: -157.8583333
-                    is_public: false
-                    generation: 11
-                    operator_id: 71db70e7
-                  '1114':
-                    uuid: 2a35a3d0-7f2c-45f3-b2ac-6cc73f6d88a8
-                    city: San Jose
-                    state: California
-                    country: United States
-                    continent: North america
-                    features:
-                      virtual_private_cloud: false
-                      private_networking: false
-                      ddos_protection: false
-                      block_storage: false
-                      object_storage: false
-                      floating_ip: false
-                      ipv6: false
-                      backups: false
-                      instances: false
-                      custom_iso: false
-                      smtp: false
-                    ping_ip: ''
-                    latitude: 37.3382082
-                    longitude: -121.8863286
-                    is_public: false
-                    generation: 11
-                    operator_id: 71db70e7
-                  '1115':
-                    uuid: c351859a-b868-47bb-94b3-6c33a297fdfe
-                    city: Washington DC
-                    state: District of Columbia
-                    country: United States
-                    continent: North america
-                    features:
-                      virtual_private_cloud: false
-                      private_networking: false
-                      ddos_protection: false
-                      block_storage: false
-                      object_storage: false
-                      floating_ip: false
-                      ipv6: false
-                      backups: false
-                      instances: false
-                      custom_iso: false
-                      smtp: false
-                    ping_ip: ''
-                    latitude: 38.9071923
-                    longitude: -77.0368707
-                    is_public: false
-                    generation: 11
-                    operator_id: 71db70e7
-                  '1116':
-                    uuid: 1b163ef0-8f04-48d1-842b-2ce96572c99e
-                    city: Cardiff
-                    state: Wales
-                    country: United Kingdom
-                    continent: Europe
-                    features:
-                      virtual_private_cloud: false
-                      private_networking: false
-                      ddos_protection: false
-                      block_storage: false
-                      object_storage: false
-                      floating_ip: false
-                      ipv6: false
-                      backups: false
-                      instances: false
-                      custom_iso: false
-                      smtp: false
-                    ping_ip: ''
-                    latitude: 51.483707
-                    longitude: -3.1680962
-                    is_public: false
-                    generation: 11
                     operator_id: 71db70e7
                 meta:
                   count:
@@ -455,17 +159,17 @@ get:
                       asia: 5
                   total: 98
                   cached: true
-                  timestamp: '2023-10-19T20:26:51Z'
+                  timestamp: '2024-04-27T20:26:51Z'
             region-101:
               summary: List of all G1 data center regions
               value:
                 regions:
-                  '101':
-                    uuid: 5f9de878-9b28-4d02-9e7b-f3d4f6aa6447
+                  - uuid: 5f9de878-9b28-4d02-9e7b-f3d4f6aa6447
                     city: Amsterdam
                     state: North Holland
                     country: Netherlands
                     continent: Europe
+                    datacenter_id: 101
                     features:
                       virtual_private_cloud: true
                       ddos_protection: true
@@ -476,19 +180,18 @@ get:
                       backups: true
                       instances: true
                       custom_iso: true
+                      databases: false
                       smtp: false
                     ping_ip: 108.61.198.102
                     latitude: 52.3666969
                     longitude: 4.8945398
                     is_public: true
-                    generation: 1
-                    operator_id: 439fc2dc
-                  '102':
-                    uuid: f653dea3-110d-499b-9993-b00eeafdd399
+                  - uuid: f653dea3-110d-499b-9993-b00eeafdd399
                     city: Atlanta
                     state: Georgia
                     country: United States
                     continent: North america
+                    datacenter_id: 102
                     features:
                       virtual_private_cloud: true
                       ddos_protection: true
@@ -499,703 +202,12 @@ get:
                       backups: true
                       instances: true
                       custom_iso: true
+                      databases: false
                       smtp: false
                     ping_ip: 108.61.193.166
                     latitude: 33.7489954
                     longitude: -84.3879824
                     is_public: true
-                    generation: 1
-                    operator_id: 439fc2dc
-                  '103':
-                    uuid: b5589f1b-83f5-4aec-96e4-023acbb9921f
-                    city: Bangalore
-                    state: Karnataka
-                    country: India
-                    continent: Asia
-                    features:
-                      virtual_private_cloud: true
-                      ddos_protection: true
-                      block_storage: true
-                      object_storage: true
-                      floating_ip: true
-                      ipv6: true
-                      backups: true
-                      instances: true
-                      custom_iso: true
-                      smtp: false
-                    ping_ip: 139.84.130.100
-                    latitude: 12.9715987
-                    longitude: 77.5945627
-                    is_public: true
-                    generation: 1
-                    operator_id: 439fc2dc
-                  '104':
-                    uuid: 23f3770b-6441-48d5-89c5-fd6b364972b0
-                    city: Mumbai
-                    state: Maharashtra
-                    country: India
-                    continent: Asia
-                    features:
-                      virtual_private_cloud: true
-                      ddos_protection: true
-                      block_storage: true
-                      object_storage: false
-                      floating_ip: true
-                      ipv6: true
-                      backups: true
-                      instances: true
-                      custom_iso: true
-                      smtp: false
-                    ping_ip: 65.20.66.100
-                    latitude: 19.0759837
-                    longitude: 72.8776559
-                    is_public: true
-                    generation: 1
-                    operator_id: 439fc2dc
-                  '105':
-                    uuid: 7039e7c8-27e3-4b1c-a2f6-5c7144ca8292
-                    city: Paris
-                    state: Île-de-France
-                    country: France
-                    continent: Europe
-                    features:
-                      virtual_private_cloud: true
-                      ddos_protection: true
-                      block_storage: true
-                      object_storage: false
-                      floating_ip: true
-                      ipv6: true
-                      backups: true
-                      instances: true
-                      custom_iso: true
-                      smtp: false
-                    ping_ip: 108.61.209.127
-                    latitude: 48.856614
-                    longitude: 2.3522219
-                    is_public: true
-                    generation: 1
-                    operator_id: 439fc2dc
-                  '106':
-                    uuid: 75e30902-89e2-455d-baec-fe21eabbe80b
-                    city: Delhi NCR
-                    state: Union territory
-                    country: India
-                    continent: Asia
-                    features:
-                      virtual_private_cloud: true
-                      ddos_protection: true
-                      block_storage: true
-                      object_storage: true
-                      floating_ip: true
-                      ipv6: true
-                      backups: true
-                      instances: true
-                      custom_iso: true
-                      smtp: false
-                    ping_ip: 139.84.162.104
-                    latitude: 28.3636
-                    longitude: 77.1348
-                    is_public: true
-                    generation: 1
-                    operator_id: 439fc2dc
-                  '107':
-                    uuid: f6537540-9d73-41f4-9efb-632925e27825
-                    city: Dallas
-                    state: Texas
-                    country: United States
-                    continent: North america
-                    features:
-                      virtual_private_cloud: true
-                      ddos_protection: true
-                      block_storage: true
-                      object_storage: false
-                      floating_ip: true
-                      ipv6: true
-                      backups: true
-                      instances: true
-                      custom_iso: true
-                      smtp: false
-                    ping_ip: 108.61.224.175
-                    latitude: 32.7766642
-                    longitude: -96.7969879
-                    is_public: true
-                    generation: 1
-                    operator_id: 439fc2dc
-                  '108':
-                    uuid: 4a6ebebd-f561-4413-a13f-ecc2d4a285d8
-                    city: New Jersey
-                    state: New Jersey
-                    country: United States
-                    continent: North america
-                    features:
-                      virtual_private_cloud: true
-                      ddos_protection: true
-                      block_storage: true
-                      object_storage: true
-                      floating_ip: true
-                      ipv6: true
-                      backups: true
-                      instances: true
-                      custom_iso: true
-                      smtp: false
-                    ping_ip: 108.61.149.182
-                    latitude: 40.0583238
-                    longitude: -74.4056612
-                    is_public: true
-                    generation: 1
-                    operator_id: 439fc2dc
-                  '109':
-                    uuid: aca621d2-b040-49cd-92f2-356ac3060b00
-                    city: Frankfurt
-                    state: Hessen
-                    country: Germany
-                    continent: Europe
-                    features:
-                      virtual_private_cloud: true
-                      ddos_protection: true
-                      block_storage: true
-                      object_storage: false
-                      floating_ip: true
-                      ipv6: true
-                      backups: true
-                      instances: true
-                      custom_iso: true
-                      smtp: false
-                    ping_ip: 108.61.210.117
-                    latitude: 50.1109221
-                    longitude: 8.6821267
-                    is_public: true
-                    generation: 1
-                    operator_id: 439fc2dc
-                  '110':
-                    uuid: b3562fa4-487c-459d-9e2f-c2d34e379965
-                    city: Honolulu
-                    state: Hawaii
-                    country: United States
-                    continent: North america
-                    features:
-                      virtual_private_cloud: true
-                      ddos_protection: true
-                      block_storage: true
-                      object_storage: false
-                      floating_ip: true
-                      ipv6: true
-                      backups: true
-                      instances: true
-                      custom_iso: true
-                      smtp: false
-                    ping_ip: 208.72.154.76
-                    latitude: 21.3069444
-                    longitude: -157.8583333
-                    is_public: true
-                    generation: 1
-                    operator_id: 439fc2dc
-                  '111':
-                    uuid: 2d949832-040c-458b-a68e-0c6a64ef2b4f
-                    city: Seoul
-                    state: Seoul
-                    country: South Korea
-                    continent: Asia
-                    features:
-                      virtual_private_cloud: true
-                      ddos_protection: true
-                      block_storage: true
-                      object_storage: false
-                      floating_ip: true
-                      ipv6: true
-                      backups: true
-                      instances: true
-                      custom_iso: true
-                      smtp: false
-                    ping_ip: 141.164.34.61
-                    latitude: 37.566535
-                    longitude: 126.9779692
-                    is_public: true
-                    generation: 1
-                    operator_id: 439fc2dc
-                  '112':
-                    uuid: b39efe2a-ba21-48d7-871f-2c01a8c7f55a
-                    city: Toronto
-                    state: Ontario
-                    country: Canada
-                    continent: North america
-                    features:
-                      virtual_private_cloud: true
-                      ddos_protection: true
-                      block_storage: true
-                      object_storage: false
-                      floating_ip: true
-                      ipv6: true
-                      backups: true
-                      instances: true
-                      custom_iso: true
-                      smtp: false
-                    ping_ip: 149.248.50.81
-                    latitude: 43.653226
-                    longitude: -79.3831843
-                    is_public: true
-                    generation: 1
-                    operator_id: 439fc2dc
-                  '113':
-                    uuid: b11e2330-3e7d-4bc6-9ecf-65d611409528
-                    city: Los Angeles
-                    state: California
-                    country: United States
-                    continent: North america
-                    features:
-                      virtual_private_cloud: true
-                      ddos_protection: true
-                      block_storage: true
-                      object_storage: false
-                      floating_ip: true
-                      ipv6: true
-                      backups: true
-                      instances: true
-                      custom_iso: true
-                      smtp: false
-                    ping_ip: 108.61.219.200
-                    latitude: 34.0522342
-                    longitude: -118.2436849
-                    is_public: true
-                    generation: 1
-                    operator_id: 439fc2dc
-                  '114':
-                    uuid: feaf026c-690f-4bfd-aee6-8b5165381820
-                    city: London
-                    state: England
-                    country: United Kingdom
-                    continent: Europe
-                    features:
-                      virtual_private_cloud: true
-                      ddos_protection: true
-                      block_storage: true
-                      object_storage: false
-                      floating_ip: true
-                      ipv6: true
-                      backups: true
-                      instances: true
-                      custom_iso: true
-                      smtp: false
-                    ping_ip: 108.61.196.101
-                    latitude: 51.5073509
-                    longitude: -0.1277583
-                    is_public: true
-                    generation: 1
-                    operator_id: 439fc2dc
-                  '115':
-                    uuid: 079cdc52-e644-42df-ac51-24edf6b1b923
-                    city: Madrid
-                    state: Community of Madrid
-                    country: Spain
-                    continent: Europe
-                    features:
-                      virtual_private_cloud: true
-                      ddos_protection: true
-                      block_storage: true
-                      object_storage: false
-                      floating_ip: true
-                      ipv6: true
-                      backups: true
-                      instances: true
-                      custom_iso: true
-                      smtp: false
-                    ping_ip: 208.76.222.30
-                    latitude: 40.4167754
-                    longitude: -3.7037902
-                    is_public: true
-                    generation: 1
-                    operator_id: 439fc2dc
-                  '116':
-                    uuid: 03cdf3e0-0e74-4b35-b472-08a6ea70a93f
-                    city: Melbourne
-                    state: Victoria
-                    country: Australia
-                    continent: Australia
-                    features:
-                      virtual_private_cloud: true
-                      ddos_protection: true
-                      block_storage: true
-                      object_storage: false
-                      floating_ip: true
-                      ipv6: true
-                      backups: true
-                      instances: true
-                      custom_iso: true
-                      smtp: false
-                    ping_ip: 67.219.110.24
-                    latitude: -37.8136276
-                    longitude: 144.9630576
-                    is_public: true
-                    generation: 1
-                    operator_id: 439fc2dc
-                  '117':
-                    uuid: 63973716-65ce-4722-ad33-e7734e3321a1
-                    city: Mexico City
-                    state: Mexico City
-                    country: Mexico
-                    continent: North america
-                    features:
-                      virtual_private_cloud: true
-                      ddos_protection: true
-                      block_storage: true
-                      object_storage: false
-                      floating_ip: true
-                      ipv6: true
-                      backups: true
-                      instances: true
-                      custom_iso: true
-                      smtp: false
-                    ping_ip: 216.238.66.16
-                    latitude: 19.4326077
-                    longitude: -99.133208
-                    is_public: true
-                    generation: 1
-                    operator_id: 439fc2dc
-                  '118':
-                    uuid: a6ae07ad-556c-4f93-88cc-09c16ed17a43
-                    city: Miami
-                    state: Florida
-                    country: United States
-                    continent: North america
-                    features:
-                      virtual_private_cloud: true
-                      ddos_protection: true
-                      block_storage: true
-                      object_storage: false
-                      floating_ip: true
-                      ipv6: true
-                      backups: true
-                      instances: true
-                      custom_iso: true
-                      smtp: false
-                    ping_ip: 104.156.244.232
-                    latitude: 25.7616798
-                    longitude: -80.1917902
-                    is_public: true
-                    generation: 1
-                    operator_id: 439fc2dc
-                  '119':
-                    uuid: da1baacc-6610-4d7a-a78c-99a93a6a9e49
-                    city: Tokyo
-                    state: Tokyo
-                    country: Japan
-                    continent: Asia
-                    features:
-                      virtual_private_cloud: true
-                      ddos_protection: true
-                      block_storage: true
-                      object_storage: false
-                      floating_ip: true
-                      ipv6: true
-                      backups: true
-                      instances: true
-                      custom_iso: true
-                      smtp: false
-                    ping_ip: 108.61.201.151
-                    latitude: 35.6761919
-                    longitude: 139.6503106
-                    is_public: true
-                    generation: 1
-                    operator_id: 439fc2dc
-                  '120':
-                    uuid: 55df18d0-6287-4fb6-93f4-a6d1928fd19c
-                    city: Chicago
-                    state: Illinois
-                    country: United States
-                    continent: North america
-                    features:
-                      virtual_private_cloud: true
-                      ddos_protection: true
-                      block_storage: true
-                      object_storage: false
-                      floating_ip: true
-                      ipv6: true
-                      backups: true
-                      instances: true
-                      custom_iso: true
-                      smtp: false
-                    ping_ip: 107.191.51.12
-                    latitude: 41.8781136
-                    longitude: -87.6297982
-                    is_public: true
-                    generation: 1
-                    operator_id: 439fc2dc
-                  '121':
-                    uuid: f20f5b0d-fb30-4315-a2ad-acb9fd240ce5
-                    city: São Paulo
-                    state: Sao Paulo
-                    country: Brazil
-                    continent: South america
-                    features:
-                      virtual_private_cloud: true
-                      ddos_protection: true
-                      block_storage: true
-                      object_storage: false
-                      floating_ip: true
-                      ipv6: true
-                      backups: true
-                      instances: true
-                      custom_iso: true
-                      smtp: false
-                    ping_ip: 216.238.98.118
-                    latitude: -22.4584143
-                    longitude: -46.9471993
-                    is_public: true
-                    generation: 1
-                    operator_id: 439fc2dc
-                  '122':
-                    uuid: 4a69f19c-8c26-4850-90f0-fca1d7cd8ac0
-                    city: Seattle
-                    state: Washington
-                    country: United States
-                    continent: North america
-                    features:
-                      virtual_private_cloud: true
-                      ddos_protection: true
-                      block_storage: true
-                      object_storage: false
-                      floating_ip: true
-                      ipv6: true
-                      backups: true
-                      instances: true
-                      custom_iso: true
-                      smtp: false
-                    ping_ip: 108.61.194.105
-                    latitude: 47.6062095
-                    longitude: -122.3320708
-                    is_public: true
-                    generation: 1
-                    operator_id: 439fc2dc
-                  '123':
-                    uuid: 126ce9eb-fe94-4f79-87b1-63dd598f8a68
-                    city: Singapore
-                    state: Singapore
-                    country: Singapore
-                    continent: Asia
-                    features:
-                      virtual_private_cloud: true
-                      ddos_protection: true
-                      block_storage: true
-                      object_storage: true
-                      floating_ip: true
-                      ipv6: true
-                      backups: true
-                      instances: true
-                      custom_iso: true
-                      smtp: false
-                    ping_ip: 45.32.100.168
-                    latitude: 1.352083
-                    longitude: 103.819836
-                    is_public: true
-                    generation: 1
-                    operator_id: 439fc2dc
-                  '124':
-                    uuid: 84fad1d8-be48-4a39-ac14-7556b9f67d18
-                    city: Silicon Valley
-                    state: California
-                    country: United States
-                    continent: North america
-                    features:
-                      virtual_private_cloud: true
-                      ddos_protection: true
-                      block_storage: true
-                      object_storage: true
-                      floating_ip: true
-                      ipv6: true
-                      backups: true
-                      instances: true
-                      custom_iso: true
-                      smtp: false
-                    ping_ip: 104.156.230.107
-                    latitude: 37.387474
-                    longitude: -122.0575434
-                    is_public: true
-                    generation: 1
-                    operator_id: 439fc2dc
-                  '125':
-                    uuid: ef76ffb1-adbd-425f-98ee-4f744eb7afe6
-                    city: Stockholm
-                    state: Stockholm County
-                    country: Sweden
-                    continent: Europe
-                    features:
-                      virtual_private_cloud: true
-                      ddos_protection: true
-                      block_storage: true
-                      object_storage: false
-                      floating_ip: true
-                      ipv6: true
-                      backups: true
-                      instances: true
-                      custom_iso: true
-                      smtp: false
-                    ping_ip: 70.34.194.86
-                    latitude: 59.3293235
-                    longitude: 18.0685808
-                    is_public: true
-                    generation: 1
-                    operator_id: 439fc2dc
-                  '126':
-                    uuid: 94014a58-3412-4e05-a95e-17f1540258e6
-                    city: Sydney
-                    state: New South Wales
-                    country: Australia
-                    continent: Australia
-                    features:
-                      virtual_private_cloud: true
-                      ddos_protection: true
-                      block_storage: false
-                      object_storage: false
-                      floating_ip: true
-                      ipv6: true
-                      backups: true
-                      instances: true
-                      custom_iso: true
-                      smtp: false
-                    ping_ip: 108.61.212.117
-                    latitude: -33.8688197
-                    longitude: 151.2092955
-                    is_public: true
-                    generation: 1
-                    operator_id: 439fc2dc
-                  '127':
-                    uuid: 23384e6a-e856-46b7-926e-bcbda69e9c0a
-                    city: Warsaw
-                    state: Masovian Voivodeship
-                    country: Poland
-                    continent: Europe
-                    features:
-                      virtual_private_cloud: true
-                      ddos_protection: true
-                      block_storage: true
-                      object_storage: false
-                      floating_ip: true
-                      ipv6: true
-                      backups: true
-                      instances: true
-                      custom_iso: true
-                      smtp: false
-                    ping_ip: 70.34.242.24
-                    latitude: 52.2296756
-                    longitude: 21.0122287
-                    is_public: true
-                    generation: 1
-                    operator_id: 439fc2dc
-                  '128':
-                    uuid: ee2b9a82-ff2f-4ab9-afc3-baee8379487a
-                    city: Johannesburg
-                    state: Gauteng
-                    country: South Africa
-                    continent: Africa
-                    features:
-                      virtual_private_cloud: true
-                      ddos_protection: true
-                      block_storage: true
-                      object_storage: false
-                      floating_ip: true
-                      ipv6: true
-                      backups: true
-                      instances: true
-                      custom_iso: true
-                      smtp: false
-                    ping_ip: 139.84.226.78
-                    latitude: -26.195246
-                    longitude: 28.034088
-                    is_public: true
-                    generation: 1
-                    operator_id: 439fc2dc
-                  '129':
-                    uuid: 878e4e9c-6096-44e4-913d-9ae9290a123b
-                    city: Santiago
-                    state: Santiago Metropolitan Region
-                    country: Chile
-                    continent: South america
-                    features:
-                      virtual_private_cloud: true
-                      ddos_protection: true
-                      block_storage: true
-                      object_storage: false
-                      floating_ip: true
-                      ipv6: true
-                      backups: true
-                      instances: true
-                      custom_iso: true
-                      smtp: false
-                    ping_ip: 64.176.2.7
-                    latitude: -33.4488897
-                    longitude: -70.6692655
-                    is_public: true
-                    generation: 1
-                    operator_id: 439fc2dc
-                  '130':
-                    uuid: e74cd1e4-ea60-4f45-9bb8-caa21b7ddd2a
-                    city: Osaka
-                    state: Osaka
-                    country: Japan
-                    continent: Asia
-                    features:
-                      virtual_private_cloud: true
-                      ddos_protection: true
-                      block_storage: true
-                      object_storage: false
-                      floating_ip: true
-                      ipv6: true
-                      backups: true
-                      instances: true
-                      custom_iso: true
-                      smtp: false
-                    ping_ip: ''
-                    latitude: 34.6937249
-                    longitude: 135.5022535
-                    is_public: true
-                    generation: 1
-                    operator_id: 439fc2dc
-                  '131':
-                    uuid: 6a69ab89-668e-470b-9fbb-f11a85b0bec6
-                    city: Tel Aviv
-                    state: Tel Aviv District
-                    country: Palestine
-                    continent: Middle east
-                    features:
-                      virtual_private_cloud: true
-                      ddos_protection: true
-                      block_storage: true
-                      object_storage: false
-                      floating_ip: true
-                      ipv6: true
-                      backups: true
-                      instances: true
-                      custom_iso: true
-                      smtp: false
-                    ping_ip: 64.176.162.16
-                    latitude: 32.0852999
-                    longitude: 34.7817676
-                    is_public: true
-                    generation: 1
-                    operator_id: 439fc2dc
-                  '132':
-                    uuid: 48b676e2-b107-4a67-9512-b793d5fd4cc4
-                    city: Manchester
-                    state: England
-                    country: United Kingdom
-                    continent: Europe
-                    features:
-                      virtual_private_cloud: true
-                      ddos_protection: true
-                      block_storage: true
-                      object_storage: false
-                      floating_ip: true
-                      ipv6: true
-                      backups: true
-                      instances: true
-                      custom_iso: true
-                      smtp: false
-                    ping_ip: 64.176.178.136
-                    latitude: 53.4807593
-                    longitude: -2.2426305
-                    is_public: true
-                    generation: 1
-                    operator_id: 439fc2dc
                 meta:
                   count:
                     public:
@@ -1216,17 +228,17 @@ get:
                       asia: 5
                   total: 98
                   cached: true
-                  timestamp: '2023-10-19T20:26:51Z'
+                  timestamp: '2024-04-27T20:26:51Z'
             region-201:
               summary: List of all G2 data center regions
               value:
                 regions:
-                  '201':
-                    uuid: e8d5d02c-4dbf-423b-b896-96625d2f93a1
+                  - uuid: e8d5d02c-4dbf-423b-b896-96625d2f93a1
                     city: New York
                     state: New York
                     country: United States
                     continent: North america
+                    datacenter_id: 201
                     features:
                       virtual_private_cloud: true
                       ddos_protection: false
@@ -1237,19 +249,18 @@ get:
                       backups: true
                       instances: true
                       custom_iso: true
+                      databases: false
                       smtp: false
                     ping_ip: ''
                     latitude: 40.7127753
                     longitude: -74.0059728
                     is_public: true
-                    generation: 2
-                    operator_id: 042e9398
-                  '202':
-                    uuid: 0ddee7d2-efd7-4448-ad41-b99090acb6d5
+                  - uuid: 0ddee7d2-efd7-4448-ad41-b99090acb6d5
                     city: San Francisco
                     state: California
                     country: United States
                     continent: North america
+                    datacenter_id: 202
                     features:
                       virtual_private_cloud: true
                       ddos_protection: false
@@ -1260,289 +271,12 @@ get:
                       backups: true
                       instances: true
                       custom_iso: true
+                      databases: false
                       smtp: false
                     ping_ip: ''
                     latitude: 37.7749295
                     longitude: -122.4194155
                     is_public: true
-                    generation: 2
-                    operator_id: 042e9398
-                  '203':
-                    uuid: 2d53ead5-4f0d-4cf3-831e-b4d2bfccb689
-                    city: New York
-                    state: New York
-                    country: United States
-                    continent: North america
-                    features:
-                      virtual_private_cloud: true
-                      ddos_protection: false
-                      block_storage: false
-                      object_storage: false
-                      floating_ip: true
-                      ipv6: true
-                      backups: true
-                      instances: true
-                      custom_iso: true
-                      smtp: false
-                    ping_ip: ''
-                    latitude: 40.7127753
-                    longitude: -74.0059728
-                    is_public: true
-                    generation: 2
-                    operator_id: 042e9398
-                  '204':
-                    uuid: 860c8d11-b301-4196-8854-2bdf9643654e
-                    city: Amsterdam
-                    state: North Holland
-                    country: Netherlands
-                    continent: Europe
-                    features:
-                      virtual_private_cloud: true
-                      ddos_protection: false
-                      block_storage: false
-                      object_storage: false
-                      floating_ip: true
-                      ipv6: true
-                      backups: true
-                      instances: true
-                      custom_iso: true
-                      smtp: false
-                    ping_ip: ''
-                    latitude: 52.3666969
-                    longitude: 4.8945398
-                    is_public: true
-                    generation: 2
-                    operator_id: 042e9398
-                  '205':
-                    uuid: 3eeddff7-5dbf-4926-a9bd-f3602b4a1b97
-                    city: Singapore
-                    state: Singapore
-                    country: Singapore
-                    continent: Asia
-                    features:
-                      virtual_private_cloud: true
-                      ddos_protection: false
-                      block_storage: true
-                      object_storage: false
-                      floating_ip: true
-                      ipv6: true
-                      backups: true
-                      instances: true
-                      custom_iso: true
-                      smtp: false
-                    ping_ip: ''
-                    latitude: 1.352083
-                    longitude: 103.819836
-                    is_public: true
-                    generation: 2
-                    operator_id: 042e9398
-                  '206':
-                    uuid: 143bcb57-274e-4470-a5bd-a4a63a28e4f4
-                    city: London
-                    state: England
-                    country: United Kingdom
-                    continent: Europe
-                    features:
-                      virtual_private_cloud: true
-                      ddos_protection: false
-                      block_storage: true
-                      object_storage: false
-                      floating_ip: true
-                      ipv6: true
-                      backups: true
-                      instances: true
-                      custom_iso: true
-                      smtp: false
-                    ping_ip: ''
-                    latitude: 51.5073509
-                    longitude: -0.1277583
-                    is_public: true
-                    generation: 2
-                    operator_id: 042e9398
-                  '207':
-                    uuid: cf53bae5-9ce9-461e-ad43-6ba2874adefb
-                    city: New York
-                    state: New York
-                    country: United States
-                    continent: North america
-                    features:
-                      virtual_private_cloud: true
-                      ddos_protection: false
-                      block_storage: true
-                      object_storage: false
-                      floating_ip: true
-                      ipv6: true
-                      backups: true
-                      instances: true
-                      custom_iso: true
-                      smtp: false
-                    ping_ip: ''
-                    latitude: 40.7127753
-                    longitude: -74.0059728
-                    is_public: true
-                    generation: 2
-                    operator_id: 042e9398
-                  '208':
-                    uuid: 9e97f6c2-1cf0-4b65-9772-0264a89ff1aa
-                    city: Amsterdam
-                    state: North Holland
-                    country: Netherlands
-                    continent: Europe
-                    features:
-                      virtual_private_cloud: true
-                      ddos_protection: false
-                      block_storage: true
-                      object_storage: false
-                      floating_ip: true
-                      ipv6: true
-                      backups: true
-                      instances: true
-                      custom_iso: true
-                      smtp: false
-                    ping_ip: ''
-                    latitude: 52.3666969
-                    longitude: 4.8945398
-                    is_public: true
-                    generation: 2
-                    operator_id: 042e9398
-                  '209':
-                    uuid: 68bdb695-919d-4cfa-a55f-d297b3c63040
-                    city: Frankfurt
-                    state: Hessen
-                    country: Germany
-                    continent: Europe
-                    features:
-                      virtual_private_cloud: true
-                      ddos_protection: false
-                      block_storage: true
-                      object_storage: false
-                      floating_ip: true
-                      ipv6: true
-                      backups: true
-                      instances: true
-                      custom_iso: true
-                      smtp: false
-                    ping_ip: ''
-                    latitude: 50.1109221
-                    longitude: 8.6821267
-                    is_public: true
-                    generation: 2
-                    operator_id: 042e9398
-                  '210':
-                    uuid: 71c18c90-f2d7-43d1-9a48-6dc085517f50
-                    city: Toronto
-                    state: Ontario
-                    country: Canada
-                    continent: North america
-                    features:
-                      virtual_private_cloud: true
-                      ddos_protection: false
-                      block_storage: true
-                      object_storage: false
-                      floating_ip: true
-                      ipv6: true
-                      backups: true
-                      instances: true
-                      custom_iso: true
-                      smtp: false
-                    ping_ip: ''
-                    latitude: 43.653226
-                    longitude: -79.3831843
-                    is_public: true
-                    generation: 2
-                    operator_id: 042e9398
-                  '211':
-                    uuid: e973897c-b610-4dab-ba6f-0dc42a7735eb
-                    city: San Francisco
-                    state: California
-                    country: United States
-                    continent: North america
-                    features:
-                      virtual_private_cloud: true
-                      ddos_protection: false
-                      block_storage: true
-                      object_storage: false
-                      floating_ip: true
-                      ipv6: true
-                      backups: true
-                      instances: true
-                      custom_iso: true
-                      smtp: false
-                    ping_ip: ''
-                    latitude: 37.7749295
-                    longitude: -122.4194155
-                    is_public: true
-                    generation: 2
-                    operator_id: 042e9398
-                  '212':
-                    uuid: f50dfb6b-f230-4d94-aa84-251f6245c21c
-                    city: Bangalore
-                    state: Karnataka
-                    country: India
-                    continent: Asia
-                    features:
-                      virtual_private_cloud: true
-                      ddos_protection: false
-                      block_storage: true
-                      object_storage: false
-                      floating_ip: true
-                      ipv6: true
-                      backups: true
-                      instances: true
-                      custom_iso: true
-                      smtp: false
-                    ping_ip: ''
-                    latitude: 12.9715987
-                    longitude: 77.5945627
-                    is_public: true
-                    generation: 2
-                    operator_id: 042e9398
-                  '213':
-                    uuid: 41c5dc52-9ec4-45b8-810c-a8b61bcb7295
-                    city: San Francisco
-                    state: California
-                    country: United States
-                    continent: North america
-                    features:
-                      virtual_private_cloud: true
-                      ddos_protection: false
-                      block_storage: true
-                      object_storage: false
-                      floating_ip: true
-                      ipv6: true
-                      backups: true
-                      instances: true
-                      custom_iso: true
-                      smtp: false
-                    ping_ip: ''
-                    latitude: 37.7749295
-                    longitude: -122.4194155
-                    is_public: true
-                    generation: 2
-                    operator_id: 042e9398
-                  '214':
-                    uuid: 46b43c45-06cb-4b8e-a0a7-b881443637a7
-                    city: Sydney
-                    state: New South Wales
-                    country: Australia
-                    continent: Australia
-                    features:
-                      virtual_private_cloud: true
-                      ddos_protection: false
-                      block_storage: true
-                      object_storage: false
-                      floating_ip: true
-                      ipv6: true
-                      backups: true
-                      instances: true
-                      custom_iso: true
-                      smtp: false
-                    ping_ip: ''
-                    latitude: -33.8688197
-                    longitude: 151.2092955
-                    is_public: true
-                    generation: 2
-                    operator_id: 042e9398
                 meta:
                   count:
                     public:
@@ -1563,17 +297,17 @@ get:
                       asia: 5
                   total: 98
                   cached: true
-                  timestamp: '2023-10-19T20:26:51Z'
+                  timestamp: '2024-04-27T20:26:51Z'
             region-301:
               summary: List of all G3 data center regions
               value:
                 regions:
-                  '301':
-                    uuid: 30112e44-b6b3-49de-ad59-85b8d53f49f1
+                  - uuid: 30112e44-b6b3-49de-ad59-85b8d53f49f1
                     city: Mumbai
                     state: Maharashtra
                     country: India
                     continent: Asia
+                    datacenter_id: 301
                     features:
                       virtual_private_cloud: false
                       ddos_protection: false
@@ -1584,19 +318,18 @@ get:
                       backups: true
                       instances: true
                       custom_iso: false
+                      databases: false
                       smtp: true
                     ping_ip: ''
                     latitude: 19.0759837
                     longitude: 72.8776559
                     is_public: true
-                    generation: 3
-                    operator_id: 200e997d
-                  '302':
-                    uuid: 04f58ad2-4e94-45dc-8aa2-e77da8ad3cb4
+                  - uuid: 04f58ad2-4e94-45dc-8aa2-e77da8ad3cb4
                     city: Toronto
                     state: Ontario
                     country: Canada
                     continent: North america
+                    datacenter_id: 302
                     features:
                       virtual_private_cloud: false
                       ddos_protection: false
@@ -1607,496 +340,12 @@ get:
                       backups: true
                       instances: true
                       custom_iso: false
+                      databases: false
                       smtp: true
                     ping_ip: ''
                     latitude: 43.653226
                     longitude: -79.3831843
                     is_public: true
-                    generation: 3
-                    operator_id: 200e997d
-                  '303':
-                    uuid: 0fc0ef74-3f4e-4bb1-a202-786483f23ca3
-                    city: Sydney
-                    state: New South Wales
-                    country: Australia
-                    continent: Australia
-                    features:
-                      virtual_private_cloud: false
-                      ddos_protection: false
-                      block_storage: true
-                      object_storage: false
-                      floating_ip: false
-                      ipv6: true
-                      backups: true
-                      instances: true
-                      custom_iso: false
-                      smtp: true
-                    ping_ip: ''
-                    latitude: -33.8688197
-                    longitude: 151.2092955
-                    is_public: true
-                    generation: 3
-                    operator_id: 200e997d
-                  '304':
-                    uuid: b8fd1d95-317c-4bfa-b293-1877b9b7d2cc
-                    city: Dallas
-                    state: Texas
-                    country: United States
-                    continent: North america
-                    features:
-                      virtual_private_cloud: false
-                      ddos_protection: false
-                      block_storage: true
-                      object_storage: false
-                      floating_ip: false
-                      ipv6: true
-                      backups: true
-                      instances: true
-                      custom_iso: false
-                      smtp: true
-                    ping_ip: 50.116.25.154
-                    latitude: 32.7766642
-                    longitude: -96.7969879
-                    is_public: true
-                    generation: 3
-                    operator_id: 200e997d
-                  '305':
-                    uuid: 568efa6a-0ce5-4a3d-ae78-a00a6c0ac73d
-                    city: Fremont
-                    state: California
-                    country: United States
-                    continent: North america
-                    features:
-                      virtual_private_cloud: false
-                      ddos_protection: false
-                      block_storage: true
-                      object_storage: false
-                      floating_ip: false
-                      ipv6: true
-                      backups: true
-                      instances: true
-                      custom_iso: false
-                      smtp: true
-                    ping_ip: 50.116.14.9
-                    latitude: 37.5485396
-                    longitude: -121.988583
-                    is_public: true
-                    generation: 3
-                    operator_id: 200e997d
-                  '306':
-                    uuid: b7770e5e-82f9-4260-a5d4-30c7331208f7
-                    city: Atlanta
-                    state: Georgia
-                    country: United States
-                    continent: North america
-                    features:
-                      virtual_private_cloud: false
-                      ddos_protection: false
-                      block_storage: true
-                      object_storage: false
-                      floating_ip: false
-                      ipv6: true
-                      backups: true
-                      instances: true
-                      custom_iso: false
-                      smtp: true
-                    ping_ip: 192.155.94.157
-                    latitude: 33.7489954
-                    longitude: -84.3879824
-                    is_public: true
-                    generation: 3
-                    operator_id: 200e997d
-                  '307':
-                    uuid: 9c5e52a2-71b5-43d5-8de0-36c8362ab7b8
-                    city: Newark
-                    state: New Jersey
-                    country: United States
-                    continent: North america
-                    features:
-                      virtual_private_cloud: false
-                      ddos_protection: false
-                      block_storage: true
-                      object_storage: false
-                      floating_ip: false
-                      ipv6: true
-                      backups: true
-                      instances: true
-                      custom_iso: false
-                      smtp: true
-                    ping_ip: 50.116.57.237
-                    latitude: 40.735657
-                    longitude: -74.1723667
-                    is_public: true
-                    generation: 3
-                    operator_id: 200e997d
-                  '308':
-                    uuid: 50121d09-43b9-4c9b-b007-5c43f0daf046
-                    city: London
-                    state: England
-                    country: United Kingdom
-                    continent: Europe
-                    features:
-                      virtual_private_cloud: false
-                      ddos_protection: false
-                      block_storage: true
-                      object_storage: false
-                      floating_ip: false
-                      ipv6: true
-                      backups: true
-                      instances: true
-                      custom_iso: false
-                      smtp: true
-                    ping_ip: 176.58.107.39
-                    latitude: 51.5073509
-                    longitude: -0.1277583
-                    is_public: true
-                    generation: 3
-                    operator_id: 200e997d
-                  '309':
-                    uuid: ad5da993-97e5-437b-978f-98c0a7a0d9a4
-                    city: Singapore
-                    state: Singapore
-                    country: Singapore
-                    continent: Asia
-                    features:
-                      virtual_private_cloud: false
-                      ddos_protection: false
-                      block_storage: true
-                      object_storage: false
-                      floating_ip: false
-                      ipv6: true
-                      backups: true
-                      instances: true
-                      custom_iso: false
-                      smtp: true
-                    ping_ip: 139.162.23.4
-                    latitude: 1.352083
-                    longitude: 103.819836
-                    is_public: true
-                    generation: 3
-                    operator_id: 200e997d
-                  '310':
-                    uuid: 2195d5f7-e7b8-4b95-a6b5-564707831e38
-                    city: Frankfurt
-                    state: Hessen
-                    country: Germany
-                    continent: Europe
-                    features:
-                      virtual_private_cloud: false
-                      ddos_protection: false
-                      block_storage: true
-                      object_storage: false
-                      floating_ip: false
-                      ipv6: true
-                      backups: true
-                      instances: true
-                      custom_iso: false
-                      smtp: true
-                    ping_ip: 139.162.130.8
-                    latitude: 50.1109221
-                    longitude: 8.6821267
-                    is_public: true
-                    generation: 3
-                    operator_id: 200e997d
-                  '311':
-                    uuid: c11be50e-bc31-4343-b45a-5b743d8ada14
-                    city: Tokyo
-                    state: Tokyo
-                    country: Japan
-                    continent: Asia
-                    features:
-                      virtual_private_cloud: false
-                      ddos_protection: false
-                      block_storage: true
-                      object_storage: false
-                      floating_ip: false
-                      ipv6: true
-                      backups: true
-                      instances: true
-                      custom_iso: false
-                      smtp: true
-                    ping_ip: ''
-                    latitude: 35.6761919
-                    longitude: 139.6503106
-                    is_public: true
-                    generation: 3
-                    operator_id: 200e997d
-                  '312':
-                    uuid: 411f224a-eb97-43e5-8f59-0853072d3a25
-                    city: Washington DC
-                    state: District of Columbia
-                    country: United States
-                    continent: North america
-                    features:
-                      virtual_private_cloud: false
-                      ddos_protection: false
-                      block_storage: true
-                      object_storage: false
-                      floating_ip: false
-                      ipv6: true
-                      backups: true
-                      instances: true
-                      custom_iso: false
-                      smtp: true
-                    ping_ip: ''
-                    latitude: 38.9071923
-                    longitude: -77.0368707
-                    is_public: true
-                    generation: 3
-                    operator_id: 200e997d
-                  '313':
-                    uuid: 8f80ac82-12dd-45a9-b5f6-9a565b7a14a9
-                    city: Chicago
-                    state: Illinois
-                    country: United States
-                    continent: North america
-                    features:
-                      virtual_private_cloud: false
-                      ddos_protection: false
-                      block_storage: true
-                      object_storage: false
-                      floating_ip: false
-                      ipv6: true
-                      backups: true
-                      instances: true
-                      custom_iso: false
-                      smtp: true
-                    ping_ip: 172.232.0.29
-                    latitude: 41.8781136
-                    longitude: -87.6297982
-                    is_public: true
-                    generation: 3
-                    operator_id: 200e997d
-                  '314':
-                    uuid: a0139afd-ee5c-4744-9b0a-ee99bfdeb881
-                    city: Paris
-                    state: Île-de-France
-                    country: France
-                    continent: Europe
-                    features:
-                      virtual_private_cloud: false
-                      ddos_protection: false
-                      block_storage: true
-                      object_storage: false
-                      floating_ip: false
-                      ipv6: true
-                      backups: true
-                      instances: true
-                      custom_iso: false
-                      smtp: true
-                    ping_ip: 172.232.32.31
-                    latitude: 48.856614
-                    longitude: 2.3522219
-                    is_public: true
-                    generation: 3
-                    operator_id: 200e997d
-                  '315':
-                    uuid: de02fc0e-af0f-4b9b-99ee-f076055018f2
-                    city: Stockholm
-                    state: Stockholm County
-                    country: Sweden
-                    continent: Europe
-                    features:
-                      virtual_private_cloud: false
-                      ddos_protection: false
-                      block_storage: true
-                      object_storage: false
-                      floating_ip: false
-                      ipv6: true
-                      backups: true
-                      instances: true
-                      custom_iso: false
-                      smtp: true
-                    ping_ip: 172.232.128.9
-                    latitude: 59.3293235
-                    longitude: 18.0685808
-                    is_public: true
-                    generation: 3
-                    operator_id: 200e997d
-                  '316':
-                    uuid: 93ab7c98-21ca-4716-a1f5-e169b2a11419
-                    city: Seattle
-                    state: Washington
-                    country: United States
-                    continent: North america
-                    features:
-                      virtual_private_cloud: false
-                      ddos_protection: false
-                      block_storage: true
-                      object_storage: false
-                      floating_ip: false
-                      ipv6: true
-                      backups: true
-                      instances: true
-                      custom_iso: false
-                      smtp: true
-                    ping_ip: 172.232.160.30
-                    latitude: 47.6062095
-                    longitude: -122.3320708
-                    is_public: true
-                    generation: 3
-                    operator_id: 200e997d
-                  '317':
-                    uuid: 08405f6a-a579-4269-ba71-7fe6b14c017f
-                    city: Milano
-                    state: Lombardy
-                    country: Italy
-                    continent: Europe
-                    features:
-                      virtual_private_cloud: false
-                      ddos_protection: false
-                      block_storage: true
-                      object_storage: false
-                      floating_ip: false
-                      ipv6: true
-                      backups: true
-                      instances: true
-                      custom_iso: false
-                      smtp: true
-                    ping_ip: ''
-                    latitude: 45.4642035
-                    longitude: 9.189982
-                    is_public: true
-                    generation: 3
-                    operator_id: 200e997d
-                  '318':
-                    uuid: a2a6895b-27c8-4220-95e9-41d6ceaacde6
-                    city: Jakarta
-                    state: Jakarta
-                    country: Indonesia
-                    continent: Asia
-                    features:
-                      virtual_private_cloud: false
-                      ddos_protection: false
-                      block_storage: true
-                      object_storage: false
-                      floating_ip: false
-                      ipv6: true
-                      backups: true
-                      instances: true
-                      custom_iso: false
-                      smtp: true
-                    ping_ip: 172.232.224.19
-                    latitude: -6.2087634
-                    longitude: 106.845599
-                    is_public: true
-                    generation: 3
-                    operator_id: 200e997d
-                  '319':
-                    uuid: d4993c3e-50d2-40bf-8242-8dc2fce2207f
-                    city: Chennai
-                    state: Tamil Nadu
-                    country: India
-                    continent: Asia
-                    features:
-                      virtual_private_cloud: false
-                      ddos_protection: false
-                      block_storage: true
-                      object_storage: false
-                      floating_ip: false
-                      ipv6: true
-                      backups: true
-                      instances: true
-                      custom_iso: false
-                      smtp: true
-                    ping_ip: 172.232.96.28
-                    latitude: 13.0826802
-                    longitude: 80.2707184
-                    is_public: true
-                    generation: 3
-                    operator_id: 200e997d
-                  '320':
-                    uuid: f05e63a7-104f-48cf-b410-33c016b64a51
-                    city: Osaka
-                    state: Osaka
-                    country: Japan
-                    continent: Asia
-                    features:
-                      virtual_private_cloud: false
-                      ddos_protection: false
-                      block_storage: true
-                      object_storage: false
-                      floating_ip: false
-                      ipv6: true
-                      backups: true
-                      instances: true
-                      custom_iso: false
-                      smtp: true
-                    ping_ip: 172.233.64.142
-                    latitude: 34.6937249
-                    longitude: 135.5022535
-                    is_public: true
-                    generation: 3
-                    operator_id: 200e997d
-                  '321':
-                    uuid: 4e24ffbb-b44f-4819-9dc1-42dc73fba414
-                    city: São Paulo
-                    state: Sao Paulo
-                    country: Brazil
-                    continent: South america
-                    features:
-                      virtual_private_cloud: false
-                      ddos_protection: false
-                      block_storage: true
-                      object_storage: false
-                      floating_ip: false
-                      ipv6: true
-                      backups: true
-                      instances: true
-                      custom_iso: false
-                      smtp: true
-                    ping_ip: ''
-                    latitude: -22.4584143
-                    longitude: -46.9471993
-                    is_public: true
-                    generation: 3
-                    operator_id: 200e997d
-                  '322':
-                    uuid: 15d6e9d5-d63d-41e0-9dc3-99149675d182
-                    city: Amsterdam
-                    state: North Holland
-                    country: Netherlands
-                    continent: Europe
-                    features:
-                      virtual_private_cloud: false
-                      ddos_protection: false
-                      block_storage: true
-                      object_storage: false
-                      floating_ip: false
-                      ipv6: true
-                      backups: true
-                      instances: true
-                      custom_iso: false
-                      smtp: true
-                    ping_ip: 172.233.33.22
-                    latitude: 52.3666969
-                    longitude: 4.8945398
-                    is_public: true
-                    generation: 3
-                    operator_id: 200e997d
-                  '323':
-                    uuid: 6218e819-10b9-4695-9487-115fb0f996e8
-                    city: Miami
-                    state: Florida
-                    country: United States
-                    continent: North america
-                    features:
-                      virtual_private_cloud: false
-                      ddos_protection: false
-                      block_storage: true
-                      object_storage: false
-                      floating_ip: false
-                      ipv6: true
-                      backups: true
-                      instances: true
-                      custom_iso: false
-                      smtp: true
-                    ping_ip: 172.233.160.12
-                    latitude: 25.7616798
-                    longitude: -80.1917902
-                    is_public: true
-                    generation: 3
-                    operator_id: 200e997d
                 meta:
                   count:
                     public:
@@ -2117,310 +366,55 @@ get:
                       asia: 5
                   total: 98
                   cached: true
-                  timestamp: '2023-10-19T20:26:51Z'
+                  timestamp: '2024-04-27T20:26:51Z'
             region-401:
               summary: List of all G4 data center regions
               value:
                 regions:
-                  '401':
-                    uuid: bdd3ed48-5756-450f-9693-916145da9c4a
+                  - uuid: bdd3ed48-5756-450f-9693-916145da9c4a
                     city: Sydney
                     state: New South Wales
                     country: Australia
                     continent: Australia
+                    datacenter_id: 401
                     features:
                       virtual_private_cloud: false
                       ddos_protection: false
-                      block_storage: false
-                      object_storage: true
+                      block_storage: true
+                      object_storage: false
                       floating_ip: false
-                      ipv6: false
-                      backups: false
-                      instances: false
+                      ipv6: true
+                      backups: true
+                      instances: true
                       custom_iso: false
+                      databases: false
                       smtp: false
                     ping_ip: ''
                     latitude: -33.8688197
                     longitude: 151.2092955
-                    is_public: false
-                    generation: 4
-                    operator_id: 19eda5e2
-                  '402':
-                    uuid: 01aa9db9-312a-4ec1-b3a1-7e579fd3cae5
+                    is_public: true
+                  - uuid: 01aa9db9-312a-4ec1-b3a1-7e579fd3cae5
                     city: Frankfurt
                     state: Hessen
                     country: Germany
                     continent: Europe
+                    datacenter_id: 402
                     features:
                       virtual_private_cloud: false
                       ddos_protection: false
-                      block_storage: false
-                      object_storage: true
+                      block_storage: true
+                      object_storage: false
                       floating_ip: false
-                      ipv6: false
-                      backups: false
-                      instances: false
+                      ipv6: true
+                      backups: true
+                      instances: true
                       custom_iso: false
+                      databases: false
                       smtp: false
                     ping_ip: ''
                     latitude: 50.1109221
                     longitude: 8.6821267
-                    is_public: false
-                    generation: 4
-                    operator_id: 19eda5e2
-                  '403':
-                    uuid: 4b1c5450-6a55-428f-bdaa-add1caf3d9a9
-                    city: Madrid
-                    state: Community of Madrid
-                    country: Spain
-                    continent: Europe
-                    features:
-                      virtual_private_cloud: false
-                      ddos_protection: false
-                      block_storage: false
-                      object_storage: true
-                      floating_ip: false
-                      ipv6: false
-                      backups: false
-                      instances: false
-                      custom_iso: false
-                      smtp: false
-                    ping_ip: ''
-                    latitude: 40.4167754
-                    longitude: -3.7037902
-                    is_public: false
-                    generation: 4
-                    operator_id: 19eda5e2
-                  '404':
-                    uuid: 96e1ec9c-8513-4e86-b415-66ab34dd61df
-                    city: Helsinki
-                    state: Helsinki
-                    country: Finland
-                    continent: Europe
-                    features:
-                      virtual_private_cloud: false
-                      ddos_protection: false
-                      block_storage: false
-                      object_storage: true
-                      floating_ip: false
-                      ipv6: false
-                      backups: false
-                      instances: false
-                      custom_iso: false
-                      smtp: false
-                    ping_ip: ''
-                    latitude: 60.1698557
-                    longitude: 24.9383791
-                    is_public: false
-                    generation: 4
-                    operator_id: 19eda5e2
-                  '405':
-                    uuid: f6c8d6c9-1ca4-42e9-ac63-1a9d5095f954
-                    city: Helsinki
-                    state: Helsinki
-                    country: Finland
-                    continent: Europe
-                    features:
-                      virtual_private_cloud: false
-                      ddos_protection: false
-                      block_storage: false
-                      object_storage: true
-                      floating_ip: false
-                      ipv6: false
-                      backups: false
-                      instances: false
-                      custom_iso: false
-                      smtp: false
-                    ping_ip: ''
-                    latitude: 60.1698557
-                    longitude: 24.9383791
-                    is_public: false
-                    generation: 4
-                    operator_id: 19eda5e2
-                  '406':
-                    uuid: 2fe4740c-25bd-47f2-bae3-ade6ffd5c914
-                    city: Amsterdam
-                    state: North Holland
-                    country: Netherlands
-                    continent: Europe
-                    features:
-                      virtual_private_cloud: false
-                      ddos_protection: false
-                      block_storage: false
-                      object_storage: true
-                      floating_ip: false
-                      ipv6: false
-                      backups: false
-                      instances: false
-                      custom_iso: false
-                      smtp: false
-                    ping_ip: ''
-                    latitude: 52.3666969
-                    longitude: 4.8945398
-                    is_public: false
-                    generation: 4
-                    operator_id: 19eda5e2
-                  '407':
-                    uuid: 6d56074d-d3d4-4df7-89ed-6de46a9035dd
-                    city: Warsaw
-                    state: Masovian Voivodeship
-                    country: Poland
-                    continent: Europe
-                    features:
-                      virtual_private_cloud: false
-                      ddos_protection: false
-                      block_storage: false
-                      object_storage: true
-                      floating_ip: false
-                      ipv6: false
-                      backups: false
-                      instances: false
-                      custom_iso: false
-                      smtp: false
-                    ping_ip: ''
-                    latitude: 52.2296756
-                    longitude: 21.0122287
-                    is_public: false
-                    generation: 4
-                    operator_id: 19eda5e2
-                  '408':
-                    uuid: 4df50a07-df56-48cd-87e9-37d052115323
-                    city: Singapore
-                    state: Singapore
-                    country: Singapore
-                    continent: Asia
-                    features:
-                      virtual_private_cloud: false
-                      ddos_protection: false
-                      block_storage: false
-                      object_storage: true
-                      floating_ip: false
-                      ipv6: false
-                      backups: false
-                      instances: false
-                      custom_iso: false
-                      smtp: false
-                    ping_ip: ''
-                    latitude: 1.352083
-                    longitude: 103.819836
-                    is_public: false
-                    generation: 4
-                    operator_id: 19eda5e2
-                  '409':
-                    uuid: 2722c2ac-bcb5-4f46-9678-fb234a225df9
-                    city: London
-                    state: England
-                    country: United Kingdom
-                    continent: Europe
-                    features:
-                      virtual_private_cloud: false
-                      ddos_protection: false
-                      block_storage: false
-                      object_storage: true
-                      floating_ip: false
-                      ipv6: false
-                      backups: false
-                      instances: false
-                      custom_iso: false
-                      smtp: false
-                    ping_ip: ''
-                    latitude: 51.5073509
-                    longitude: -0.1277583
-                    is_public: false
-                    generation: 4
-                    operator_id: 19eda5e2
-                  '410':
-                    uuid: 87029a36-80cf-4954-b0de-6c3728bb27b5
-                    city: Chicago
-                    state: Illinois
-                    country: United States
-                    continent: North america
-                    features:
-                      virtual_private_cloud: false
-                      ddos_protection: false
-                      block_storage: false
-                      object_storage: true
-                      floating_ip: false
-                      ipv6: false
-                      backups: false
-                      instances: false
-                      custom_iso: false
-                      smtp: false
-                    ping_ip: ''
-                    latitude: 41.8781136
-                    longitude: -87.6297982
-                    is_public: false
-                    generation: 4
-                    operator_id: 19eda5e2
-                  '411':
-                    uuid: 5aae6202-4e47-4553-8c62-bedc7a2b46a1
-                    city: New York
-                    state: New York
-                    country: United States
-                    continent: North america
-                    features:
-                      virtual_private_cloud: false
-                      ddos_protection: false
-                      block_storage: false
-                      object_storage: true
-                      floating_ip: false
-                      ipv6: false
-                      backups: false
-                      instances: false
-                      custom_iso: false
-                      smtp: false
-                    ping_ip: ''
-                    latitude: 40.7127753
-                    longitude: -74.0059728
-                    is_public: false
-                    generation: 4
-                    operator_id: 19eda5e2
-                  '412':
-                    uuid: 443d95c2-f0a1-4a04-b481-27d290477ade
-                    city: San Jose
-                    state: California
-                    country: United States
-                    continent: North america
-                    features:
-                      virtual_private_cloud: false
-                      ddos_protection: false
-                      block_storage: false
-                      object_storage: true
-                      floating_ip: false
-                      ipv6: false
-                      backups: false
-                      instances: false
-                      custom_iso: false
-                      smtp: false
-                    ping_ip: ''
-                    latitude: 37.3382082
-                    longitude: -121.8863286
-                    is_public: false
-                    generation: 4
-                    operator_id: 19eda5e2
-                  '413':
-                    uuid: 6f7e9d6c-1fe3-40bc-a598-31ae216dd770
-                    city: Stockholm
-                    state: Stockholm County
-                    country: Sweden
-                    continent: Europe
-                    features:
-                      virtual_private_cloud: false
-                      ddos_protection: false
-                      block_storage: false
-                      object_storage: true
-                      floating_ip: false
-                      ipv6: false
-                      backups: false
-                      instances: false
-                      custom_iso: false
-                      smtp: false
-                    ping_ip: ''
-                    latitude: 59.3293235
-                    longitude: 18.0685808
-                    is_public: false
-                    generation: 4
-                    operator_id: 19eda5e2
+                    is_public: true
                 meta:
                   count:
                     public:
@@ -2441,8 +435,7 @@ get:
                       asia: 5
                   total: 98
                   cached: true
-                  timestamp: '2023-10-19T20:26:51Z'
-          
+                  timestamp: '2024-04-27T20:26:51Z'
     '400':
       $ref: ../../models/4xx-responses/400.yaml
     '405':

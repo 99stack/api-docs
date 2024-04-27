@@ -1,0 +1,388 @@
+openapi: 3.0.3
+info:
+  title: 99Stack Cloud API
+  version: '1.4'
+  contact:
+    name: 99Stack Cloud Support
+    email: 'support@99stack.com'
+    url: https://www.99stack.com/contact
+  description: |-
+    ## Introduction
+
+    The 99Stack Cloud API is designed to provide you with a seamless, programmatic means of managing servers and resources within the 99Stack Cloud environment. Through conventional HTTP requests, you can execute a wide array of functionalities that you are already familiar with from the 99Stack Cloud control panel.
+
+    In fact, all the features and capabilities that you have come to know within the 99Stack Cloud interface are also readily available within the API. This grants you the power to script intricate actions that may be necessitated by your specific circumstances. Whether it's provisioning servers, configuring settings, or managing your cloud infrastructure, the API offers a robust and flexible solution.
+
+    To streamline your experience, we offer the option to download a file containing the API documentation. This file can be effortlessly imported into your preferred API request and development tool, such as Postman or Insomnia. This approach not only simplifies the integration process but also provides an effective way to conduct thorough testing before actual implementation.
+
+    Delving deeper into the documentation, we begin with a comprehensive overview, shedding light on the underlying design principles and the technology stack that has been employed. This understanding lays a solid foundation for effectively utilizing the API to its fullest potential. Following this, you will find detailed reference information pertaining to specific endpoints. 
+    
+    This includes precise details on how to structure requests, expected responses, and any additional parameters or options that may be applicable. This granular level of documentation ensures that you have all the necessary information at your fingertips to make the most of the API's capabilities.
+
+    ## Using the api
+
+    ### Response codes
+
+    When you interact with the API, every response is accompanied by an HTTP status code. This code serves as a clear indicator of the status of your request. A response in the 2xx range signifies a successful operation. On the other hand, if you receive a response in the 4xx range, it signifies an error related to data input, access permissions, rate-limits, or potential software issues. 
+
+    If the response falls within the 5xx range, it suggests server-related errors or issues arising from external resources. Understanding these status codes allows for a more nuanced interpretation of the API's feedback, aiding in troubleshooting and ensuring a smoother interaction with the 99Stack Cloud services.
+
+    | HTTP Response Code  | Description  | Note
+    |---|---|---|
+    | 200  | OK | Used in `GET` responses |
+    | 201  | Created | Resource creation was successfull |
+    | 202  | Accepted | Method executed successfully  |
+    | 204  | No Response| Resource was successfully removed |
+    | 301  | Moved Permanently | Function is deprecated  |
+    | 400  | Bad Request | See response message for more details |
+    | 401  | Unauthorized | Invalid auth token |
+    | 402  | Payment required | Account balance is too low |
+    | 403  | Forbidden | Method not allowed for authorized account |
+    | 404  | Not Found | Resource does not exist, or is not available |
+    | 405  | Method Not Allowed | Incorrect HTTP method, see response message for more details |
+    | 429  | Too many requests | Rate limit was hit, try again in a few seconds|
+    | 500  | Internal Server Error | Communication error in our system |
+    | 501  | Not Implemented  | Function does not exist, check spelling |
+    | 502  | Bad Gateway | Failed to contact remote servers, or proxy error  |
+    | 503  | Service Unavailable | Maintenance in progress  |
+    | 504  | Gateway Timeout | Back-end servers was unable to handle your request |
+
+    ### Rate limits
+
+    The 99Stack Cloud API operates with stringent rate limits as a means to judiciously allocate available resources and maintain equitable usage for all users. Each limit is carefully established, taking into account various factors including security considerations and the objective of resource conservation. This approach ensures a balanced and efficient utilization of the API, promoting a seamless experience for every user.
+
+    ### Timestamps
+
+    Timestamps within the 99Stack Cloud API are formatted in accordance with the ISO-8601 standard, specifically as `YYYY-mm-dd\THH:ii:ss\Z`. By default, timestamps are presented in the `UTC+0000` timezone. In the 99Stack Cloud control panel, the timeago.js library is employed to display timestamps in the user's local time, ensuring a more intuitive and user-friendly experience. This feature allows users to seamlessly interpret and work with time-related information within the control panel interface.
+
+    ### Examples
+    
+    Here are some examples that you can employ to test different API calls directly in your terminal using the `curl` command. Make sure to substitute variables written in all caps with your own specific data.
+
+    `GET` request with no arguments:
+
+    ```bash
+    curl -X GET \
+      "https://api.99stack.com/v1.4/region/list"
+    ```
+
+    `GET` request that requires your API token:
+
+    ```bash
+    curl -X GET \
+      -H 'Authorization: Bearer YOUR_TOKEN' \
+      "https://api.99stack.com/v1.4/server/list"
+    ```
+
+    `POST` request containing a JSON request body:
+
+    ```bash
+    curl -X POST \
+      -H 'Authorization: Bearer YOUR_TOKEN' \
+      -H 'Content-Type: application/json' \
+      -d '{"name": "NEW_TOKEN_NAME"}'  \
+      "https://api.99stack.com/v1.4/account/token_create"
+    ```
+
+    `DELETE` request containing a JSON request body:
+
+    ```bash
+    curl -X DELETE \
+      -H 'Authorization: Bearer YOUR_TOKEN' \
+      -H 'Content-Type: application/json' \
+      -d '{"server_id": "123e4567-e89b-12d3-a456-426655440000"}' \
+      "https://api.99stack.com/v1.4/server/remove"
+    ```
+
+    # Authentication
+
+    To authenticate any API request, ensure that the Authorization header is configured with a valid Bearer token. These tokens can be generated through the [control panel](https://dash.99stack.com/auth/manage-api-tokens), or by sending a valid request to [/account/login](/docs/v1.4/#operation/account-login). Once you've obtained the token, employ the following format:
+
+    ```bash
+    Authorization: Bearer YOUR_TOKEN
+    ```
+    
+    To verify the validity of your token, you can perform the following API call to `/account/info`. This will allow you to access and view your account information.
+    
+    ```bash
+    curl -X GET \
+      -H 'Authorization: Bearer YOUR_TOKEN' \
+      "https://api.99stack.com/v1.4/account/info"
+    ```
+    
+    See supported token types below.
+
+  termsOfService: 'https://www.99stack.com/legal/terms-of-service'
+  license:
+    name: MIT
+    url: 'https://github.com/99stack/api-docs/blob/master/LICENSE'
+servers:
+  - url: 'https://api.99stack.com/v1.4'
+    variables: {}
+    description: Global
+
+paths:
+  /account/token_list:
+    $ref: ./paths/token/list.yaml
+  /account/token_create:
+    $ref: ./paths/token/create.yaml
+  /account/token_rename:
+    $ref: ./paths/token/rename.yaml
+  /account/token_remove/{token_id}:
+    $ref: ./paths/token/remove.yaml
+
+  /account/info:
+    $ref: ./paths/account/info.yaml
+  /account/register:
+    $ref: ./paths/account/register.yaml
+  /account/login:
+    $ref: ./paths/account/login.yaml
+  /account/activate:
+    $ref: ./paths/account/activate.yaml
+  /account/update:
+    $ref: ./paths/account/update.yaml
+  /account/reset:
+    $ref: ./paths/account/reset.yaml
+
+  /transaction/list:
+    $ref: ./paths/billing/list_trans.yaml
+  /invoice/list:
+    $ref: ./paths/billing/list_invoice.yaml
+  /invoice/sum:
+    $ref: ./paths/billing/sum_invoice.yaml
+
+  /snapshot/list:
+    $ref: ./paths/snapshot/list.yaml
+  /snapshot/create:
+    $ref: ./paths/snapshot/create.yaml
+  /snapshot/restore:
+    $ref: ./paths/snapshot/restore.yaml
+  /snapshot/remove/{snapshot_id}:
+    $ref: ./paths/snapshot/remove.yaml
+
+  /server/list:
+    $ref: ./paths/server/list.yaml
+  /server/info/{server_id}:
+    $ref: ./paths/server/info.yaml
+  /server/create:
+    $ref: ./paths/server/create.yaml
+  /server/remove/{server_id}:
+    $ref: ./paths/server/remove.yaml
+
+  /server/rebuild/{server_id}:
+    $ref: ./paths/server/scale/list_rebuild.yaml
+  /server/resize/{server_id}:
+    $ref: ./paths/server/scale/list_resize.yaml
+  /server/rebuild:
+    $ref: ./paths/server/scale/rebuild.yaml
+  /server/resize:
+    $ref: ./paths/server/scale/resize.yaml
+    
+  /server/rescue:
+    $ref: ./paths/server/action/rescue.yaml
+  /server/reinstall:
+    $ref: ./paths/server/action/reinstall.yaml
+  /server/start:
+    $ref: ./paths/server/action/start.yaml
+  /server/stop:
+    $ref: ./paths/server/action/stop.yaml
+  /server/reboot:
+    $ref: ./paths/server/action/reboot.yaml
+
+  /rdns/get/{server_id}:
+    $ref: ./paths/server/rdns/get.yaml
+  /rdns/put:
+    $ref: ./paths/server/rdns/put.yaml
+    
+  /option/get/{server_id}:
+    $ref: ./paths/server/options/get.yaml
+  /option/set/{server_id}:
+    $ref: ./paths/server/options/set.yaml
+
+  /floating_ip/list:
+    $ref: ./paths/network/ipv4/list.yaml
+  /floating_ip/create:
+    $ref: ./paths/network/ipv4/create.yaml
+  /floating_ip/attach:
+    $ref: ./paths/network/ipv4/attach.yaml
+  /floating_ip/detach:
+    $ref: ./paths/network/ipv4/detach.yaml
+  /floating_ip/remove/{ip_id}:
+    $ref: ./paths/network/ipv4/remove.yaml
+
+  /vpc/list:
+    $ref: ./paths/network/vpc/list.yaml
+  /vpc/create:
+    $ref: ./paths/network/vpc/create.yaml
+  /vpc/attach:
+    $ref: ./paths/network/vpc/attach.yaml
+  /vpc/detach:
+    $ref: ./paths/network/vpc/detach.yaml
+  /vpc/remove/{vpc_id}:
+    $ref: ./paths/network/vpc/remove.yaml
+
+  /ssh_key/list:
+    $ref: ./paths/ssh_key/list.yaml
+  /ssh_key/create:
+    $ref: ./paths/ssh_key/create.yaml
+  /ssh_key/rename:
+    $ref: ./paths/ssh_key/rename.yaml
+  /ssh_key/remove/{ssh_key_id}:
+    $ref: ./paths/ssh_key/remove.yaml
+
+  /backup/restore:
+    $ref: ./paths/backup/restore.yaml
+  /backup/enable:
+    $ref: ./paths/backup/enable.yaml
+  /backup/disable:
+    $ref: ./paths/backup/disable.yaml
+
+  /region/list:
+    $ref: ./paths/_public/region.yaml
+  /image/list:
+    $ref: ./paths/_public/image.yaml
+  /plan/list:
+    $ref: ./paths/_public/plan.yaml
+  /availability/list:
+    $ref: ./paths/_public/availibility.yaml
+  /feature/list/{region_id}:
+    $ref: ./paths/_public/feature.yaml
+    
+  /database/list:
+    $ref: ./paths/databases/list.yaml
+  /database/create:
+    $ref: ./paths/databases/create.yaml
+  /database/update:
+    $ref: ./paths/databases/update.yaml
+  /database/remove:
+    $ref: ./paths/databases/remove.yaml
+
+  /object/list:
+    $ref: ./paths/objects/list.yaml
+  /object/create:
+    $ref: ./paths/objects/create.yaml
+  /object/remove/{object_id}:
+    $ref: ./paths/objects/remove.yaml
+
+  /volume/list:
+    $ref: ./paths/volume/list.yaml
+  /volume/create:
+    $ref: ./paths/volume/create.yaml
+  /volume/attach:
+    $ref: ./paths/volume/attach.yaml
+  /volume/detach:
+    $ref: ./paths/volume/detach.yaml
+  /volume/remove/{volume_id}:
+    $ref: ./paths/volume/remove.yaml
+
+x-tagGroups:
+  - name: Information
+    tags:
+      - Public
+  - name: Account
+    tags:
+      - Management
+      - SSH Keys
+      - Billing
+      - Token
+  - name: Server
+    tags:
+      - Instance
+      - Scaling
+      - Action
+      - Backup
+      - Options
+      - Reverse DNS
+  - name: Container
+    tags:
+      - Database
+  - name: Storage
+    tags:
+      - Snapshot
+      - Block storage
+      - Object storage
+  - name: Network
+    tags:
+      - Floating IPs
+      - VPCs
+      
+tags:
+  - name: Public
+    description: |-
+      These endpoints are accessible without the need for authentication. This allows users to retrieve information about regions, images, plans, specific features, availability, and status effortlessly.
+      
+      Within our system, regions, images, and plans are examples of objects categorized by unique numeric IDs. It is imperative to take note of these IDs, as they serve as crucial indicators of compatibility.
+
+  - name: Management
+    description: |-
+      These functions allows you to oversee both your primary account and any associated sub-accounts. It also provides a view of their respective statuses and the enabled features.
+  - name: SSH Keys
+    description: |-
+      You have the ability to incorporate SSH keys into your account. These keys can be automatically transferred to new instances during their initial deployment. It's important to note that modifying a key does not impact any currently operational instances; this change only applies to newly created deployments. However, if you choose to reinstall an instance, it will inherit the updated key.
+  - name: Billing
+    description: |-
+      Access a comprehensive overview of your account's payment transactions, including details on taxes, fees, and a breakdown of billing information organized by resource. Additionally, if you opt not to use JavaScript, you have the option to load payment forms via API. This provides an alternative method for interacting with the payment system, particularly useful for those who prefer not to utilize the 99Stack Cloud control panel.
+  - name: Token
+    description: |-
+      Account tokens serve as access credentials for the 99Stack Cloud API, allowing users to interact with it. You have the flexibility to generate multiple tokens, allocate specific permissions, and independently manage their expiration dates in accordance with your own security preferences. This empowers you to fine-tune access levels and enhance the overall security of your account.
+
+  - name: Instance
+    description: |-
+      Our cloud instances are designed for swift deployment, allowing you to select your preferred operating system or even opt for pre-installed applications within a matter of seconds. High Frequency Compute instances are driven by high clock speed CPUs and feature NVMe local storage, ensuring optimal performance for even the most resource-intensive applications. This combination of cutting-edge hardware and rapid deployment capabilities empowers you to tackle demanding tasks with ease and efficiency.
+  - name: Scaling
+    description: |-
+      This section enables you to view and request modifications to existing servers. You have the option to upgrade to a larger plan or change the operating system image according to your specific requirements. This provides flexibility and adaptability to meet evolving needs.
+  - name: Action
+    description: |-
+      Server actions empower you to dispatch a range of commands to a server, including standard actions like `start` and `stop`. Additionally, there are more specialized troubleshooting actions available, such as `power_off` which performs a hard reboot, and `rescue` which boots your server into a rescue CD environment. These functionalities offer a versatile toolkit for managing and troubleshooting your server instances effectively.
+  - name: Backup
+    description: |-
+      A backup is a pre-scheduled, automated snapshot taken at a specific point in time of an instance. Importantly, the instance remains operational and is not halted during the backup process. Restoring from a backup is akin to performing a reboot following a non-graceful restart, ensuring continuity of service while reverting to the saved state.
+  - name: Options
+    description: |-
+      Server options provide a means to customize the configuration and behavior of server objects, particularly in specific scenarios or circumstances. This feature grants you greater control and adaptability over your server instances.
+  - name: Reverse DNS
+    description: |-
+      Reverse DNS functionality allows you to set up PTR (Pointer) records, establishing a connection between a server's IP address and a corresponding domain name. This capability proves valuable for authentication purposes, especially when sending emails via SMTP or similar protocols. It ensures that your server's identity is properly validated in email communications.
+
+  - name: Snapshot
+    description: |-
+      Snapshots represent preserved states of a server. To prevent issues arising from compressing filesystems, each snapshot is accompanied by a `min_disk_size` attribute. This attribute denotes the minimum required disk size for the server volume when generating a new resource based on the saved snapshot. This ensures a seamless and compatible transition when creating new resources from existing snapshots.
+  - name: Block storage
+    description: |-
+      Block Storage Volumes offer additional storage capacity for your servers and can be seamlessly moved between servers within a specific region. These volumes function as raw block devices, presenting themselves to the operating system as locally attached storage. This allows them to be formatted using any file system supported by the OS.
+
+      You can create volumes ranging in size from 10 GiB up to a substantial 16 TiB, though regional limitations do apply. Through requests made to the `/volumes` endpoint, you have the capability to perform a range of actions, including listing, creating, and deleting volumes, as well as attaching and detaching them from servers. This flexibility ensures that you can effectively manage your storage resources to suit your specific needs.
+
+  - name: Object storage
+    description: |-
+      Object storage within our system is specifically tailored for compatibility with the S3 API, ensuring seamless integration with server instances optimized for storage. Objects uploaded to this storage can be accessed either privately or made publicly available on the web. The scalability of object storage is impressive, allowing for an extensive number of objects and buckets to be managed. You have full control over your object storage through the S3 API, providing a robust and versatile storage solution.
+      
+  - name: Database
+    description: |-
+      Containerized databases offer unparalleled scalability, allowing users to effortlessly adjust resources based on demand. With flexible pricing models, users pay only for the resources they consume, minimizing costs and maximizing efficiency. This approach ensures optimal resource utilization, enabling businesses to scale operations seamlessly while maintaining control over expenses. Additionally, containerized databases facilitate rapid deployment and resource allocation, supporting agile development and enhancing overall productivity.
+
+  - name: Floating IPs
+    description: |-
+      Floating IPs are fixed, publicly accessible IP addresses that can be assigned to one of your servers. They serve a crucial role in creating highly available setups or other configurations that necessitate movable addresses. 
+      
+      It's important to note that Floating IPs are associated with a specific region, and as such, they are subject to regional limitations. This feature provides a flexible and reliable means to manage and maintain your network configurations.
+  - name: VPCs
+    description: |-
+      A Virtual Private Cloud (VPC) empowers you to establish virtual networks, housing resources capable of seamless communication while maintaining complete isolation. This is facilitated through the utilization of private IP addresses, ensuring a secure and dedicated environment for your networked resources.
+
+components:
+  securitySchemes:
+    bearer:
+      type: http
+      scheme: bearer
+      
+  headers:
+    Content-Type:
+      description: Should be set to application/json
+      schema:
+        type: string
+    Authorization:
+      description: "Must contain the following: 'Bearer auth_token' where auth_token is one of your accounts authentication tokens"
+      schema:
+        type: string

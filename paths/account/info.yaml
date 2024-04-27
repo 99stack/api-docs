@@ -43,6 +43,9 @@ get:
                   dark_mode:
                     type: boolean
                     description: Use dark mode or ligth mode in control panel
+              account_type:
+                type: enum
+                description: Can be `personal`, `business` or `reseller`
               balance:
                 type: number
                 description: Current account balance
