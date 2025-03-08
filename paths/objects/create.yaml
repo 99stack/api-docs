@@ -22,7 +22,7 @@ post:
               type: string
               description: |-
                 Performance tier of object storage, accepted values: `standard`, `premium`, `performance` and `accelerated`
-            region_id:
+            region:
               type: integer
               description: The `id` of the region the volume will be created in
         examples:
