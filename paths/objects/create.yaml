@@ -18,28 +18,29 @@ post:
             name:
               type: string
               description: Name of the new volume
-            size_gb:
-              type: integer
-              description: Size in gigabytes
+            class:
+              type: string
+              description: |-
+                Performance tier of object storage, accepted values: `standard`, `premium`, `performance` and `accelerated`
             region_id:
               type: integer
               description: The `id` of the region the volume will be created in
         examples:
-          100gb: 
-            summary: Create a 100GB volume in Frankfurt
+          frankfurt: 
+            summary: Create a standard instance in Frankfurt
             value:
               {
-                "name": "a-100gb-volume",
-                "region": 310,
-                "size_gb": 100
+                "name": "standard-storage",
+                "region": 109,
+                "class": "standard"
               }
-          5tb: 
-            summary: Create a 5TB volume in London
+          london: 
+            summary: Create a performance instance in London
             value:
               {
-                "name": "a-5tb-volume",
-                "region": 206,
-                "size_gb": 5000
+                "name": "performance-storage",
+                "region": 114,
+                "class": "performance"
               }
 
   responses:

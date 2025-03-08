@@ -17,12 +17,9 @@ patch:
         schema:
           type: object
           properties:  
-            firstname:
+            name:
               type: string
-              description: First name (optional)
-            lastname:
-              type: string
-              description: Last name (optional)
+              description: Full legal name, this may be compared to the name provided by payment processors
             country:
               type: string
               description: Two letter country code, must be your legal country of residence even if you use VPN. Discovered mismatches may result in a temporary ban. (optional)
@@ -37,8 +34,7 @@ patch:
               description: The new password or passphrase
         example:
           {
-            "firstname": "John",
-            "lastname": "Doe",
+            "name": "John Doe",
             "country": "US",
             "dark_mode": true,
             "email": "john.doe@example.com",

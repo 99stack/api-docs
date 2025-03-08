@@ -31,12 +31,9 @@ get:
               profile:
                 type: object
                 properties:
-                  firstname:
+                  name:
                     type: string
-                    description: First name       
-                  lastname:
-                    type: string
-                    description: Last name
+                    description: Full legal name
                   country:
                     type: string
                     description: Two letter country code
@@ -99,8 +96,7 @@ get:
                   "id": 654321,
                   "uuid": "753dd882-9246-4e7b-b52d-e7ff1febbede",
                   "profile": {
-                      "firstname": "John",
-                      "lastname": "Doe",
+                      "name": "John Doe",
                       "email": "john_doe@example.com"
                   },
                   "balance": 4322.65474875,

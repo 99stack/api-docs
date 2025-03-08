@@ -81,7 +81,7 @@ info:
       -H 'Authorization: Bearer YOUR_TOKEN' \
       -H 'Content-Type: application/json' \
       -d '{"name": "NEW_TOKEN_NAME"}'  \
-      "https://api.99stack.com/v1.4/account/token_create"
+      "https://api.99stack.com/v1.4/token/create"
     ```
 
     `DELETE` request containing a JSON request body:
@@ -122,13 +122,13 @@ servers:
     description: Global
 
 paths:
-  /account/token_list:
+  /token/list:
     $ref: ./paths/token/list.yaml
-  /account/token_create:
+  /token/create:
     $ref: ./paths/token/create.yaml
-  /account/token_rename:
+  /token/rename:
     $ref: ./paths/token/rename.yaml
-  /account/token_remove/{token_id}:
+  /token/remove/{token_id}:
     $ref: ./paths/token/remove.yaml
 
   /account/info:

@@ -23,12 +23,9 @@ post:
             password:
               type: string
               description: Password linked to the account
-            firstname:
+            name:
               type: string
-              description: Optional first name for display purpose, can be anything but must be set
-            lastname:
-              type: string
-              description: Optional last name for display purpose, can be anything but must be set
+              description: Full legal name, this may be compared to the name provided by payment processors
             accept_tos:
               type: boolean
               description: Agree to terms of service, privacy policy, data processing agreement and acceptable use policies. Must be `true`
@@ -39,8 +36,7 @@ post:
           {
             "email": "john_doe@example.com",
             "password": "a very long and secure password, preferrably a whole sentence",
-            "firstname": "John",
-            "lastname": "Doe",
+            "name": "John Doe",
             "accept_tos": true,
             "country": "US"
           }
